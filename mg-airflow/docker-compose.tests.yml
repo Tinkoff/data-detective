@@ -17,9 +17,10 @@ services:
       context: docker/ssh_service
     healthcheck:
       test: ["CMD-SHELL", "nc -z localhost 22"]
-      interval: 5s
+      interval: 15s
       timeout: 5s
       retries: 10
+      start_period: 20s
 
   metadb:
     image: postgres:13.4-alpine
@@ -30,9 +31,10 @@ services:
       - "5004:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U airflow"]
-      interval: 2s
+      interval: 16s
       timeout: 5s
       retries: 10
+      start_period: 20s
 
   pgwork:
     image: postgres:13.4-alpine
@@ -43,9 +45,10 @@ services:
       - ./docker/init-pgwork.sql:/docker-entrypoint-initdb.d/init-pgwork.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U airflow"]
-      interval: 5s
+      interval: 17s
       timeout: 5s
-      retries: 100
+      retries: 10
+      start_period: 20s
 
   s3work:
     image: localstack/localstack:0.11.5
@@ -57,9 +60,10 @@ services:
       - ./docker/init-s3work.sh:/docker-entrypoint-initaws.d/init-s3work.sh
     healthcheck:
       test: bash -c -l 'AWS_ACCESS_KEY_ID=fake AWS_SECRET_ACCESS_KEY=fake aws --endpoint-url=http://localhost:4566 s3 ls'
-      interval: 7s
+      interval: 18s
       timeout: 5s
-      retries: 100
+      retries: 10
+      start_period: 20s
 
   tests:
     <<: *airflow
