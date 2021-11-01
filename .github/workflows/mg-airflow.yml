@@ -1,5 +1,4 @@
-name: docker-compose-actions-workflow
-description: Workflow for MG Airflow
+name: mg-airflow-actions-workflow
 on:
   push:
     paths:
