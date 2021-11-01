@@ -1,0 +1,1 @@
+SELECT 1 as value, TO_CHAR(10, 'l99999D99') as currency

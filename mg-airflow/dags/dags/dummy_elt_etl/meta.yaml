@@ -1,0 +1,38 @@
+default_args:
+  owner: airflow
+  result_type: pg
+  retries: 1
+  retry_delay: 2
+  work_conn_id: pg
+  work_type: pg
+description: dummy with ELT and ETL
+factory: YAML
+postrun: null
+prerun: null
+schedule_interval: null
+tags:
+- dummy
+- dummy_elt_etl
+tasks:
+- task_id: elt
+  description: ELT преобразование с сохранием в PG
+  obj_type: table
+  source: []
+  sql: /code/test1.sql
+  type: mg_airflow.operators.transformers.PgSQL
+- task_id: etl
+  type: mg_airflow.operators.transformers.PyTransform
+  description: ETL преобразование с сохранием в PG
+  source:
+  - elt
+  transformer_callable: etl
+- task_id: sink
+  description: Записать результат
+  type: mg_airflow.operators.sinks.PgSCD1
+  key:
+  - test
+  source:
+  - etl
+  conn_id: pg
+  table_name: test2
+  process_deletions: true

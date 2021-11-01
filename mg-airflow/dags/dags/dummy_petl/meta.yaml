@@ -1,0 +1,12 @@
+description: Пример TPythonDag c SQL файлами и petl
+tags:
+  - petl
+schedule_interval:
+factory: Python
+default_args:
+  owner: airflow
+  retries: 1
+  retry_delay: 2
+  result_type: pickle
+  work_type: s3
+  work_conn_id: s3

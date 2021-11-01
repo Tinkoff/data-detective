@@ -1,0 +1,44 @@
+description: Пример Dag c SQL файлами для отладки и экспериментов
+schedule_interval:
+default_args:
+  owner: airflow
+  retries: 1
+  retry_delay: 2
+  result_type: pickle
+  work_type: s3
+  work_conn_id: s3
+factory: YAML
+tasks:
+- task_id: test1
+  description: Запрос к базе данных
+  type: mg_airflow.operators.extractors.DBDump
+  conn_id: pg
+  sql: /code/test1.sql
+- task_id: test2
+  description: Запрос к базе данных
+  type: mg_airflow.operators.extractors.DBDump
+  conn_id: pg
+  sql: /code/test1.sql
+- task_id: transform
+  type: mg_airflow.operators.transformers.PyTransform
+  source:
+  - test2
+  transformer_callable: >
+    lambda self, df: df
+- task_id: append_all
+  description: Объединение предыдущих результатов
+  type: mg_airflow.operators.transformers.PyTransform
+  source:
+  - test1
+  - transform
+  transformer_callable: >
+    lambda _context, df_now1, transform: df_now1.append(transform, sort=False)
+- task_id: sink
+  description: Записать результат
+  type: mg_airflow.operators.sinks.PgSCD1
+  source:
+  - append_all
+  conn_id: pg
+  key:
+  - test
+  table_name: test2

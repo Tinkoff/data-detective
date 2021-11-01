@@ -1,0 +1,26 @@
+description: Пример Dag для проверки тестов с PgSCD1 и колонкой processed_dttm
+schedule_interval:
+default_args:
+  owner: airflow
+  retries: 1
+  retry_delay: 2
+  result_type: pickle
+  work_type: s3
+  work_conn_id: s3
+factory: YAML
+tasks:
+- task_id: dump_rows
+  description: Запрос к базе данных
+  type: mg_airflow.operators.extractors.DBDump
+  conn_id: pg
+  sql: select generate_series(1, 10) as test, 50 as test1;
+- task_id: sink
+  description: Записать результат
+  type: mg_airflow.operators.sinks.PgSCD1
+  source:
+  - dump_rows
+  conn_id: pg
+  key:
+  - test
+  table_name: test_processed_dttm
+  logging_thread_flg: No

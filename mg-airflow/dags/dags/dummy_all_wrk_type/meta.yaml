@@ -1,0 +1,13 @@
+description: Пример TPythonDag c S3Work и SFTPWork с выгрузкой в Postgres
+tags:
+  - dummy
+  - all_works
+schedule_interval:
+factory: Python
+default_args:
+  owner: airflow
+  retries: 1
+  retry_delay: 2
+  result_type: pickle
+  work_type: file
+  work_conn_id: null

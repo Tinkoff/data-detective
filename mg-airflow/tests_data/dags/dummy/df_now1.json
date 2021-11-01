@@ -1,0 +1,21 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"test",
+                "type":"integer"
+            },
+            {
+                "name":"test1",
+                "type":"integer"
+            }
+        ],
+        "pandas_version":"0.20.0"
+    },
+    "data":[
+        {
+            "test":1,
+            "test1":1
+        }
+    ]
+}

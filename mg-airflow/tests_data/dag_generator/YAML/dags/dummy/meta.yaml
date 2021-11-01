@@ -1,0 +1,34 @@
+description: null
+schedule_interval: '*/5 * * * *'
+default_args:
+  owner: airflow
+  retries: 1
+  result_type: pickle
+  work_type: file
+factory: YAML
+tags:
+- dummy
+- yaml
+postrun: []
+prerun: []
+tasks:
+- conn_id: pg
+  task_id: df_first
+  type: mg_airflow.operators.extractors.DBDump
+  sql: select now() as value;
+- conn_id: pg
+  task_id: df_second
+  type: mg_airflow.operators.extractors.DBDump
+  sql: select now() as value;
+- conn_id: pg
+  task_id: df_third
+  type: mg_airflow.operators.extractors.DBDump
+  sql: select now() as value;
+- source:
+  - df_first
+  - df_second
+  - df_third
+  task_id: append_all
+  type: mg_airflow.operators.transformers.PyTransform
+  transformer_callable: >
+    lambda _context, df_now1, transform: df_first.append(df_second, sort=False).append(df_third, sort=False)

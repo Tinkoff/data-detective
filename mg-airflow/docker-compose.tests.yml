@@ -1,0 +1,85 @@
+version: '2.3'
+
+x-airflow: &airflow
+  build:
+    context: .
+    target: dev
+  environment:
+    - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${META_USER}:${META_PASS}@metadb:5432/${META_USER}
+    - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    - AIRFLOW__WEBSERVER__SECRET_KEY=${SECRET_KEY}
+    - AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False
+    - AIRFLOW__CORE__LOAD_EXAMPLES=False
+
+services:
+  ssh_service:
+    build:
+      context: docker/ssh_service
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 22"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  metadb:
+    image: postgres:13.4-alpine
+    environment:
+      - POSTGRES_USER=${META_USER}
+      - POSTGRES_PASSWORD=${META_PASS}
+    ports:
+      - "5004:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
+
+  pgwork:
+    image: postgres:13.4-alpine
+    environment:
+      - POSTGRES_USER=${META_USER}
+      - POSTGRES_PASSWORD=${META_PASS}
+    volumes:
+      - ./docker/init-pgwork.sql:/docker-entrypoint-initdb.d/init-pgwork.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 100
+
+  s3work:
+    image: localstack/localstack:0.11.5
+    environment:
+      - SERVICES=s3
+      - DEBUG=0
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - ./docker/init-s3work.sh:/docker-entrypoint-initaws.d/init-s3work.sh
+    healthcheck:
+      test: bash -c -l 'AWS_ACCESS_KEY_ID=fake AWS_SECRET_ACCESS_KEY=fake aws --endpoint-url=http://localhost:4566 s3 ls'
+      interval: 7s
+      timeout: 5s
+      retries: 100
+
+  tests:
+    <<: *airflow
+    depends_on:
+      ssh_service:
+        condition: service_healthy
+      metadb:
+        condition: service_healthy
+      pgwork:
+        condition: service_healthy
+      s3work:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dags:${AIRFLOW_HOME}/dags
+      - ./mg_airflow:${AIRFLOW_HOME}/mg_airflow
+      - ./tests:${AIRFLOW_HOME}/tests
+      - ./tests_data:${AIRFLOW_HOME}/tests_data
+      - ./Makefile:${AIRFLOW_HOME}/Makefile
+      - ./pyproject.toml:${AIRFLOW_HOME}/pyproject.toml
+      - ./setup.cfg:${AIRFLOW_HOME}/setup.cfg
+    command: tests
