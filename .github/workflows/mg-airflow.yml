@@ -10,4 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Test
-        run: docker-compose -f mg-airflow/docker-compose.tests.yml up --build --exit-code-from=tests
+        run: |-
+          cd mg-airflow
+          cp .env.example .env
+          randstr=`shuf -zer -n32  {A..Z} {a..z} {0..9} | tr -d '\0'`
+          echo "SECRET_KEY=${randstr}" >> .env
+          docker-compose -f docker-compose.tests.yml up --build --exit-code-from=tests
