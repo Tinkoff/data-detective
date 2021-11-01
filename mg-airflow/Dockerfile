@@ -8,7 +8,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
     AIRFLOW_HOME=/usr/local/airflow
 
 RUN apt-get update \
- && apt-get -q -y install curl libmariadb3 \
  && apt-get -q -y install sudo -o DPkg::Options::="--force-confnew" \
  && groupadd -g $AIRFLOW_USER_UID airflow \
  && useradd -ms /bin/bash -d ${AIRFLOW_HOME} -G sudo -u ${AIRFLOW_USER_UID} -g ${AIRFLOW_USER_UID} airflow \
