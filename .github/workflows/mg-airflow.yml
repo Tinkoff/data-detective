@@ -1,0 +1,14 @@
+name: docker-compose-actions-workflow
+description: Workflow for MG Airflow
+on:
+  push:
+    paths:
+      - "mg-airflow/**"
+      - ".github/workflows/mg-airflow.yml"
+jobs:
+  test-mg-airflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test
+        run: docker-compose -f mg-airflow/docker-compose.tests.yml up --build --exit-code-from=tests
