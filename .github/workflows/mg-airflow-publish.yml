@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - "mg-airflow/*.*.*"
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   publish:
