@@ -1,4 +1,4 @@
-name: mg-airflow-actions-workflow
+name: Test mg-airflow
 on:
   push:
     paths:
