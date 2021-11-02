@@ -1,9 +1,9 @@
-name: mg-airflow-actions-workflow
+name: Test mg-airflow
 on:
   push:
     paths:
       - "mg-airflow/**"
-      - ".github/workflows/mg-airflow.yml"
+      - ".github/workflows/mg-airflow-test.yml"
 jobs:
   test-mg-airflow:
     runs-on: ubuntu-latest
