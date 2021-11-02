@@ -43,7 +43,6 @@ jobs:
           PYPI_PASSWD: ${{ secrets.PYPI_PASSWD }}
         run: |-
           cd mg-airflow
-          poetry config repositories.pypi "https://test.pypi.org/legacy/"
           poetry config http-basic.pypi ${PYPI_USER} ${PYPI_PASSWD}
           poetry install --no-dev
           poetry build
