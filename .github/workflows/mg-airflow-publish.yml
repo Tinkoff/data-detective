@@ -4,23 +4,30 @@ on:
   push:
     tags:
       - "mg-airflow/*.*.*"
-  workflow_dispatch:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ 3.9 ]
+        poetry-version: [ 1.0.4 ]
+        os: [ ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.9"
+          python-version: ${{ matrix.python-version }}
       - name: Install poetry
-        run: |
-          curl -fsS -o get-poetry.py https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
-          python get-poetry.py -y
+        uses: abatilo/actions-poetry@v2.1.4
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
       - name: Configure poetry
-        run: cd mg-airflow && poetry config virtualenvs.in-project true
+        run: |-
+          cd mg-airflow
+          poetry config virtualenvs.in-project true
       - name: Set up cache
         uses: actions/cache@v2
         id: cache
@@ -34,7 +41,7 @@ jobs:
         env:
           PYPI_USER: ${{ secrets.PYPI_USER }}
           PYPI_PASSWD: ${{ secrets.PYPI_PASSWD }}
-        run: |
+        run: |-
           cd mg-airflow
           poetry config repositories.pypi "https://test.pypi.org/legacy/"
           poetry config http-basic.pypi ${PYPI_USER} ${PYPI_PASSWD}
