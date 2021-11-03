@@ -1,33 +1,32 @@
-# Решение для датасетов 
+# Frameworks for working with datasets
 
 ## pandas
 
-Документация - https://pandas.pydata.org/docs/
+Docs - https://pandas.pydata.org/docs/
 
-Самое популярное решение для работы с табличными данными.
-Позволяет преобразовывать данные множественными способами: группировка, фильтрация, трансформации.
-Отлаженные способы работы с большим количеством форматов: csv, avro, json, markdown и другие
+The most popular solution for working with tabular data.
+Allows you to transform data in multiple ways: grouping, filtering, transformations.
+There are ways to work with a large number of formats: csv, avro, json, markdown and others.
 
-Основные концепты - Series и DataFrame.
-При работе с DataFrame нужно иметь в виду, что данные в нем хранятся вертикально по колонкам.
-Вследствие этого неразумно итерироваться по всем колонкам сразу.
+The main concepts are Series and DataFrame.
+When working with a DataFrame, it should be borne in mind that the data in it is stored vertically in columns.
+As a result, it is unwise to iterate over all columns at once.
 
-При etl частой проблемой является появление NotANumber (NaN, NA, nan). На них падает загрузка во внешние источники.
-Обычно нужно вычищать NaN перед финальными выгрузками. NaN обычно полезен при математических расчетах.
+When working with etl, a common problem is the appearance of NotANumber (NaN, NA, nan). Loading to external sources falls on them.
+It is usually necessary to clean the NaN before the final uploads. NaN is also usually useful in mathematical calculations.
 
 ## petl 
 
-Документация - https://petl.readthedocs.io/en/stable/
+Docs - https://petl.readthedocs.io/en/stable/
 
-petl работает с абстракциями над двумерной структурой TupleOfTuples или ListOfList.
-Преобразования происходят в функциональном стиле.
-За один проход по датасету можно произвести все преобразования.
-Исключение: сортировки, группировки, нахождение уникальных записей
+petl works with abstractions over a two-dimensional TupleOfTuples or ListOfList structure.
+Transformations take place in a functional style.
+All transformations can be performed in one pass through the dataset.
+The exceptions are: sorting, grouping, finding unique records.
 
-Развивается долгое время. Имеет все необходимые преобразования для ETL.
+This tool has been developing for a long time and has all the necessary transformations for ETL.
 
-Имеет базовые возможности по работе с другими форматами, 
-поэтому для задач преобразований в другой формат предпочтительнее использовать pandas.
+It has basic capabilities for working with other formats, so it is preferable to use pandas for conversion tasks to another format.
 
-Оптимально работать с датасетами до 1 гигабайта. При больших объемах лучше брать DataFrame.
-DataFrame хранит данные компактнее TupleOfTuples.
+It is considered optimal to work with datasets up to 1 gigabyte. For large volumes, it is better to take a DataFrame.
+DataFrame stores data more compactly than TupleOfTuples.
