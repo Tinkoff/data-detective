@@ -47,7 +47,7 @@ JSONPandasDataset is a class that creates a dictionary of the type `dict[task_na
 When calling `dataset[task_name]`, a json file is read, which is converted to a DataFrame.
 
 Writing to JSONPandasDataset then proceeds as follows. The dataset key is assigned a DataFrame.
-Then the DataFrame is converted to json and saved to a file called tosca in json and md formats.
+Then the DataFrame is converted to json and saved to a file called task in json and md formats.
 The comparison takes place using json and the markdown format allows to see the diff for even small changes.
 
 Then the data is tested using py test.
