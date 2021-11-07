@@ -1,27 +1,25 @@
 # About testing
 
-Нами была поставлена цель добиться удобного тестирование датасетов в пайплайнах.
+Our team set a goal to achieve convenient testing of datasets in pipelines.
 
-Для этого нужно
-* уметь сохранять датасеты в читаемом формате
-* уметь перегенерировать датасеты
-* настраивать тестовые окружения, готовить входные данные
+To achieve the goal , it is necessary
+* save datasets in a readable format
+* regenerate datasets
+* configure test environments, prepare input data
 
-Мы разработали решение, сохраняющее датасеты в виде JSON.
-`pandas.DataFrame.to_json` позволяет сохранить json в файл в читаемом виде.
-Каждый элемент json сохраняется в новой строке. При доработках DAG-ов разработчик перегенерирует json.
-git показывает читаемые diff. Это позволяет оценивать изменения по задаче.
+We have developed a solution that saves datasets in the form of JSON.
+`pandas.DataFrame.to_json` allows saving json to a file in a readable form.
+Each json element is saved in a new line. When modifying DAGs, the developer regenerates json, and git shows readable diff. This allows the developer to evaluate changes by the task.
 
-DAG-и в mg-airflow состоят из операторов. Операторы берут входные данные из внешних источников или ворков.
-В TBaseOperator определен метод read_result для чтения итогового датасета. Обычно оператор сохраняет данные в work.
-PgSCD1 изменяет данные в target таблице. Для тестирования нужны данные из таргета, а не из временной таблицы в pg-work, 
-поэтому в PgSCD1 переопределен метод read_result.
+DAGs in mg-airflow consist of operators. Operators take input data from external sources or works.
+The TBaseOperator defines the read_result method for reading the final dataset. Usually the operator saves the data in work.
+PgSCD1 modifies the data in the target table. For testing, data is needed from the target, and not from the temporary table in pg-work,
+so the read_result method is redefined in PgSCD1.
 
-Важно подготовить внешнее окружение максимально похожее на продуктовое. docker-compose позволяет организовать такое окружение.
-Можно инициализировать базы данных и поднимать веб-сервер, который будет отвечать похожим образом.
-Также можно использовать моки из pytest-mock.
+It is important to prepare an external environment as similar as possible to a grocery one. docker-compose allows you to organize such an environment.
+It is possible to initialize databases and raise a web server that will respond in a similar way and use mockups from pytest-mock.
 
-Рассмотрим детальнее на примере DAG-а dummy.
+Let's take a closer look at the example of a dummy DAG:
 ```python
 dag_name = 'dummy'
 dag = generate_dag(dag_dir=f'{settings.DAGS_FOLDER}/dags/{dag_name}')
@@ -45,38 +43,38 @@ def test_gen_tests_data(task, mocker, setup_tables):
     run_and_gen_ds(task, f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}')
 ```
 
-JSONPandasDataset - класс, который создает словарь вида `dict[task_name, DataFrame]`.
-При вызове `dataset[task_name]` считывается файл с json, который преобразовывается в DataFrame.
+JSONPandasDataset is a class that creates a dictionary of the type `dict[task_name, DataFrame]`.
+When calling `dataset[task_name]`, a json file is read, which is converted to a DataFrame.
 
-Запись в JSONPandasDataset происходит следующим образом. Ключу dataset присваивается DataFrame.
-DataFrame преобразовывается в json и сохраняется в файл с названием таска в форматах json и md.
-Сравнение происходит по json. Формат markdown позволяет увидеть diff для небольших изменений.
+Writing to JSONPandasDataset then proceeds as follows. The dataset key is assigned a DataFrame.
+Then the DataFrame is converted to json and saved to a file called task in json and md formats.
+The comparison takes place using json and the markdown format allows to see the diff for even small changes.
 
-Тестируем с помощью pytest.
-Если в переменных среды есть непустое значение для переменной GEN_DATASET, то запускается режим генерации тестовых данных.
-Если GEN_DATASET пустая, то запускается тестирование в функции test_task.
-Значение переменной среды GEN_DATASET определяется в функции is_gen_dataset_mode.
-В зависимости от ее значения декоратор `@pytest.mark.skipif` взаимоисключает режим тестирования и создания эталонных данных. 
+Then the data is tested using py test.
+If there is a non-empty value for the GEN_DATASET variable in the environment variables, the test data generation mode is started.
+If GEN_DATASET is empty, then testing is started in the test_task function.
+The value of the GEN_DATASET environment variable is defined in the is_gen_dataset_mode function.
+Depending on its value, the decorator `@pytest.mark.skip if` mutually excludes the mode of testing and creating reference data.
 
-Таким образом, 
-* заходим в контейнер и запускаем командную оболочку bash `docker-compose exec app bash`
-* включить режим генерации тестовых данных `export GEN_DATASET=any`
-* запускаем pytest `pytest tests/dags/test_dummy.py` - будут пересозданы тестовые данные для dataset
-* выключить режим генерации тестовых данных `export GEN_DATASET=`
-* запускаем снова pytest `pytest tests/dags/test_dummy.py` - будут запущены тесты
+Thus,
+* go into the container and run the bash command shell `docker-compose exec app bash`
+* enable test data generation mode `export GEN_DATASET=any`
+* run pytest `pytest tests/dags/test_dummy.py` - test data for dataset will be recreated
+* turn off the test data generation mode `export GEN_DATASET=`
+* run pytest `pytest tests/dags/test_dummy.py` again - tests will be run
 
-Если вы используете PyCharm Professional, то значение GEN_DATASET можно прописать в Environment Variables
-в конфигурации запуска и запускать тестирование/генерацию через приложение, а не консоль. 
+If PyCharm Professional is used, then the GEN_DATASET value can be registered in the Environment Variables
+in the startup configuration and run testing/generation through the application, not the console.
 
-`@pytest.mark.parametrize('task', dag.tasks)` - декоратор, который запускает тест для каждого таска DAG-а.
+`@pytest.mark.parametrize('task', dag.tasks)` - is a decorator that runs a test for each DAG task.
 
-run_and_assert_task запускает только один таск. В функции подставляются входные датасеты для таска.
-Запускается таск, выполняются преобразования, сравнивается выходной датасет с эталонным.
+run_and_assert_task starts only one task. Input datasets for the task are inserted into the function.
+Next, a task is launched, transformations are performed, the output dataset is compared with the reference one.
 
-run_and_gen_ds сохраняет эталонные данные по передаваемому пути.
+run_and_gen_ds saves reference data along the transmitted path.
 
-### Заметки
+### Notes
 
-* DataFrame и другие структуры в python могут содержать бинарные данные.
-В JSON нельзя сохранять бинарные данные. В таких случаях нужно применять decode/encode либо отказаться от JSONPandasDataset.
-* run_and_assert_task использует xor (исключающее или) для сравнения. Это позволяет не сортировать датасет.
+* DataFrame and other structures in python can contain binary data.
+Binary data cannot be stored in JSON. In such cases, it is necessary to use decode/encode or abandon JSONPandasDataset.
+* run_and_assert_task uses xor (exclusive or) for comparison and allows not to sort the dataset.

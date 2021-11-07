@@ -1,6 +1,6 @@
-# Создание нового оператора
+# Creating a new operator
 
-* Обязательно отнаследоваться от TBaseOperator.
+* Must be inherited from TBaseOperator.
 
 ```python
 class MyTransform(TBaseOperator):
@@ -10,9 +10,9 @@ class MyTransform(TBaseOperator):
         self.source = source
     ...
 ```
-* Если в конструкторе оператора есть параметр - функция, то называть ее нужно с постфиксом `*_callable`.
+* If there is a function parameter in the operator's constructor, then it must be called with the postfix `* _callable`.
 
-Например:
+For example:
 ```python
 class MyTransform(TBaseOperator):
 

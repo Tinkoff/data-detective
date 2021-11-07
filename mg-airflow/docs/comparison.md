@@ -1,16 +1,15 @@
-# Сравнение с другими решениями
+# Comparison with other frameworks
 
-## Конфигураторы DAG-ов для Airflow
+## DAG configurators for Airflow
 
-* [gusty](https://github.com/chriscardillo/gusty) - работает с разными входными форматами, поддерживает TaskGroup.
-* [dag-factory](https://github.com/ajbosco/dag-factory) - создание DAG-ов из YAML, поддерживает TaskGroup.
+* [gusty](https://github.com/chriscardillo/gusty) gusty it works with different input formats, supports TaskGroup.
+* [dag-factory](https://github.com/ajbosco/dag-factory) dag-factory creates DAGs from YAML. It is also supported by TaskGroup.
 
 ## DAG orchestrators
 
-* [dagster](https://github.com/dagster-io/dagster) - имеет много общего с Apache Airflow. 
-Разделен scheduler и ui на разные модули. Работает с ресурсами в виде s3 и локальными файлами.
-В нем реализована концепция с work, созданием и очисткой по завершении работы.
-Шустрый планировщик.
-* [Argo Workflows](https://argoproj.github.io/argo-workflows/) - решение на go. Запускает контейнеры в kubernetes.
-Удобно из-за изоляции виртуальных окружений. Видится сложность реализации тестирования.
-Нужно запускать пайплайны на go, в которых будут сравниваться датасеты на python.
+* [dagster](https://github.com/dagster-io/dagster) This framework has a lot in common with Apache Airflow.
+The scheduler and UI are divided into different modules. Work with s3 resources and local files is available.
+Dagster implements a concept with work, creation and cleaning upon completion of work. There is also a quick scheduler here.
+* [Argo Workflows](https://argoproj.github.io/argo-workflows/) This solution works on Go. Containers are launched in Kubernetes.
+It is convenient to use because of the isolation of virtual environments. However, there is a difficulty in implementing testing.
+It is necessary to run pipelines on Go, in which datasets in python will be compared.
