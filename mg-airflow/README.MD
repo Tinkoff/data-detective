@@ -25,10 +25,6 @@ pip install mg-airflow
 
 See example DAG-s (directed acyclic graph) in dags/dags folder.
 
-## Contributing
-
-Please read the contributing rules in the [CONTRIBUTING](../CONTRIBUTING.md) file.
-
 ## Release
 
 Action "Publish mg-airflow" is triggered by tag "mg-airflow/*".
