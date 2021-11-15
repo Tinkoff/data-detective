@@ -24,8 +24,3 @@ pip install mg-airflow
 ```
 
 See example DAG-s (directed acyclic graph) in dags/dags folder.
-
-## Release
-
-Action "Publish mg-airflow" is triggered by tag "mg-airflow/*".
-Package version is extracted from `pyproject.toml`.
