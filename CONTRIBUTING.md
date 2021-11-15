@@ -1,28 +1,28 @@
-# Как внести изменение в проект
+# How to contribute to a project
 
-- Клонировать репозиторий
-- Создать новую [ветку](#ветки)
-- [Запустить проект](#запуск-проекта) и внести изменение
-- [Создать коммит](#коммиты), запушить изменения и создать MR
-- Пройти ревью
-- [Как происходит релиз задач](#как-происходит-релиз-задач)
+- Clone a repository
+- Create a new [branch](#branches)
+- [Deploy project](#project-deployment) and make a change
+- [Create commit](#commits), push changes and create Pull Request
+- Pass the code review
+- [Task release process](#how-tasks-are-released)
 
-## Разработка кода
+## Code development
 
-### Запуск проекта
+### Project deployment
 
-Проект можно запустить локально командой. Поднимется песочница в виде docker-compose.
-Тесты запускаются внутри сервиса app.
+The project can be started locally with the command. The sandbox in the docker-compose environment will up.
+The tests run inside the app service.
 
 ```
 docker-compose up -d --build
 ```
 
-### Тестирование кода
+### Code testing
 
 #### Unit
 
-Запуск всех тестов происходит командой
+All tests can be run by the command:
 
 ```
 docker-compose -f docker-compose.tests.yml up --build --exit-code-from=tests
@@ -30,32 +30,27 @@ docker-compose -f docker-compose.tests.yml up --build --exit-code-from=tests
 
 ### Code style
 
-Придерживаемся линтеров в make lint.
+Please follow the linters in make lint.
 
-### Оформление тикетов/коммитов/веток
+### Making tickets/commits/branches
 
-#### Ветки
+#### Branches
 
-Ветки желательно создавать от master.
+Branches should preferably be created from master branch.
 
 ```
-git switch master # Переход в master
-git pull # получение изменений
-git switch -c branch-name # создание ветки
+git switch master # change to master
+git pull # getting changes
+git switch -c branch-name # creating a branch
 ```
 
-#### Коммиты
+#### Commits
 
-В проекте нет жестких требований, но помните, что коммиты потому будут читать другие разработчики 
-и они могут помочь им в понимании почему, то или иное изменилось.
+The project has no strict requirements, but remember that commits will therefore be read by other developers and they can help them understand the changes in the project.
 
-#### Тикеты
+#### Tickets
 
-По возможности создавайте задачи в проекте MG в jira
-https://jira.tcsbank.ru/projects/MG/issues/MG-1?filter=allopenissues
+## How tasks are released
 
-## Как происходит релиз задач
-
-Релизы происходят по мере необходимости.
-Придерживаемся semver.
-Публикация проекта осуществляется через poetry. Версия хранится в pyproject.toml.
+Releases occur as needed. The semver rule is followed.
+The project is published through poetry. The version is stored in pyproject.toml file.
