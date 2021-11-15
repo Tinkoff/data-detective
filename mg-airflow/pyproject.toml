@@ -4,7 +4,7 @@ license = "Apache-2.0"
 version = "1.0.0"
 description = "Framework with task data testing over Apache Airflow"
 authors = ["Tinkoff DWH Metadata Governance Team"]
-
+readme = 'README.md'  # Markdown files are supported
 
 [tool.poetry.dependencies]
 python = "^3.9"
