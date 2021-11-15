@@ -3,10 +3,10 @@ from datetime import datetime
 import logging
 import pytest
 import allure
+from airflow import settings
 from airflow.models.taskinstance import TaskInstance
 
 from mg_airflow.constants import PG_CONN_ID
-from mg_airflow.definitions import ROOT_DIR
 from mg_airflow.operators import DBDump
 from mg_airflow.dag_generator import ResultType, WorkType
 from mg_airflow.test_utilities import run_task
@@ -48,7 +48,7 @@ def test_pg_query(test_dag, context):
                          ids=['dbdump-pg-file'])
 def test_pg_file(test_dag, context):
     test_dag.clear()
-    sql_file = f'{ROOT_DIR}/tests_data/operators/extractors/test_sql_query.sql'
+    sql_file = f'{settings.AIRFLOW_HOME}/tests_data/operators/extractors/test_sql_query.sql'
 
     task = DBDump(conn_id=PG_CONN_ID, sql=sql_file,
                   work_conn_id=test_dag.work_conn_id, result_type=test_dag.result_type,
@@ -58,32 +58,6 @@ def test_pg_file(test_dag, context):
     ti = TaskInstance(task=task, execution_date=datetime.now())  # test_dag.start_date
     test_dag.get_work(test_dag.work_type, test_dag.conn_id).create(context)
 
-    run_task(task=task, context=context)
-
-    assert task.result is not None
-    assert task.result.read(context).shape == (5, 2)
-
-    test_dag.clear_all_works(context)
-
-
-@allure.feature('Extractors')
-@allure.story('DB dump with mysql query')
-@pytest.mark.parametrize('test_dag',
-                         [(ResultType.RESULT_PICKLE.value,
-                           WorkType.WORK_FILE.value,
-                           None)],
-                         indirect=True,
-                         ids=['dbdump-mysql-query'])
-def _test_mysql_query(test_dag, context):
-    test_dag.clear()
-
-    task = DBDump(conn_id='dbmysql',
-                  sql="select * from airflow.dummy_test",
-                  task_id="test_mysql_query", dag=test_dag)
-    task.render_template_fields(context=context)
-
-    ti = TaskInstance(task=task, execution_date=datetime.now())  # test_dag.start_date
-    test_dag.get_work(test_dag.conn_id).create(context)
     run_task(task=task, context=context)
 
     assert task.result is not None
@@ -141,7 +115,7 @@ def test_gp_sql_with_invalid_query(test_dag, context, setup_sources, invalid_pg_
 def test_pg_with_non_existent_query_file(test_dag, context):
     with allure.step('Create task'):
         test_dag.clear()
-        query_path = f"{ROOT_DIR}/tests_data/operators/extractors/sql_query.sql"
+        query_path = f"{settings.AIRFLOW_HOME}/tests_data/operators/extractors/sql_query.sql"
 
         task = DBDump(conn_id=PG_CONN_ID, sql=query_path,
                       work_conn_id=test_dag.work_conn_id, result_type=test_dag.result_type,
