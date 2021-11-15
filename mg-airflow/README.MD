@@ -26,4 +26,4 @@ Work storage support for s3, ftp, local disk and database is also included.
 pip install mg-airflow
 ```
 
-See example DAG-s (directed acyclic graph) in dags/dags folder.
+See example DAG-s in `dags/dags` folder.
