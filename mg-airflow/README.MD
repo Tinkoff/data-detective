@@ -1,7 +1,10 @@
 ## MG Airflow
 
-[MG Airflow](https://github.com/TinkoffCreditSystems/metadata-governance/tree/master/mg-airflow) is a framework whose main idea is to add the concepts of task and result to [Apache Airflow](https://airflow.apache.org/). It also supports task data testing over [Apache Airflow](https://airflow.apache.org/).
-MG Airflow allows developers to create workflows in the form of directed acyclic graphs (DAGs) of tasks. The easy-to-use MG Airflow scheduler makes it possible to run tasks on a schedule and works as a persistent service in an Airflow production environment. 
+[MG Airflow](https://github.com/TinkoffCreditSystems/metadata-governance/tree/master/mg-airflow) is a framework
+whose main idea is to add the concepts of work and result to [Apache Airflow](https://airflow.apache.org/).
+It supports tasks testing over [Apache Airflow](https://airflow.apache.org/).
+MG Airflow allows developers to create workflows in the form of directed acyclic graphs (DAGs) of tasks.
+The easy-to-use MG Airflow scheduler makes it possible to run tasks on a schedule and works as a persistent service in an Airflow production environment. 
 Work storage support for s3, ftp, local disk and database is also included.
 
 ## More information about MG Airflow
@@ -23,13 +26,4 @@ Work storage support for s3, ftp, local disk and database is also included.
 pip install mg-airflow
 ```
 
-See example DAG-s (directed acyclic graph) in dags/dags folder.
-
-## Contributing
-
-Please read the contributing rules in the [CONTRIBUTING](../CONTRIBUTING.md) file.
-
-## Release
-
-Action "Publish mg-airflow" is triggered by tag "mg-airflow/*".
-Package version is extracted from `pyproject.toml`.
+See example DAG-s in `dags/dags` folder.

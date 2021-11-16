@@ -46,7 +46,7 @@ services:
       retries: 10
     restart: always
 
-  pgwork:
+  pg:
     image: postgres:13.4-alpine
     environment:
       - POSTGRES_USER=${META_USER}
@@ -62,7 +62,7 @@ services:
       retries: 10
     restart: always
 
-  s3work:
+  s3:
     image: localstack/localstack:0.11.5
     ports:
       - 4566:4566
@@ -83,7 +83,9 @@ services:
   scheduler:
     <<: *airflow
     depends_on:
-      pgwork:
+      metadb:
+        condition: service_healthy
+      pg:
         condition: service_healthy
       redis:
         condition: service_healthy

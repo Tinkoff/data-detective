@@ -29,7 +29,7 @@ services:
       timeout: 5s
       retries: 10
 
-  pgwork:
+  pg:
     image: postgres:13.4-alpine
     environment:
       - POSTGRES_USER=${META_USER}
@@ -39,7 +39,7 @@ services:
     volumes:
       - ./docker/init-pgwork.sql:/docker-entrypoint-initdb.d/init-pgwork.sql
 
-  s3work:
+  s3:
     image: localstack/localstack:0.11.5
     ports:
       - "4566:4566"

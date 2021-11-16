@@ -1,17 +1,29 @@
 [tool.poetry]
 name = "mg_airflow"
 license = "Apache-2.0"
-version = "1.0.0"
-description = "Framework with task data testing over Apache Airflow"
+version = "1.0.1"
+description = "Framework with task testing over Apache Airflow"
 authors = ["Tinkoff DWH Metadata Governance Team"]
 readme = 'README.md'  # Markdown files are supported
 
+repository = "https://github.com/TinkoffCreditSystems/metadata-governance/tree/master/mg-airflow"
+
+keywords = ["airflow", "testing", "result"]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Software Development :: Libraries",
+]
+
 [tool.poetry.dependencies]
 python = "^3.9"
-apache-airflow = {version = "^2.1"}
+apache-airflow = "~2.1"
 apache-airflow-providers-amazon = "*"
 apache-airflow-providers-celery = "*"
-apache-airflow-providers-postgres = "2.0.0"
+apache-airflow-providers-postgres = "*"
 apache-airflow-providers-redis = "*"
 apache-airflow-providers-ssh = "*"
 pandas = "^1.1"
@@ -60,7 +72,7 @@ target-version = ["py39"]
 profile = "hug"
 line_length = 120
 src_paths = [
-    "mg-af",
+    "mg-airflow",
     "tests",
     "tests_data",
 ]

@@ -36,7 +36,7 @@ services:
       retries: 10
       start_period: 20s
 
-  pgwork:
+  pg:
     image: postgres:13.4-alpine
     environment:
       - POSTGRES_USER=${META_USER}
@@ -50,7 +50,7 @@ services:
       retries: 10
       start_period: 20s
 
-  s3work:
+  s3:
     image: localstack/localstack:0.11.5
     environment:
       - SERVICES=s3
@@ -72,9 +72,9 @@ services:
         condition: service_healthy
       metadb:
         condition: service_healthy
-      pgwork:
+      pg:
         condition: service_healthy
-      s3work:
+      s3:
         condition: service_healthy
     ports:
       - "8080:8080"
