@@ -24,8 +24,11 @@ jobs:
         with:
           node-version: '14'
 
-      - run: npm install
-      - run: npm run build
+      - name: Build docs with npm
+        working-directory: tools/doc-site
+        run: |
+          npm install
+          npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
