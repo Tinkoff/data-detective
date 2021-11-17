@@ -13,7 +13,7 @@ export function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--outline button--secondary button--lg"
-            to="/docs/intro">
+            to="/docs/welcome">
             Welcome to MG documenation!
           </Link>
         </div>
