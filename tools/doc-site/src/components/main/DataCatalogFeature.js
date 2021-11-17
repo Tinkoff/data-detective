@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from './section';
+import Section from './Section.js';
 
 export function DataCatalogFeature() {
   return (
