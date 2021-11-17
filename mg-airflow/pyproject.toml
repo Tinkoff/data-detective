@@ -8,7 +8,7 @@ readme = 'README.md'  # Markdown files are supported
 
 repository = "https://github.com/TinkoffCreditSystems/metadata-governance/tree/master/mg-airflow"
 
-keywords = ["airflow", "testing", "result"]
+keywords = ["Airflow extension", "Directed acyclic graph testing", "result", "Metadata Governance", "Data Catalog"]
 
 classifiers = [
     "Development Status :: 4 - Beta",
