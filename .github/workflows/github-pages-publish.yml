@@ -3,7 +3,7 @@ name: GitHub Pages
 on:
   push:
     branches:
-      - master
+      - MG-2390
     paths:
       - '.github/workflows/github-pages-publish.yml'
       - 'tools/doc-site/**'
