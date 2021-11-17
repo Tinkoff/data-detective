@@ -13,9 +13,7 @@ jobs:
     runs-on: ubuntu-20.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-    defaults:
-      run:
-        working-directory: tools/doc-site
+
     steps:
       - uses: actions/checkout@v2
 
