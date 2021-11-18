@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'MG docs',
-  tagline: 'MG docs',
+  title: 'Data Detective (MG)',
+  tagline: 'Data Detective (MG) docs',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -56,7 +56,7 @@ const config = {
         disableSwitch: true,
       },
       navbar: {
-        title: 'Metadata Governance',
+        title: 'Data Detective (MG)',
         logo: {
           alt: 'metadata-governance logo',
           src: 'img/logo-tinkoff.svg',

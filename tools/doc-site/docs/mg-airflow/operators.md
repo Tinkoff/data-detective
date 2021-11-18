@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Creating a new operator
 
 * Must be inherited from TBaseOperator.

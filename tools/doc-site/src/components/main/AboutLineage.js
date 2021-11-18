@@ -1,10 +1,10 @@
 import React from 'react';
-import { Section } from './section';
+import Section from './Section.js';
 
 export function AboutLineage() {
   return (
     <Section
-      right={
+      left={
         <>
           <h3>
             Two-level lineage

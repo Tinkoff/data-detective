@@ -1,4 +1,8 @@
-# About testing
+---
+sidebar_position: 6
+---
+
+# DAG testing
 
 Our team set a goal to achieve convenient testing of datasets in pipelines.
 
