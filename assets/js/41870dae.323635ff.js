@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmg_af_docusaurus=self.webpackChunkmg_af_docusaurus||[]).push([[384],{67:function(a){a.exports=JSON.parse('{"allTagsPath":"/metadata-governance/blog/tags","slug":"/metadata-governance/blog/tags/docusaurus","name":"docusaurus","count":4,"permalink":"/metadata-governance/blog/tags/docusaurus"}')}}]);

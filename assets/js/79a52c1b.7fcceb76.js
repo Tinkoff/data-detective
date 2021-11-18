@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmg_af_docusaurus=self.webpackChunkmg_af_docusaurus||[]).push([[510],{7058:function(a){a.exports=JSON.parse('{"allTagsPath":"/metadata-governance/blog/tags","slug":"/metadata-governance/blog/tags/facebook","name":"facebook","count":1,"permalink":"/metadata-governance/blog/tags/facebook"}')}}]);
