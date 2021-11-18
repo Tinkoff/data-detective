@@ -1,4 +1,8 @@
-# Using in production
+---
+sidebar_position: 7
+---
+
+# Production
 
 The start point for generating DAGs is a file in the airflow.settings.DATA_FOLDER with the following contents:
 ```python

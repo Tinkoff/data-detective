@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Creating a DAG
 
 DAGs can be created in 3 ways:

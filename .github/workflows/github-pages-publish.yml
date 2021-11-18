@@ -3,7 +3,7 @@ name: GitHub Pages
 on:
   push:
     branches:
-      - MG-2390
+      - master
     paths:
       - '.github/workflows/github-pages-publish.yml'
       - 'tools/doc-site/**'
@@ -30,7 +30,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/MG-2390' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         with:
           personal_token: ${{ secrets.TINKOFF_BOT_PAT }}
           publish_dir: ./tools/doc-site/build
