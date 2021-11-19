@@ -21,7 +21,7 @@ export function DataCatalogFeature() {
       }
       right={
         <div id="gallery">
-          <img src="static/img/basic_card.gif" alt="data-catalog" tabindex="0" />
+          <img src={require('@site/static/img/basic_card.gif').default} alt="basic-card" tabindex="0" />
           <div></div>
         </div>
       }
