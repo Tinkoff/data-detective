@@ -1,4 +1,8 @@
-## Running the dev environment using docker-compose
+---
+sidebar_position: 5
+---
+
+# Running the dev environment using docker-compose
 
 Deploying the development environment
 ```bash

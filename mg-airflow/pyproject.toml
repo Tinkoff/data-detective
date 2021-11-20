@@ -3,20 +3,21 @@ name = "mg_airflow"
 license = "Apache-2.0"
 version = "1.0.1"
 description = "Framework with task testing over Apache Airflow"
-authors = ["Tinkoff DWH Metadata Governance Team"]
+authors = ["Tinkoff Data Detective Team"]
 readme = 'README.md'  # Markdown files are supported
-
-repository = "https://github.com/TinkoffCreditSystems/metadata-governance/tree/master/mg-airflow"
-
-keywords = ["Airflow extension", "Directed acyclic graph testing", "result", "Metadata Governance", "Data Catalog"]
-
+keywords = ["airflow testing result metadata governance data catalog"]
 classifiers = [
     "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.9",
-    "License :: OSI Approved :: Apache Software License",
     "Topic :: Software Development :: Libraries",
 ]
+
+[tool.poetry.urls]
+"Issue Tracker" = "https://github.com/TinkoffCreditSystems/metadata-governance/issues"
+"Documentation" = "https://tinkoffcreditsystems.github.io/metadata-governance/docs/mg-airflow/intro"
+"Repository" = "https://github.com/TinkoffCreditSystems/metadata-governance/tree/master/mg-airflow"
 
 [tool.poetry.dependencies]
 python = "^3.9"

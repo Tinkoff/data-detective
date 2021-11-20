@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Basic framework concepts
 
 `operator` - standard airflow operator based on `airflow.models.BaseOperator`. 

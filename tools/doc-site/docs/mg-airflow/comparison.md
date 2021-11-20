@@ -1,3 +1,7 @@
+---
+sidebar_position: 8
+---
+
 # Comparison with other frameworks
 
 ## DAG configurators for Airflow

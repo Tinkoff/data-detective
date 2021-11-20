@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section } from './section';
+import Section from './Section.js';
 
 export function DataCatalogFeature() {
   return (
@@ -18,6 +18,12 @@ export function DataCatalogFeature() {
             </li>
           </ul>
         </>
+      }
+      right={
+        <div id="gallery">
+          <img src={require('@site/static/img/basic_card.gif').default} alt="basic-card" tabindex="0" />
+          <div></div>
+        </div>
       }
     />
   );

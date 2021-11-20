@@ -13,9 +13,7 @@ jobs:
     runs-on: ubuntu-20.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-    defaults:
-      run:
-        working-directory: tools/doc-site
+
     steps:
       - uses: actions/checkout@v2
 
@@ -24,24 +22,15 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-website-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-website-
-
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
+      - name: Build docs with npm
+        working-directory: tools/doc-site
+        run: |
+          npm install
+          npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         with:
           personal_token: ${{ secrets.TINKOFF_BOT_PAT }}
           publish_dir: ./tools/doc-site/build

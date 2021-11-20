@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Section({ left, right }) {
+export default function Section({ left, right }) {
   const singleColumn = !left || !right;
 
   return (

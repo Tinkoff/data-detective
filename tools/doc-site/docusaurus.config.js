@@ -6,10 +6,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'MG docs',
-  tagline: 'MG docs',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  title: 'Data Detective (MG)',
+  tagline: 'Data Detective (MG) docs',
+  url: 'https://tinkoffcreditsystems.github.io',
+  baseUrl: '/metadata-governance/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.svg',
@@ -24,7 +24,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
+          editUrl: 'https://github.com/TinkoffCreditSystems/metadata-governance/edit/master/tools/doc-site/',
         },
         blog: {
           showReadingTime: true,
@@ -56,7 +56,7 @@ const config = {
         disableSwitch: true,
       },
       navbar: {
-        title: 'Metadata Governance',
+        title: 'Data Detective (MG)',
         logo: {
           alt: 'metadata-governance logo',
           src: 'img/logo-tinkoff.svg',
