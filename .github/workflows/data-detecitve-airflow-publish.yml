@@ -1,9 +1,9 @@
-name: Publish mg-airflow
+name: Publish data-detective-airflow
 
 on:
   push:
     tags:
-      - "mg-airflow/*.*.*"
+      - "data-detective-airflow/*.*.*"
 
 jobs:
   publish:
@@ -26,22 +26,22 @@ jobs:
           poetry-version: ${{ matrix.poetry-version }}
       - name: Configure poetry
         run: |-
-          cd mg-airflow
+          cd data-detective-airflow
           poetry config virtualenvs.in-project true
       - name: Set up cache
         uses: actions/cache@v2
         id: cache
         with:
-          path: mg-airflow/.venv
-          key: mg-airflow-${{ runner.os }}-${{ hashFiles('**/mg-airflow/poetry.lock') }}
+          path: data-detective-airflow/.venv
+          key: data-detective-airflow-${{ runner.os }}-${{ hashFiles('**/data-detective-airflow/poetry.lock') }}
       - name: Ensure cache is healthy
         if: steps.cache.outputs.cache-hit == 'true'
-        run: poetry run pip --version >/dev/null 2>&1 || rm -rf mg-airflow/.venv
+        run: poetry run pip --version >/dev/null 2>&1 || rm -rf data-detective-airflow/.venv
       - name: Install Dependencies and Publish
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
         run: |-
-          cd mg-airflow
+          cd data-detective-airflow
           poetry config pypi-token.pypi ${PYPI_TOKEN}
           poetry install --no-dev
           poetry build
