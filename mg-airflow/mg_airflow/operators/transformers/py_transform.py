@@ -4,12 +4,12 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class PyTransform(TBaseOperator):
-    """Выполнить преобразование in-memory
+    """Perform in-memory conversion
 
-    :param source: Список источников
-    :param transformer: функция-обработчик
-    :param op_kwargs: Дополнительные параметры для callable
-    :param kwargs: Дополнительные параметры для TBaseOperator
+    :param source: List of sources
+    :param transformer: Handler (transformer) function
+    :param op_kwargs: Additional params for callable
+    :param kwargs: Additional params for TBaseOperator
     """
 
     ui_color = '#39b54a'
@@ -34,12 +34,12 @@ class PyTransform(TBaseOperator):
             self.dag.task_dict[src] >> self  # pylint: disable=pointless-statement
 
     def execute(self, context: dict) -> None:
-        """Поддерживается только in-memory режим
-        Источники перед попаданием в функцию распаковываются.
-        Если источников нет - функция их не получит в пустом списке.
-        Обыграть это можно с помощью такой сигнатуры: def transformer(context, *sources):
+        """Only in-memory mode is supported
+        Sources are unpacked before entering the function.
+        If there are no sources, the function will not receive them in an empty list.
+        This can be avoided by using the following signature: def transformer(context, *sources):
 
-        @param context: Контекст выполнения
+        @param context: Execution context
         """
         src = []
         self.log.info('Reading pickle source(s)')

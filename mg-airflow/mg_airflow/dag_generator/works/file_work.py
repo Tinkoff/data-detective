@@ -11,7 +11,7 @@ from mg_airflow.dag_generator.works.base_work import WorkType
 
 # pylint: disable = arguments-differ
 class FileWork(BaseFileWork):
-    """Work на файловой системе"""
+    """File system work"""
 
     def __init__(self, dag):
         super().__init__(dag=dag, work_type=WorkType.WORK_FILE.value)
@@ -70,11 +70,11 @@ class FileWork(BaseFileWork):
         return None
 
     def get_size(self, path: str) -> str:
-        """Получить размер объекта в локальном ворке.
-        Если объект отсутствует, то возвращает -1
+        """Get the size of the object in the local work.
+        If the object is missing, it returns -1
 
-        :param path: Имя объекта
-        :return: Округленный размер объекта
+        :param path: Object name
+        :return: Rounded object size
         """
         size = -1
         if self.exists(path):

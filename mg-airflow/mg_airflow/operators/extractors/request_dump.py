@@ -11,15 +11,15 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class RequestDump(TBaseOperator):
-    """Оператор RequestDump используется для запросов к webapi
+    """The RequestDump operator is used for webapi requests
     :param url: Text
-            Может быть шаблонной строкой
-            Пример: {action}/{subaction}/?format=json
+            Can be a template string.
+            Example: {action}/{subaction}/?format=json
     :param conn_id: Text
-            id соединения, которое будет использоваться
+            Connection id to be used
     :param url_params: DataFrame
-            Таблица, которая может быть использована для параметризации запросов
-            Пример:
+            A table that can be used to parameterize queries
+            Example:
             DataFrame(
                 [
                     ['main', 'delete', ],
@@ -28,12 +28,12 @@ class RequestDump(TBaseOperator):
                 columns=['action', 'subaction', ]
             ),
     :param source: List
-            Оператор может использовать результаты других операторов
-            для параметризации своих запросов.
-            Результат работы сурса будет использован так же, как и DataFrame из url_params.
+            The operator can use the results of other operators
+            to parameterize their queries.
+            The result of the source operation will be used in the same way as the DataFrame from url_params.
     :param wait_seconds: float
-            время ожидания между запросами в секундах
-    :param kwargs: Дополнительные параметры для TBaseOperator
+            Waiting time between requests in seconds.
+    :param kwargs: Additional params for TBaseOperator
     """
 
     ui_color = '#4eb6c2'

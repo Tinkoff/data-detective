@@ -30,7 +30,7 @@ def provide_arg(arg_name: str, provider):  # pylint: disable=no-self-argument
 
 # pylint: disable = arguments-differ
 class PgWork(BaseDBWork):
-    """Work на базе postgres"""
+    """Work based on postgres"""
 
     def __init__(self, dag, conn_id: str = PG_CONN_ID):
         super().__init__(dag=dag, work_type=WorkType.WORK_PG.value, conn_id=conn_id)
@@ -76,12 +76,12 @@ class PgWork(BaseDBWork):
         fetch: Optional[str] = None,
         context: Optional[dict] = None,
     ) -> Union[None, tuple, list]:
-        """Выполнить sql-скрипт
-        @param sql: sql-скрипт
-        @param conn: коннект к базе
-        @param cur: курсор
-        @param fetch: None - не получать результат, one - вернуть 1, all - вернуть все
-        @param context: None - контекст для синхронизации ворка в XCom
+        """Execute SQL script
+        @param sql: SQL-script
+        @param conn: Connection to db
+        @param cur: Cursor
+        @param fetch: None - do not get the result, one - return 1, all - return all
+        @param context: None - Context for syncing a work in XCom
         @return:
         """
         self.log.info(sql)
@@ -121,13 +121,13 @@ class PgWork(BaseDBWork):
     @provide_arg('conn', provide_conn)
     @provide_arg('cur', provide_cur)
     def get_object_type_by_path(self, path: str, conn: connection = None, cur: cursor = None) -> Union[str, None]:
-        """Метод определяет тип result по path. В случае отсутствия объекта
-        возвращается DBObjectType.NONE.value.
+        """The method determines the result type by path. If there is no object
+        DBObjectType.NONE.value will be returned.
 
-        На вход ожидается path в виде schema.table_name, поэтому таблицы и view
-        из схемы, расположенных в search_path, нужно задавать ЯВНО, используя схему.
+        The input is expected to be path in the form of schema.table_name, so tables and views
+        from the schema located in search_path must be set EXPLICITLY using the schema.
 
-        Наравне с этим использование названия БД в path так же приведет к ОШИБКЕ"""
+        Using the DB name in path will also lead to an ERROR"""
         path_parts = path.split('.')
         schema = path_parts[0]
         table = None
@@ -147,7 +147,7 @@ class PgWork(BaseDBWork):
         WHERE lower(n.nspname) = lower('{schema}')
         """
         object_type = self.execute(sql_query, conn=conn, cur=cur, fetch='one')
-        # для определения несуществующих таблиц, когда схема существует
+        # Identify non-existent tables when the schema exists
         if object_type == DBObjectType.SCHEMA.value and table:
             object_type = DBObjectType.NONE.value
         return object_type if object_type else DBObjectType.NONE.value
@@ -155,10 +155,10 @@ class PgWork(BaseDBWork):
     @provide_arg('conn', provide_conn)
     @provide_arg('cur', provide_cur)
     def is_schema(self, path: str, conn: connection = None, cur: cursor = None) -> bool:
-        """Проверить, является ли объект схемой
-        @param path: schema.table
-        @param conn: коннект к базе
-        @param cur: курсор
+        """Check if the object is a schema
+        @param path: Schema.table
+        @param conn: Connection to db
+        @param cur: Cursor
         @return:
         """
         object_type = self.get_object_type_by_path(path, conn=conn, cur=cur)
@@ -167,10 +167,10 @@ class PgWork(BaseDBWork):
     @provide_arg('conn', provide_conn)
     @provide_arg('cur', provide_cur)
     def is_table(self, path: str, conn: connection = None, cur: cursor = None) -> bool:
-        """Проверить, является ли объект таблицей
+        """Check if the object is a table
         @param path: schema.table
-        @param conn: коннект к базе
-        @param cur: курсор
+        @param conn: Connection to db
+        @param cur: Cursor
         @return:
         """
         object_type = self.get_object_type_by_path(path, conn=conn, cur=cur)
@@ -179,10 +179,10 @@ class PgWork(BaseDBWork):
     @provide_arg('conn', provide_conn)
     @provide_arg('cur', provide_cur)
     def is_view(self, path: str, conn: connection = None, cur: cursor = None) -> bool:
-        """Проверить, является ли объект представлением
+        """Check if the object is a view
         @param path: schema.table
-        @param conn: коннект к базе
-        @param cur: курсор
+        @param conn: Connection to db
+        @param cur: Cursor
         @return:
         """
         object_type = self.get_object_type_by_path(path, conn=conn, cur=cur)
@@ -191,10 +191,10 @@ class PgWork(BaseDBWork):
     @provide_arg('conn', provide_conn)
     @provide_arg('cur', provide_cur)
     def exists(self, path: str, conn: connection = None, cur: cursor = None) -> bool:
-        """Проверить, существует ли объект
+        """Check if the object exists
         @param path: schema.table
-        @param conn: коннект к базе
-        @param cur: курсор
+        @param conn: Connection to db
+        @param cur: Cursor
         @return:
         """
         return bool(self.get_object_type_by_path(path, conn=conn, cur=cur))
@@ -202,10 +202,10 @@ class PgWork(BaseDBWork):
     @provide_arg('conn', provide_conn)
     @provide_arg('cur', provide_cur)
     def set_search_path(self, search_path: str, conn: connection = None, cur: cursor = None):
-        """Установить search_path
+        """Set search_path
         @param search_path: search_path
-        @param conn: коннект к базе
-        @param cur: курсор
+        @param conn: Connection to db
+        @param cur: Cursor
         """
         sql = f'SET SEARCH_PATH TO {search_path}, public;'
         self.execute(sql=sql, conn=conn, cur=cur)
@@ -213,11 +213,11 @@ class PgWork(BaseDBWork):
     @provide_arg('conn', provide_conn)
     @provide_arg('cur', provide_cur)
     def drop(self, path: str, conn: connection = None, cur: cursor = None, cascade: bool = True):
-        """Удалить объект по path
-        @param path: путь к объекту
-        @param conn: коннект к базе
-        @param cur: курсор
-        @param cascade: удалить зависимые объекты
+        """Drop the object by path
+        @param path: Path to the object
+        @param conn: Connection to db
+        @param cur: Cursor
+        @param cascade: Delete dependent objects
         """
         sql = None
         object_type = self.get_object_type_by_path(path, conn=conn, cur=cur)
@@ -236,13 +236,13 @@ class PgWork(BaseDBWork):
         self.log.info(f'Object {path} have been dropped successfully.')
 
     def write_df(self, path: str, frame: DataFrame, **kwargs):
-        """Загрузить DataFrame в TEMPORARY TABLE postgres
-        :param path: Имя таблицы
+        """Upload DataFrame to TEMPORARY TABLE postgres
+        :param path: Table name
         :param frame: DataFrame
-        :param kwargs: Дополнительные параметры
+        :param kwargs: Additional params
 
-        Индекс DataFrame исключается из загрузки.
-        Параметры по умолчанию:
+        The Data Frame index is excluded from loading.
+        Default params:
             chunksize: 1000
             method: 'multi'
         """
@@ -251,7 +251,7 @@ class PgWork(BaseDBWork):
         table = parts[1]
         chunksize = kwargs.pop('chunksize', 1000)
         method = kwargs.pop('method', 'multi')
-        # Используем get_uri, в provide_conn используется get_conn
+        # Using get_uri, provide_conn uses get_conn
         conn = self.get_hook().get_uri()
         frame.to_sql(schema=schema, name=table, con=conn, chunksize=chunksize, method=method, index=False, **kwargs)
 
@@ -260,11 +260,11 @@ class PgWork(BaseDBWork):
         return read_sql_query(sql=sql, con=con, **kwargs)
 
     def get_size(self, path: str) -> str:
-        """Получить размер объекта в базе.
-        В случае не таблицы возвращает -1
+        """Get the size of the object in the database.
+        In case of no table returns -1
 
-        :param path: Имя объекта
-        :return: Округленный размер объекта
+        :param path: Object name
+        :return: Rounded object size
         """
         size = -1
         if self.is_table(path):

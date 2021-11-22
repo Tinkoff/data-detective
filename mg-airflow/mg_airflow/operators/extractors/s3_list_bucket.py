@@ -9,16 +9,15 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class S3ListBucket(TBaseOperator):
-    """Получить информацию о файлах в bucket для указанного prefix
-    и не содержащие delimiter
+    """
     Lists keys in a bucket under prefix and not containing delimiter
-    execute возвращает
+    execute returns
         DataFrame [['key', 'lastmodified', 'etag', 'size', 'storageclass', 'owner']]
 
     :param conn_id: Text
-            id подключения
+            Connection id
     :param bucket: Text
-            имя бакета
+            Bucket name
     :param prefix: Text
             Limits the response to keys that begin with the specified prefix.
     :param delimiter: Text
@@ -27,7 +26,7 @@ class S3ListBucket(TBaseOperator):
             Pagination size.
     :param max_items: int
             Maximum items to return.
-    :param kwargs: Дополнительные параметры для TBaseOperator
+    :param kwargs: Additional params for TBaseOperator
     """
 
     ui_color = '#4eb6c2'
@@ -53,17 +52,17 @@ class S3ListBucket(TBaseOperator):
         self.max_items = max_items
 
     def execute(self, context: Optional[dict]):
-        """Расширенная реализация airflow.hooks.S3_hook.py:155 list_keys
-        list_keys возвращает только ключи. Эта реализация возвращает
-        размер и дату последнего изменения
+        """Extended implementation of  airflow.hooks.S3_hook.py:155 list_keys.
+        list_keys returns only keys. This implementation returns
+        size and date of last modification
         https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_objects
 
-        В result записывается DataFrame:
+        A DataFrame is written to result:
             ['key', 'lastmodified', 'etag', 'size', 'storageclass', 'owner']
 
-        :raises AirflowBadRequest: при несуществующем бакете
+        :raises AirflowBadRequest: With the non-existent bucket
 
-        :param context: контекст
+        :param context: context
         """
         keys: List[Dict] = []
         config = {

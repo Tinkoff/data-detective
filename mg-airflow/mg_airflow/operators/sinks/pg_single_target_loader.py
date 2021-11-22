@@ -10,17 +10,17 @@ from mg_airflow.constants import PG_CONN_ID
 
 
 class PgSingleTargetLoader(PgLoader):
-    """Обновить таргет таблицу в postgres
-    Работает только для result_type: pickle
-    По умолчанию отслеживает удаления, если записи были загружены когда-то тем же дагом
+    """Update the target table in postgres
+    Works only for result_type: pickle
+    By default, it tracks deletions if records were uploaded sometime by the same DAG
 
-    :param conn_id: ID подключения
-    :param source: Источник
-    :param table_name: Имя таблицы которую обновляем
-    :param key: Ключ по которому обновляем. Избегать наличия NULL в ключе.
-    :param filter_callable: функция для фильтрации строк, опционально.
-    :param deleted_flg: Отслеживать ли удаления, принимает значения True/False
-    :param chunk_row_number: Количество строк в chunk для загрузки частями
+    :param conn_id: Connection id
+    :param source: Source
+    :param table_name: Table name for update
+    :param key: The key by which update. Avoid NULL for the key.
+    :param filter_callable: Function for filtering strings, optional.
+    :param deleted_flg: Track deletions, takes the values True/False
+    :param chunk_row_number: Number of lines in chunk to load in parts
     :param kwargs:
     """
 
@@ -53,7 +53,7 @@ class PgSingleTargetLoader(PgLoader):
 
         source_df = self.source_task.result.read(context)
         with closing(hook.get_conn()) as session:
-            #  обогащаем источник техническими полями
+            #  adding the source with technical fields
             if 'loaded_by' in self.get_table_columns(self.table_name, session):
                 source_df['loaded_by'] = context['dag'].dag_id
 

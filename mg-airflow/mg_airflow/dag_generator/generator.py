@@ -19,9 +19,9 @@ FACTORIES = {
 def dag_generator(
     dag_id_whitelist: Iterable[str] = None,
 ) -> Generator[TDag, None, None]:
-    """Генератор объектов DAG
+    """DAG Object Generator
 
-    :param dag_id_whitelist: Список dag_id, которые нужно сгенерить. Если пуст - сгенерятся все.
+    :param dag_id_whitelist: A list of dag_ids to be generated. If empty, then all will be generated.
     """
     dag_id_whitelist = dag_id_whitelist or []
     dags: Iterable[Path] = (p.parent for p in Path(settings.DAGS_FOLDER).rglob('meta.yaml'))
@@ -39,9 +39,9 @@ def dag_generator(
 
 
 def generate_dag(dag_dir: str, dag_id: str = None) -> TDag:
-    """Получить объект дага по dag_dir
-    @param dag_dir: полный путь к директории
-    @param dag_id: dag_id считается именем директории, если не указано dag_id
+    """Get the DAG object by dag_dir
+    @param dag_dir: Full path to the directory
+    @param dag_id: Dag_id is considered the directory name if dag_path is not specified
     @return:
     """
     dag_path = Path(dag_dir)
@@ -57,7 +57,7 @@ def generate_dag(dag_dir: str, dag_id: str = None) -> TDag:
 
 
 def _get_dag_from_fs(dag_dir):
-    """Получить DAG из каталога на диске"""
+    """Get a DAG from a directory on disk"""
     logging.debug(f'Creating dag from {dag_dir}')
 
     with open(f'{dag_dir}/{TDag.META_FILE}', encoding='utf-8') as file:

@@ -9,22 +9,22 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class S3Load(TBaseOperator):
-    """Сохранить данные из `bytes_column` по пути `filename_column` с метаданными в `metadata_column`
-    в S3 с подключением `conn_id`
+    """Save data forom `bytes_column` by the path `filename_column` with metadata in `metadata_column`
+    in S3 with connection `conn_id`
 
     :param source: List
-            имя источника, положить в лист
+            Name of the source, put in the list
     :param conn_id: Text
-            id подключения
+            Connection id
     :param bucket: Text
-            имя бакета
+            Bucket name
     :param filename_column: Text
-            Имя колонки, содержащей путь к файлу в S3
+            The name of the column containing the path to the file in S3
     :param bytes_column: Text
-            Имя колонки, содержащей данные. Тип данных внутри: bytes
+            The name of the column containing the data. Data type inside: bytes
     :param metadata_column: Text
-            Имя колонки, содержащей метаданные. Сожержимое колонки быть пустым или содержать словарь с метаданными
-    :param kwargs: Дополнительные параметры для TBaseOperator
+            The name of the column containing metadata. The column content should be empty or contain a dictionary with metadata.
+    :param kwargs: Additional params for the TBaseOperator
     """
 
     ui_color = '#dde4ed'
@@ -53,14 +53,14 @@ class S3Load(TBaseOperator):
         self.source_operator >> self  # pylint: disable=pointless-statement
 
     def execute(self, context: Optional[dict]):
-        """Загрузка идет с через boto3.s3.inject.upload_fileobj
+        """The download comes from via boto3.s3.inject.upload_fileobj
 
-        :raises AirflowBadRequest: - при несуществующем бакете
+        :raises AirflowBadRequest: - at a non-existent bucket
         """
         hook = S3Hook(self.conn_id)
         client = hook.get_conn()
 
-        # Скопировано из airflow.hooks.S3_hook.py:56
+        # Copied form airflow.hooks.S3_hook.py:56
         try:
             client.head_bucket(Bucket=self.bucket)
         except ClientError as error:
