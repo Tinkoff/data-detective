@@ -1,8 +1,8 @@
 import allure
 import pytest
 
-from mg_airflow.constants import S3_CONN_ID
-from mg_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.constants import S3_CONN_ID
+from data_detective_airflow.dag_generator import ResultType, WorkType
 
 
 @allure.feature('Works')

@@ -5,8 +5,8 @@ import allure
 import pytest
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
-from mg_airflow.constants import PG_CONN_ID
-from mg_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.constants import PG_CONN_ID
+from data_detective_airflow.dag_generator import ResultType, WorkType
 
 
 def is_work_schema_exists(work):

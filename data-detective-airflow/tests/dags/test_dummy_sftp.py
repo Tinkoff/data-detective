@@ -3,8 +3,8 @@ import allure
 from airflow import settings
 
 
-from mg_airflow.test_utilities import run_and_assert_task
-from mg_airflow.dag_generator import generate_dag
+from data_detective_airflow.test_utilities import run_and_assert_task
+from data_detective_airflow.dag_generator import generate_dag
 from tests_data.dags.dummy_sftp_dataset import dataset
 
 dag = generate_dag(dag_dir=f'{settings.DAGS_FOLDER}/dags/dummy_sftp')

@@ -3,9 +3,9 @@ import allure
 from airflow import settings
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
-from mg_airflow.constants import PG_CONN_ID
-from mg_airflow.dag_generator import generate_dag
-from mg_airflow.test_utilities import (
+from data_detective_airflow.constants import PG_CONN_ID
+from data_detective_airflow.dag_generator import generate_dag
+from data_detective_airflow.test_utilities import (
     is_gen_dataset_mode,
     JSONPandasDataset,
     run_and_assert_task,

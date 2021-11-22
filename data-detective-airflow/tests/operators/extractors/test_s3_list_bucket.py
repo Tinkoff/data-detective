@@ -1,10 +1,10 @@
 import pytest
 import allure
 
-from mg_airflow.constants import S3_CONN_ID
-from mg_airflow.operators import S3ListBucket
-from mg_airflow.dag_generator import TDag, ResultType, WorkType
-from mg_airflow.test_utilities import run_task, assert_frame_equal
+from data_detective_airflow.constants import S3_CONN_ID
+from data_detective_airflow.operators import S3ListBucket
+from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
+from data_detective_airflow.test_utilities import run_task, assert_frame_equal
 from tests_data.operators.extractors.s3_dataset import dataset, setup_storage, MG_AIRFLOW_BUCKET
 
 

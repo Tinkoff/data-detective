@@ -1,4 +1,4 @@
-from mg_airflow.constants import PG_CONN_ID
+from data_detective_airflow.constants import PG_CONN_ID
 
 from mg_airflow.operators.extractors import DBDump
 from mg_airflow.operators.sinks import PgSCD1

@@ -4,8 +4,8 @@ import pytest
 from airflow.utils.module_loading import import_string
 from airflow.exceptions import AirflowTaskTimeout
 
-from mg_airflow.dag_generator import ResultType, WorkType
-from mg_airflow.constants import PG_CONN_ID
+from data_detective_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.constants import PG_CONN_ID
 
 
 @allure.feature('Execution_timeout execution')
@@ -13,7 +13,7 @@ from mg_airflow.constants import PG_CONN_ID
 @pytest.mark.parametrize(
     'clname,kwargs',
     [
-        ('mg_airflow.operators.transformers.pg_sql.PgSQL',
+        ('data_detective_airflow.operators.transformers.pg_sql.PgSQL',
          {
              'conn_id': PG_CONN_ID,
              'source': None,
@@ -41,7 +41,7 @@ def test_timeout_exc_pass_through(test_dag, clname, kwargs):
 @pytest.mark.parametrize(
     'clname,kwargs',
     [
-        ('mg_airflow.operators.extractors.python_dump.PythonDump',
+        ('data_detective_airflow.operators.extractors.python_dump.PythonDump',
          {
              'source': None,
              'execution_timeout': 1,
@@ -65,7 +65,7 @@ def test_timeout_exc_dataframe(test_dag, clname, kwargs):
 @pytest.mark.parametrize(
     'clname,kwargs',
     [
-        ('mg_airflow.operators.transformers.pg_sql.PgSQL',
+        ('data_detective_airflow.operators.transformers.pg_sql.PgSQL',
          {
              'conn_id': PG_CONN_ID,
              'source': None,

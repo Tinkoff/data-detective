@@ -1,10 +1,10 @@
 from io import StringIO
 
-from mg_airflow.test_utilities.generate_df import generate_single_dataframe
+from data_detective_airflow.test_utilities.generate_df import generate_single_dataframe
 from pandas import DataFrame
 
-from mg_airflow.dag_generator import TDag
-from mg_airflow.operators import PyTransform, PythonDump
+from data_detective_airflow.dag_generator import TDag
+from data_detective_airflow.operators import PyTransform, PythonDump
 
 
 def gen_dataset(_context: dict, **_kwargs: dict) -> DataFrame:

@@ -7,11 +7,11 @@ default_args:
 factory: YAML
 tasks:
 - task_id: get_df
-  type: mg_airflow.operators.extractors.db_dump.DBDump
+  type: data_detective_airflow.operators.extractors.db_dump.DBDump
   conn_id: pg
   sql: select now() as value;
 - task_id: test
-  type: mg_airflow.operators.transformers.PyTransform
+  type: data_detective_airflow.operators.transformers.PyTransform
   source:
   - get_df
   transformer_callable: 'lambda _context, df: df[["value"]]'

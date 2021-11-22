@@ -6,7 +6,7 @@ from petl import Table
 from airflow.models.taskinstance import TaskInstance
 from airflow.utils.timezone import utcnow
 
-from mg_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.dag_generator import ResultType, WorkType
 from mg_airflow.operators.transformers import PyTransform
 from mg_airflow.test_utilities import run_task
 

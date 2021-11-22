@@ -11,14 +11,14 @@ factory: YAML
 tasks:
 - task_id: list_bucket
   description: Получить список файлов
-  type: mg_airflow.operators.extractors.S3ListBucket
+  type: data_detective_airflow.operators.extractors.S3ListBucket
   conn_id: s3
   bucket: mg-airflow
   prefix: mg-airflow
 
 - task_id: s3_dump
   description: Скачать файлы из S3
-  type: mg_airflow.operators.extractors.S3Dump
+  type: data_detective_airflow.operators.extractors.S3Dump
   conn_id: s3
   bucket: mg-airflow
   object_column: key

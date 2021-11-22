@@ -7,15 +7,15 @@ default_args:
 factory: YAML
 tasks:
 - task_id: df_first
-  type: mg_airflow.operators.extractors.DBDump
+  type: data_detective_airflow.operators.extractors.DBDump
   conn_id: pg
   sql: select now() as value;
 - task_id: df_second
-  type: mg_airflow.operators.extractors.DBDump
+  type: data_detective_airflow.operators.extractors.DBDump
   conn_id: pg
   sql: select now() as value;
 - task_id: df_third
-  type: mg_airflow.operators.extractors.DBDump
+  type: data_detective_airflow.operators.extractors.DBDump
   conn_id: pg
   sql: select now() as value;
 - source:
@@ -23,7 +23,7 @@ tasks:
   - df_second
   - df_third
   task_id: append_all
-  type: mg_airflow.operators.transformers.PyTransform
+  type: data_detective_airflow.operators.transformers.PyTransform
   transformer_callable: >
     lambda _context, df_now1, transform: df_first.append(df_second, sort=False).append(df_third, sort=False)
 

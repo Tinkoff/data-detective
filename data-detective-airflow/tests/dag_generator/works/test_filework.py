@@ -3,7 +3,7 @@ from pathlib import Path
 import allure
 import pytest
 
-from mg_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.dag_generator import ResultType, WorkType
 
 
 @allure.feature('Works')

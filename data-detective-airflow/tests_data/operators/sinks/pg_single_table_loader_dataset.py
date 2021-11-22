@@ -3,7 +3,7 @@ import pytest
 from pandas import DataFrame
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
-from mg_airflow.constants import PG_CONN_ID, RELATION_NONE
+from data_detective_airflow.constants import PG_CONN_ID, RELATION_NONE
 
 dataset = {
     'source_mg.entity': DataFrame(

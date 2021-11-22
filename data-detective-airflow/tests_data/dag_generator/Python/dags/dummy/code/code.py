@@ -5,10 +5,10 @@ JIRA Task Tracking
 * MG-79 - создание dag-a
 """
 
-from mg_airflow.constants import PG_CONN_ID
-from mg_airflow.dag_generator.dags import TDag
-from mg_airflow.operators.extractors import DBDump
-from mg_airflow.operators.transformers import PyTransform
+from data_detective_airflow.constants import PG_CONN_ID
+from data_detective_airflow.dag_generator.dags import TDag
+from data_detective_airflow.operators.extractors import DBDump
+from data_detective_airflow.operators.transformers import PyTransform
 
 
 def fill_dag(tdag: TDag):

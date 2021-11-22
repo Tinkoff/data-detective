@@ -5,7 +5,7 @@ from contextlib import closing
 import pytest
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
-from mg_airflow.constants import WORK_PG_SCHEMA_PREFIX
+from data_detective_airflow.constants import WORK_PG_SCHEMA_PREFIX
 from tests_data.fixtures.PG import postgres_sql_queries as pg_test_data
 
 

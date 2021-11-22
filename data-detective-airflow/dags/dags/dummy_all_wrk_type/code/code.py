@@ -1,12 +1,12 @@
 import pandas
 
-from mg_airflow.constants import S3_CONN_ID, PG_CONN_ID, SFTP_CONN_ID
-from mg_airflow.dag_generator.results.base_result import ResultType
-from mg_airflow.dag_generator.works.base_work import WorkType
-from mg_airflow.dag_generator.dags import TDag
-from mg_airflow.operators.extractors import PythonDump
-from mg_airflow.operators.sinks import PgSCD1
-from mg_airflow.operators.transformers import PyTransform
+from data_detective_airflow.constants import S3_CONN_ID, PG_CONN_ID, SFTP_CONN_ID
+from data_detective_airflow.dag_generator.results.base_result import ResultType
+from data_detective_airflow.dag_generator.works.base_work import WorkType
+from data_detective_airflow.dag_generator.dags import TDag
+from data_detective_airflow.operators.extractors import PythonDump
+from data_detective_airflow.operators.sinks import PgSCD1
+from data_detective_airflow.operators.transformers import PyTransform
 
 
 def get_src_dataframe(_context: dict):

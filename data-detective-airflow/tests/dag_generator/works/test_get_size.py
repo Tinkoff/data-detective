@@ -6,9 +6,9 @@ import pytest
 from airflow.models import TaskInstance
 from pandas import DataFrame
 
-from mg_airflow.operators.extractors import PythonDump
-from mg_airflow.dag_generator import ResultType, WorkType
-from mg_airflow.test_utilities import run_task
+from data_detective_airflow.operators.extractors import PythonDump
+from data_detective_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.test_utilities import run_task
 
 
 @allure.feature('Works')

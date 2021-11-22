@@ -3,8 +3,8 @@ import allure
 from airflow import settings
 
 
-from mg_airflow.test_utilities import run_and_assert_task
-from mg_airflow.dag_generator import generate_dag
+from data_detective_airflow.test_utilities import run_and_assert_task
+from data_detective_airflow.dag_generator import generate_dag
 from tests_data.dags.dummy_etl_elt_dataset import dataset
 
 dag_name = 'dummy_elt_etl'

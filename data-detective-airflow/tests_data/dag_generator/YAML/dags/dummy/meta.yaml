@@ -14,7 +14,7 @@ prerun: []
 tasks:
 - conn_id: pg
   task_id: df_first
-  type: mg_airflow.operators.extractors.DBDump
+  type: data_detective_airflow.operators.extractors.DBDump
   sql: select now() as value;
 - conn_id: pg
   task_id: df_second
