@@ -15,7 +15,7 @@ RUN apt-get update \
  && apt-get clean
 
 USER airflow
-RUN mkdir $AIRFLOW_HOME/mg_airflow && chown airflow:airflow ${AIRFLOW_HOME}/mg_airflow
+RUN mkdir $AIRFLOW_HOME/data_detective_airflow && chown airflow:airflow ${AIRFLOW_HOME}/data_detective_airflow
 ENV PYTHONPATH=$PATH:${AIRFLOW_HOME} \
     PATH=${AIRFLOW_HOME}/.local/bin:${PATH}
 
@@ -74,7 +74,7 @@ RUN mkdir ${AIRFLOW_HOME}/dags \
  && mkdir ${AIRFLOW_HOME}/tests_data
 
 VOLUME ${AIRFLOW_HOME}/dags \
-       ${AIRFLOW_HOME}/mg_airflow \
+       ${AIRFLOW_HOME}/data_detective_airflow \
        ${AIRFLOW_HOME}/tests \
        ${AIRFLOW_HOME}/tests_data
 

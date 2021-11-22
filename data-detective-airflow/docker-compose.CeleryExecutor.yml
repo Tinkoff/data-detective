@@ -91,7 +91,7 @@ services:
         condition: service_healthy
     volumes:
       - ./dags:${AIRFLOW_HOME}/dags
-      - ./mg_airflow:${AIRFLOW_HOME}/mg_airflow
+      - ./data_detectivedata_detectivedata_detectivedata_detective_airflow:${AIRFLOW_HOME}/data_detectivedata_detectivedata_detectivedata_detective_airflow
       - ./tests:${AIRFLOW_HOME}/tests
       - ./tests_data:${AIRFLOW_HOME}/tests_data
     ports:
@@ -105,7 +105,7 @@ services:
       - scheduler
     volumes:
       - ./dags:${AIRFLOW_HOME}/dags
-      - ./mg_airflow:${AIRFLOW_HOME}/mg_airflow
+      - ./data_detective_airflow:${AIRFLOW_HOME}/data_detective_airflow
     ports:
       - 8080:8080
     command: webserver
@@ -137,7 +137,7 @@ services:
       - scheduler
     volumes:
       - ./dags:${AIRFLOW_HOME}/dags
-      - ./mg_airflow:${AIRFLOW_HOME}/mg_airflow
+      - ./data_detective_airflow:${AIRFLOW_HOME}/data_detective_airflow
     command: worker
     healthcheck:
       test: ["CMD-SHELL", 'celery --app airflow.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}"']

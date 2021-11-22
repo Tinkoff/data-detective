@@ -80,7 +80,7 @@ services:
       - "8080:8080"
     volumes:
       - ./dags:${AIRFLOW_HOME}/dags
-      - ./mg_airflow:${AIRFLOW_HOME}/mg_airflow
+      - ./data_detective_airflow:${AIRFLOW_HOME}/data_detective_airflow
       - ./tests:${AIRFLOW_HOME}/tests
       - ./tests_data:${AIRFLOW_HOME}/tests_data
       - ./Makefile:${AIRFLOW_HOME}/Makefile
