@@ -7,7 +7,7 @@ Data Detective Airflow allows developers to create workflows in the form of dire
 The easy-to-use Data Detective Airflow scheduler makes it possible to run tasks and save results into works. 
 Work storage support for s3, ftp, local disk and database is also included.
 
-[More information about MG Airflow](https://tinkoffcreditsystems.github.io/data-detective/docs/data-detective-airflow/intro)
+[More information about Data Detective Airflow](https://tinkoffcreditsystems.github.io/data-detective/docs/data-detective-airflow/intro)
 
 ## Installation
 
