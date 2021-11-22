@@ -5,10 +5,10 @@ import allure
 import pytest
 from airflow.models.taskinstance import TaskInstance
 
-from mg_airflow.operators import PythonDump, Append
-from mg_airflow.dag_generator import ResultType, WorkType
-from mg_airflow.test_utilities import run_task
-from mg_airflow.test_utilities.generate_df import generate_dfs_with_random_data
+from data_detective_airflow.operators import PythonDump, Append
+from data_detective_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.test_utilities import run_task
+from data_detective_airflow.test_utilities.generate_df import generate_dfs_with_random_data
 
 df1 = pandas.DataFrame(
     [

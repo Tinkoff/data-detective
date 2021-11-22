@@ -4,8 +4,8 @@ import pytest
 
 from airflow.models import TaskInstance
 
-from mg_airflow.operators import TSFTPOperator
-from mg_airflow.test_utilities import run_and_read
+from data_detective_airflow.operators import TSFTPOperator
+from data_detective_airflow.test_utilities import run_and_read
 from tests_data.fixtures.File.file_fixtures import (
     prepare_data_files,
     get_keys_of_correct_files,

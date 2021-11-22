@@ -9,10 +9,10 @@ from numpy.testing import assert_array_equal
 from pandas import DataFrame
 from requests import Session
 
-from mg_airflow.operators.extractors import RequestDump
-from mg_airflow.dag_generator import TDag, ResultType, WorkType
-from mg_airflow.test_utilities import run_task
-from mg_airflow.constants import PG_CONN_ID
+from data_detective_airflow.operators.extractors import RequestDump
+from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
+from data_detective_airflow.test_utilities import run_task
+from data_detective_airflow.constants import PG_CONN_ID
 from tests_data.operators.extractors.request_dump_dataset import dataset, empty_dataset
 
 

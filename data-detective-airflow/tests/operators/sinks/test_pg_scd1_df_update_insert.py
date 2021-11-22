@@ -2,9 +2,9 @@ import allure
 import pytest
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
-from mg_airflow.constants import PG_CONN_ID
-from mg_airflow.operators import PythonDump, PgSCD1DFUpdateInsert
-from mg_airflow.test_utilities import run_task, assert_frame_equal
+from data_detective_airflow.constants import PG_CONN_ID
+from data_detective_airflow.operators import PythonDump, PgSCD1DFUpdateInsert
+from data_detective_airflow.test_utilities import run_task, assert_frame_equal
 
 from tests_data.operators.sinks.pg_scd1_df_update_insert_dataset import dataset
 

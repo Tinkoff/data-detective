@@ -2,9 +2,9 @@ import allure
 import pytest
 from pandas import DataFrame
 
-from mg_airflow.constants import PG_CONN_ID
-from mg_airflow.operators.extractors import DBDump
-from mg_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.constants import PG_CONN_ID
+from data_detective_airflow.operators.extractors import DBDump
+from data_detective_airflow.dag_generator import ResultType, WorkType
 
 
 @allure.feature('Results')

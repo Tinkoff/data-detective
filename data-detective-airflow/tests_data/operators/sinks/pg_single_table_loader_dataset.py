@@ -6,7 +6,7 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 from data_detective_airflow.constants import PG_CONN_ID, RELATION_NONE
 
 dataset = {
-    'source_mg.entity': DataFrame(
+    'source_dds.entity': DataFrame(
         [
             ['urn:schema:clickhouse:dwh:ch:s_stg', 's_stg', 'SCHEMA', {"engine": "Ordinary"}, None, 'urn:schema:clickhouse:dwh:ch:s_stg s_stg'],
             ['urn:schema:clickhouse:dwh:ch:stg', 'stg', 'SCHEMA', {"engine": "Ordinary"}, None, 'urn:schema:clickhouse:dwh:ch:stg stg'],
@@ -16,7 +16,7 @@ dataset = {
             ['urn:tree_node:zeppelin', 'Zeppelin', 'tree_node', {"info": "Раздел с публичным ноутами из Zeppelin"}, None, 'urn:tree_node:zeppelin zeppelin'],
         ],
         columns=['urn', 'entity_name', 'entity_type', 'json_data', 'entity_name_short', 'search_data']),
-    'expected_mg.entity_True_empty': DataFrame(
+    'expected_dds.entity_True_empty': DataFrame(
         [
             ['urn:schema:clickhouse:dwh:ch:s_stg', 's_stg', 'test_pg_single_table_loader_main', 'SCHEMA', {'engine': 'Ordinary'}, None, 'urn:schema:clickhouse:dwh:ch:s_stg s_stg'],
             ['urn:schema:clickhouse:dwh:ch:stg', 'stg', 'test_pg_single_table_loader_main', 'SCHEMA', {'engine': 'Ordinary'}, None, 'urn:schema:clickhouse:dwh:ch:stg stg'],
@@ -26,7 +26,7 @@ dataset = {
             ['urn:tree_node:zeppelin', 'Zeppelin', 'test_pg_single_table_loader_main', 'tree_node', {'info': 'Раздел с публичным ноутами из Zeppelin'}, None, 'urn:tree_node:zeppelin zeppelin']
         ],
         columns=['urn', 'entity_name', 'loaded_by', 'entity_type', 'json_data', 'entity_name_short', 'search_data']),
-    'expected_mg.entity_False_empty': DataFrame(
+    'expected_dds.entity_False_empty': DataFrame(
         [
             ['urn:schema:clickhouse:dwh:ch:s_stg', 's_stg', 'test_pg_single_table_loader_main', 'SCHEMA', {'engine': 'Ordinary'}, None, 'urn:schema:clickhouse:dwh:ch:s_stg s_stg'],
             ['urn:schema:clickhouse:dwh:ch:stg', 'stg', 'test_pg_single_table_loader_main', 'SCHEMA', {'engine': 'Ordinary'}, None, 'urn:schema:clickhouse:dwh:ch:stg stg'],
@@ -36,7 +36,7 @@ dataset = {
             ['urn:tree_node:zeppelin', 'Zeppelin', 'test_pg_single_table_loader_main', 'tree_node', {'info': 'Раздел с публичным ноутами из Zeppelin'}, None, 'urn:tree_node:zeppelin zeppelin']
         ],
         columns=['urn', 'entity_name', 'loaded_by', 'entity_type', 'json_data', 'entity_name_short', 'search_data']),
-    'expected_mg.entity_True_not_empty': DataFrame(
+    'expected_dds.entity_True_not_empty': DataFrame(
         [
             ['urn:schema:clickhouse:dwh:ch:stg', 'stg', 'test_pg_single_table_loader_main', 'SCHEMA', {'engine': 'Ordinary'}, None, 'urn:schema:clickhouse:dwh:ch:stg stg'],
             ['urn:schema:clickhouse:dwh:ch:v_stg', 'v_stg', 'test_pg_single_table_loader_main', 'SCHEMA', {'engine': 'Ordinary'}, None, 'urn:schema:clickhouse:dwh:ch:v_stg v_stg'],
@@ -46,7 +46,7 @@ dataset = {
             ['urn:tree_node:zeppelin', 'Zeppelin', 'test_pg_single_table_loader_main', 'tree_node', {'info': 'Раздел с публичным ноутами из Zeppelin'}, None, 'urn:tree_node:zeppelin zeppelin']
         ],
         columns=['urn', 'entity_name', 'loaded_by', 'entity_type', 'json_data', 'entity_name_short', 'search_data']),
-    'expected_mg.entity_False_not_empty': DataFrame(
+    'expected_dds.entity_False_not_empty': DataFrame(
         [
             ['urn:schema:clickhouse:dwh:ch:test_s_stg', 'test_s_stg', 'test_pg_single_table_loader_main', 'SCHEMA', {'engine': 'Ordinary'}, None, 'urn:schema:clickhouse:dwh:ch:test_s_stg test_s_stg', None],
             ['urn:schema:clickhouse:dwh:ch:stg', 'stg', 'test_pg_single_table_loader_main', 'SCHEMA', {'engine': 'Ordinary'}, None, 'urn:schema:clickhouse:dwh:ch:stg stg', None],
@@ -57,7 +57,7 @@ dataset = {
             ['urn:tree_node:zeppelin', 'Zeppelin', 'test_pg_single_table_loader_main', 'tree_node', {'info': 'Раздел с публичным ноутами из Zeppelin'}, None, 'urn:tree_node:zeppelin zeppelin', None]
         ],
         columns=['urn', 'entity_name', 'loaded_by', 'entity_type', 'json_data', 'entity_name_short', 'search_data', 'json_system']),
-    'source_mg.relation': DataFrame(
+    'source_dds.relation': DataFrame(
         [
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:s_stg', 'Contains', None],
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:stg', 'Contains', None],
@@ -66,7 +66,7 @@ dataset = {
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:v_usermart', 'Contains', None]
         ],
         columns=['source', 'destination', 'type', 'attribute']),
-    'expected_mg.relation_True_empty': DataFrame(
+    'expected_dds.relation_True_empty': DataFrame(
         [
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:usermart', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE],
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:s_stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE],
@@ -75,7 +75,7 @@ dataset = {
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:v_stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE]
         ],
         columns=['source', 'destination', 'type', 'loaded_by', 'attribute']),
-    'expected_mg.relation_False_empty': DataFrame(
+    'expected_dds.relation_False_empty': DataFrame(
         [
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:usermart', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE],
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:s_stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE],
@@ -84,7 +84,7 @@ dataset = {
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:v_stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE]
         ],
         columns=['source', 'destination', 'type', 'loaded_by', 'attribute']),
-    'expected_mg.relation_True_not_empty': DataFrame(
+    'expected_dds.relation_True_not_empty': DataFrame(
         [
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE],
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:v_stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE],
@@ -93,7 +93,7 @@ dataset = {
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:v_usermart', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE]
         ],
         columns=['source', 'destination', 'type', 'loaded_by', 'attribute']),
-    'expected_mg.relation_False_not_empty': DataFrame(
+    'expected_dds.relation_False_not_empty': DataFrame(
         [
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:test_s_stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE],
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE],
@@ -103,7 +103,7 @@ dataset = {
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:v_usermart', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE]
         ],
         columns=['source', 'destination', 'type', 'loaded_by', 'attribute']),
-    'source_mg.breadcrumb': DataFrame(
+    'source_tuning.breadcrumb': DataFrame(
         [
             ['urn:tree_node:hive', '["urn:tree_node:data_platform", "urn:tree_node:physical_model"]',
              '["Data Platform", "Physical model"]'],
@@ -118,7 +118,7 @@ dataset = {
 
         ],
         columns=['urn', 'breadcrumb_urn', 'breadcrumb_entity']),
-    'expected_mg.breadcrumb_True_empty': DataFrame(
+    'expected_tuning.breadcrumb_True_empty': DataFrame(
         [
             ['urn:tree_node:hive', ['urn:tree_node:data_platform', 'urn:tree_node:physical_model'], ['Data Platform', 'Physical model'], 'test_pg_single_table_loader_main'],
             ['urn:tree_node:clickhouse', ['urn:tree_node:data_platform', 'urn:tree_node:physical_model'], ['Data Platform', 'Physical model'], 'test_pg_single_table_loader_main'],
@@ -126,7 +126,7 @@ dataset = {
             ['urn:job:replication:oracle:abc', ['urn:tree_node:data_platform', 'urn:tree_node:replication_tasks', 'urn:tree_node:oracle_tasks', 'urn:tree_node:oracle:dwh', 'urn:tree_node:oracle:dwh:abc'], ['Data Platform', 'Replication tasks', 'Oracle tasks', 'ABC'], 'test_pg_single_table_loader_main']
         ],
         columns=['urn', 'breadcrumb_urn', 'breadcrumb_entity', 'loaded_by']),
-    'expected_mg.breadcrumb_False_empty': DataFrame(
+    'expected_tuning.breadcrumb_False_empty': DataFrame(
         [
             ['urn:tree_node:hive', ['urn:tree_node:data_platform', 'urn:tree_node:physical_model'], ['Data Platform', 'Physical model'], 'test_pg_single_table_loader_main'],
             ['urn:tree_node:clickhouse', ['urn:tree_node:data_platform', 'urn:tree_node:physical_model'], ['Data Platform', 'Physical model'], 'test_pg_single_table_loader_main'],
@@ -134,7 +134,7 @@ dataset = {
             ['urn:job:replication:oracle:abc', ['urn:tree_node:data_platform', 'urn:tree_node:replication_tasks', 'urn:tree_node:oracle_tasks', 'urn:tree_node:oracle:dwh', 'urn:tree_node:oracle:dwh:abc'], ['Data Platform', 'Replication tasks', 'Oracle tasks', 'ABC'], 'test_pg_single_table_loader_main']
         ],
         columns=['urn', 'breadcrumb_urn', 'breadcrumb_entity', 'loaded_by']),
-    'expected_mg.breadcrumb_True_not_empty': DataFrame(
+    'expected_tuning.breadcrumb_True_not_empty': DataFrame(
         [
             ['urn:job:replication:oracle:abc', ['urn:tree_node:data_platform', 'urn:tree_node:replication_tasks', 'urn:tree_node:oracle_tasks', 'urn:tree_node:oracle:dwh', 'urn:tree_node:oracle:dwh:abc'], ['Data Platform', 'Replication tasks', 'Oracle tasks', 'ABC'], 'test_pg_single_table_loader_main'],
             ['urn:tree_node:hive', ['urn:tree_node:data_platform', 'urn:tree_node:physical_model'], ['Data Platform', 'Physical model'], 'test_pg_single_table_loader_main'],
@@ -143,7 +143,7 @@ dataset = {
         ],
         columns=['urn', 'breadcrumb_urn', 'breadcrumb_entity', 'loaded_by']),
 
-    'expected_mg.breadcrumb_False_not_empty': DataFrame(
+    'expected_tuning.breadcrumb_False_not_empty': DataFrame(
         [
             ['urn:job:replication:oracle:abc', ['urn:tree_node:data_platform', 'urn:tree_node:replication_tasks', 'urn:tree_node:oracle_tasks', 'urn:tree_node:oracle:dwh', 'urn:tree_node:oracle:dwh:abc'], ['Data Platform', 'Replication tasks', 'Oracle tasks', 'ABC'], 'test_pg_single_table_loader_main'],
             ['urn:tree_node:postgres_tasks', ['urn:tree_node:data_platform', 'urn:tree_node:replication_tasks'], ['Data Platform', 'Replication tasks'], 'test_pg_single_table_loader_main'],
@@ -158,7 +158,7 @@ dataset = {
 }
 
 setup_dataset = {
-    'mg_entity': DataFrame(
+    'dds_entity': DataFrame(
         [
             ['urn:schema:clickhouse:dwh:ch:test_s_stg', 'test_s_stg', 'SCHEMA', '{"engine": "Ordinary"}', None, 'urn:schema:clickhouse:dwh:ch:test_s_stg test_s_stg', 'test_pg_single_table_loader_main'], #  должна будет удалиться если отслеживаются удаления
             ['urn:schema:clickhouse:dwh:ch:s_stg', 's_stg', 'SCHEMA', '{"engine": "NOT_Ordinary"}', None, 'urn:schema:clickhouse:dwh:ch:s_stg s_stg', 'test_pg_single_table_loader_main'], #  должна будет обновиться
@@ -167,7 +167,7 @@ setup_dataset = {
             ['urn:tree_node:zeppelin', 'Zeppelin', 'tree_node', '{"info": "Раздел с публичным ноутами из Zeppelin"}', None, 'urn:tree_node:zeppelin zeppelin','test_pg_single_table_loader_main'] #  должна будет обновиться
         ],
         columns=['urn', 'entity_name', 'entity_type', 'json_data', 'entity_name_short', 'search_data', 'loaded_by']),
-    'mg_relation': DataFrame(
+    'dds_relation': DataFrame(
         [
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:test_s_stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE],  # должна будет удалиться если отслеживаются удаления
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:s_stg', 'Includes', 'test_pg_single_table_loader_main', RELATION_NONE],  # должна будет обновиться
@@ -175,7 +175,7 @@ setup_dataset = {
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:v_stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE]
         ],
         columns=['source', 'destination', 'type', 'loaded_by', 'attribute']),
-    'mg_breadcrumb': DataFrame(
+    'tuning_breadcrumb': DataFrame(
         [
             ["urn:column:greenplum:dwh:gp:riskmart:feature:processed_dttm",
              '["urn:tree_node:data_platform", "urn:tree_node:physical_model", "urn:tree_node:greenplum", "urn:schema:greenplum:dwh:gp:riskmart", "urn:table:greenplum:dwh:gp:riskmart:feature"]',
@@ -200,30 +200,27 @@ setup_dataset = {
         columns=['urn', 'breadcrumb_urn', 'breadcrumb_entity', 'loaded_by'])
 }
 
+queries = ['truncate dds.relation;',
+           'truncate dds.entity;',
+           'truncate tuning.breadcrumb;']
+
 
 @pytest.fixture
 def setup_tables_empty():
     hook = PostgresHook(postgres_conn_id=PG_CONN_ID)
-    hook.run(['truncate mg.relation;',
-              'truncate mg.entity;',
-              'truncate mg.breadcrumb;'])
+    hook.run(queries)
     yield
-    hook.run(['truncate mg.relation;',
-              'truncate mg.entity;',
-              'truncate mg.breadcrumb;'])
+    hook.run(queries)
 
 
 @pytest.fixture
 def setup_tables():
     hook = PostgresHook(postgres_conn_id=PG_CONN_ID)
-    hook.run(['truncate mg.relation;',
-              'truncate mg.entity;',
-              'truncate mg.breadcrumb;'])
+    hook.run(queries)
     for df_name in setup_dataset:
         df = setup_dataset[df_name]
-        df.to_sql(con=hook.get_uri(), schema='mg', name=df_name.split('_')[1],
+        schema, table = df_name.split('_')[1].split('.')
+        df.to_sql(con=hook.get_uri(), schema=schema, name=table,
                   if_exists='append', index=False)
     yield
-    hook.run(['truncate mg.relation;',
-              'truncate mg.entity;',
-              'truncate mg.breadcrumb;'])
+    hook.run(queries)

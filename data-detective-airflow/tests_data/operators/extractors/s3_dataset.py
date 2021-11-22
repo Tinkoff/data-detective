@@ -2,22 +2,22 @@ import pytest
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from pandas import DataFrame
 
-from mg_airflow.constants import S3_CONN_ID
+from data_detective_airflow.constants import S3_CONN_ID
 
-MG_AIRFLOW_BUCKET = 'mg-airflow'
+DD_AIRFLOW_BUCKET = 'dd-airflow'
 
 dataset = {
     'source': DataFrame(
         [
-            ['mg-airflow', b'mg-airflow\n'],
-            ['mg-airflow.txt', b'mg-airflow.txt\n'],
+            ['dd-airflow', b'dd-airflow\n'],
+            ['dd-airflow.txt', b'dd-airflow.txt\n'],
         ],
         columns=['path', 'response']
     ),
     'list_bucket': DataFrame(
         [
-            ['mg-airflow', 11, 'STANDARD'],
-            ['mg-airflow.txt', 15, 'STANDARD'],
+            ['dd-airflow', 11, 'STANDARD'],
+            ['dd-airflow.txt', 15, 'STANDARD'],
         ],
         columns=['key', 'size', 'storageclass']
     ),
@@ -33,7 +33,7 @@ dataset = {
 @pytest.fixture(scope='module')
 def setup_storage():
     hook = S3Hook(S3_CONN_ID)
-    bucket_name = MG_AIRFLOW_BUCKET
+    bucket_name = DD_AIRFLOW_BUCKET
     bucket = hook.get_bucket(bucket_name=bucket_name)
 
     bucket.objects.all().delete()

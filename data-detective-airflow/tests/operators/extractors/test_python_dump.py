@@ -7,9 +7,9 @@ import pytest
 from airflow.models.taskinstance import TaskInstance
 from pandas import DataFrame
 
-from mg_airflow.dag_generator import ResultType, WorkType
-from mg_airflow.operators import PythonDump
-from mg_airflow.test_utilities import run_task
+from data_detective_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.operators import PythonDump
+from data_detective_airflow.test_utilities import run_task
 from tests_data.operators.extractors.python_dump_data import data_dict, only_columns_dict
 from tests_data.fixtures.PY.python_fixtures import invalid_python_dump_data as _data
 

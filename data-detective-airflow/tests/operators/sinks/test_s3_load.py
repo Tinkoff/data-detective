@@ -3,11 +3,11 @@ import allure
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from pandas import DataFrame
 
-from mg_airflow.constants import S3_CONN_ID, WORK_S3_BUCKET
-from mg_airflow.dag_generator import TDag, ResultType, WorkType
-from mg_airflow.operators.extractors import PythonDump
-from mg_airflow.operators.sinks import S3Load
-from mg_airflow.test_utilities import run_task
+from data_detective_airflow.constants import S3_CONN_ID, WORK_S3_BUCKET
+from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
+from data_detective_airflow.operators.extractors import PythonDump
+from data_detective_airflow.operators.sinks import S3Load
+from data_detective_airflow.test_utilities import run_task
 from tests_data.operators.sinks.s3_load_dataset import dataset
 
 

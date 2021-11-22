@@ -5,7 +5,7 @@ from data_detective_airflow.constants import S3_CONN_ID
 from data_detective_airflow.operators import S3ListBucket
 from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
 from data_detective_airflow.test_utilities import run_task, assert_frame_equal
-from tests_data.operators.extractors.s3_dataset import dataset, setup_storage, MG_AIRFLOW_BUCKET
+from tests_data.operators.extractors.s3_dataset import dataset, setup_storage, DD_AIRFLOW_BUCKET
 
 
 @allure.feature('Extractors')
@@ -18,7 +18,7 @@ from tests_data.operators.extractors.s3_dataset import dataset, setup_storage, M
 def test_s3_list_bucket(test_dag: TDag, context, setup_storage):
     task = S3ListBucket(
         conn_id=S3_CONN_ID,
-        bucket=MG_AIRFLOW_BUCKET,
+        bucket=DD_AIRFLOW_BUCKET,
         task_id="test_s3_list_bucket",
         prefix=dataset['source']['path'].values[0],
         dag=test_dag)
@@ -41,7 +41,7 @@ def test_s3_list_bucket(test_dag: TDag, context, setup_storage):
 def test_s3_empty_list(test_dag: TDag, context, setup_storage):
     task = S3ListBucket(
         conn_id=S3_CONN_ID,
-        bucket=MG_AIRFLOW_BUCKET,
+        bucket=DD_AIRFLOW_BUCKET,
         task_id="test_s3_empty_list",
         prefix='empty',
         dag=test_dag)

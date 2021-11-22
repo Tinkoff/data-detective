@@ -4,8 +4,8 @@ import allure
 from airflow import settings
 from airflow.models.taskinstance import TaskInstance
 
-from mg_airflow.dag_generator import generate_dag
-from mg_airflow.test_utilities import run_and_read, run_task
+from data_detective_airflow.dag_generator import generate_dag
+from data_detective_airflow.test_utilities import run_and_read, run_task
 
 
 @allure.feature('Dags')

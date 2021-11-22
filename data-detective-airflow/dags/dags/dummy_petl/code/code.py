@@ -1,10 +1,10 @@
 import petl
 
-from mg_airflow.constants import PG_CONN_ID
+from data_detective_airflow.constants import PG_CONN_ID
 
-from mg_airflow.dag_generator import TDag
-from mg_airflow.operators import PgSCD1, PyTransform
-from mg_airflow.utils.petl_utils import dump_sql_petl_tupleoftuples, appender_petl2pandas
+from data_detective_airflow.dag_generator import TDag
+from data_detective_airflow.operators import PgSCD1, PyTransform
+from data_detective_airflow.utils.petl_utils import dump_sql_petl_tupleoftuples, appender_petl2pandas
 
 
 def fill_dag(tdag: TDag):

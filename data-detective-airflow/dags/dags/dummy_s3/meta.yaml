@@ -13,27 +13,27 @@ tasks:
   description: Получить список файлов
   type: data_detective_airflow.operators.extractors.S3ListBucket
   conn_id: s3
-  bucket: mg-airflow
-  prefix: mg-airflow
+  bucket: dd-airflow
+  prefix: dd-airflow
 
 - task_id: s3_dump
   description: Скачать файлы из S3
   type: data_detective_airflow.operators.extractors.S3Dump
   conn_id: s3
-  bucket: mg-airflow
+  bucket: dd-airflow
   object_column: key
   source:
     - list_bucket
 
 - task_id: decode_response
-  type: mg_airflow.operators.transformers.PyTransform
+  type: data_detective_airflow.operators.transformers.PyTransform
   source:
   - s3_dump
   transformer_callable: decode_response
 
 - task_id: pg_sink
   description: Записать результат в pg
-  type: mg_airflow.operators.sinks.PgSCD1
+  type: data_detective_airflow.operators.sinks.PgSCD1
   source:
   - decode_response
   conn_id: pg
@@ -42,17 +42,17 @@ tasks:
   table_name: test2
 
 - task_id: rename_path
-  type: mg_airflow.operators.transformers.PyTransform
+  type: data_detective_airflow.operators.transformers.PyTransform
   source:
   - s3_dump
   transformer_callable: rename_path
 
 - task_id: s3_sink
   description: Записать результат в s3
-  type: mg_airflow.operators.sinks.S3Load
+  type: data_detective_airflow.operators.sinks.S3Load
   source:
   - rename_path
   conn_id: s3
-  bucket: mg-airflow
+  bucket: dd-airflow
   filename_column: path
   bytes_column: response

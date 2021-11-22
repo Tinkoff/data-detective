@@ -5,9 +5,9 @@ import pytest
 from airflow.models import TaskInstance
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
-from mg_airflow.constants import PG_CONN_ID, TASK_ID_KEY
-from mg_airflow.operators import DBDump, PythonDump, PgSCD1, LoadingMethod
-from mg_airflow.test_utilities import run_task, assert_frame_equal
+from data_detective_airflow.constants import PG_CONN_ID, TASK_ID_KEY
+from data_detective_airflow.operators import DBDump, PythonDump, PgSCD1, LoadingMethod
+from data_detective_airflow.test_utilities import run_task, assert_frame_equal
 from tests_data.operators.sinks.pg_scd1_dataset import dataset
 
 cases = [

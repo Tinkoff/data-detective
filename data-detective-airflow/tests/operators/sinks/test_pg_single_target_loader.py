@@ -1,20 +1,18 @@
-from datetime import datetime
-
 import allure
 import pytest
 from pandas import DataFrame
 
-from mg_airflow.operators import PythonDump, PgSingleTargetLoader,\
+from data_detective_airflow.operators import PythonDump, PgSingleTargetLoader,\
     filter_for_entity, filter_for_relation, filter_for_breadcrumb
-from mg_airflow.test_utilities.test_helper import run_task, assert_frame_equal
-from mg_airflow.constants import PG_CONN_ID
+from data_detective_airflow.test_utilities.test_helper import run_task, assert_frame_equal
+from data_detective_airflow.constants import PG_CONN_ID
 from tests_data.operators.sinks.pg_single_table_loader_dataset import dataset, setup_tables, setup_tables_empty
 
 targets = [
-    {'table_name': 'mg.entity', 'key': ['urn'], 'filter_callable': filter_for_entity},
-    {'table_name': 'mg.relation', 'key': ['source', 'destination', 'attribute'],
+    {'table_name': 'dds.entity', 'key': ['urn'], 'filter_callable': filter_for_entity},
+    {'table_name': 'dds.relation', 'key': ['source', 'destination', 'attribute'],
      'filter_callable': filter_for_relation},
-    {'table_name': 'mg.breadcrumb', 'key': ['urn'], 'filter_callable': filter_for_breadcrumb}
+    {'table_name': 'tuning.breadcrumb', 'key': ['urn'], 'filter_callable': filter_for_breadcrumb}
 ]
 
 tracking_deletions = [True, False]

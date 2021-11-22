@@ -8,10 +8,10 @@ import pytest
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.models.taskinstance import TaskInstance
 
-from mg_airflow.constants import WORK_PG_SCHEMA_PREFIX, PG_CONN_ID
-from mg_airflow.dag_generator import ResultType, WorkType
-from mg_airflow.operators.transformers.pg_sql import PgSQL
-from mg_airflow.test_utilities.generate_df import generate_single_dataframe, fill_table_from_dataframe
+from data_detective_airflow.constants import WORK_PG_SCHEMA_PREFIX, PG_CONN_ID
+from data_detective_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.operators.transformers.pg_sql import PgSQL
+from data_detective_airflow.test_utilities.generate_df import generate_single_dataframe, fill_table_from_dataframe
 from tests_data.operators.transformers import pg_sql_queries as pg_test_data
 
 TEST_SCHEMA = f'{WORK_PG_SCHEMA_PREFIX}_test'

@@ -1,8 +1,8 @@
 import pandas
 
-from mg_airflow.operators.extractors import TSFTPOperator
-from mg_airflow.dag_generator.dags import TDag
-from mg_airflow.operators.transformers import PyTransform
+from data_detective_airflow.operators.extractors import TSFTPOperator
+from data_detective_airflow.dag_generator.dags import TDag
+from data_detective_airflow.operators.transformers import PyTransform
 
 
 def put_data_to_df(_context, data: bytes) -> pandas.DataFrame:

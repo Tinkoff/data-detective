@@ -6,10 +6,10 @@ import allure
 from airflow import settings
 from airflow.models.taskinstance import TaskInstance
 
-from mg_airflow.constants import PG_CONN_ID
-from mg_airflow.operators import DBDump
-from mg_airflow.dag_generator import ResultType, WorkType
-from mg_airflow.test_utilities import run_task
+from data_detective_airflow.constants import PG_CONN_ID
+from data_detective_airflow.operators import DBDump
+from data_detective_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.test_utilities import run_task
 from tests_data.fixtures.PG.pg_fixtures import setup_sources, invalid_pg_data
 
 

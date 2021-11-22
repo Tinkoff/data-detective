@@ -5,7 +5,7 @@ from airflow.models import DagRun
 from airflow.models.taskinstance import TaskInstance
 from airflow.operators.dummy import DummyOperator
 
-from mg_airflow.dag_generator import TDag, ResultType, WorkType
+from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
 
 
 @pytest.fixture
