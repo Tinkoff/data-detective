@@ -37,8 +37,8 @@ create table test_processed_dttm (
 
 
 -- catalog
-create schema mg;
-create table mg.entity
+create schema dds;
+create table dds.entity
 (
     urn text not null,
 	entity_name text not null,
@@ -59,7 +59,7 @@ create table mg.entity
 	processed_dttm timestamp default now()
 );
 
-create table mg.relation
+create table dds.relation
 (
 	source text default 'non',
 	destination text default 'non',
@@ -69,7 +69,7 @@ create table mg.relation
 	processed_dttm timestamp default now()
 );
 
-create table mg.breadcrumb
+create table tuning.breadcrumb
 (
 	urn text not null,
 	breadcrumb_urn jsonb,

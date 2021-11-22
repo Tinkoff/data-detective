@@ -47,7 +47,7 @@ case "$1" in
     pytest tests -o cache_dir=/dev/null \
            -p no:cacheprovider \
            --cov=$AIRFLOW_HOME/dags \
-           --cov=$AIRFLOW_HOME/mg_airflow \
+           --cov=$AIRFLOW_HOME/data_detective_airflow \
            || RESULT_CODE=1 ;
 
     echo RESULT_CODE=$RESULT_CODE ;

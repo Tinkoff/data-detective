@@ -42,7 +42,7 @@ services:
       - POSTGRES_USER=${META_USER}
       - POSTGRES_PASSWORD=${META_PASS}
     volumes:
-      - ./docker/init-pgwork.sql:/docker-entrypoint-initdb.d/init-pgwork.sql
+      - ./docker/init-pg.sql:/docker-entrypoint-initdb.d/init-pg.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U airflow"]
       interval: 17s
@@ -57,7 +57,7 @@ services:
       - DEBUG=0
       - DATA_DIR=/tmp/localstack/data
     volumes:
-      - ./docker/init-s3work.sh:/docker-entrypoint-initaws.d/init-s3work.sh
+      - ./docker/init-s3.sh:/docker-entrypoint-initaws.d/init-s3.sh
     healthcheck:
       test: bash -c -l 'AWS_ACCESS_KEY_ID=fake AWS_SECRET_ACCESS_KEY=fake aws --endpoint-url=http://localhost:4566 s3 ls'
       interval: 18s
