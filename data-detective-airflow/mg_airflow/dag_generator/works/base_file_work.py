@@ -7,7 +7,7 @@ Describes the work interface for file systems (sftp, s3, etc.)
 from abc import abstractmethod
 from typing import IO, Generator, List
 
-from mg_airflow.dag_generator.works.base_work import BaseWork
+from data_detective_airflow.dag_generator.works.base_work import BaseWork
 
 
 class BaseFileWork(BaseWork):

@@ -7,7 +7,7 @@ Describes the work interface for databases (Postgres, Greenplum, MySQL)
 from abc import abstractmethod
 from enum import Enum
 
-from mg_airflow.dag_generator.works.base_work import BaseWork
+from data_detective_airflow.dag_generator.works.base_work import BaseWork
 
 
 class DBObjectType(Enum):

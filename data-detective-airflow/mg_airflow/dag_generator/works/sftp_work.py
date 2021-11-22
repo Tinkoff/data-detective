@@ -15,8 +15,8 @@ from typing import Callable, List, Optional
 from airflow.providers.ssh.hooks.ssh import SSHHook
 from paramiko.sftp_client import SFTPClient
 
-from mg_airflow.constants import SFTP_CONN_ID, WORK_FILE_PREFIX
-from mg_airflow.dag_generator.works.base_file_work import BaseFileWork
+from data_detective_airflow.constants import SFTP_CONN_ID, WORK_FILE_PREFIX
+from data_detective_airflow.dag_generator.works.base_file_work import BaseFileWork
 from mg_airflow.dag_generator.works.base_work import WorkType
 
 

@@ -5,7 +5,7 @@ from airflow.exceptions import AirflowBadRequest
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from botocore.exceptions import ClientError
 
-from mg_airflow.operators.tbaseoperator import TBaseOperator
+from data_detective_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class S3Load(TBaseOperator):
