@@ -4,7 +4,7 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class PythonDump(TBaseOperator):
-    """Upload data using python code
+    """Download data using python code
 
     :param python_callable: Python function
     :param op_kwargs: Additional params for python_callable

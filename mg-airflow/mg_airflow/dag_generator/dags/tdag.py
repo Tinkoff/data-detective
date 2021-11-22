@@ -50,7 +50,7 @@ class TDag(DAG):
         No physical initialization is taking place
 
         :raises ValueError:
-        :return: The result of the operator's work
+        :return: The result of the operator
         """
         result_type = result_type.lower()
         if result_type not in ResultType.values():

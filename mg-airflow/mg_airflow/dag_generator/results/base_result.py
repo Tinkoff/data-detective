@@ -26,7 +26,7 @@ class ResultType(Enum):
 
 class BaseResult(LoggingMixin, metaclass=ABCMeta):
     def __init__(self, operator: TBaseOperator, work: BaseWork, name: str, **kwargs):
-        """Base class for all results (result).
+        """Base class for all results.
         The result is created at the end of the operator's work and stored into work.
         The operator always returns one result
 

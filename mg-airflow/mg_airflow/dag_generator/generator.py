@@ -41,7 +41,7 @@ def dag_generator(
 def generate_dag(dag_dir: str, dag_id: str = None) -> TDag:
     """Get the DAG object by dag_dir
     @param dag_dir: Full path to the directory
-    @param dag_id: Dag_id is considered the directory name if dag_id is not specified
+    @param dag_id: Dag_id is considered the directory name if dag_path is not specified
     @return:
     """
     dag_path = Path(dag_dir)

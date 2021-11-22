@@ -101,7 +101,7 @@ class BaseWork(ABC, LoggingMixin):
     def clear(self, context: dict):
         """Delete a work
         This method does not contain delete logic.
-        The logic of deleting specific works in _create_logic
+        The logic of deleting specific works in _clear_logic
         """
         dag_run = context.get('dag_run')
         ex_triggered = False
@@ -154,7 +154,7 @@ class BaseWork(ABC, LoggingMixin):
 
     @abstractmethod
     def _create_logic(self, context: Dict):
-        """Create a unique one for context work.
+        """Create a work unique for the context.
         Important note! The inheritors need to make this method idempotent, i.e. the method can be called
         as many times as needed.
         Moreover, it is necessary to provide for the possibility of parallel
