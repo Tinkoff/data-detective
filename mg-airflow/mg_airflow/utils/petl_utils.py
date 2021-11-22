@@ -7,10 +7,10 @@ from pandas import DataFrame
 
 
 def dump_sql_petl_tupleoftuples(conn_id, sql) -> tuple[tuple]:
-    """Выполнить запрос в базе и отдать результат в виде кортежа кортежей
+    """Execute a query in the database and give the result as a tuple of tuples
 
-    @param conn_id: ID подключения
-    @param sql: Текст запроса
+    @param conn_id: Connection id
+    @param sql: Query text
     @return: tuple[tuple]
     """
     hook = BaseHook.get_connection(conn_id).get_hook()
@@ -19,10 +19,10 @@ def dump_sql_petl_tupleoftuples(conn_id, sql) -> tuple[tuple]:
 
 
 def appender_petl2pandas(_context, *sources: Iterable[tuple[tuple]]) -> DataFrame:
-    """Объединить petl-датасеты и вывести DataFrame
+    """Combine petl-datasets and output DataFrame
 
-    @param _context: Контекст выполнения. Для запуска в transformer
-    @param sources: Список датасетов
+    @param _context: Execution context. To run in transformer
+    @param sources: List of datasets
     @return: DataFrame
     """
     res = petl.cat(*sources)
@@ -30,11 +30,11 @@ def appender_petl2pandas(_context, *sources: Iterable[tuple[tuple]]) -> DataFram
 
 
 def exploder(row: petl.Record, field: str) -> Iterable[list]:
-    """Вспомогательная функция для petl.rowmapmany и unpackdict
+    """Helper function for petl.rowmapmany and unpackdict
 
-    @param row: ячейка со списком
-    @param field: название ячейки
-    @yield: оставшиеся поля плюс элемент списка ячейки
+    @param row: Cell with a list
+    @param field: Cell name
+    @yield: Remaining fields and the cell list item
     """
     save_fields = [row[col] for col in row.flds if col != field]
     for item in row[field]:

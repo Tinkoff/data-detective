@@ -4,11 +4,11 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class PythonDump(TBaseOperator):
-    """Загрузить данные посредством python-кода
+    """Upload data using python code
 
-    :param python_callable: функция
-    :param op_kwargs: дополнительные параметры для python_callable
-    :param kwargs: дополнительные параметры TBaseOperator
+    :param python_callable: Python function
+    :param op_kwargs: Additional params for python_callable
+    :param kwargs: Additional params for TBaseOperator
     """
 
     ui_color = '#4eb6c2'

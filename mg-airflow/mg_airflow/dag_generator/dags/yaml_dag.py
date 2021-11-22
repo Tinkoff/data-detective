@@ -10,10 +10,10 @@ from mg_airflow.dag_generator.dags.tdag import TDag
 
 
 class YamlDag(TDag):
-    """DAG, полностью создаваемый по описанию в yaml файле
+    """DAG created based on the description in the yaml file
 
-    :param dag_dir: директория, содержащая TDag.META_FILE
-    :param config: опциональный уже разложенный meta.yaml
+    :param dag_dir: Directory with TDag.META_FILE
+    :param config: Optional and decomposed meta.yaml file
     """
 
     def __init__(self, dag_dir: str, config: dict[str, Any]):
@@ -37,27 +37,27 @@ class YamlDag(TDag):
         self.__fill_dag()
 
     def __fill_dag(self):
-        """Добавить task в DAG по описанию в yaml"""
+        """Add a task to a DAG according to the description in yaml file"""
         tasks = self.config.get('tasks')
         if tasks:
             for task in tasks:
                 self.attach_task(task)
 
     def attach_task(self, task: dict) -> None:
-        """Добавить task в DAG
+        """Add task to DAG
 
-        :param task: словарь с аттрибутами таска
+        :param task: Dictionary with task attributes
         """
         excluded_params = ('type',)
         task_filtered = {k: v for k, v in task.items() if k not in excluded_params}
 
-        # Обрабатываем callable параметры - нужно преобразовать из строки в функцию
+        # Processing callable parameters by converting from a string to a function
         callables = filter(lambda k: k.endswith('_callable'), task_filtered.copy().keys())
         for param in callables:
             task_filtered[param.replace('_callable', '_lambda_val')] = task_filtered[param]
             task_filtered[param] = self.get_callable_by_def(task_filtered[param])
 
-        # Создаем task
+        # Create a task
         task_filtered['dag'] = self
         task_type = import_string(task['type'])
         task_type(**task_filtered)

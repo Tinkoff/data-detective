@@ -9,22 +9,22 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class S3Delete(TBaseOperator):
-    """Удалить из бакета `bucket` объекты с ключом `filename_column`
-    в S3 с подключением `conn_id`
-    За один запрос можно удалить до 1000 объектов.
+    """Delete from `bucket` objects with key `filename_column`
+    in S3 with connection `conn_id`
+    Up to 1000 objects can be deleted in one request.
     https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.delete_objects
 
     :param source: List
-            имя источника, положить в лист
+            Name of the source, put in the list
     :param conn_id: Text
-            id подключения
+            Connection id
     :param bucket: Text
-            имя бакета
+            Bucket name
     :param filename_column: Text
-            Имя колонки, содержащей путь к файлу в S3
+            The name of the column containing the path to the file in S3
     :param batch_size: int
-            Количество ключей для удаление
-    :param kwargs: Дополнительные параметры для TBaseOperator
+            Number of keys to delete
+    :param kwargs: Additional params for the TBaseOperator
     """
 
     ui_color = '#dde4ed'
@@ -46,9 +46,9 @@ class S3Delete(TBaseOperator):
         self.source_operator >> self  # pylint: disable=pointless-statement
 
     def execute(self, context: Optional[Dict]):
-        """Расширена реализация airflow.hooks.S3_hook.py:559
+        """Extended the implementation of airflow.hooks.S3_hook.py:559
 
-        :raises AirflowBadRequest: - при несуществующем бакете
+        :raises AirflowBadRequest: - at a non-existent bucket
         """
         hook = S3Hook(self.conn_id)
         client = hook.get_conn()

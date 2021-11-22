@@ -4,14 +4,14 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class PgSQL(TBaseOperator):
-    """Класс выполняет sql в указанной БД Postgres
-    Создает таблицу или представление на основании переданного запроса
+    """The class executes sql in the specified Postgres database
+    Creates a table or view based on the passed request
 
-    :param sql: sql-код, который надо выполнить
-    :param source: Источник
-    :param obj_type: тип создаваемого объекта: table, view
-    :param analyze: анализировать (только для таблиц) (None | * | 'col1, col2, ..., colN')
-    :param kwargs: Дополнительные параметры для TBaseOperator
+    :param sql: SQL query
+    :param source: Source
+    :param obj_type: Type of the creating object: table, view
+    :param analyze: Analyze (for tables only) (None | * | 'col1, col2, ..., colN')
+    :param kwargs: Additional params for TBaseOperator
     """
 
     template_fields = ('sql', 'source')
@@ -35,7 +35,7 @@ class PgSQL(TBaseOperator):
             self.dag.task_dict[src] >> self  # pylint: disable=pointless-statement
 
     def execute(self, context: dict):
-        """Выполнить запрос в Postgres
+        """Execute the query to the Postgres
 
         :param context: context
         """

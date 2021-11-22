@@ -11,12 +11,12 @@ from pandas import _testing as pd_tst
 def generate_single_dataframe(
     columns: Dict, records_count: int = 2, max_str_len: int = 10, max_val_for_numeric_types: int = 100
 ) -> DataFrame:
-    """Метод для генерации датафрейма со случайными данными
-    :param columns: словарь с колонками, ключ - колонка, значение - тип (прим. id: 'int')
-    :param records_count: количество записей в источнике
-    :param max_str_len: максимальная длина для строковых данных
-    :param max_val_for_numeric_types: максимальное значение для числовых типов
-    :return: DataFrame, заполненный сгенерированными данными
+    """A method for generating a dataframe with random data
+    :param columns: Dictionary with columns, key - column, value - type (e.g. id: 'int')
+    :param records_count: Number of records in the source
+    :param max_str_len: Maximum length for string data
+    :param max_val_for_numeric_types: Maximum value for numeric types
+    :return: DataFrame filled with generated data
     """
     df_new = DataFrame()
     for key, value in columns.items():
@@ -36,13 +36,13 @@ def generate_dfs_with_random_data(
     max_str_len: int = 10,
     max_val_for_numeric_types: int = 100,
 ) -> List:
-    """Метод для генерации датафреймов со случайными данными
-    :param columns: словарь с колонками, ключ - колонка, значение - тип (прим. id: 'int')
-    :param dataframes_count: количество источников
-    :param records_count: количество записей в источнике
-    :param max_str_len: максимальная длина для строковых данных
-    :param max_val_for_numeric_types: максимальное значение для числовых типов
-    :return: список из DataFrame с сгенерированными данными
+    """Method for generating dataframes with random data
+    :param columns: Dictionary with columns, key - column, value - type (e.g. id: 'int')
+    :param dataframes_count: Number of sources
+    :param records_count: Number of records in the source
+    :param max_str_len: Maximum length for string data
+        :param max_val_for_numeric_types: Maximum value for numeric types
+    :return: List of DataFrame with generated data
     """
     return [
         generate_single_dataframe(columns, records_count, max_str_len, max_val_for_numeric_types)
@@ -51,13 +51,13 @@ def generate_dfs_with_random_data(
 
 
 def fill_table_from_dataframe(conn: psycopg2.extensions.connection, dframe: DataFrame, schema: str, table: str) -> bool:
-    """Метод для наполнения таблицы данными из датафрейма.
-    Таблица должна существовать.
-    :param conn: connection для подключения к базе
-    :param dframe: датафрейм с данными
-    :param schema: схема таблицы в базе
-    :param table: название таблицы в базе
-    :return: статус выполнения операции: true-выполнено, иначе false.
+    """A method for filling a table with data from a dataframe.
+    The table must exist.
+    :param conn: Connection to the database
+    :param dframe: Dataframe with data
+    :param schema: The scheme of the table in the database
+    :param table: Table name in the database
+    :return: Operation execution status: true-completed, otherwise false.
     """
     full_table_name = f'{schema}.{table}'
     trunc_cmd = f'TRUNCATE {full_table_name};'

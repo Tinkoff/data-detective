@@ -18,21 +18,21 @@ class LoadingMethod:
 
 
 class PgSCD1(TBaseOperator):
-    """Обновить таргет таблицу путем SCD1
+    """Update the target table by SCD1
 
-    :param source: Источник
-    :param conn_id: Id подключения
-    :param table_name: Имя таблицы которую обновляем
-    :param key: Ключ по которому обновляем. Избегать наличия NULL в ключе.
-    :param deleted_flg_column: Поле с флагом удаления, принимает значения 0/1
+    :param source: Source
+    :param conn_id: Connection id
+    :param table_name: Table name for update
+    :param key: The key by which update. Avoid NULL for the key.
+    :param deleted_flg_column: Field with the delete flag, takes the values 0/1
     :param kwargs:
-            loading_method - метод загрузки: Update/Insert (U/I), Delete/Insert(D/I)
-            process_deletions - записи, которых нет во входной времянке, будут удалены
-            process_existing_records - записи, которые не отличаются, не будут затронуты
-            chunk_row_number - количество строк в chunk для загрузки в базу и применения на таблицу
-                               только для Update/Insert и режима DataFrame
+            loading_method - Download method: Update/Insert (U/I), Delete/Insert(D/I)
+            process_deletions - records that are not in the input temporary will be deleted
+            process_existing_records - records that are not different will not be affected
+            chunk_row_number - the number of rows in the chunk to load into the database and apply to the table
+                               only for Update/Insert and DataFrame mode
 
-    process_existing_records для U/I по умолчанию включен.
+    process_existing_records for U/I is enabled by default.
     """
 
     ui_color = '#dde4ed'
@@ -122,7 +122,7 @@ class PgSCD1(TBaseOperator):
             session.commit()
 
     def _process_deletions(self, source_table: str, conn: psycopg2_connection):
-        """Удалить записи в таргете, которых нет в источнике"""
+        """Delete target entries that are not in the source"""
         delete_query = """
         DELETE
         FROM {target_table} t1 USING (
@@ -149,10 +149,10 @@ class PgSCD1(TBaseOperator):
             cursor.execute(delete_query.format(**query_params))
 
     def _unload_source_to_pg(self, tmp_table: str, conn: psycopg2_connection, unload_df: pandas.DataFrame):
-        """Загрузить DataFrame в TEMPORARY TABLE postgres
-        :param tmp_table: Имя временной таблицы
-        :param conn: подключение к базе
-        :param unload_df: DataFrame для загрузки в базу
+        """Upload DataFrame to TEMPORARY TABLE in postgres
+        :param tmp_table: Name of the temporary table
+        :param conn: Connection to the database
+        :param unload_df: DataFrame to upload to the database
         """
         create_query = """
     DROP TABLE IF EXISTS {tmp_table} CASCADE;
@@ -186,8 +186,8 @@ class PgSCD1(TBaseOperator):
             cursor.copy_expert(copy_query.format(**query_params), s_buf)
 
     def _delete_insert_no(self, source_table: str, conn: psycopg2_connection):
-        """Логика delete/insert по ключу
-        :param source_table: Имя входной таблицы
+        """Delete/Insert by the key
+        :param source_table: Input table name
         :param conn:
         """
         query_params = self._get_query_params(source_table, conn)
@@ -210,7 +210,7 @@ class PgSCD1(TBaseOperator):
             cursor.execute(insert_query.format(**query_params))
 
     def _delete_insert_yes(self, source_table: str, conn: psycopg2_connection):
-        """Delete/Insert по ключу, игнорирует неизменённые столбцы"""
+        """Delete/Insert by the key, ignores unmodified columns"""
         query_params = self._get_query_params(source_table, conn)
 
         delete_query = """
@@ -236,7 +236,7 @@ class PgSCD1(TBaseOperator):
             cursor.execute(insert_query.format(**query_params))
 
     def _update_insert(self, source_table: str, conn: psycopg2_connection):
-        """Update/Insert по ключу, игнорирует неизменённые столбцы"""
+        """Update/Insert by the key, ignores unmodified columns"""
         query_params = self._get_query_params(source_table, conn)
 
         delete_by_flg_query = """
@@ -268,7 +268,7 @@ class PgSCD1(TBaseOperator):
             cursor.execute(insert_query.format(**query_params))
 
     def _get_query_params(self, source_table: str, conn: psycopg2_connection) -> dict[str, str]:
-        """Создание параметров для запросов"""
+        """Creating parameters for queries"""
         all_tgt_columns = PgSCD1.get_table_columns(self.table_name, conn)
         tgt_columns = [col for col in all_tgt_columns if col != 'processed_dttm']
 
@@ -307,11 +307,11 @@ class PgSCD1(TBaseOperator):
                                  source_table: str,
                                  dataframe: pandas.DataFrame
                                  ) -> None:
-        """Загрузить DataFrame в базу и применить на target таблицу.
+        """Load the DataFrame into the database and apply the table to the target.
 
-        :param hook: hook для подключения к базе
-        :param source_table: Название для временной таблицы в базе
-        :param dataframe: DataFrame для применения на таблицу
+        :param hook: Hook for connecting to the database
+        :param source_table: Name for the temporary table in the database
+        :param dataframe: DataFrame to apply to a table
         """
         with closing(hook.get_conn()) as session:
             self._unload_source_to_pg(tmp_table=source_table, conn=session, unload_df=dataframe)
@@ -324,10 +324,10 @@ class PgSCD1(TBaseOperator):
 
     @staticmethod
     def get_table_columns(table_name: str, conn: psycopg2_connection) -> list[str]:
-        """Получить по имени таблицы список имён её полей
+        """Get a list of the names of its fields by the name of the table
         :param table_name:
         :param conn:
-        :return: Кортеж с именами полей
+        :return: Tuple with field names
         """
         with closing(conn.cursor()) as cursor:
             cursor.execute(f"SELECT * FROM {table_name} LIMIT 0")
@@ -335,10 +335,10 @@ class PgSCD1(TBaseOperator):
 
     @staticmethod
     def _get_chunk_number(data_row_number: int, chunk_row: int) -> int:
-        """Вычислить количество чанков с округлением вверх
+        """Calculate the number of chunks with rounding up
 
-        :param data_row_number: количество строк во входном датасете
-        :param chunk_row: количество строк в одном чанке
+        :param data_row_number: Number of rows in the input dataset
+        :param chunk_row: Number of rows in one chunk
         :return: chunk number
         """
         return int((data_row_number + chunk_row - 1) // chunk_row)

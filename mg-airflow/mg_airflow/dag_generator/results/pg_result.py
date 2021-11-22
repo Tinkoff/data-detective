@@ -9,7 +9,7 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class PgResult(BaseResult):
-    """Результат сохраняемый в базу данных Postgres"""
+    """The result stored in the Postgres database"""
 
     def __init__(
         self,
@@ -25,13 +25,13 @@ class PgResult(BaseResult):
         self.analyze = analyze
 
     def get_table_name(self, context):
-        """Вернуть полное имя таблицы с work"""
+        """Return the full name of the table with work"""
         return self.work.get_path(context) + '.' + self.name
 
     def write_df(self, obj: DataFrame, context: dict) -> None:
-        """Записывает DataFrame в базу
+        """Write DataFrame to the database
 
-        :param obj: датасет для записи
+        :param obj: Dataset for writing
         :param context: context
         """
         path = self.get_table_name(context)
@@ -41,13 +41,13 @@ class PgResult(BaseResult):
         self.log.info(f'Dumped {self.work.get_size(path)}')
 
     def write(self, obj: Any, context: dict) -> None:
-        """Записывает DataFrame в базу.
-        Передает вызов write_df
+        """Write DataFrame to the database.
+        Sends a call to write_df
 
-        :param obj: датасет для записи
+        :param obj: Dataset for writing
         :param context: context
 
-        :raises TypeError: если тип входного датасета не DataFrame
+        :raises TypeError: If the input dataset type is not DataFrame
         """
         if not isinstance(obj, DataFrame):
             raise TypeError('Only pandas.DataFrame allowed.')
@@ -55,8 +55,8 @@ class PgResult(BaseResult):
         self.status = 'ready'
 
     def read_df(self, context: dict) -> DataFrame:
-        """Загрузить DataFrame из базы.
-        Передает вызов work.read_df
+        """Read DataFrame from teh database.
+        Sends a call to work.read_df
 
         :param context: context
         :return: DataFrame
@@ -68,8 +68,8 @@ class PgResult(BaseResult):
         return obj
 
     def read(self, context: dict) -> DataFrame:
-        """Загрузить DataFrame из базы.
-        Передает вызов work.read_df
+        """Read DataFrame from the database.
+        Sends a call to work.read_df
 
         :param context: context
         :return: DataFrame

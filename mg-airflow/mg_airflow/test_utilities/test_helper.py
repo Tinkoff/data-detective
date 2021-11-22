@@ -1,4 +1,4 @@
-"""Помощник в создании тестов для Dag
+"""Helper for creating DAG tests
 """
 import logging
 from typing import Any, Union
@@ -15,8 +15,8 @@ from mg_airflow.test_utilities.assertions import assert_frame_equal
 
 
 def run_task(task: Union[TBaseOperator, BaseOperator], context: dict = None):
-    """Запустить таск"""
-    # Убираем ограничения на запуск по статусу предыдущих операторов
+    """Run a task"""
+    # Removing launch restrictions based on the status of previous operators
     task.trigger_rule = 'dummy'
     task.render_template_fields(task.generate_context())
     task.pre_execute(context)
@@ -30,7 +30,7 @@ def mock_task_inputs(task, dataset, mocker):
 
 
 def run_and_read(task: Union[TBaseOperator, BaseOperator], context: dict = None) -> DataFrame:
-    """Запустить таск и вернуть DataFrame из экземпляра BaseResult."""
+    """Run the task and return the DataFrame from the BaseResult instance."""
     logging.info(f'Running task {task.task_id}')
     run_task(task, context)
     return task.read_result(context)
@@ -43,12 +43,12 @@ def run_and_assert_task(
     exclude_cols: list = None,
     **kwargs
 ):
-    """Запустить таск, получить результат и сравнить с эталоном
+    """Run the task, get the result and compare
 
-    :param task: id таска для запуска
-    :param dataset: dictionary с эталонами. Нужны выходной и входные датасеты
-    :param exclude_cols: колонки, исключаемые из сравнения
-    :param mocker: фикстура MockerFixture
+    :param task: Id of the running task
+    :param dataset: Dictionary with comparison examples. Output and input datasets are needed.
+    :param exclude_cols: Columns excluded from comparison
+    :param mocker: MockerFixture fixture
     """
     task_instance = TaskInstance(task=task, execution_date=timezone.utcnow())
     context = task_instance.get_template_context()
@@ -82,16 +82,16 @@ def run_and_assert_task(
 def run_and_assert(
     dag: TDag, task_id: str, test_datasets: dict, mocker: MockerFixture, exclude_cols: list = None
 ):  # pylint: disable=inconsistent-return-statements
-    """Использовать run_and_assert_task
+    """Using run_and_assert_task
 
-    Запустить таск и если это TBaseOperator то получить результат и сравнить с эталоном
-    Также если таск PgReplacePartitions то сначала будет очищена целевая таблица,
-    а потом после запуска провести сравнение с эталоном содержимое целевой таблицы
+    Run the task and if it is TBaseOperator then get the result and compare it with the example
+    Also if the task is PgReplacePartitions then the target table will be cleared first,
+    and then after the launch, compare the contents of the target table with the example
     :param dag: TDag
-    :param task_id: id таска для запуска
-    :param test_datasets: dictionary с эталонами
-    :param exclude_cols: колонки, исключаемые из сравнения
-    :param mocker: фикстура MockerFixture
+    :param task_id: Id of the running task
+    :param test_datasets: Dictionary with examples
+    :param exclude_cols: Columns excluded from comparison
+    :param mocker: MockerFixture fixture
     """
     task: TBaseOperator = dag.task_dict[task_id]
     run_and_assert_task(task, dataset=test_datasets, mocker=mocker, exclude_cols=exclude_cols)

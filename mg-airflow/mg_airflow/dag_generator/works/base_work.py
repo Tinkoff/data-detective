@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """TBaseWork
 
-Модуль содержит абстрактный базовый классы:
-TBaseWork, описывающий логику работы с Work
-TWorktype, содержащий все возможные типы ворков
-Work - пространство для размещения временных объектов, появляющихся в результате работы Task
+The module contains abstract base classes:
+TBaseWork, describing the logic of working with Work
+TWorktype, containing all possible types of Works
+Work - a place to store temporary objects that appear as a result of the Task
 """
 from abc import ABC, abstractmethod
 from collections.abc import Callable
@@ -19,9 +19,9 @@ from mg_airflow.constants import CLEAR_WORK_KEY, DAG_ID_KEY, TASK_ID_KEY
 
 
 class WorkType(Enum):
-    """Класс для всех типов ворков.
-    Разрешается использовать только эти типы ворков.
-    Писать типы ворков руками крайне не рекомендуется.
+    """A class for all types of works.
+    It is allowed to use only these types of works.
+    Writing types of works is highly not recommended..
     """
 
     WORK_SFTP = 'sftp'
@@ -35,7 +35,7 @@ class WorkType(Enum):
 
 
 def synchronize(func: Callable) -> Callable:
-    """Декоратор, который означает, что действие обновит состояние объекта в xcom"""
+    """Decorator, which means that the action is to update the state of the object in xcom"""
 
     @wraps(func)
     def wrapper(self, context, *args, **kwargs):
@@ -52,10 +52,9 @@ def synchronize(func: Callable) -> Callable:
 
 
 class BaseWork(ABC, LoggingMixin):
-    """Базовый класс для работы с work
-    work_type: тип work (pickle, pg, gp)
-    Надо понимать что для каждого worker будет создан свой экземпляр этого класса, поэтому один
-    worker не будет знать что work уже создан в другом worker'е
+    """Base class for processing work
+    work_type: Work type (pickle, pg, gp)
+    Note: each worker will have its own instance of this class created, so one worker will not know that a work has already been created in another worker
     """
 
     XCOM_TASK_KEY = 'work'
@@ -67,7 +66,7 @@ class BaseWork(ABC, LoggingMixin):
         self.dag = dag
         self.conn_id = conn_id
 
-        """Признак того что метод create уже вызывался для данного worker'а"""
+        """Indicates that the create method has already been called for this worker"""
         self._exists = False
 
     def __hash__(self):
@@ -80,9 +79,9 @@ class BaseWork(ABC, LoggingMixin):
         return not self.__eq__(other)
 
     def get_path(self, context: Dict, prefix: str = 'work_airflow'):
-        """Вернуть уникальное название work для данного context
-        (на самом деле - для данного dag_run)
-        Внимание! Название work однозначно определяется dag_run
+        """Return a unique work name for this context
+        (for dag_run)
+        Important note! The name of the work is uniquely determined by dag_run
         """
         if context is not None and 'dag_run' in context and context['dag_run'] is not None:
             return f'{prefix}_{self.dag.dag_id}_{context["dag_run"].id}'
@@ -90,9 +89,9 @@ class BaseWork(ABC, LoggingMixin):
 
     @synchronize
     def create(self, context: dict):
-        """Создать ворк физически
-        Этот метод не содержит логики создания.
-        Логика создания конкретных ворков лежит в _create_logic
+        """Create a work.
+        This method does not contain creation logic.
+        The logic of creating specific works in _create_logic
         """
         if not self._exists:
             self._create_logic(context)
@@ -100,9 +99,9 @@ class BaseWork(ABC, LoggingMixin):
 
     @synchronize
     def clear(self, context: dict):
-        """Удалить ворк физически
-        Этот метод не содержит логики удаления.
-        Логика удаления конкретных ворков лежит в _clear_logic
+        """Delete a work
+        This method does not contain delete logic.
+        The logic of deleting specific works in _create_logic
         """
         dag_run = context.get('dag_run')
         ex_triggered = False
@@ -113,7 +112,7 @@ class BaseWork(ABC, LoggingMixin):
             if hasattr(dag_run, 'conf'):
                 clear_work_flg = dag_run.conf.get(CLEAR_WORK_KEY, clear_work_flg)
 
-        # внешний вызов и установлен флаг "Не очищать work" clear_work = False
+        # An external call with the "Do not clear work" flag is set to clear_work = False
         if ex_triggered and not clear_work_flg:
             return
         if self._exists:
@@ -121,17 +120,17 @@ class BaseWork(ABC, LoggingMixin):
             self._exists = False
 
     def get_xcom_key(self, context: Dict):
-        """Вернуть ключ для xcom для текущего ворка и таска"""
+        """Return the key for XCom for the current work and task"""
         task = context.get('task')
         base_xcom_key = f'{self.work_type}-{self.conn_id}'
         return f'{base_xcom_key}-{task.task_id}' if task else base_xcom_key
 
     def get_xcom_params(self, context: Dict) -> Dict:
-        """Сериализовать work в словарь для записи в XCom"""
+        """Serialize work to a dictionary for writing to XCom"""
         return {
             'key': self.get_xcom_key(context),
-            # ключи должны совпадать с одноименными приватными параметрами
-            # для корректной работы synchronize
+            # the keys must match the private parameters of the same name
+            # to synchronize correctly
             'value': {
                 '_exists': self._exists,
             },
@@ -155,25 +154,25 @@ class BaseWork(ABC, LoggingMixin):
 
     @abstractmethod
     def _create_logic(self, context: Dict):
-        """Создать уникальный для context work
-        Внимание! В наследниках нужно делать этот метод идемпотентным, т.е. метод можно вызывать
-        сколько угодно раз
-        Более того, нужно предусмотреть возможность параллельного
-        запуска этого метода из разных worker'ов
-        Внимание! Название work должно однозначно определяться dag_run
+        """Create a unique one for context work.
+        Important note! The inheritors need to make this method idempotent, i.e. the method can be called
+        as many times as needed.
+        Moreover, it is necessary to provide for the possibility of parallel
+        running this method from different workers.
+        Note! The name of the work must be uniquely determined by dag_run
         """
 
     @abstractmethod
     def _clear_logic(self, context: Dict):
-        """Деинициализация"""
+        """Deinitialization"""
 
     @abstractmethod
     def get_hook(self):
-        """Вернуть hook для work connection_id"""
+        """Return the hook for work connection_id"""
 
     @abstractmethod
     def get_size(self, path) -> str:
-        """Вернуть размер result в читаемом формате"""
+        """Return the size of result in a readable format"""
 
     @staticmethod
     def get_readable_size_bytes(size: Union[float, int], decimal_places=2) -> Optional[str]:

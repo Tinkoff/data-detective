@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """S3Work
 
-Модуль содержит класс S3Work, являющийся наследником TBaseFileWork, реализующий логику работы с
-файловым Work в объектном хранилище S3
+The module contains the S3Work class, which is the inheritor of TBaseFileWork, implementing the logic of working with
+file Work in S3 object storage
 """
 from pathlib import Path
 from typing import Optional, IO
@@ -17,7 +17,7 @@ from mg_airflow.dag_generator.works.base_work import WorkType
 
 # pylint: disable = arguments-differ
 class S3Work(BaseFileWork):
-    """Work на базе s3"""
+    """Work based on s3"""
 
     def __init__(self, dag, conn_id: str = S3_CONN_ID):
         super().__init__(dag=dag, work_type=WorkType.WORK_S3.value, conn_id=conn_id)
@@ -37,12 +37,12 @@ class S3Work(BaseFileWork):
         return Path(self.bucket, super().get_path(context, prefix))
 
     def _create_logic(self, context: dict = None):
-        """Инициализация"""
+        """Initialization"""
         self.log.info('Init s3 work')
         self.log.info(f'S3Work is {self.get_path(context)}')
 
     def _clear_logic(self, context: dict = None):
-        """Деинициализация"""
+        """Deinitialization"""
         path = self.get_path(context=context)
         self.log.info(f'Cleaning s3 work directory {path}')
         for file in self.listdir(path.as_posix()):
@@ -101,11 +101,11 @@ class S3Work(BaseFileWork):
         return S3Hook(aws_conn_id=self.conn_id)
 
     def get_size(self, path: str) -> str:
-        """Получить размер объекта в s3.
-        Если объект отсутствует, то возвращает -1
+        """Get the size of the object in s3.
+        If the object is missing, it returns -1
 
-        :param path: Имя объекта
-        :return: Округленный размер объекта
+        :param path: Object name
+        :return: Rounded object size
         """
         size = -1
         if self.exists(path):

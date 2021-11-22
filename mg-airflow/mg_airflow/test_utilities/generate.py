@@ -54,10 +54,10 @@ def run_and_gen_ds(task: Union[TBaseOperator, BaseOperator], folder, drop_cols: 
 
 
 def is_gen_dataset_mode() -> bool:
-    """Переключение режима проверки и создания тестовых данных
+    """Switching the mode of checking and creating test data
 
-    В переменные среды добавить
-    export GEN_DATASET=Any # создание
-    unset GEN_DATASET     # проверка
+    Add to environment variables
+    export GEN_DATASET=Any # creating
+    unset GEN_DATASET     # checking
     """
     return bool(os.getenv('GEN_DATASET', ''))

@@ -7,7 +7,7 @@ from pandas import DataFrame, Series
 
 # pylint: disable=too-many-return-statements
 def to_bytes(obj: object) -> bytes:
-    """Привести к bytes любой объект
+    """Convert any object to bytes
     @param obj:
     @return:
     """
@@ -33,7 +33,7 @@ def to_bytes(obj: object) -> bytes:
 
 
 def xor_bytes(bts1: bytes, bts2: bytes) -> bytes:
-    """Сделать побитовый xor
+    """Make a xor by bytes
     @param bts1:
     @param bts2:
     @return:

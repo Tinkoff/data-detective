@@ -15,13 +15,13 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class TDag(DAG):
-    """Расширение airflow DAG
+    """The Airflow DAG extension
 
     :raises Exception, FileNotFoundError:
 
-    :param dag_dir: Путь к директории с файлом dag (или его YAML)
-    :param factory: Тип фабрики для генерации, если 'None', то dag был создан без генерации
-    :param kwargs: Дополнительные аргументы
+    :param dag_dir: The path to the directory with the dag file (or its YAML)
+    :param factory: The type of factory to generate, if 'None', then the dag was created without generating
+    :param kwargs: Additional arguments
     """
 
     META_FILE = 'meta.yaml'
@@ -46,11 +46,11 @@ class TDag(DAG):
         work_conn_id: str = None,
         **kwargs,
     ) -> BaseResult:
-        """Вернуть result
-        Не происходит физическая инициализации.
+        """Return result.
+        No physical initialization is taking place
 
         :raises ValueError:
-        :return: результат работы оператора
+        :return: The result of the operator's work
         """
         result_type = result_type.lower()
         if result_type not in ResultType.values():
@@ -67,12 +67,11 @@ class TDag(DAG):
         return PickleResult(**params)
 
     def get_work(self, work_type: str = None, work_conn_id: str = None) -> BaseWork:
-        """Получить work по conn_id
-        Внимание! Здесь создается только сам класс,
-        физически work не инициализируется, не создается
+        """Get work by conn_id.
+        Note! Only the class itself is created here, work is not initialized and is not created
 
         :raises ValueError:
-        :return: work типа work_type находящийся в work_conn_id"""
+        :return: Work with work_type located in work_conn_id"""
         work_type = work_type or WorkType.WORK_FILE.value
         work_type = work_type.lower()
         if work_type not in WorkType.values():
@@ -87,12 +86,12 @@ class TDag(DAG):
         return FileWork(self)
 
     def clear_all_works(self, context: dict):
-        """Очистка всех work по завершению работы"""
+        """Clearing all works after execution"""
         for work in self.get_all_works(context):
             work.clear(context)
 
     def get_all_works(self, context: dict):
-        """Вернуть все ворки для DAG-а для текущего execution_date"""
+        """Clearing all work on completion of execution"""
         dag_id = self.dag_id
         execution_date = context['execution_date']
         xcoms = XCom.get_many(task_ids='work', dag_ids=dag_id, execution_date=execution_date)
@@ -129,11 +128,11 @@ class TDag(DAG):
         return f'{self.dag_dir}/code'
 
     def get_callable_by_def(self, func_def: str) -> Callable:
-        """Получить функцию по её описанию из yaml
-        Поддерживаются лямбды
-        Если функция есть в проекте - использовать напрямую
-        Если функция есть в code.py - взять оттуда, иначе из глобального пространства
-        :param func_def: Описание функции
+        """Get a function by its description from yaml. Lambdas are supported.
+        If the function is in the project, use it directly.
+        If the function is in code.py - take it from there, otherwise from the global
+
+        :param func_def: Function description
         :return: Callable
         """
         try:
