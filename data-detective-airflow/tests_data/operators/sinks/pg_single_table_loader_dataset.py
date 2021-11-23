@@ -158,7 +158,7 @@ dataset = {
 }
 
 setup_dataset = {
-    'dds_entity': DataFrame(
+    'dds.entity': DataFrame(
         [
             ['urn:schema:clickhouse:dwh:ch:test_s_stg', 'test_s_stg', 'SCHEMA', '{"engine": "Ordinary"}', None, 'urn:schema:clickhouse:dwh:ch:test_s_stg test_s_stg', 'test_pg_single_table_loader_main'], #  должна будет удалиться если отслеживаются удаления
             ['urn:schema:clickhouse:dwh:ch:s_stg', 's_stg', 'SCHEMA', '{"engine": "NOT_Ordinary"}', None, 'urn:schema:clickhouse:dwh:ch:s_stg s_stg', 'test_pg_single_table_loader_main'], #  должна будет обновиться
@@ -167,7 +167,7 @@ setup_dataset = {
             ['urn:tree_node:zeppelin', 'Zeppelin', 'tree_node', '{"info": "Раздел с публичным ноутами из Zeppelin"}', None, 'urn:tree_node:zeppelin zeppelin','test_pg_single_table_loader_main'] #  должна будет обновиться
         ],
         columns=['urn', 'entity_name', 'entity_type', 'json_data', 'entity_name_short', 'search_data', 'loaded_by']),
-    'dds_relation': DataFrame(
+    'dds.relation': DataFrame(
         [
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:test_s_stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE],  # должна будет удалиться если отслеживаются удаления
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:s_stg', 'Includes', 'test_pg_single_table_loader_main', RELATION_NONE],  # должна будет обновиться
@@ -175,7 +175,7 @@ setup_dataset = {
             ['urn:tree_node:clickhouse', 'urn:schema:clickhouse:dwh:ch:v_stg', 'Contains', 'test_pg_single_table_loader_main', RELATION_NONE]
         ],
         columns=['source', 'destination', 'type', 'loaded_by', 'attribute']),
-    'tuning_breadcrumb': DataFrame(
+    'tuning.breadcrumb': DataFrame(
         [
             ["urn:column:greenplum:dwh:gp:riskmart:feature:processed_dttm",
              '["urn:tree_node:data_platform", "urn:tree_node:physical_model", "urn:tree_node:greenplum", "urn:schema:greenplum:dwh:gp:riskmart", "urn:table:greenplum:dwh:gp:riskmart:feature"]',
@@ -219,7 +219,7 @@ def setup_tables():
     hook.run(queries)
     for df_name in setup_dataset:
         df = setup_dataset[df_name]
-        schema, table = df_name.split('_')[1].split('.')
+        schema, table = df_name.split('.')
         df.to_sql(con=hook.get_uri(), schema=schema, name=table,
                   if_exists='append', index=False)
     yield

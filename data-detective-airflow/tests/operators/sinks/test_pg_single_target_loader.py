@@ -48,11 +48,12 @@ def test_pg_single_table_loader_main(test_dag, context, target, deleted_flg, set
     run_task(task=source_task, context=context)
     run_task(task=task, context=context)
 
-    trg = task.read_result(context)
-    del trg['processed_dttm']
+    actual = task.read_result(context)
 
     expected_nm = f"expected_{target['table_name']}_{deleted_flg}_{'empty' if 'empty' in setup else 'not_empty'}"
-    assert_frame_equal(dataset[expected_nm], trg, debug=True)
+    expected = dataset[expected_nm]
+    actual = actual.drop(labels=set(actual.columns) - set(expected.columns), axis=1)
+    assert_frame_equal(expected, actual, debug=True)
 
     test_dag.clear_all_works(context)
 

@@ -41,21 +41,22 @@ create schema dds;
 create table dds.entity
 (
     urn text not null,
-	entity_name text not null,
 	loaded_by text not null,
+	entity_name text not null,
+	entity_name_short text,
 	entity_type text not null,
+	info text,
+	search_data text,
 	json_data jsonb,
 	json_system jsonb,
-    codes jsonb,
-    htmls jsonb,
-    tables jsonb,
-    notifications jsonb,
-    grid jsonb,
     json_data_ui jsonb,
-	entity_name_short text,
-	search_data text,
+    codes jsonb,
+    grid jsonb,
+    htmls jsonb,
 	links jsonb,
-	info text,
+    notifications jsonb,
+    tables jsonb,
+    tags jsonb,
 	processed_dttm timestamp default now()
 );
 
@@ -63,12 +64,13 @@ create table dds.relation
 (
 	source text default 'non',
 	destination text default 'non',
+	attribute text default 'non',
 	type text not null,
 	loaded_by text not null,
-	attribute text default 'non',
 	processed_dttm timestamp default now()
 );
 
+create schema tuning;
 create table tuning.breadcrumb
 (
 	urn text not null,
