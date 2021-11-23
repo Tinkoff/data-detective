@@ -1,0 +1,58 @@
+description: Пример Dag c extract-ом и dump в S3
+schedule_interval:
+default_args:
+  owner: airflow
+  retries: 1
+  retry_delay: 2
+  result_type: pickle
+  work_type: s3
+  work_conn_id: s3
+factory: YAML
+tasks:
+- task_id: list_bucket
+  description: Получить список файлов
+  type: data_detective_airflow.operators.extractors.S3ListBucket
+  conn_id: s3
+  bucket: dd-airflow
+  prefix: dd-airflow
+
+- task_id: s3_dump
+  description: Скачать файлы из S3
+  type: data_detective_airflow.operators.extractors.S3Dump
+  conn_id: s3
+  bucket: dd-airflow
+  object_column: key
+  source:
+    - list_bucket
+
+- task_id: decode_response
+  type: data_detective_airflow.operators.transformers.PyTransform
+  source:
+  - s3_dump
+  transformer_callable: decode_response
+
+- task_id: pg_sink
+  description: Записать результат в pg
+  type: data_detective_airflow.operators.sinks.PgSCD1
+  source:
+  - decode_response
+  conn_id: pg
+  key:
+  - test
+  table_name: test2
+
+- task_id: rename_path
+  type: data_detective_airflow.operators.transformers.PyTransform
+  source:
+  - s3_dump
+  transformer_callable: rename_path
+
+- task_id: s3_sink
+  description: Записать результат в s3
+  type: data_detective_airflow.operators.sinks.S3Load
+  source:
+  - rename_path
+  conn_id: s3
+  bucket: dd-airflow
+  filename_column: path
+  bytes_column: response
