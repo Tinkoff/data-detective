@@ -201,7 +201,7 @@ def test_source(test_dag: TDag, mocker, context):
                            None)],
                          indirect=True)
 def test_request_with_sleep(test_dag: TDag, mocker, context):
-    sleep_mock = mocker.patch('mg_airflow.operators.extractors.request_dump.sleep')
+    sleep_mock = mocker.patch('data_detective_airflow.operators.extractors.request_dump.sleep')
     mocker.patch.object(Session,
                         'get',
                         return_value=mocker.MagicMock(
@@ -301,7 +301,7 @@ def test_long_request(test_dag: TDag, mocker, context, time_params):
         else:
             content = ''
             scs = False
-        sleep_mock = mocker.patch('mg_airflow.operators.extractors.request_dump.sleep')
+        sleep_mock = mocker.patch('data_detective_airflow.operators.extractors.request_dump.sleep')
         mocker.patch.object(Session,
                             'get',
                             return_value=mocker.MagicMock(
