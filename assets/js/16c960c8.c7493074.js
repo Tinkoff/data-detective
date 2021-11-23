@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmg_af_docusaurus=self.webpackChunkmg_af_docusaurus||[]).push([[66],{5965:function(a){a.exports=JSON.parse('{"allTagsPath":"/metadata-governance/blog/tags","slug":"/metadata-governance/blog/tags/hello","name":"hello","count":2,"permalink":"/metadata-governance/blog/tags/hello"}')}}]);

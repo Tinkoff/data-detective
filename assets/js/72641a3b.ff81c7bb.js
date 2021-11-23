@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmg_af_docusaurus=self.webpackChunkmg_af_docusaurus||[]).push([[761],{5246:function(a){a.exports=JSON.parse('{"allTagsPath":"/data-detective/blog/tags","slug":"/data-detective/blog/tags/hello","name":"hello","count":2,"permalink":"/data-detective/blog/tags/hello"}')}}]);
