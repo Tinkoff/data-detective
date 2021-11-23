@@ -49,7 +49,7 @@ services:
       - DEBUG=0
       - DATA_DIR=/tmp/localstack/data
     volumes:
-      - ./docker/init-s3work.sh:/docker-entrypoint-initaws.d/init-s3work.sh
+      - ./docker/init-s3.sh:/docker-entrypoint-initaws.d/init-s3.sh
 
   app:
     <<: *airflow

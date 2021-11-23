@@ -72,7 +72,7 @@ services:
       - DEBUG=0
       - DATA_DIR=/tmp/localstack/data
     volumes:
-      - ./docker/init-s3work.sh:/docker-entrypoint-initaws.d/init-s3work.sh
+      - ./docker/init-s3.sh:/docker-entrypoint-initaws.d/init-s3.sh
     healthcheck:
       test: bash -c 'AWS_ACCESS_KEY_ID=fake AWS_SECRET_ACCESS_KEY=fake aws --endpoint-url=http://localhost:4566 s3 ls'
       interval: 3s
