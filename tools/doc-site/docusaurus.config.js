@@ -6,15 +6,15 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Data Detective (MG)',
-  tagline: 'Data Detective (MG) docs',
+  title: 'Data Detective',
+  tagline: 'Data Detective docs',
   url: 'https://tinkoffcreditsystems.github.io',
-  baseUrl: '/metadata-governance/',
+  baseUrl: '/data-detective/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.svg',
   organizationName: 'tinkoff', // Usually your GitHub org/user name.
-  projectName: 'metadata-governance', // Usually your repo name.
+  projectName: 'data-detective', // Usually your repo name.
 
   presets: [
     [
@@ -24,7 +24,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/TinkoffCreditSystems/metadata-governance/edit/master/tools/doc-site/',
+          editUrl: 'https://github.com/TinkoffCreditSystems/data-detective/edit/master/tools/doc-site/',
         },
         blog: {
           showReadingTime: true,
@@ -56,9 +56,9 @@ const config = {
         disableSwitch: true,
       },
       navbar: {
-        title: 'Data Detective (MG)',
+        title: 'Data Detective',
         logo: {
-          alt: 'metadata-governance logo',
+          alt: 'data-detective logo',
           src: 'img/logo-tinkoff.svg',
         },
         items: [
@@ -76,7 +76,7 @@ const config = {
           // },
           // {to: '/blog', label: 'Blog', position: 'right'},
           {
-            href: 'https://github.com/TinkoffCreditSystems/metadata-governance',
+            href: 'https://github.com/TinkoffCreditSystems/data-detective',
             label: 'GitHub',
             position: 'right',
           },
