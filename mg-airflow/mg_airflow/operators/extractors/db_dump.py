@@ -4,12 +4,12 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class DBDump(TBaseOperator):
-    """Выполнить SQL код в базе и результат записать в work
+    """Execute the SQL code in the database and write the result to work
 
-    :param conn_id: connection подключения к postgres
-    :param sql: Текст sql запроса, который надо выполнить,
-                или название файла с запросом в папке code
-    :param kwargs: дополнительные параметры TBaseOperator
+    :param conn_id: Connection for postgres
+    :param sql: The text of the sql query to be executed,
+                or the name of the file with the query in the code folder
+    :param kwargs: Additional params for TBaseOperator
     """
 
     ui_color = '#4eb6c2'

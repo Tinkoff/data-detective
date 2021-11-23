@@ -15,14 +15,14 @@ from mg_airflow.utils.logging_thread import LoggingThread
 
 # pylint: disable=too-many-instance-attributes
 class TBaseOperator(BaseOperator, ABC):
-    """Базовый оператор в mg-airflow
-    Все остальные операторы нужно наследовать это этого.
+    """Base operator.
+    All other operators need to inherit from this one.
 
-    :param description: Описание таска
-    :param conn_id: Опциональный connection для подключения к тому или иному источнику
-    :param work_conn_id: Опциональный connection work для оператора (по умолчанию берется из dag)
-    :param result_type: Опциональный тип/формат результата (по умолчанию берется из dag)
-    :param work_type: Опциональный тип/формат ворка (по умолчанию берется из dag)
+    :param description: Task description
+    :param conn_id: Optional connection for connecting to a particular source
+    :param work_conn_id: Optional connection work for the operator (taken from the dag by default)
+    :param result_type: Optional result type/format (taken from dag by default)
+    :param work_type: Optional work type/format (taken from dag by default)
     """
 
     def __init__(
@@ -35,9 +35,9 @@ class TBaseOperator(BaseOperator, ABC):
         **kwargs,
     ):
 
-        #  В Airflow 2.0 передача kwargs и args в конструктор baseoperator вызовет исключение
-        #  Здесь лишние аргументы фильтруются, но записываются в отдельную переменную
-        #  Чтобы оригинальный kwargs оставался доступным и неизменным
+        #  In Airflow 2.0, passing kwargs and args to the base operator constructor will cause an exception
+        #  Here the extra arguments are filtered, but written to a separate variable
+        #  So that the original kvargs remains accessible and unchanged
         allowed_params = inspect.signature(super().__init__).parameters
         _kwargs = {k: v for k, v in kwargs.items() if k in allowed_params}
         self._set_execution_timeout(_kwargs)
@@ -64,7 +64,7 @@ class TBaseOperator(BaseOperator, ABC):
         self.thread = None  # pylint: disable=too-many-instance-attributes
 
     def get_conn_id(self) -> str:
-        """Получить conn_id из task или из настроек DAG по умолчанию"""
+        """Get conn_id from the task or from default DAG settings"""
         if hasattr(self, 'conn_id'):
             return getattr(self, 'conn_id')
         return self.dag.default_args.get('work_conn_id')
@@ -88,11 +88,11 @@ class TBaseOperator(BaseOperator, ABC):
 
     @abstractmethod
     def execute(self, context):
-        """Выполнить оператор"""
+        """Execute the operator"""
 
     @prepare_lineage
     def pre_execute(self, context: dict = None):
-        """Метод вызывается до вызова self.execute()"""
+        """The method is called before calling self.execute()"""
         work = self.dag.get_work(self.work_type, self.work_conn_id)
         work.create(context)
         self.log.info(f'{self.task_id} started')
@@ -101,13 +101,13 @@ class TBaseOperator(BaseOperator, ABC):
 
     @apply_lineage
     def post_execute(self, context: dict = None, result=None):
-        """Метод вызывается сразу после вызова self.execute()"""
+        """The method is called immediately after calling self.execute()"""
         if self.thread:
             self.thread.stop()
         self.log.info(f'{self.task_id} finished')
 
     def generate_context(self, execution_date=datetime.now()) -> Dict[str, Any]:
-        """Сгенерировать контекст на произвольное execution_date."""
+        """Generate a context for an execution_date of any kind."""
         task_instance = TaskInstance(task=self, execution_date=execution_date)
         return task_instance.get_template_context()
 
@@ -120,10 +120,10 @@ class TBaseOperator(BaseOperator, ABC):
         return frozenset()
 
     def read_result(self, context):
-        """Прочитать result. Используется в тестах.
-        В операторах, которые не пишут в work, нужно переопределить.
+        """Read the result. Used in tests.
+        In statements that do not write to work, you need to redefine.
 
-        :param context: Контекст выполнения
-        :return: датасет
+        :param context: Execution context
+        :return: Dataset
         """
         return self.result.read(context)

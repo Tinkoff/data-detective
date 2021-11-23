@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """TSFTPWork
 
-Модуль содержит класс TSFTPWork, реализующий логику работы с
-файловым Work на удаленной машине через SFTP протокол
+The module contains the TSFTPWork class, which implements the logic of working with
+file Work on a remote machine via the SFTP protocol
 """
 
 import logging
@@ -71,7 +71,7 @@ class SFTPWork(BaseFileWork):
 
     @provide_sftp
     def exists(self, path: str, sftp_client: Optional[SFTPClient] = None) -> bool:
-        """Проверить, существует ли путь на удаленной машине
+        """Check if the path exists on the remote machine
         :param path:
         :param sftp_client:
         :return:
@@ -83,7 +83,7 @@ class SFTPWork(BaseFileWork):
             return False
 
     def execute(self, command: str, sync: bool = False) -> int:
-        """Выполнить команлу на удалённой машине
+        """Run a command on a remote machine
         :param command:
         :param sync:
         :return:
@@ -95,9 +95,9 @@ class SFTPWork(BaseFileWork):
         return 0
 
     def mkdir(self, path: str, mode: int = 0o777):
-        """Рекурсивное создание директории
-        :param path: путь к директории
-        :param mode: права выдаваемые на директории
+        """Recursive directory creation
+        :param path: Path to the directory
+        :param mode: Rights granted to directories
         :raises IOError:
         :raises OSError:
         """
@@ -108,9 +108,9 @@ class SFTPWork(BaseFileWork):
             raise IOError
 
     def rmdir(self, path: str, recursive: bool = False):
-        """Удалить по пути на удалённой машине
-        :param path: путь к объекту фс
-        :param recursive: удалить вложенные объекты
+        """Delete by path on a remote machine
+        :param path: Path to the fs object
+        :param recursive: Delete nested objects
         :raises IOError:
         :raises OSError:
         """
@@ -139,7 +139,7 @@ class SFTPWork(BaseFileWork):
 
     @provide_sftp
     def write(self, path: str, text: str, sftp_client: SFTPClient = None):
-        """Запись текста в файл по пути
+        """Writing text to a file by the path
         :param path:
         :param text:
         :param sftp_client:
@@ -149,7 +149,7 @@ class SFTPWork(BaseFileWork):
 
     @provide_sftp
     def write_bytes(self, path: str, bts: bytes, sftp_client: SFTPClient = None):
-        """Запись байтов в файл по пути
+        """Writing bytes to a file by the path
         :param path:
         :param bts:
         :param sftp_client:
@@ -159,7 +159,7 @@ class SFTPWork(BaseFileWork):
 
     @provide_sftp
     def read(self, path: str, sftp_client: SFTPClient = None) -> str:
-        """Чтение текста из файла по пути
+        """Reading text by the path
         :param path:
         :param sftp_client:
         :return:
@@ -169,7 +169,7 @@ class SFTPWork(BaseFileWork):
 
     @provide_sftp
     def read_bytes(self, path: str, sftp_client: SFTPClient = None) -> bytes:
-        """Чтение байтов из файла по пути
+        """Reading bytes from a file by the path
         :param path:
         :param sftp_client:
         :return:
@@ -179,7 +179,7 @@ class SFTPWork(BaseFileWork):
 
     @provide_sftp
     def is_dir(self, path: str, sftp_client: SFTPClient = None) -> bool:
-        """Проверить, является ли указанный путь директорией на удалённой машине
+        """Check if the specified path is a directory on the remote machine
         :param path:
         :param sftp_client:
         :raises FileNotFoundError:
@@ -192,7 +192,7 @@ class SFTPWork(BaseFileWork):
 
     @provide_sftp
     def is_file(self, path: str, sftp_client: SFTPClient = None) -> bool:
-        """Проверить, является ли указанный путь файлом на удалённой машине
+        """Check if the specified path is a file on the remote machine
         :param path:
         :param sftp_client:
         :return:
@@ -208,12 +208,12 @@ class SFTPWork(BaseFileWork):
 
     @provide_sftp
     def get_size(self, path: str, sftp_client: SFTPClient = None) -> str:
-        """Получить размер объекта в sftp ворке.
-        Если объект отсутствует, то возвращает -1
+        """Get the size of the object in the sftp work.
+        If the object is missing, it returns -1
 
-        :param path: Имя объекта
-        :param sftp_client: Подключение
-        :return: Округленный размер объекта
+        :param path: Object name
+        :param sftp_client: Connection
+        :return: Rounded object size
         """
         size = -1
         if self.exists(path):

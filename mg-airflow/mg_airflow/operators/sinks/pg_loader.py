@@ -10,7 +10,7 @@ MAX_INSERT_ROWS_NUMBER = 2 ** 31  # 2147483648
 
 
 class PgLoader(TBaseOperator):
-    """Абстрактный лоудер для базы postgres"""
+    """Abstract loader for postgres"""
 
     def __init__(self, conn_id: str = None, table_name: str = None, **kwargs):
         super().__init__(**kwargs)
@@ -20,10 +20,10 @@ class PgLoader(TBaseOperator):
 
     @staticmethod
     def get_table_columns(table_name: str, conn: psycopg2_connection) -> list[str]:
-        """Получить по имени таблицы список имён её полей
+        """Get a list of the names of its fields by the name of the table
         :param table_name:
         :param conn:
-        :return: Кортеж с именами полей
+        :return: Tuple with field names
         """
         with closing(conn.cursor()) as cursor:
             cursor.execute(f"SELECT * FROM {table_name} LIMIT 0")
@@ -31,11 +31,11 @@ class PgLoader(TBaseOperator):
 
     @staticmethod
     def _get_chunk_number(data_row_number: int, chunk_row: int) -> int:
-        """Вычислить количество чанков с округлением вверх
+        """Calculate the number of chunks with rounding up
 
-        :param data_row_number: количество строк во входном датасете
-        :param chunk_row: количество строк в одном чанке
-        :return: chunk number
+        :param data_row_number: Number of rows in the input dataset
+        :param chunk_row: Number of rows in one chunk
+        :return: Chunk number
         """
         return int((data_row_number + chunk_row - 1) // chunk_row)
 

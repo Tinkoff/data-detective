@@ -8,10 +8,10 @@ from mg_airflow.dag_generator.dags.tdag import TDag
 
 
 class PythonDag(TDag):
-    """Класс дага, наполняемого файлом TDag.CODE_FILE
+    """The class of the dag filled by the TDag.CODE_FILE
 
-    :param dag_dir: директория, содержащая TDag.META_FILE
-    :param config: опциональный уже разложенный meta.yaml
+    :param dag_dir: Directory with TDag.META_FILE
+    :param config: Optional and decomposed meta.yaml file
     """
 
     def __init__(self, dag_dir: str, config: None):

@@ -11,9 +11,9 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class ResultType(Enum):
-    """Класс для всех типов результатов.
-    Разрешается использовать только эти типы результатов.
-    Писать типы результатов руками крайне не рекомендуется.
+    """A class for all types of results.
+    Only these types of results are allowed to be used.
+    Try to avoid writing the result types manually
     """
 
     RESULT_PICKLE = 'pickle'
@@ -26,14 +26,14 @@ class ResultType(Enum):
 
 class BaseResult(LoggingMixin, metaclass=ABCMeta):
     def __init__(self, operator: TBaseOperator, work: BaseWork, name: str, **kwargs):
-        """Базовый класс для всех результатов (result)
-        Результат создаётся в конце работы оператора и сохраняется в work
-        Оператор всегда возвращает один результат
+        """Base class for all results.
+        The result is created at the end of the operator's work and stored into work.
+        The operator always returns one result
 
-        :param operator: оператор который генерит результат
-        :param work: work, в который будет сохранен результат
-        :param name: имя результата, с которым он будет сохранен в work
-        :param kwargs: Дополнительные параметры для BaseResult
+        :param operator: Operator that generates the result
+        :param work: Work in which the result will be saved
+        :param name: Name of the result with which it will be saved in work
+        :param kwargs: Additional parameters for BaseResult
         """
         del kwargs
         super().__init__()
@@ -44,32 +44,32 @@ class BaseResult(LoggingMixin, metaclass=ABCMeta):
 
     @abstractmethod
     def write_df(self, obj: DataFrame, context: dict):
-        """Отвечает за режим работы с DataFrame
+        """This method is responsible for working with the DataFrame
 
-        :param obj: объект, который нужно записать в work
+        :param obj: object to be written to work
         :param context: context
         """
 
     @abstractmethod
     def write(self, obj: Union[Any, DataFrame], context: dict):
-        """Базовая логика записи результата
+        """Basic logic of writing the result
 
-        :param obj: объект который нужно записать
+        :param obj: Object to be written
         :param context: context
         """
 
     @abstractmethod
     def read_df(self, context: dict) -> DataFrame:
-        """Логика чтения DataFrame
+        """Read DataFrame
 
         :param context: context
-        :return: объект, прочитанный из work
+        :return: Object read from work
         """
 
     @abstractmethod
     def read(self, context: dict) -> Union[Any, DataFrame]:
-        """Логика чтения любого результата
+        """Reading of any result
 
         :param context: context
-        :return: объект, прочитанный из work
+        :return: Object read from work
         """

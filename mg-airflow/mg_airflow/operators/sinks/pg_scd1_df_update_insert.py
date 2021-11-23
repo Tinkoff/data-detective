@@ -11,14 +11,14 @@ from mg_airflow.operators.sinks.pg_loader import PgLoader, MAX_INSERT_ROWS_NUMBE
 
 
 class PgSCD1DFUpdateInsert(PgLoader):
-    """Обновить таргет таблицу путем SCD1 по diff_change_oper
+    """Update the target table by SCD 1 by diff_change_operation
 
-    :param source: Источник
-    :param conn_id: Id подключения
-    :param table_name: Имя таблицы которую обновляем
-    :param key: Ключ по которому обновляем. Избегать наличия NULL в ключе.
-    :param diff_change_oper: Поле с флагом операции, которая будет применена к записи D,U,I
-    :param chunk_row_number: количество строк в chunk для загрузки в базу и применения на таблицу
+    :param source: Source
+    :param conn_id: Connection id
+    :param table_name: Table name for update
+    :param key: The key by which update. Avoid NULL for the key.
+    :param diff_change_oper: Field with the flag of the operation to be applied to the record D,U,I
+    :param chunk_row_number: The number of rows in the chunk to load into the database and apply to the table
     """
     ui_color = '#DDF4ED'
 
@@ -74,10 +74,10 @@ class PgSCD1DFUpdateInsert(PgLoader):
                 session.commit()
 
     def _unload_source_to_pg(self, tmp_table: str, conn: psycopg2_connection, unload_df: pandas.DataFrame):
-        """Загрузить DataFrame в TEMPORARY TABLE postgres
-        :param tmp_table: Имя временной таблицы
-        :param conn: подключение к базе
-        :param unload_df: DataFrame для загрузки в базу
+        """Upload DataFrame to TEMPORARY TABLE in postgres
+        :param tmp_table: Name of the temporary table
+        :param conn: Connection to the database
+        :param unload_df: DataFrame to upload to the database
         """
         create_query = """
         DROP TABLE IF EXISTS {tmp_table} CASCADE;
@@ -109,7 +109,7 @@ class PgSCD1DFUpdateInsert(PgLoader):
             cursor.copy_expert(copy_query.format(**query_params), s_buf)
 
     def _apply_diff_change_oper(self, source_table: str, conn: psycopg2_connection):
-        """Применить diff_change_oper по ключу, игнорирует неизменённые столбцы"""
+        """Apply diff_change_oper by key, ignores unmodified columns"""
         query_params = self._get_query_params(source_table, conn)
 
         delete_query = """
@@ -138,7 +138,7 @@ class PgSCD1DFUpdateInsert(PgLoader):
             cursor.execute(insert_query.format(**query_params))
 
     def _get_query_params(self, source_table: str, conn: psycopg2_connection) -> dict[str, str]:
-        """Создание параметров для запросов"""
+        """Creating parameters for queries"""
         all_tgt_columns = self.get_table_columns(self.table_name, conn)
         tgt_columns = [col for col in all_tgt_columns if col != 'processed_dttm']
 

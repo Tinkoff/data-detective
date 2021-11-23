@@ -4,11 +4,11 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class Append(TBaseOperator):
-    """Объединить несколько объектов в один
-    У объекта должен быть метод append
+    """Merge multiple objects into one
+    The object must have an append method
 
-    :param source: Источник
-    :param kwargs: Дополнительные параметры для TBaseOperator
+    :param source: Source
+    :param kwargs: Additional params for the TBaseOperator
     """
 
     ui_color = '#8f75d1'

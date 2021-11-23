@@ -4,10 +4,10 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class TSFTPOperator(TBaseOperator):
-    """Забрать файл `remote_filepath` с сервера из `conn_id`
-    :param conn_id: название Airflow `Connection`
-    :param remote_filepath: путь к файлу
-    :param kwargs: Дополнительные параметры для TBaseOperator
+    """Get the file `remote_filepath` from the server with `conn_id`
+    :param conn_id: Name of the Airflow `Connection`
+    :param remote_filepath: Path to the file
+    :param kwargs: Additional params for TBaseOperator
     """
 
     ui_color = '#4eb6c2'

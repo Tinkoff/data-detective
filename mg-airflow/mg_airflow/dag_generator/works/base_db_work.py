@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """TBaseFileWork
 
-Модуль содержит абстрактный базовый класс TBaseDBWork
-Описывает интерфейс work для баз данных (Postgres, Greenplum, MySQL)
+The module contains an abstract base class TBaseDBWork
+Describes the work interface for databases (Postgres, Greenplum, MySQL)
 """
 from abc import abstractmethod
 from enum import Enum
@@ -18,7 +18,7 @@ class DBObjectType(Enum):
 
 
 class BaseDBWork(BaseWork):
-    """Базовый класс для work на базе данных (Postgres, Greenplum, MySQL)"""
+    """Base class for working on a database (Postgres, Greenplum, MySQL)"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -27,7 +27,7 @@ class BaseDBWork(BaseWork):
         self._current_session_pid = None
 
     def get_xcom_params(self, context: dict) -> dict:
-        """Сериализовать DBwork в словарь для записи в XCom"""
+        """Serialize DBwork into a dictionary for writing to XCom"""
         xcom_params = super().get_xcom_params(context)
         value = xcom_params.pop('value')
         value['_current_session_pid'] = self._current_session_pid
@@ -37,56 +37,56 @@ class BaseDBWork(BaseWork):
 
     @abstractmethod
     def exists(self, path: str) -> bool:
-        """Проверить, существует ли объект
-        @param path: путь к объекту
+        """Check if the object exists
+        @param path: Path to the object
         @return:
         """
 
     @abstractmethod
     def drop(self, path: str):
-        """Удалить объект по path
-        @param path: путь к объекту
+        """Delete an object by path
+        @param path: Path to the object
         @return:
         """
 
     @abstractmethod
     def set_search_path(self, search_path: str):
-        """Установить search_path
+        """Set up the search_path
         @param search_path: search_path
         @return:
         """
 
     @abstractmethod
     def is_schema(self, path: str) -> bool:
-        """Проверить, является ли объект схемой
-        @param path: путь к объекту
+        """Check if the object is a schema
+        @param path: Path to the object
         @return:
         """
 
     @abstractmethod
     def is_table(self, path: str) -> bool:
-        """Проверить, является ли объект таблицей
-        @param path: путь к объекту
+        """Check if the object is a table
+        @param path: Path to the object
         @return:
         """
 
     @abstractmethod
     def is_view(self, path: str) -> bool:
-        """Проверить, является ли объект представлением
-        @param path: путь к объекту
+        """Check whether an object is a view
+        @param path: Path to the object
         @return:
         """
 
     @abstractmethod
     def execute(self, sql: str):
-        """Выполнить sql
-        @param sql: код запроса
+        """Exeute sql
+        @param sql: SQL query
         @return:
         """
 
     @abstractmethod
     def terminate_failed_task_query(self, context: dict):
-        """Прекратить выполнение запроса после получения fail статуса таска
-        @param context: контекст таска
+        """Stop executing the request after receiving the fail status of the task
+        @param context: Task context
         @return:
         """

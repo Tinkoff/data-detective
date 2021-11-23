@@ -8,7 +8,7 @@ from mg_airflow.operators.tbaseoperator import TBaseOperator
 
 
 class PickleResult(BaseResult):
-    """Работает с результатом таска, сохраняемым в битовую последовательность в файл"""
+    """Processes the result of a task stored in a bit sequence in a file"""
 
     def __init__(self, operator: TBaseOperator, work: BaseFileWork, name: str, **kwargs):
         super().__init__(operator, work, name)
@@ -17,18 +17,18 @@ class PickleResult(BaseResult):
         return self.work.get_path(context) / (self.name + '.p')
 
     def write_df(self, obj: Any, context: dict):
-        """Записывает DataFrame в файловое хранилище.
-        Передает вызов write
+        """Write the Data Frame to the file storage.
+        Sends a call to write
 
-        :param obj: датасет для записи
+        :param obj: Dataset for writing
         :param context: context
         """
         self.write(obj, context)
 
     def write(self, obj: Any, context: dict):
-        """Записывает объект в файловое хранилище.
+        """Write an object to file storage.
 
-        :param obj: объект для записи
+        :param obj: Object for writing
         :param context: context
         """
         file = self.get_file(context).as_posix()
@@ -37,15 +37,15 @@ class PickleResult(BaseResult):
         self.status = 'ready'
 
     def read_df(self, context: dict):
-        """Загрузить DataFrame из файлового хранилища.
-        Передает вызов work.read
+        """Read DataFrame from file storage.
+        Sends a call to work.read
 
         :param context: context
         """
         self.read(context)
 
     def read(self, context: dict) -> Any:
-        """Загрузить объект из файлового хранилища.
+        """Read object from file storage.
 
         :param context: context
         :return: DataFrame
