@@ -6,7 +6,7 @@ sidebar_position: 5
 
 Deploying the development environment
 ```bash
-cd mg-airflow
+cd data-detective-airflow
 cp .env.example .env
 randstr=`shuf -zer -n32  {A..Z} {a..z} {0..9} | tr -d '\0'`
 echo "SECRET_KEY=${randstr}" >> .env
