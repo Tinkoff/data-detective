@@ -12,7 +12,7 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Welcome to MG official documentation`}
+      title={`Welcome to Data Detective official documentation`}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
 

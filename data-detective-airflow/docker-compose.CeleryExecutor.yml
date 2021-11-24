@@ -1,0 +1,147 @@
+version: '2.3'
+
+x-airflow: &airflow
+  build:
+    context: .
+    target: dev
+  environment:
+    - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
+    - AIRFLOW__CELERY__WORKER_AUTOSCALE=16,12
+    - AIRFLOW__CELERY__BROKER_URL=redis://redis:6379/1
+    - AIRFLOW__CELERY__RESULT_BACKEND=db+postgresql://${META_USER}:${META_PASS}@metadb:5432/${META_USER}
+    - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${META_USER}:${META_PASS}@metadb:5432/${META_USER}
+    - AIRFLOW__WEBSERVER__SECRET_KEY=${SECRET_KEY}
+    - AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False
+    - AIRFLOW__CORE__LOAD_EXAMPLES=False
+
+services:
+  ssh_service:
+    build:
+      context: docker/ssh_service
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 22"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+   image: redis:5.0.5
+   healthcheck:
+    test: ["CMD", "redis-cli", "ping"]
+    interval: 1s
+    timeout: 3s
+    retries: 30
+
+  metadb:
+    image: postgres:13.4-alpine
+    environment:
+      - POSTGRES_USER=${META_USER}
+      - POSTGRES_PASSWORD=${META_PASS}
+    ports:
+      - "5004:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
+    restart: always
+
+  pg:
+    image: postgres:13.4-alpine
+    environment:
+      - POSTGRES_USER=${META_USER}
+      - POSTGRES_PASSWORD=${META_PASS}
+    ports:
+      - "5005:5432"
+    volumes:
+      - ./docker/init-pgwork.sql:/docker-entrypoint-initdb.d/init-pgwork.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
+    restart: always
+
+  s3:
+    image: localstack/localstack:0.11.5
+    ports:
+      - 4566:4566
+      - 8055:8080
+    environment:
+      - SERVICES=s3
+      - DEBUG=0
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - ./docker/init-s3.sh:/docker-entrypoint-initaws.d/init-s3.sh
+    healthcheck:
+      test: bash -c 'AWS_ACCESS_KEY_ID=fake AWS_SECRET_ACCESS_KEY=fake aws --endpoint-url=http://localhost:4566 s3 ls'
+      interval: 3s
+      timeout: 10s
+      retries: 10
+    restart: always
+
+  scheduler:
+    <<: *airflow
+    depends_on:
+      metadb:
+        condition: service_healthy
+      pg:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./dags:${AIRFLOW_HOME}/dags
+      - ./data_detectivedata_detectivedata_detectivedata_detective_airflow:${AIRFLOW_HOME}/data_detectivedata_detectivedata_detectivedata_detective_airflow
+      - ./tests:${AIRFLOW_HOME}/tests
+      - ./tests_data:${AIRFLOW_HOME}/tests_data
+    ports:
+      - 127.0.0.1:9922:22
+    command: scheduler-ssh
+    restart: always
+
+  webserver:
+    <<: *airflow
+    depends_on:
+      - scheduler
+    volumes:
+      - ./dags:${AIRFLOW_HOME}/dags
+      - ./data_detective_airflow:${AIRFLOW_HOME}/data_detective_airflow
+    ports:
+      - 8080:8080
+    command: webserver
+    healthcheck:
+      test: curl -s -I -o /dev/null -w '%{http_code}' webserver:8080 | grep -qE '302|200'
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    restart: always
+
+  flower:
+    <<: *airflow
+    depends_on:
+      - scheduler
+    ports:
+      - 5555:5555
+    command: flower
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://flower:5555/"]
+      interval: 30s
+      timeout: 30s
+      retries: 5
+    restart: always
+
+  worker:
+    <<: *airflow
+    scale: 2
+    depends_on:
+      - scheduler
+    volumes:
+      - ./dags:${AIRFLOW_HOME}/dags
+      - ./data_detective_airflow:${AIRFLOW_HOME}/data_detective_airflow
+    command: worker
+    healthcheck:
+      test: ["CMD-SHELL", 'celery --app airflow.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}"']
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    restart: always

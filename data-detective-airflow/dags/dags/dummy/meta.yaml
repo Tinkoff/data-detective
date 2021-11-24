@@ -1,0 +1,46 @@
+description: Пример Dag для отладки и экспериментов
+schedule_interval:
+default_args:
+  owner: airflow
+  retries: 1
+  retry_delay: 2
+  result_type: pickle
+  work_type: s3
+  work_conn_id: s3
+factory: YAML
+tasks:
+- task_id: df_now1
+  description: Запрос к базе данных
+  type: data_detective_airflow.operators.extractors.DBDump
+  conn_id: pg
+  sql: select * from test1;
+- task_id: df_now2
+  description: Запрос к базе данных
+  type: data_detective_airflow.operators.extractors.DBDump
+  conn_id: pg
+  sql: select * from test1;
+- task_id: transform
+  type: data_detective_airflow.operators.transformers.PyTransform
+  source:
+  - df_now2
+  transformer_callable: val_translate
+  op_kwargs:
+    file_name: val_translation.yaml
+- task_id: append_all
+  description: Объединение предыдущего результата с самим собой
+  type: data_detective_airflow.operators.transformers.PyTransform
+  source:
+  - df_now1
+  - transform
+  transformer_callable: >
+    lambda _context, df_now1, transform: df_now1.append(transform, sort=False)
+- task_id: sink
+  description: Записать результат
+  type: data_detective_airflow.operators.sinks.PgSCD1
+  source:
+  - append_all
+  conn_id: pg
+  key:
+  - test
+  table_name: test2
+  logging_thread_flg: No
