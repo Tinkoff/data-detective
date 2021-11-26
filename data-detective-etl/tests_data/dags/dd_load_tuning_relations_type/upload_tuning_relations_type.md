@@ -1,0 +1,7 @@
+| source_type    | target_type   | attribute_type   | relation_type   | source_group_name   | target_group_name   | attribute_group_name   | loaded_by                     |
+|:---------------|:--------------|:-----------------|:----------------|:--------------------|:--------------------|:-----------------------|:------------------------------|
+| COLUMN         | COLUMN        | JOB              | Loads           | SOURCE COLUMNS      | TARGET COLUMNS      | JOBS                   | dd_load_tuning_relations_type |
+| LOGICAL_COLUMN | COLUMN        |                  | Describes       | IS DESCRIBED        | DESCRIBES           |                        | dd_load_tuning_relations_type |
+| LOGICAL_SCHEMA | SCHEMA        |                  | Describes       | IS DESCRIBED        | DESCRIBES           |                        | dd_load_tuning_relations_type |
+| LOGICAL_TABLE  | TABLE         |                  | Describes       | IS DESCRIBED        | DESCRIBES           |                        | dd_load_tuning_relations_type |
+| TABLE          | TABLE         | JOB              | Loads           | SOURCE TABLES       | TARGET TABLES       | JOBS                   | dd_load_tuning_relations_type |

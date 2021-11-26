@@ -1,0 +1,85 @@
+version: '2.4'
+
+x-airflow: &airflow
+  build:
+    context: .
+    target: dev
+  environment:
+    - AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False
+    - AIRFLOW__CORE__LOAD_EXAMPLES=False
+    - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${META_USER}:airflow@metadb:5432/airflow
+    - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW__WEBSERVER__SECRET_KEY}
+
+services:
+
+  pg:
+    image: docker-proxy.tcsbank.ru/postgres:13.4-alpine
+    environment:
+      - POSTGRES_USER=${META_USER}
+      - POSTGRES_PASSWORD=${META_PASS}
+    ports:
+      - "5004:5432"
+    volumes:
+      - ./docker/init-pg.sql:/docker-entrypoint-initdb.d/init-pg.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U airflow" ]
+      interval: 10s
+      timeout: 5s
+      retries: 50
+
+
+  metadb:
+    image: docker-proxy.tcsbank.ru/postgres:13.4-alpine
+    environment:
+      - POSTGRES_USER=${META_USER}
+      - POSTGRES_PASSWORD=${META_PASS}
+    ports:
+      - "5005:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
+
+
+#  web_service:
+#    build:
+#      context: docker/web_service
+#    ports:
+#      - "5656:5000"
+#    volumes:
+#      -  ./docker/web_service:/usr/src/app
+
+
+  s3work:
+    image: docker-proxy.tcsbank.ru/localstack/localstack:0.11.5
+    ports:
+      - "4566:4566"
+      - "8055:8080"
+    environment:
+      - SERVICES=s3
+      - DEBUG=0
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - ./docker/init-s3.sh:/docker-entrypoint-initaws.d/init-s3.sh
+
+
+  app:
+    <<: *airflow
+    depends_on:
+      metadb:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:9922:22"
+      - "8080:8080"
+    volumes:
+      - ./common:${AIRFLOW_HOME}/common
+      - ./dags:${AIRFLOW_HOME}/dags
+      - ./docker:${AIRFLOW_HOME}/docker
+      - ./docs:${AIRFLOW_HOME}/docs
+      - ./tests:${AIRFLOW_HOME}/tests
+      - ./tests_data:${AIRFLOW_HOME}/tests_data
+      - ./.coveragerc:${AIRFLOW_HOME}/.coveragerc
+      - ./tox.ini:${AIRFLOW_HOME}/tox.ini
+      - ./wrk:/tmp

@@ -1,0 +1,75 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"breadcrumb_entity",
+                "type":"string"
+            },
+            {
+                "name":"breadcrumb_urn",
+                "type":"string"
+            },
+            {
+                "name":"loaded_by",
+                "type":"string"
+            },
+            {
+                "name":"urn",
+                "type":"string"
+            }
+        ],
+        "pandas_version":"0.20.0"
+    },
+    "data":[
+        {
+            "breadcrumb_entity":[
+
+            ],
+            "breadcrumb_urn":[
+
+            ],
+            "loaded_by":"dd_load_tuning_breadcrumb",
+            "urn":"urn:tree_node:root:data_detective"
+        },
+        {
+            "breadcrumb_entity":[
+
+            ],
+            "breadcrumb_urn":[
+
+            ],
+            "loaded_by":"dd_load_tuning_breadcrumb",
+            "urn":"urn:tree_node:root:documentation"
+        },
+        {
+            "breadcrumb_entity":[
+                "Data Detective"
+            ],
+            "breadcrumb_urn":[
+                "urn:tree_node:root:data_detective"
+            ],
+            "loaded_by":"dd_load_tuning_breadcrumb",
+            "urn":"urn:tree_node:root:data_detective:dags"
+        },
+        {
+            "breadcrumb_entity":[
+                "Data Detective"
+            ],
+            "breadcrumb_urn":[
+                "urn:tree_node:root:data_detective"
+            ],
+            "loaded_by":"dd_load_tuning_breadcrumb",
+            "urn":"urn:tree_node:root:data_detective:physical_model"
+        },
+        {
+            "breadcrumb_entity":[
+                "Data Detective"
+            ],
+            "breadcrumb_urn":[
+                "urn:tree_node:root:data_detective"
+            ],
+            "loaded_by":"dd_load_tuning_breadcrumb",
+            "urn":"urn:tree_node:root:data_detective:logical_model"
+        }
+    ]
+}
