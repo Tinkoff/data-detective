@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Автоматический генератор DAGs из yaml-файлов в DAGS_FOLDER"""
+"""Automatic DAGs generator from yaml files from DATA_FOLDER"""
 
 import logging
 import sys
@@ -10,8 +10,8 @@ from airflow.cli.cli_parser import get_parser
 from data_detective_airflow.constants import DAG_ID_KEY
 from data_detective_airflow.dag_generator import dag_generator
 
-# Ускорение запуска на worker. Подготавливается только dag для запуска.
-# Этот файл - единственная точка входа для DAG-ов.
+# Speeding up the startup on worker. Only the DAG is being prepared for launch.
+# This file is the only entry point for DAGs.
 dag_id = None
 if sys.argv[0].endswith('airflow'):
     parser = get_parser()

@@ -1,4 +1,4 @@
-description: Пример Dag для проверки тестов с PgSCD1 и колонкой processed_dttm
+description: Example of a DAG for checking tests with PgSCD1 and the processed_dttm column
 schedule_interval:
 default_args:
   owner: airflow
@@ -10,12 +10,12 @@ default_args:
 factory: YAML
 tasks:
 - task_id: dump_rows
-  description: Запрос к базе данных
+  description: Database Query
   type: data_detective_airflow.operators.extractors.DBDump
   conn_id: pg
   sql: select generate_series(1, 10) as test, 50 as test1;
 - task_id: sink
-  description: Записать результат
+  description: Write the result
   type: data_detective_airflow.operators.sinks.PgSCD1
   source:
   - dump_rows

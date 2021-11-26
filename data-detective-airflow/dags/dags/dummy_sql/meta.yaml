@@ -1,4 +1,4 @@
-description: Пример Dag c SQL файлами для отладки и экспериментов
+description: Example of a DAG with SQL files for debugging and testing
 schedule_interval:
 default_args:
   owner: airflow
@@ -10,12 +10,12 @@ default_args:
 factory: YAML
 tasks:
 - task_id: test1
-  description: Запрос к базе данных
+  description: Database Query
   type: data_detective_airflow.operators.extractors.DBDump
   conn_id: pg
   sql: /code/test1.sql
 - task_id: test2
-  description: Запрос к базе данных
+  description: Database Query
   type: data_detective_airflow.operators.extractors.DBDump
   conn_id: pg
   sql: /code/test1.sql
@@ -26,7 +26,7 @@ tasks:
   transformer_callable: >
     lambda self, df: df
 - task_id: append_all
-  description: Объединение предыдущих результатов
+  description: Append previous results
   type: data_detective_airflow.operators.transformers.PyTransform
   source:
   - test1
@@ -34,7 +34,7 @@ tasks:
   transformer_callable: >
     lambda _context, df_now1, transform: df_now1.append(transform, sort=False)
 - task_id: sink
-  description: Записать результат
+  description: Write the result
   type: data_detective_airflow.operators.sinks.PgSCD1
   source:
   - append_all
