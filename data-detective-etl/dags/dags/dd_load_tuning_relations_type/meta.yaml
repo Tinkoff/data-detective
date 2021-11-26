@@ -1,0 +1,35 @@
+# Загрузка типов отношений сущностей
+
+description: Загрузка типов отношений сущностей
+schedule_interval: '5 2 * * *'
+tags:
+  - SLA3
+  - prod_dev
+default_args:
+  owner: airflow
+  result_type: pickle
+  retries: 1
+  work_conn_id: s3work
+  work_type: s3
+factory: YAML
+tasks:
+
+  - task_id: dump_relations_types
+    description: Загрузить типы
+    type: data_detective_airflow.operators.PythonDump
+    python_callable: dump_relations_types
+    op_kwargs:
+      file_name: relations_type.md
+
+  - task_id: upload_tuning_relations_type
+    description: Заливаем в relations_type
+    type: data_detective_airflow.operators.PgSCD1
+    source:
+    - dump_relations_types
+    conn_id: pg
+    table_name: tuning.relations_type
+    process_deletions: true
+    key:
+      - source_type
+      - target_type
+      - relation_type

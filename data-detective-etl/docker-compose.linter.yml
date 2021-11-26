@@ -1,0 +1,16 @@
+version: '2.4'
+
+services:
+
+  linter:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - ./common:${AIRFLOW_HOME}/common
+      - ./dags:${AIRFLOW_HOME}/dags
+      - ./docker:${AIRFLOW_HOME}/docker
+      - ./tests:${AIRFLOW_HOME}/tests
+      - ./.pylintrc:${AIRFLOW_HOME}/.pylintrc
+      - ./tox.ini:${AIRFLOW_HOME}/tox.ini
+    command: ${AIRFLOW_HOME}/docker/entrypoint.linter.sh

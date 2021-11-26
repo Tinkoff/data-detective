@@ -1,0 +1,91 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"attribute_group_name",
+                "type":"string"
+            },
+            {
+                "name":"attribute_type",
+                "type":"string"
+            },
+            {
+                "name":"loaded_by",
+                "type":"string"
+            },
+            {
+                "name":"relation_type",
+                "type":"string"
+            },
+            {
+                "name":"source_group_name",
+                "type":"string"
+            },
+            {
+                "name":"source_type",
+                "type":"string"
+            },
+            {
+                "name":"target_group_name",
+                "type":"string"
+            },
+            {
+                "name":"target_type",
+                "type":"string"
+            }
+        ],
+        "pandas_version":"0.20.0"
+    },
+    "data":[
+        {
+            "attribute_group_name":"JOBS",
+            "attribute_type":"JOB",
+            "loaded_by":"dd_load_tuning_relations_type",
+            "relation_type":"Loads",
+            "source_group_name":"SOURCE COLUMNS",
+            "source_type":"COLUMN",
+            "target_group_name":"TARGET COLUMNS",
+            "target_type":"COLUMN"
+        },
+        {
+            "attribute_group_name":null,
+            "attribute_type":null,
+            "loaded_by":"dd_load_tuning_relations_type",
+            "relation_type":"Describes",
+            "source_group_name":"IS DESCRIBED",
+            "source_type":"LOGICAL_COLUMN",
+            "target_group_name":"DESCRIBES",
+            "target_type":"COLUMN"
+        },
+        {
+            "attribute_group_name":null,
+            "attribute_type":null,
+            "loaded_by":"dd_load_tuning_relations_type",
+            "relation_type":"Describes",
+            "source_group_name":"IS DESCRIBED",
+            "source_type":"LOGICAL_SCHEMA",
+            "target_group_name":"DESCRIBES",
+            "target_type":"SCHEMA"
+        },
+        {
+            "attribute_group_name":null,
+            "attribute_type":null,
+            "loaded_by":"dd_load_tuning_relations_type",
+            "relation_type":"Describes",
+            "source_group_name":"IS DESCRIBED",
+            "source_type":"LOGICAL_TABLE",
+            "target_group_name":"DESCRIBES",
+            "target_type":"TABLE"
+        },
+        {
+            "attribute_group_name":"JOBS",
+            "attribute_type":"JOB",
+            "loaded_by":"dd_load_tuning_relations_type",
+            "relation_type":"Loads",
+            "source_group_name":"SOURCE TABLES",
+            "source_type":"TABLE",
+            "target_group_name":"TARGET TABLES",
+            "target_type":"TABLE"
+        }
+    ]
+}

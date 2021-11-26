@@ -1,0 +1,103 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"entity_name",
+                "type":"string"
+            },
+            {
+                "name":"entity_name_short",
+                "type":"string"
+            },
+            {
+                "name":"entity_type",
+                "type":"string"
+            },
+            {
+                "name":"json_data",
+                "type":"string"
+            },
+            {
+                "name":"loaded_by",
+                "type":"string"
+            },
+            {
+                "name":"search_data",
+                "type":"string"
+            },
+            {
+                "name":"urn",
+                "type":"string"
+            }
+        ],
+        "pandas_version":"0.20.0"
+    },
+    "data":[
+        {
+            "entity_name":"Documentation",
+            "entity_name_short":null,
+            "entity_type":"TREE_NODE",
+            "json_data":{
+                "info":"Документация сервиса\n"
+            },
+            "loaded_by":"dd_load_dds_root",
+            "search_data":"urn:tree_node:root:documentation documentation",
+            "urn":"urn:tree_node:root:documentation"
+        },
+        {
+            "entity_name":"Logical Model",
+            "entity_name_short":null,
+            "entity_type":"TREE_NODE",
+            "json_data":{
+                "info":"Описание таблиц в сервисе Data Detective\n"
+            },
+            "loaded_by":"dd_load_dds_root",
+            "search_data":"urn:tree_node:root:data_detective:logical_model logical model",
+            "urn":"urn:tree_node:root:data_detective:logical_model"
+        },
+        {
+            "entity_name":"Physical Model",
+            "entity_name_short":null,
+            "entity_type":"TREE_NODE",
+            "json_data":{
+                "info":"Раздел содержит техническую информацию по таблицам Data Detective"
+            },
+            "loaded_by":"dd_load_dds_root",
+            "search_data":"urn:tree_node:root:data_detective:physical_model physical model",
+            "urn":"urn:tree_node:root:data_detective:physical_model"
+        },
+        {
+            "entity_name":"DAGs",
+            "entity_name_short":null,
+            "entity_type":"TREE_NODE",
+            "json_data":{
+                "info":"Раздел содержит информацию по всем ETL процессам Data Platform"
+            },
+            "loaded_by":"dd_load_dds_root",
+            "search_data":"urn:tree_node:root:data_detective:dags dags",
+            "urn":"urn:tree_node:root:data_detective:dags"
+        },
+        {
+            "entity_name":"Data Detective",
+            "entity_name_short":null,
+            "entity_type":"TREE_NODE",
+            "json_data":{
+                "info":"Раздел содержит всю доступную информацию по Data Detective\n"
+            },
+            "loaded_by":"dd_load_dds_root",
+            "search_data":"urn:tree_node:root:data_detective data detective",
+            "urn":"urn:tree_node:root:data_detective"
+        },
+        {
+            "entity_name":"root",
+            "entity_name_short":null,
+            "entity_type":"TREE_NODE",
+            "json_data":{
+                "info":"The root entity"
+            },
+            "loaded_by":"dd_load_dds_root",
+            "search_data":"urn:tree_node:root root",
+            "urn":"urn:tree_node:root"
+        }
+    ]
+}

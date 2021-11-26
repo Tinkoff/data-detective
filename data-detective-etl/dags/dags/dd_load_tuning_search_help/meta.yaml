@@ -1,0 +1,11 @@
+description: Загрузка информации о системах и типах в таблицу tuning.search_help
+schedule_interval: 12 03 * * *
+tags:
+  - tuning
+default_args:
+  owner: airflow
+  result_type: pickle
+  retries: 1
+  work_conn_id: s3work
+  work_type: s3
+factory: Python
