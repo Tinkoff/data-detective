@@ -1,0 +1,14 @@
+loaders:
+  - type: python
+    search_path: [./data_detective_airflow]
+processors:
+  - type: filter
+    skip_empty_modules: true
+  - type: smart
+  - type: crossref
+renderer:
+  type: docusaurus
+  docs_base_path: ../tools/doc-site/docs/data-detective-airflow
+  relative_output_path: data_detective_airflow_api_reference
+  relative_sidebar_path: data_detective_airflow_api_reference_sidebar.json
+  sidebar_top_level_label: null
