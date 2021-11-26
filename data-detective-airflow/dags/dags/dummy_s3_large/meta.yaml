@@ -1,4 +1,4 @@
-description: Пример Dag c work в S3 с сохранением большого датасета
+description: Example of a DAG with S3 work while saving a large dataset
 schedule_interval:
 default_args:
   owner: airflow
