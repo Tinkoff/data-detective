@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function init_airflow {
-    export AIRFLOW__CORE__DAGS_FOLDER=/dev/null # не загружаем DAGS пока не создали connections
+    export AIRFLOW__CORE__DAGS_FOLDER=/dev/null # Don't load DAGs until connections are created
     airflow db init # Create/upgrade airflow DB
     $AIRFLOW_HOME/init-connections.sh # create connections
     airflow users create -r Admin -u airflow -p airflow -e airflow@tinkoff.ru -f airflow -l airflow

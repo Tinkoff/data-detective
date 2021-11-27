@@ -1,4 +1,4 @@
-description: Загрузка информации о системах и типах в таблицу tuning.search_help
+description: Loading information about systems and types into tuning.search_help table
 schedule_interval: 12 03 * * *
 tags:
   - tuning

@@ -1,4 +1,4 @@
-description: Загрузка цепочки связей от root до сущности
+description: Loading the breadcrumb of relations from root to entity
 schedule_interval: 0 */2 * * *
 tags:
   - tuning
@@ -11,20 +11,20 @@ factory: YAML
 tasks:
 
   - task_id: dump_relation_contains
-    description: Загрузить связи типа Contains
+    description: Load relations with type Contains
     type: data_detective_airflow.operators.DBDump
     sql: /code/dump_relation_contains.sql
     conn_id: pg
 
   - task_id: transform_breadcrumb
-    description: Сформировать цепочку связей
+    description: Create transform breadcrumbs
     type: data_detective_airflow.operators.PyTransform
     source:
       - dump_relation_contains
     transformer_callable: transform_breadcrumb
 
   - task_id: upload_tuning_breadcrumb
-    description: Загрузить сущности в tuning.breadcrumb
+    description: Upload entities to tuning.breadcrumb
     type: data_detective_airflow.operators.PgSingleTargetLoader
     chunk_row_number: 30000
     source:

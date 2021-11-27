@@ -47,9 +47,16 @@ jobs:
         if: steps.cache.outputs.cache-hit == 'true'
         run: poetry run pip --version >/dev/null 2>&1 || rm -rf data-detective-airflow/.venv
 
-      - name: Install Dependencies and parse Docstrings
+      - name: Install Dependencies and parse Docstrings for data-detective-airflow
         run: |-
             cd data-detective-airflow
+            poetry install --no-dev
+            pipx install 'pydoc-markdown>=4.0.0,<5.0.0'
+            pydoc-markdown
+
+      - name: Install Dependencies and parse Docstrings for data-detective-etl
+        run: |-
+            cd data-detective-etl
             poetry install --no-dev
             pipx install 'pydoc-markdown>=4.0.0,<5.0.0'
             pydoc-markdown

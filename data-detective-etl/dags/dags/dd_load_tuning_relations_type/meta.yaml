@@ -1,6 +1,6 @@
-# Загрузка типов отношений сущностей
+# Loading entity relationship types
 
-description: Загрузка типов отношений сущностей
+description: Loading entity relationship types
 schedule_interval: '5 2 * * *'
 tags:
   - SLA3
@@ -15,14 +15,14 @@ factory: YAML
 tasks:
 
   - task_id: dump_relations_types
-    description: Загрузить типы
+    description: Load relations types
     type: data_detective_airflow.operators.PythonDump
     python_callable: dump_relations_types
     op_kwargs:
       file_name: relations_type.md
 
   - task_id: upload_tuning_relations_type
-    description: Заливаем в relations_type
+    description: Upload to relations_type
     type: data_detective_airflow.operators.PgSCD1
     source:
     - dump_relations_types
