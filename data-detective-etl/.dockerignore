@@ -1,0 +1,12 @@
+.dockerignore
+.editorconfig
+.DS_Store
+*.md
+
+env/
+venv/
+.venv
+logs/
+.idea/
+.git
+.pytest_cache

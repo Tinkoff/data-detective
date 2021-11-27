@@ -1,0 +1,91 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"description",
+                "type":"string"
+            },
+            {
+                "name":"loaded_by",
+                "type":"string"
+            },
+            {
+                "name":"name",
+                "type":"string"
+            },
+            {
+                "name":"type",
+                "type":"string"
+            }
+        ],
+        "pandas_version":"0.20.0"
+    },
+    "data":[
+        {
+            "description":"Logical Model DWH",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Logical Model",
+            "type":"SYSTEM"
+        },
+        {
+            "description":"Oracle databases from replication",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Oracle",
+            "type":"SYSTEM"
+        },
+        {
+            "description":"Postgres databases from replication",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Postgres",
+            "type":"SYSTEM"
+        },
+        {
+            "description":"Physical column of physical table",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Column",
+            "type":"TYPE"
+        },
+        {
+            "description":"Database from DBMS",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Database",
+            "type":"TYPE"
+        },
+        {
+            "description":"ETL job, pipeline, DAG or workflow",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Job",
+            "type":"TYPE"
+        },
+        {
+            "description":"Column in logical table",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Logical Column",
+            "type":"TYPE"
+        },
+        {
+            "description":"Logical schema in model",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Logical Schema",
+            "type":"TYPE"
+        },
+        {
+            "description":"Logical table in model",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Logical Table",
+            "type":"TYPE"
+        },
+        {
+            "description":"Physical schema in database",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Schema",
+            "type":"TYPE"
+        },
+        {
+            "description":"Physical table or view in database",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Table",
+            "type":"TYPE"
+        }
+    ]
+}

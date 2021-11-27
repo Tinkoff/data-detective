@@ -1,0 +1,36 @@
+description: Загрузка цепочки связей от root до сущности
+schedule_interval: 0 */2 * * *
+tags:
+  - tuning
+default_args:
+  owner: airflow
+  result_type: pickle
+  retries: 1
+  work_type: file
+factory: YAML
+tasks:
+
+  - task_id: dump_relation_contains
+    description: Загрузить связи типа Contains
+    type: data_detective_airflow.operators.DBDump
+    sql: /code/dump_relation_contains.sql
+    conn_id: pg
+
+  - task_id: transform_breadcrumb
+    description: Сформировать цепочку связей
+    type: data_detective_airflow.operators.PyTransform
+    source:
+      - dump_relation_contains
+    transformer_callable: transform_breadcrumb
+
+  - task_id: upload_tuning_breadcrumb
+    description: Загрузить сущности в tuning.breadcrumb
+    type: data_detective_airflow.operators.PgSingleTargetLoader
+    chunk_row_number: 30000
+    source:
+      - transform_breadcrumb
+    conn_id: pg
+    table_name: tuning.breadcrumb
+    key:
+      - urn
+    filter_callable: data_detective_airflow.operators.sinks.pg_single_target_utils.filter_for_breadcrumb

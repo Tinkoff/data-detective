@@ -1,0 +1,46 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"destination",
+                "type":"string"
+            },
+            {
+                "name":"entity_name",
+                "type":"string"
+            },
+            {
+                "name":"source",
+                "type":"string"
+            }
+        ],
+        "pandas_version":"0.20.0"
+    },
+    "data":[
+        {
+            "destination":"urn:tree_node:root:data_detective:dags",
+            "entity_name":"Data Detective",
+            "source":"urn:tree_node:root:data_detective"
+        },
+        {
+            "destination":"urn:tree_node:root:data_detective:physical_model",
+            "entity_name":"Data Detective",
+            "source":"urn:tree_node:root:data_detective"
+        },
+        {
+            "destination":"urn:tree_node:root:data_detective:logical_model",
+            "entity_name":"Data Detective",
+            "source":"urn:tree_node:root:data_detective"
+        },
+        {
+            "destination":"urn:tree_node:root:data_detective",
+            "entity_name":"root",
+            "source":"urn:tree_node:root"
+        },
+        {
+            "destination":"urn:tree_node:root:documentation",
+            "entity_name":"root",
+            "source":"urn:tree_node:root"
+        }
+    ]
+}

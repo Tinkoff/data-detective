@@ -1,0 +1,8 @@
+description: Чистка не удалившихся ворков
+schedule_interval: '5 3 * * *'
+tags:
+  - system
+default_args:
+  owner: airflow
+  retries: 1
+factory: Python

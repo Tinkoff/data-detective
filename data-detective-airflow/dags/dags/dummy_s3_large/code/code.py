@@ -8,9 +8,9 @@ from data_detective_airflow.operators import PyTransform, PythonDump
 
 
 def gen_dataset(_context: dict, **_kwargs: dict) -> DataFrame:
-    """Создание датасета из одной колонки
-    :param _context: контекст выполнения
-    :param _kwargs: параметры
+    """Creating a dataset from a single column
+    :param _context: Context of execution
+    :param _kwargs: Params
     :return: ['id', 'data1', 'data2', 'data3']
     """
     rec_count = 1_000
@@ -21,8 +21,8 @@ def gen_dataset(_context: dict, **_kwargs: dict) -> DataFrame:
 
 
 def target(context: dict, df: DataFrame) -> DataFrame:
-    """Вывод в лог
-    :param context: контекст выполнения
+    """Logging
+    :param context: Context of execution
     :param df:
     :return: ['double', 'data']
     """

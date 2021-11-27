@@ -2,9 +2,9 @@ from pandas import DataFrame
 
 
 def decode_response(_context: dict, s3_dump: DataFrame) -> DataFrame:
-    """Раскодировать DataFrame
+    """Decode the DataFrame
 
-    @param _context: Контекст
+    @param _context: Context
     @param s3_dump: ['key', 'lastmodified', 'etag', 'size', 'storageclass', 'owner', 'response']
     @return: ['test', 'test1']]
     """
@@ -15,9 +15,9 @@ def decode_response(_context: dict, s3_dump: DataFrame) -> DataFrame:
 
 
 def rename_path(_context: dict, s3_dump: DataFrame) -> DataFrame:
-    """Изменить путь
+    """Change path
 
-    @param _context: Контекст
+    @param _context: Context
     @param s3_dump: ['key', 'lastmodified', 'etag', 'size', 'storageclass', 'owner', 'response']
     @return: ['path', 'response']
     """

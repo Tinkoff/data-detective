@@ -15,19 +15,19 @@ tags:
 - dummy_elt_etl
 tasks:
 - task_id: elt
-  description: ELT преобразование с сохранием в PG
+  description: ETL conversion with saving to Postgres
   obj_type: table
   source: []
   sql: /code/test1.sql
   type: data_detective_airflow.operators.transformers.PgSQL
 - task_id: etl
   type: data_detective_airflow.operators.transformers.PyTransform
-  description: ETL преобразование с сохранием в PG
+  description: ETL conversion with saving to Postgres
   source:
   - elt
   transformer_callable: etl
 - task_id: sink
-  description: Записать результат
+  description: Write the result
   type: data_detective_airflow.operators.sinks.PgSCD1
   key:
   - test

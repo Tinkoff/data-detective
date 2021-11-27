@@ -1,4 +1,4 @@
-description: Пример TPythonDag c S3Work и SFTPWork с выгрузкой в Postgres
+description: Example TPythonDag with S3Work and SFTPWork with Postgres
 tags:
   - dummy
   - all_works

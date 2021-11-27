@@ -14,7 +14,7 @@ def put_data_to_df(_context, data: bytes) -> pandas.DataFrame:
 def fill_dag(tdag: TDag):
     TSFTPOperator(
         task_id='test1',
-        description='Забрать /opt/common.sh',
+        description='Get /opt/common.sh',
         conn_id='ssh_service',
         remote_filepath='/opt/common.sh',
         dag=tdag

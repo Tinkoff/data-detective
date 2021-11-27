@@ -1,4 +1,4 @@
-description: Пример TPythonDag c TSPFTOperator
+description: TPythonDag with TSPFTOperator example
 schedule_interval:
 factory: Python
 default_args:
