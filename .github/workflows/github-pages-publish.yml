@@ -2,8 +2,8 @@ name: GitHub Pages
 
 on:
   push:
-    branches:
-      - master
+#    branches:
+#      - master
     paths:
       - '.github/workflows/github-pages-publish.yml'
       - 'tools/doc-site/**'
