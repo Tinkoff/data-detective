@@ -82,7 +82,7 @@
             "entity_name_short":null,
             "entity_type":"TREE_NODE",
             "json_data":{
-                "info":"This section contains all the available information on Data Detective\n"
+                "info":"This section contains all available information about Data Detective\n"
             },
             "loaded_by":"dd_load_dds_root",
             "search_data":"urn:tree_node:root:data_detective data detective",
