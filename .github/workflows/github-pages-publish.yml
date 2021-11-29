@@ -69,7 +69,6 @@ jobs:
         working-directory: data-detective-etl
         run: |-
             poetry install --no-dev
-            pipx install 'pydoc-markdown>=4.0.0,<5.0.0'
             pydoc-markdown
 
       - name: Setup Node
