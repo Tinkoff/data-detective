@@ -17,17 +17,17 @@ def _clear_and_lower_parts(parts: Iterable[str], regex: Pattern = COMMON_REG) ->
 
 
 def get_etl_job(project: str, system: str, name: str) -> str:
-    """Вернуть URN ETL job'а
-    :param project: Название проекта: DWH, oracle, postgres
-    :param system: название ETL инструмента, например, sasdi
-    :param name: название etl job'а например DDS LOAD PARTY
+    """Return the URN of ETL job
+    :param project: Name of the project: DWH, oracle, postgres
+    :param system: ETL tool name, e.g. sasdi
+    :param name: ETL job's name, e.g. DDS LOAD PARTY
     :return: urn
     """
     return f'urn:job:{_clear_and_lower_parts(locals().values())}'
 
 
 def get_database(db_type: str, location: str, database: str) -> str:
-    """Вернуть URN физической базы данных
+    """Return the URN of the database
     :param db_type: DB type - postgres, mysql, greenplum, logical_model
     :param location: address, url, uri
     :param database: database name
@@ -37,7 +37,7 @@ def get_database(db_type: str, location: str, database: str) -> str:
 
 
 def get_schema(db_type: str, location: str, database: str, schema: str) -> str:
-    """Вернуть URN физической схемы базы данных
+    """Return the URN of the database schema
 
     :param db_type: DB type - postgres, mysql, greenplum, logical_model
     :param location: address, url, uri
@@ -49,16 +49,16 @@ def get_schema(db_type: str, location: str, database: str, schema: str) -> str:
 
 
 def split_schema(urn: str) -> tuple[str, str, str, str]:
-    """Разложить URN физической схемы базы данных
-    :param urn: URN схемы
-    :return: tuple из требуемых для URN параметров
+    """Split the URN of the database schema
+    :param urn: Schema URN
+    :return: tuple from parameters required for URN
     """
     _, _, db_type, location, database, schema = urn.split(':')
     return db_type, location, database, schema
 
 
 def get_table(db_type: str, location: str, database: str, schema: str, table: str) -> str:
-    """Вернуть URN физической таблицы базы данных
+    """Return the URN of the database table
 
     :param db_type: DB type - postgres, mysql, greenplum, logical_model
     :param location: address, url, uri
@@ -71,17 +71,17 @@ def get_table(db_type: str, location: str, database: str, schema: str, table: st
 
 
 def split_table(urn: str) -> tuple[str, str, str, str, str]:
-    """Разложить URN физической таблицы базы данных
+    """Split the URN of the database table
 
-    :param urn: URN таблицы
-    :return: tuple из требуемых для URN параметров
+    :param urn: Database table URN
+    :return: tuple from parameters required for URN
     """
     _, _, db_type, location, database, schema, table = urn.split(':')
     return db_type, location, database, schema, table
 
 
 def get_column(db_type: str, location: str, database: str, schema: str, table: str, column: str) -> str:
-    """Вернуть URN физической колонки таблицы базы данных
+    """Return the URN of the database table column
 
     :param db_type: DB type - postgres, mysql, greenplum, logical_model
     :param location: address, url, uri
@@ -89,23 +89,23 @@ def get_column(db_type: str, location: str, database: str, schema: str, table: s
     :param schema: schema name
     :param table: table name, example - entity
     :param column: column name, example - json_data
-    :return: urn, например urn:schema:postgres:pg:airflow:dds:entity:json_data
+    :return: urn, example: urn:schema:postgres:pg:airflow:dds:entity:json_data
     """
     return f'urn:schema:{_clear_and_lower_parts(locals().values())}'
 
 
 def split_column(urn: str) -> tuple[str, str, str, str, str]:
-    """Разложить URN физического поля базы данных
-    :param urn: URN поля
-    :return: tuple из требуемых для URN параметров
+    """Split the URN of the database column
+    :param urn: Column URN
+    :return: tuple from parameters required for URN
     """
     _, _, _, project, system, schema, table, column = urn.split(':')
     return project, system, schema, table, column
 
 
 def get_tree_node(nodes: Sequence[str]) -> str:
-    """Вернуть URN tree_node
-    :param nodes: Название узла иерархии
+    """Return URN tree_node
+    :param nodes: Hierarchy node name
     :return:
     """
     return f'urn:tree_node:{_clear_and_lower_parts(nodes)}'

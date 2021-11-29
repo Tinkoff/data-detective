@@ -1,10 +1,10 @@
 [run]
-# Включить/выключить отслеживание частичных ветвей:
+# Turn on/off tracking of partial branches:
 branch = True
 
-# Список паттернов для исключения файлов и директорий из измерения или отчета:
+# List of patterns for excluding files and directories from reports:
 omit =
-    # Разработческие файлы и директории:
+    # Files and directories only for development:
     *venv\*
     */.venv/*
     */.pycharm_helpers/*
@@ -12,28 +12,28 @@ omit =
     /usr/share/python3/*
 
 [report]
-# Не включать в отчет файлы со 100% показателем coverage:
+# Exclude files with 100% coverage in the report:
 skip_covered = True
 
-# Включить/выключить отображение номеров невыполненных строк (колонка Missing) в отчете:
+# Enable/disable displaying of numbers of outstanding lines (Missing column) in the report:
 show_missing = True
 
-# Минимально допустимый общий(TOTAL) процент покрытия:
+# The minimum allowable (TOTAL) percentage of coverage:
 fail_under = 0
 
-# Cписок паттернов для исключения строк (если ветвь, то весь блок) из отчета:
+# List of patterns for excluding lines (the entire block if a branch) from the report:
 exclude_lines =
-    # Стандартный паттерн
+    # Standard pattern
     pragma: no cover
 
-# Cписок регулярных выражений.
-# Любая совпадающая строка никогда не будет иденцифирована как 'частичная ветвь' (см branch):
+# Regular expression list.
+# Any matching line will never be identified as a 'partial branch' (see branch):
 partial_branches =
-    # Стандартный паттерн
+    # Standard pattern
     pragma: no branch
 
-    # Паттерны, к строкам которым нельзя применить стандартный паттерн:
+    # Patterns to which the standard pattern cannot be applied:
     assert
 
-# Сортировать содержимое отчета по показателю этой колонки:
+# Sort the contents of the report by the indicator of this column:
 sort = Cover

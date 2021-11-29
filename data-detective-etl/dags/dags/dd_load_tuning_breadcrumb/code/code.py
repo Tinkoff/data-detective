@@ -4,8 +4,8 @@ from pandas import DataFrame, concat
 
 
 def transform_breadcrumb(_context: dict, df: DataFrame) -> DataFrame:
-    """Сформировать цепочку связей
-    :param _context: контекст выполнения
+    """Create transform breadcrumbs
+    :param _context: Execution context
     :param df: ['destination', 'source', 'entity_name']
     :return: DataFrame ['urn', 'breadcrumb_urn', 'breadcrumb_entity']
     """
