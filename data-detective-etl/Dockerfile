@@ -53,7 +53,7 @@ EXPOSE 22
 
 USER airflow
 
-# Don't put graphviz in the product image, and without it don't put pygraphviz
+# The python module pygraphviz (only needed at the development stage) requires the graphviz system module, so it is not added to the production image.
 # Install via pip so as not to affect pyproject.toml
 RUN pip install --no-cache-dir pygraphviz==1.7
 

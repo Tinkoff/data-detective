@@ -6,7 +6,10 @@ Filling the Data Detective repository with demo data.
 
 ## Development
 
-The development environment runs in Docker containers on the development machine and connects via the ssh remote interpreter to PyCharm.
+The development environment runs in Docker containers on the developer machine.
+It is possible to run commands inside a container.
+You can connect via the `docker-compose exec app bash` command or ssh to port 9922 on localhost. 
+An ssh connection allows running tests from PyCharm Professional via an ssh interpreter.
 
 Before starting docker-compose, generate a `.env` file in the same way as` .env.example`.
 ```shell
