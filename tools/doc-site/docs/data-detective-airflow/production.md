@@ -11,8 +11,8 @@ import sys
 import argcomplete
 from airflow.cli.cli_parser import get_parser
 
-from mg_af.constants import DAG_ID_KEY
-from mg_af.dag_generator import dag_generator
+from data_detective_airflow.constants import DAG_ID_KEY
+from data_detective_airflow.dag_generator import dag_generator
 
 dag_id = None
 if sys.argv[0].endswith('airflow'):

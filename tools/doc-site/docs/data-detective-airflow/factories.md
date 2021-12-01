@@ -30,7 +30,7 @@ It has the following parameters:
 
 Example:
 ```yaml
-description: DAG загрузки метаданных Postgres
+description: DAG for uploading metadata to Postgres
 tags:
   - postgres
 schedule_interval: '@once'
@@ -86,7 +86,7 @@ It is important that the task parameters in the YAML file contain a complete lis
 
 Example:
 ```yaml
-description: Тестовый DAG
+description: Тest DAG
 schedule_interval: '*/5 * * * *'
 result_type: Pickle
 default_args:
@@ -99,13 +99,13 @@ factory: YAML
 tasks:
 
   - task_id: df_now
-    description: Запрос к базе данных
+    description: Database Query
     type: DbDump
     conn_id:  pg
     sql: 'select now() as value;'
 
   - task_id: append_all
-    description: Объединение предыдущего результата с самим собой
+    description: Merging the previous result with itself
     type: Append
     source:
       - df_now
