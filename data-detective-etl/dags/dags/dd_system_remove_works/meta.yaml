@@ -1,4 +1,4 @@
-description: Чистка не удалившихся ворков
+description: Clean of unremoved works
 schedule_interval: '5 3 * * *'
 tags:
   - system

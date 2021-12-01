@@ -2,9 +2,9 @@ import pandas
 
 
 def dump_relations_types(context: dict, file_name: str) -> pandas.DataFrame:
-    """Получить сущности tree_node из root_nodes.yaml
-    :param context: контекст выполнения
-    :param file_name: файл
+    """Get entities for tree_node from root_nodes.yaml
+    :param context: Execution context
+    :param file_name: File name
     :return: DataFrame ['source_type', 'target_type', 'attribute_type', 'relation_type',
                         'source_group_name', 'target_group_name', 'attribute_group_name',
                         'loaded_by']

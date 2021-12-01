@@ -25,7 +25,7 @@ RUN pip install --no-cache-dir "poetry==${POETRY_VERSION}" \
     && poetry install --no-interaction --no-ansi \
     && rm -rf .cache/pypoetry
 
-# Кастомные connections
+# Custom connections
 COPY /docker/init-connections.sh /docker/entrypoint.sh $AIRFLOW_HOME/
 
 EXPOSE 8080 5555
@@ -53,8 +53,8 @@ EXPOSE 22
 
 USER airflow
 
-# В продуктовый образ не ставим graphviz, а без него не ставится pygraphviz
-# Устанавливаем через pip, чтобы не влиять на pyproject.toml
+# The python module pygraphviz (only needed at the development stage) requires the graphviz system module, so it is not added to the production image.
+# Install via pip so as not to affect pyproject.toml
 RUN pip install --no-cache-dir pygraphviz==1.7
 
 RUN mkdir $AIRFLOW_HOME/dags \

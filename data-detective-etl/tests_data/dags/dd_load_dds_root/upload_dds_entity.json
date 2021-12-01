@@ -62,6 +62,10 @@
                 "type":"string"
             },
             {
+                "name":"tags",
+                "type":"string"
+            },
+            {
                 "name":"urn",
                 "type":"string"
             }
@@ -78,7 +82,7 @@
             "htmls":null,
             "info":null,
             "json_data":{
-                "info":"Документация сервиса\n"
+                "info":"Service documentation\n"
             },
             "json_data_ui":null,
             "json_system":null,
@@ -87,6 +91,7 @@
             "notifications":null,
             "search_data":"urn:tree_node:root:documentation documentation",
             "tables":null,
+            "tags":null,
             "urn":"urn:tree_node:root:documentation"
         },
         {
@@ -98,7 +103,7 @@
             "htmls":null,
             "info":null,
             "json_data":{
-                "info":"Описание таблиц в сервисе Data Detective\n"
+                "info":"Description of tables in the Data Detective service\n"
             },
             "json_data_ui":null,
             "json_system":null,
@@ -107,6 +112,7 @@
             "notifications":null,
             "search_data":"urn:tree_node:root:data_detective:logical_model logical model",
             "tables":null,
+            "tags":null,
             "urn":"urn:tree_node:root:data_detective:logical_model"
         },
         {
@@ -118,7 +124,7 @@
             "htmls":null,
             "info":null,
             "json_data":{
-                "info":"Раздел содержит техническую информацию по таблицам Data Detective"
+                "info":"This section contains technical information on Data Detective tables"
             },
             "json_data_ui":null,
             "json_system":null,
@@ -127,6 +133,7 @@
             "notifications":null,
             "search_data":"urn:tree_node:root:data_detective:physical_model physical model",
             "tables":null,
+            "tags":null,
             "urn":"urn:tree_node:root:data_detective:physical_model"
         },
         {
@@ -138,7 +145,7 @@
             "htmls":null,
             "info":null,
             "json_data":{
-                "info":"Раздел содержит информацию по всем ETL процессам Data Platform"
+                "info":"This section contains information on all ETL processes in the Data Platform"
             },
             "json_data_ui":null,
             "json_system":null,
@@ -147,6 +154,7 @@
             "notifications":null,
             "search_data":"urn:tree_node:root:data_detective:dags dags",
             "tables":null,
+            "tags":null,
             "urn":"urn:tree_node:root:data_detective:dags"
         },
         {
@@ -158,7 +166,7 @@
             "htmls":null,
             "info":null,
             "json_data":{
-                "info":"Раздел содержит всю доступную информацию по Data Detective\n"
+                "info":"This section contains all available information about Data Detective\n"
             },
             "json_data_ui":null,
             "json_system":null,
@@ -167,6 +175,7 @@
             "notifications":null,
             "search_data":"urn:tree_node:root:data_detective data detective",
             "tables":null,
+            "tags":null,
             "urn":"urn:tree_node:root:data_detective"
         },
         {
@@ -187,6 +196,7 @@
             "notifications":null,
             "search_data":"urn:tree_node:root root",
             "tables":null,
+            "tags":null,
             "urn":"urn:tree_node:root"
         }
     ]

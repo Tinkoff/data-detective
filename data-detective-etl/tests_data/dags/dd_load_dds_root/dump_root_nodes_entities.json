@@ -38,7 +38,7 @@
             "entity_name_short":null,
             "entity_type":"TREE_NODE",
             "json_data":{
-                "info":"Документация сервиса\n"
+                "info":"Service documentation\n"
             },
             "loaded_by":"dd_load_dds_root",
             "search_data":"urn:tree_node:root:documentation documentation",
@@ -49,7 +49,7 @@
             "entity_name_short":null,
             "entity_type":"TREE_NODE",
             "json_data":{
-                "info":"Описание таблиц в сервисе Data Detective\n"
+                "info":"Description of tables in the Data Detective service\n"
             },
             "loaded_by":"dd_load_dds_root",
             "search_data":"urn:tree_node:root:data_detective:logical_model logical model",
@@ -60,7 +60,7 @@
             "entity_name_short":null,
             "entity_type":"TREE_NODE",
             "json_data":{
-                "info":"Раздел содержит техническую информацию по таблицам Data Detective"
+                "info":"This section contains technical information on Data Detective tables"
             },
             "loaded_by":"dd_load_dds_root",
             "search_data":"urn:tree_node:root:data_detective:physical_model physical model",
@@ -71,7 +71,7 @@
             "entity_name_short":null,
             "entity_type":"TREE_NODE",
             "json_data":{
-                "info":"Раздел содержит информацию по всем ETL процессам Data Platform"
+                "info":"This section contains information on all ETL processes in the Data Platform"
             },
             "loaded_by":"dd_load_dds_root",
             "search_data":"urn:tree_node:root:data_detective:dags dags",
@@ -82,7 +82,7 @@
             "entity_name_short":null,
             "entity_type":"TREE_NODE",
             "json_data":{
-                "info":"Раздел содержит всю доступную информацию по Data Detective\n"
+                "info":"This section contains all available information about Data Detective\n"
             },
             "loaded_by":"dd_load_dds_root",
             "search_data":"urn:tree_node:root:data_detective data detective",

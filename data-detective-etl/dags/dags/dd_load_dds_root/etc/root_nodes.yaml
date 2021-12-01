@@ -4,19 +4,19 @@ root:
 
     Documentation:
       info: >
-        Документация сервиса
+        Service documentation
 
     Data Detective:
       info: >
-        Раздел содержит всю доступную информацию по Data Detective
+        This section contains all available information about Data Detective
       contains:
 
         Logical Model:
           info: >
-            Описание таблиц в сервисе Data Detective
+            Description of tables in the Data Detective service
 
         Physical Model:
-          info: Раздел содержит техническую информацию по таблицам Data Detective
+          info: This section contains technical information on Data Detective tables
 
         DAGs:
-          info: Раздел содержит информацию по всем ETL процессам Data Platform
+          info: This section contains information on all ETL processes in the Data Platform

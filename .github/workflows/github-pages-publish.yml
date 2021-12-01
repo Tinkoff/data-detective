@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         python-version: [ 3.9 ]
-        poetry-version: [ 1.1.8 ]
+        poetry-version: [ 1.1.12 ]
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
 
@@ -36,22 +36,39 @@ jobs:
             cd data-detective-airflow
             poetry config virtualenvs.in-project true
 
-      - name: Set up cache
+      - name: Set up cache for airflow
         uses: actions/cache@v2
-        id: cache
+        id: cache-airflow
         with:
           path: data-detective-airflow/.venv
           key: data-detective-airflow-${{ runner.os }}-${{ hashFiles('**/data-detective-airflow/poetry.lock') }}
 
-      - name: Ensure cache is healthy
-        if: steps.cache.outputs.cache-hit == 'true'
+      - name: Ensure airflow cache is healthy
+        if: steps.cache-airflow.outputs.cache-hit == 'true'
         run: poetry run pip --version >/dev/null 2>&1 || rm -rf data-detective-airflow/.venv
 
-      - name: Install Dependencies and parse Docstrings
+      - name: Install Dependencies and parse Docstrings for data-detective-airflow
+        working-directory: data-detective-airflow
         run: |-
-            cd data-detective-airflow
             poetry install --no-dev
             pipx install 'pydoc-markdown>=4.0.0,<5.0.0'
+            pydoc-markdown
+
+      - name: Set up cache for etl
+        uses: actions/cache@v2
+        id: cache-etl
+        with:
+          path: data-detective-etl/.venv
+          key: data-detective-etl-${{ runner.os }}-${{ hashFiles('**/data-detective-etl/poetry.lock') }}
+
+      - name: Ensure etl cache is healthy
+        if: steps.cache-etl.outputs.cache-hit == 'true'
+        run: poetry run pip --version >/dev/null 2>&1 || rm -rf data-detective-etl/.venv
+
+      - name: Install Dependencies and parse Docstrings for data-detective-etl
+        working-directory: data-detective-etl
+        run: |-
+            poetry install --no-dev
             pydoc-markdown
 
       - name: Setup Node

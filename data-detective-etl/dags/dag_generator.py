@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Автоматический генератор DAGs из yaml-файлов в DAGS_FOLDER"""
+"""Automatic DAGs generator from yaml files from DAGS_FOLDER"""
 
 import logging
 import sys

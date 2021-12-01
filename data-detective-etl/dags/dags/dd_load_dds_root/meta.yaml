@@ -1,4 +1,4 @@
-description: Загрузка корневых сущностей
+description: Loading root entities
 schedule_interval: '5 1 * * *'
 tags:
   - tuning
@@ -11,25 +11,25 @@ factory: YAML
 tasks:
 
   - task_id: dump_root_nodes_entities
-    description: Создать tree_nod'ы
+    description: Generate tree nodes
     type: data_detective_airflow.operators.PythonDump
     python_callable: dump_root_nodes_entities
     op_kwargs:
       file_name: root_nodes.yaml
 
   - task_id: dump_root_nodes_relations
-    description: Создать связи между tree_nod'ами
+    description: Create relations between tree nodes
     type: data_detective_airflow.operators.PythonDump
     python_callable: dump_root_nodes_relations
     op_kwargs:
       file_name: root_nodes.yaml
 
-  - description: Заливаем в dds.entity
+  - description: Upload to dds.entity
     type: data_detective_airflow.operators.upload_mg_entity
     sources:
     - dump_root_nodes_entities
 
-  - description: Заливаем в dds.relations
+  - description: Upload to dds.relations
     type: data_detective_airflow.operators.upload_mg_relation
     sources:
     - dump_root_nodes_relations

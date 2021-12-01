@@ -9,9 +9,9 @@ from common.utilities.entity_enums import EntityTypes, RelationTypes
 
 
 def walk_relations(nodes: dict, source: tuple[str] = None) -> dict:
-    """Обход root_nodes с выводом отношений
-    :param nodes: Вложенный иерархичный словарь tree_node
-    :param source: список родителей для tree_node
+    """Observe root_nodes with outputting relationships
+    :param nodes: Nested hierarchical dictionary of tree_node
+    :param source: List of parents for tree_node
     :return: Dict
     """
     for key, value in nodes.items():
@@ -22,9 +22,9 @@ def walk_relations(nodes: dict, source: tuple[str] = None) -> dict:
 
 
 def walk_entities(nodes: dict, source: tuple[str] = None) -> dict:
-    """Обход root_nodes с выводом сущностей и их атрибутов
-    :param nodes: Вложенный иерархичный словарь tree_node
-    :param source: список родителей для tree_node
+    """Observe root_nodes with listing entities and their attributes
+    :param nodes: Nested hierarchical dictionary of tree_node
+    :param source: List of parents for tree_node
     :return: Dict
     """
     for key, value in nodes.items():
@@ -38,9 +38,9 @@ def walk_entities(nodes: dict, source: tuple[str] = None) -> dict:
 
 
 def dump_root_nodes_entities(context: dict, file_name: str) -> DataFrame:
-    """Получить сущности tree_node из root_nodes.yaml
-    :param context: контекст выполнения
-    :param file_name: файл
+    """Get entities for tree_node from root_nodes.yaml
+    :param context: Execution context
+    :param file_name: File name
     :return: DataFrame
     """
     raw = yaml.safe_load(StringIO(Path(f'{context["dag"].etc_dir}/{file_name}').read_text()))
@@ -59,9 +59,9 @@ def dump_root_nodes_entities(context: dict, file_name: str) -> DataFrame:
 
 
 def dump_root_nodes_relations(context: dict, file_name: str) -> DataFrame:
-    """Получить связи между tree_node из root_nodes.yaml
-    :param context: контекст выполнения
-    :param file_name: файл
+    """Get relations between tree_node from root_nodes.yaml
+    :param context: Execution context
+    :param file_name: File name
     :return: DataFrame
     """
     raw = yaml.safe_load(StringIO(Path(f'{context["dag"].etc_dir}/{file_name}').read_text()))
