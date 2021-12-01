@@ -1,5 +1,6 @@
 ---
-sidebar_position: 5
+id: quickstart-airflow
+title: Quickstart
 ---
 
 # Running the dev environment using docker-compose
