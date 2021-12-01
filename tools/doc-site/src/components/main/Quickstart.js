@@ -1,4 +1,5 @@
 import React from 'react';
+import MainButton from './Button/MainButton';
 
 export default function Quickstart() {
   return (
@@ -11,7 +12,7 @@ export default function Quickstart() {
 
         </p>
         <div className="text--center">
-          Go to quickstart documentation
+          <MainButton text="Go to quickstart documentation!" link="/docs/data-detective-airflow/quickstart-airflow"/>
         </div>
       </div>
     </div>

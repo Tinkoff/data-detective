@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+id: concepts
 ---
 
 # Basic framework concepts

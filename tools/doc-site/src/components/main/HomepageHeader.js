@@ -17,7 +17,7 @@ export function HomepageHeader() {
             to="/docs/welcome">
             Welcome to Data Detective documenation!
           </Link> */}
-          <MainButton />
+          <MainButton text="Welcome to Data Detective documentation!" link="/docs/welcome"/>
         </div>
       </div>
     </header>
