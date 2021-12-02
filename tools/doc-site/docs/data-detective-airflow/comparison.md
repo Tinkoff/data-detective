@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+id: comparison
 ---
 
 # Comparison with other frameworks

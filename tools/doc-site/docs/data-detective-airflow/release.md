@@ -1,3 +1,7 @@
+---
+id: how-to-release
+---
+
 # How to release data-detective-airflow
 
 Create a release with tag like "data-detective-airflow/*" in repo.

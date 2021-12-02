@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+id: creating-operator
 ---
 
 # Creating a new operator
