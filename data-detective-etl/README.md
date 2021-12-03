@@ -6,7 +6,7 @@ Filling the Data Detective repository with demo data.
 
 ## Development
 
-The development environment runs in Docker containers on the developer machine.
+The development environment runs in Docker containers on the local machine.
 
 [Quickstart](ttps://tinkoffcreditsystems.github.io/data-detective/docs/data-detective-etl/quickstart-etl) is available in the official documentation.
 

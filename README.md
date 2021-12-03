@@ -1,4 +1,4 @@
-# Tinkoff Data Detective
+# Data Detective
 
 ### Official homepage: [Data Detective](https://tinkoffcreditsystems.github.io/data-detective/)
 
