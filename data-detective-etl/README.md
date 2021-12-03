@@ -7,17 +7,9 @@ Filling the Data Detective repository with demo data.
 ## Development
 
 The development environment runs in Docker containers on the developer machine.
-It is possible to run commands inside a container.
-You can connect via the `docker-compose exec app bash` command or ssh to port 9922 on localhost. 
-An ssh connection allows running tests from PyCharm Professional via an ssh interpreter.
 
-Before starting docker-compose, generate a `.env` file in the same way as` .env.example`.
-```shell
-cd data-detective-etl
-cp .env.example .env
-randstr=`shuf -zer -n32  {A..Z} {a..z} {0..9} | tr -d '\0'`
-echo "AIRFLOW__WEBSERVER__SECRET_KEY=${randstr}" >> .env
-```
+[Quickstart](ttps://tinkoffcreditsystems.github.io/data-detective/docs/data-detective-etl/quickstart-etl) is available in the official documentation.
+
 * Run the sandbox with docker-compose `docker-compose up -d`
 * Run tests: `make tests`
 * Run linters: `make lint`
