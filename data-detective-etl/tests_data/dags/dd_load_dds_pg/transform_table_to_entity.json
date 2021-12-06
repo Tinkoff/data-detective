@@ -14,10 +14,6 @@
                 "type":"string"
             },
             {
-                "name":"info",
-                "type":"string"
-            },
-            {
                 "name":"json_data",
                 "type":"string"
             },
@@ -42,149 +38,9 @@
     },
     "data":[
         {
-            "entity_name":"dds",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":null,
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:dds dds",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Owner",
-                            "Value":"airflow"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:dds"
-        },
-        {
-            "entity_name":"mart",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":null,
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:mart mart",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Owner",
-                            "Value":"airflow"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:mart"
-        },
-        {
-            "entity_name":"public",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":"standard public schema",
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":[
-                    "airflow=UC\/airflow",
-                    "=UC\/airflow"
-                ]
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:public public",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Owner",
-                            "Value":"airflow"
-                        },
-                        {
-                            "Key":"Access privileges",
-                            "Value":"['airflow=UC\/airflow', '=UC\/airflow']"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:public"
-        },
-        {
-            "entity_name":"tuning",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":null,
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning tuning",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Owner",
-                            "Value":"airflow"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning"
-        },
-        {
             "entity_name":"dds.entity",
             "entity_name_short":"entity",
             "entity_type":"TABLE",
-            "info":null,
             "json_data":{
                 "estimated_rows":0,
                 "table_size":8192,
@@ -226,7 +82,6 @@
             "entity_name":"dds.relation",
             "entity_name_short":"relation",
             "entity_type":"TABLE",
-            "info":null,
             "json_data":{
                 "estimated_rows":0,
                 "table_size":8192,
@@ -268,7 +123,6 @@
             "entity_name":"dds.sample",
             "entity_name_short":"sample",
             "entity_type":"TABLE",
-            "info":null,
             "json_data":{
                 "estimated_rows":0,
                 "table_size":8192,
@@ -310,7 +164,6 @@
             "entity_name":"mart.entity",
             "entity_name_short":"entity",
             "entity_type":"TABLE",
-            "info":null,
             "json_data":{
                 "estimated_rows":0,
                 "table_size":8192,
@@ -352,7 +205,6 @@
             "entity_name":"tuning.breadcrumb",
             "entity_name_short":"breadcrumb",
             "entity_type":"TABLE",
-            "info":null,
             "json_data":{
                 "estimated_rows":0,
                 "table_size":8192,
@@ -394,7 +246,6 @@
             "entity_name":"tuning.relations_type",
             "entity_name_short":"relations_type",
             "entity_type":"TABLE",
-            "info":null,
             "json_data":{
                 "estimated_rows":0,
                 "table_size":8192,
@@ -436,7 +287,6 @@
             "entity_name":"tuning.search_help",
             "entity_name_short":"search_help",
             "entity_type":"TABLE",
-            "info":null,
             "json_data":{
                 "estimated_rows":0,
                 "table_size":8192,

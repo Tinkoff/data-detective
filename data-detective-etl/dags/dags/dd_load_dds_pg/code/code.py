@@ -7,7 +7,8 @@ from data_detective_airflow.operators import DBDump, PgSingleTargetLoader, PyTra
 from data_detective_airflow.utils.petl_utils import appender_petl2pandas
 
 from common.builders import JsonSystemBuilder, TableInfoBuilder, TableInfoDescriptionType
-from common.urn import get_schema
+from common.urn import get_schema, get_table
+from common.utils import get_readable_size_bytes
 from common.utilities.entity_enums import (
     ENTITY_CORE_FIELDS,
     EntityTypes, EntityFields,
@@ -52,6 +53,53 @@ def transform_schema_to_entity(_context: dict, schemas: DataFrame) -> tuple[tupl
               .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
               .addfield(EntityFields.SEARCH_DATA,
                         lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
+              .cut(list(ENTITY_CORE_FIELDS)
+                   + [EntityFields.TABLES, EntityFields.JSON_SYSTEM, EntityFields.INFO])
+              .distinct(key=EntityFields.URN)
+              )
+    return result.tupleoftuples()
+
+
+def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]:
+    """
+
+    """
+    json_system_builder = JsonSystemBuilder(
+        system_for_search=SystemForSearch.POSTGRES.name,
+        type_for_search=TypeForSearch.TABLE.name,
+        card_type=CardType.TABLE.name,
+    )
+
+    table_size_description = TableInfoDescriptionType(
+        keys={
+            'estimated_rows': 'Rows',
+            'table_size': 'Data size',
+            'full_table_size': 'Total relation size',
+        },
+        header='General',
+        display_headers='0',
+        orientation='vertical',
+        serializers={
+            'table_size': get_readable_size_bytes,
+            'full_table_size': get_readable_size_bytes,
+        },
+    )
+    table_size_builder = TableInfoBuilder(table_size_description)
+
+    result = (petl.fromdataframe(tables)
+              .addfield(EntityFields.URN,
+                        lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']))
+              .addfield(EntityFields.ENTITY_NAME, lambda row: f"{row['schema_name']}.{row['table_name']}")
+              .rename('table_name', EntityFields.ENTITY_NAME_SHORT)
+              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.TABLE)
+              .addfield(EntityFields.SEARCH_DATA,
+                        lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
+              .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
+              .addfield(EntityFields.JSON_DATA,
+                        lambda row: dict(estimated_rows=row['estimated_rows'],
+                                         table_size=row['table_size'],
+                                         full_table_size=row['full_table_size']))
+              .addfield(EntityFields.TABLES, lambda row: [table_size_builder(row)])
               .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.TABLES, EntityFields.JSON_SYSTEM])
               .distinct(key=EntityFields.URN)
               )
@@ -86,16 +134,25 @@ def fill_dag(t_dag: TDag):
 
     PyTransform(
         task_id='transform_schema_to_entity',
-        description='Transform schemas metadata to dd.entity',
+        description='Transform schemas metadata to dds.entity',
         source=['dump_pg_schemas'],
         transformer_callable=transform_schema_to_entity,
         dag=t_dag,
     )
 
     PyTransform(
+        task_id='transform_table_to_entity',
+        description='Transform tables metadata to dds.entity',
+        source=['dump_pg_tables'],
+        transformer_callable=transform_table_to_entity,
+        dag=t_dag,
+    )
+
+    PyTransform(
         task_id='append_entities',
         description='Append entities to load in entity tables',
-        source=['transform_schema_to_entity'],
+        source=['transform_schema_to_entity',
+                'transform_table_to_entity'],
         transformer_callable=appender_petl2pandas,
         dag=t_dag,
     )

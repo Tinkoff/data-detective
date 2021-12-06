@@ -5,8 +5,8 @@ with ns as (
       and nspname !~ '^pg_'
       and nspname <> 'information_schema'
 )
-select ns.nspname                               as schema_name,
-       tbl.relname                              as table_name,
+select lower(ns.nspname)                        as schema_name,
+       lower(tbl.relname)                       as table_name,
        pg_catalog.pg_get_userbyid(tbl.relowner) as table_owner,
        coalesce(tbl.reltuples::bigint, 0)       as estimated_rows,
        pg_table_size(tbl.oid)                   as table_size,
