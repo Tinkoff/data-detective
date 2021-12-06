@@ -5,7 +5,7 @@ id: concepts
 # Basic framework concepts
 
 `operator` - standard airflow operator based on `airflow.models.BaseOperator`. 
-All operators in mg-airflow are inherited from the base class - `data_detective_airflow.operators.TBaseOperator`.
+All operators in data-detective-airflow are inherited from the base class - `data_detective_airflow.operators.TBaseOperator`.
 
 `work` is a temporary repository of intermediate pipeline results.
 Work in the local file system, sftp file system, s3, postgres are supported.
