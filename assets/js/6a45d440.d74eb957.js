@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmg_af_docusaurus=self.webpackChunkmg_af_docusaurus||[]).push([[1593],{3326:function(a){a.exports=JSON.parse('{"allTagsPath":"/data-detective/blog/tags","slug":"/data-detective/blog/tags/facebook","name":"facebook","count":1,"permalink":"/data-detective/blog/tags/facebook"}')}}]);

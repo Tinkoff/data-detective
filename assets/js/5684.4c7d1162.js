@@ -1,0 +1,1 @@
+(self.webpackChunkdata_detective_docusaurus=self.webpackChunkdata_detective_docusaurus||[]).push([[5684],{9039:function(u,e,t){"use strict";var a=t(1336);e.Z=a},9725:function(){}}]);
