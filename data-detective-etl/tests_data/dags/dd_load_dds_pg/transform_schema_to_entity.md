@@ -1,0 +1,6 @@
+| schema_name   | schema_owner   | schema_acl                            | schema_description     | entity_type   | entity_name   | entity_name_short   | urn                                   |
+|:--------------|:---------------|:--------------------------------------|:-----------------------|:--------------|:--------------|:--------------------|:--------------------------------------|
+| public        | airflow        | ['airflow=UC/airflow', '=UC/airflow'] | standard public schema | SCHEMA        | public        |                     | urn:schema:postgres:pg:airflow:public |
+| dds           | airflow        |                                       |                        | SCHEMA        | dds           |                     | urn:schema:postgres:pg:airflow:dds    |
+| tuning        | airflow        |                                       |                        | SCHEMA        | tuning        |                     | urn:schema:postgres:pg:airflow:tuning |
+| mart          | airflow        |                                       |                        | SCHEMA        | mart          |                     | urn:schema:postgres:pg:airflow:mart   |

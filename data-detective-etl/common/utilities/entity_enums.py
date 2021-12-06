@@ -10,6 +10,25 @@ class EntityTypes:
     LOGICAL_REPORT = 'LOGICAL_REPORT'
 
 
+class EntityFields:
+    URN = 'urn'
+    ENTITY_NAME = 'entity_name'
+    ENTITY_NAME_SHORT = 'entity_name_short'
+    ENTITY_TYPE = 'entity_type'
+    JSON_DATA = 'json_data'
+    JSON_SYSTEM = 'json_system'
+    TABLES = 'tables'
+    CODES = 'codes'
+    HTMLS = 'htmls'
+    NOTIFICATIONS = 'notifications'
+    GRID = 'grid'
+    JSON_DATA_UI = 'json_data_ui'
+    SEARCH_DATA = 'search_data'
+    LINKS = 'links'
+    INFO = 'info'
+    TAGS = 'tags'
+
+
 class RelationTypes:
     Describes = 'Describes'
     Contains = 'Contains'
