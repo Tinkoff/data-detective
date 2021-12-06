@@ -1,3 +1,6 @@
+from typing import FrozenSet
+
+
 class EntityTypes:
     TREE_NODE = 'TREE_NODE'
     SCHEMA = 'SCHEMA'
@@ -33,3 +36,8 @@ class RelationTypes:
     Describes = 'Describes'
     Contains = 'Contains'
     Loads = 'Loads'
+
+
+ENTITY_CORE_FIELDS: FrozenSet[str] = frozenset({EntityFields.URN, EntityFields.ENTITY_TYPE,
+                                                EntityFields.ENTITY_NAME, EntityFields.ENTITY_NAME_SHORT,
+                                                EntityFields.JSON_DATA, EntityFields.SEARCH_DATA, EntityFields.INFO})
