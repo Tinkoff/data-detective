@@ -31,6 +31,14 @@
     "data":[
         {
             "estimated_rows":0,
+            "full_table_size":98304,
+            "schema_name":"dds",
+            "table_name":"entity",
+            "table_owner":"airflow",
+            "table_size":8192
+        },
+        {
+            "estimated_rows":0,
             "full_table_size":57344,
             "schema_name":"dds",
             "table_name":"relation",
@@ -73,14 +81,6 @@
             "estimated_rows":0,
             "full_table_size":8192,
             "schema_name":"mart",
-            "table_name":"entity",
-            "table_owner":"airflow",
-            "table_size":8192
-        },
-        {
-            "estimated_rows":0,
-            "full_table_size":98304,
-            "schema_name":"dds",
             "table_name":"entity",
             "table_owner":"airflow",
             "table_size":8192

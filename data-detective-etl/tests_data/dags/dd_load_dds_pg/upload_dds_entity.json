@@ -2,6 +2,10 @@
     "schema":{
         "fields":[
             {
+                "name":"codes",
+                "type":"string"
+            },
+            {
                 "name":"entity_name",
                 "type":"string"
             },
@@ -14,6 +18,14 @@
                 "type":"string"
             },
             {
+                "name":"grid",
+                "type":"string"
+            },
+            {
+                "name":"htmls",
+                "type":"string"
+            },
+            {
                 "name":"info",
                 "type":"string"
             },
@@ -22,7 +34,23 @@
                 "type":"string"
             },
             {
+                "name":"json_data_ui",
+                "type":"string"
+            },
+            {
                 "name":"json_system",
+                "type":"string"
+            },
+            {
+                "name":"links",
+                "type":"string"
+            },
+            {
+                "name":"loaded_by",
+                "type":"string"
+            },
+            {
+                "name":"notifications",
                 "type":"string"
             },
             {
@@ -34,6 +62,10 @@
                 "type":"string"
             },
             {
+                "name":"tags",
+                "type":"string"
+            },
+            {
                 "name":"urn",
                 "type":"string"
             }
@@ -42,26 +74,29 @@
     },
     "data":[
         {
+            "codes":null,
             "entity_name":"dds",
             "entity_name_short":null,
             "entity_type":"SCHEMA",
+            "grid":null,
+            "htmls":null,
             "info":null,
             "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
+                "schema_acl":null,
+                "schema_owner":"airflow"
             },
+            "json_data_ui":null,
             "json_system":{
-                "system_for_search":"Postgres",
+                "card_type":"Schema",
                 "type_for_search":"Schema",
-                "card_type":"Schema"
+                "system_for_search":"Postgres"
             },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
             "search_data":"urn:schema:postgres:pg:airflow:dds dds",
             "tables":[
                 {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
                     "data":[
                         {
                             "Key":"Owner",
@@ -69,32 +104,40 @@
                         }
                     ],
                     "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
                     "display_headers":"0"
                 }
             ],
+            "tags":null,
             "urn":"urn:schema:postgres:pg:airflow:dds"
         },
         {
+            "codes":null,
             "entity_name":"mart",
             "entity_name_short":null,
             "entity_type":"SCHEMA",
+            "grid":null,
+            "htmls":null,
             "info":null,
             "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
+                "schema_acl":null,
+                "schema_owner":"airflow"
             },
+            "json_data_ui":null,
             "json_system":{
-                "system_for_search":"Postgres",
+                "card_type":"Schema",
                 "type_for_search":"Schema",
-                "card_type":"Schema"
+                "system_for_search":"Postgres"
             },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
             "search_data":"urn:schema:postgres:pg:airflow:mart mart",
             "tables":[
                 {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
                     "data":[
                         {
                             "Key":"Owner",
@@ -102,35 +145,43 @@
                         }
                     ],
                     "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:mart"
-        },
-        {
-            "entity_name":"public",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":"standard public schema",
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":[
-                    "airflow=UC\/airflow",
-                    "=UC\/airflow"
-                ]
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:public public",
-            "tables":[
-                {
                     "columns":[
                         "Key",
                         "Value"
                     ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:schema:postgres:pg:airflow:mart"
+        },
+        {
+            "codes":null,
+            "entity_name":"public",
+            "entity_name_short":null,
+            "entity_type":"SCHEMA",
+            "grid":null,
+            "htmls":null,
+            "info":"standard public schema",
+            "json_data":{
+                "schema_acl":[
+                    "airflow=UC\/airflow",
+                    "=UC\/airflow"
+                ],
+                "schema_owner":"airflow"
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "card_type":"Schema",
+                "type_for_search":"Schema",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:schema:postgres:pg:airflow:public public",
+            "tables":[
+                {
                     "data":[
                         {
                             "Key":"Owner",
@@ -142,32 +193,40 @@
                         }
                     ],
                     "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:public"
-        },
-        {
-            "entity_name":"tuning",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":null,
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning tuning",
-            "tables":[
-                {
                     "columns":[
                         "Key",
                         "Value"
                     ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:schema:postgres:pg:airflow:public"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning",
+            "entity_name_short":null,
+            "entity_type":"SCHEMA",
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "schema_acl":null,
+                "schema_owner":"airflow"
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "card_type":"Schema",
+                "type_for_search":"Schema",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:schema:postgres:pg:airflow:tuning tuning",
+            "tables":[
+                {
                     "data":[
                         {
                             "Key":"Owner",
@@ -175,9 +234,14 @@
                         }
                     ],
                     "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
                     "display_headers":"0"
                 }
             ],
+            "tags":null,
             "urn":"urn:schema:postgres:pg:airflow:tuning"
         }
     ]
