@@ -6,6 +6,10 @@
                 "type":"string"
             },
             {
+                "name":"schema_decription",
+                "type":"string"
+            },
+            {
                 "name":"schema_name",
                 "type":"string"
             },
@@ -18,23 +22,30 @@
     },
     "data":[
         {
-            "schema_acl":null,
-            "schema_name":"mart",
+            "schema_acl":[
+                "airflow=UC\/airflow",
+                "=UC\/airflow"
+            ],
+            "schema_decription":"standard public schema",
+            "schema_name":"public",
             "schema_owner":"airflow"
         },
         {
             "schema_acl":null,
+            "schema_decription":null,
+            "schema_name":"dds",
+            "schema_owner":"airflow"
+        },
+        {
+            "schema_acl":null,
+            "schema_decription":null,
             "schema_name":"tuning",
             "schema_owner":"airflow"
         },
         {
             "schema_acl":null,
-            "schema_name":"dds",
-            "schema_owner":"airflow"
-        },
-        {
-            "schema_acl":"{airflow=UC\/airflow,=UC\/airflow}",
-            "schema_name":"public",
+            "schema_decription":null,
+            "schema_name":"mart",
             "schema_owner":"airflow"
         }
     ]

@@ -17,3 +17,19 @@ def fill_dag(t_dag: TDag):
         sql='/code/dump_schemas.sql',
         dag=t_dag,
     )
+
+    DBDump(
+        task_id='dump_pg_tables',
+        description='Dump tables from pg database',
+        conn_id=PG_CONN_ID,
+        sql='/code/dump_tables.sql',
+        dag=t_dag,
+    )
+
+    DBDump(
+        task_id='dump_pg_columns',
+        description='Dump columns from pg database',
+        conn_id=PG_CONN_ID,
+        sql='/code/dump_columns.sql',
+        dag=t_dag,
+    )
