@@ -40,4 +40,4 @@ class RelationTypes:
 
 ENTITY_CORE_FIELDS: FrozenSet[str] = frozenset({EntityFields.URN, EntityFields.ENTITY_TYPE,
                                                 EntityFields.ENTITY_NAME, EntityFields.ENTITY_NAME_SHORT,
-                                                EntityFields.JSON_DATA, EntityFields.SEARCH_DATA, EntityFields.INFO})
+                                                EntityFields.JSON_DATA, EntityFields.SEARCH_DATA})
