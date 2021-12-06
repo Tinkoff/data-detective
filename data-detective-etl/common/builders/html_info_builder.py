@@ -1,6 +1,6 @@
 from typing import Dict, List, Text, Optional, Mapping
 
-from mg.utils import isnotempty
+from common.utils import isnotempty
 
 _HtmlInfoResultType = List[Dict[str, Optional[str]]]
 

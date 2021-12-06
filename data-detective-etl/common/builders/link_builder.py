@@ -1,6 +1,6 @@
 from typing import Dict, List, Mapping, Text, Optional, Any
 
-from mg.utils import isnotempty
+from common.utils import isnotempty
 
 _LinkResultType = Optional[List[Dict[str, Any]]]
 
