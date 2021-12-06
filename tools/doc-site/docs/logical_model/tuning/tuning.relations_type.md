@@ -12,10 +12,10 @@ id: tuning.relations_type
 
 | Key | Name                | Info                                               | Additional Info               |
 | ---:| ------------------- | -------------------------------------------------- | :---------------------------- |
-| PK  |source_type          | Entity source type                                 | MG.ENTITY.entity_type         |
-| PK  |target_type          | Entity target type                                 | MG.ENTITY.entity_type         |
-| PK  |attribute_type       | Entity attribute type                              | MG.ENTITY.entity_type         |
-| PK  |relation_type        | Relation type                                      | MG.RELATION.type              |
+| PK  |source_type          | Entity source type                                 | dds.entity.entity_type        |
+| PK  |target_type          | Entity target type                                 | dds.entity.entity_type        |
+| PK  |attribute_type       | Entity attribute type                              | dds.entity.entity_type        |
+| PK  |relation_type        | Relation type                                      | dds.relation.type             |
 |     |source_group_name    | Source group name for the right panel              | Manually                      |
 |     |target_group_name    | Target group name for the right panel              | Manually                      |
 |     |attribute_group_name | Attribute group name for the right panel           | Manually                      |
