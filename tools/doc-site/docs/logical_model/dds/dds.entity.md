@@ -42,6 +42,8 @@ id: dds.entity
 
 ## Additional info
 
+We didn't put JSON Schema in the main table because of difficulties with the docusaurus build.
+
 ### codes
 
 JSON Schema
