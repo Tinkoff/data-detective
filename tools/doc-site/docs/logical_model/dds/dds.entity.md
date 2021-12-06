@@ -274,7 +274,6 @@ JSON Schema
       },
       "required": [
         "type",
-        "header",
         "data"
       ]
     }
