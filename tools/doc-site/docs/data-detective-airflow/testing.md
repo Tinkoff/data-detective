@@ -15,7 +15,7 @@ We have developed a solution that saves datasets in the form of JSON.
 `pandas.DataFrame.to_json` allows saving json to a file in a readable form.
 Each json element is saved in a new line. When modifying DAGs, the developer regenerates json, and git shows readable diff. This allows the developer to evaluate changes by the task.
 
-DAGs in mg-airflow consist of operators. Operators take input data from external sources or works.
+DAGs in data-detective-airflow consist of operators. Operators take input data from external sources or works.
 The TBaseOperator defines the read_result method for reading the final dataset. Usually the operator saves the data in work.
 PgSCD1 modifies the data in the target table. For testing, data is needed from the target, and not from the temporary table in pg-work,
 so the read_result method is redefined in PgSCD1.
