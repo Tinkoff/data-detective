@@ -2,7 +2,7 @@ from typing import Callable, Dict, List, Text, Union, Optional, Mapping
 from pydantic import BaseModel  # pylint:disable=no-name-in-module
 from petl import Record as EtlRecord
 
-from mg.utils import isnotempty
+from common.utils import isnotempty
 
 
 _TableInfoResultType = Dict[str, Union[
