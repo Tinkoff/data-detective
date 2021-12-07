@@ -45,6 +45,17 @@
             "urn":"urn:tree_node:root:documentation"
         },
         {
+            "entity_name":"Database",
+            "entity_name_short":null,
+            "entity_type":"TREE_NODE",
+            "json_data":{
+                "info":"Metadata of schemas, tables and columns in Data Detective postgres database\n"
+            },
+            "loaded_by":"dd_load_dds_root",
+            "search_data":"urn:tree_node:root:database database",
+            "urn":"urn:tree_node:root:database"
+        },
+        {
             "entity_name":"Logical Model",
             "entity_name_short":null,
             "entity_type":"TREE_NODE",
