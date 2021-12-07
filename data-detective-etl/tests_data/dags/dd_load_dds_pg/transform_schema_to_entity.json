@@ -181,7 +181,7 @@
             "urn":"urn:schema:postgres:pg:airflow:tuning"
         },
         {
-            "entity_name":"wrk_dd_load_dds_pg",
+            "entity_name":"wrk_dd_load_dds_root_10",
             "entity_name_short":null,
             "entity_type":"SCHEMA",
             "info":null,
@@ -194,7 +194,7 @@
                 "type_for_search":"Schema",
                 "card_type":"Schema"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg wrk_dd_load_dds_pg",
+            "search_data":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_root_10 wrk_dd_load_dds_root_10",
             "tables":[
                 {
                     "columns":[
@@ -211,7 +211,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg"
+            "urn":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_root_10"
         }
     ]
 }

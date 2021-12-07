@@ -7,7 +7,7 @@ from data_detective_airflow.operators import DBDump, PgSingleTargetLoader, PyTra
 from data_detective_airflow.utils.petl_utils import appender_petl2pandas
 
 from common.builders import JsonSystemBuilder, TableInfoBuilder, TableInfoDescriptionType
-from common.urn import get_schema, get_table, get_column
+from common.urn import get_tree_node, get_schema, get_table, get_column
 from common.utils import get_readable_size_bytes
 from common.utilities.entity_enums import (
     ENTITY_CORE_FIELDS, RELATION_CORE_FIELDS,
@@ -152,7 +152,11 @@ def transform_column_to_entity(_context: dict, columns: DataFrame) -> tuple[tupl
 
 
 def link_schema_to_table(_context: dict, tables: DataFrame) -> tuple[tuple]:
-    """
+    """Link schemas entity to tables
+    :param _context: airflow DAG task run context
+    :param tables: Dataframe['schema_name', 'table_name', 'table_owner', 'estimated_rows',
+                             'table_size', 'full_table_size']
+    :return: RELATION_CORE_FIELDS
     """
     result = (petl.fromdataframe(tables)
               .addfield(RelationFields.SOURCE,
@@ -168,7 +172,10 @@ def link_schema_to_table(_context: dict, tables: DataFrame) -> tuple[tuple]:
 
 
 def link_table_to_column(_context: dict, columns: DataFrame) -> tuple[tuple]:
-    """
+    """Link tables entity to columns
+    :param _context: airflow DAG task run context
+    :param columns: Dataframe['schema_name', 'table_name', 'column_name', 'column_type', 'ordinal_position']
+    :return: RELATION_CORE_FIELDS
     """
     result = (petl.fromdataframe(columns)
               .addfield(RelationFields.SOURCE,
@@ -176,6 +183,24 @@ def link_table_to_column(_context: dict, columns: DataFrame) -> tuple[tuple]:
               .addfield(RelationFields.DESTINATION,
                         lambda row: get_column('postgres', 'pg', 'airflow',
                                                row['schema_name'], row['table_name'], row['column_name']))
+              .addfield(RelationFields.TYPE, RelationTypes.Contains)
+              .addfield(RelationFields.ATTRIBUTE, None)
+              .cut(list(RELATION_CORE_FIELDS))
+              .distinct()
+              )
+    return result.tupleoftuples()
+
+
+def link_root_node_to_schema(_context: dict, schemas: DataFrame) -> tuple[tuple]:
+    """Link schemas to root tree node urn:tree_node:root:database
+    :param _context: airflow DAG task run context
+    :param schemas: Dataframe['schema_name', 'schema_owner', 'schema_acl', 'schema_description']
+    :return: RELATION_CORE_FIELDS
+    """
+    result = (petl.fromdataframe(schemas)
+              .addfield(RelationFields.SOURCE, lambda row: get_tree_node(['Database']))
+              .addfield(RelationFields.DESTINATION,
+                        lambda row: get_schema('postgres', 'pg', 'airflow', row['schema_name']))
               .addfield(RelationFields.TYPE, RelationTypes.Contains)
               .addfield(RelationFields.ATTRIBUTE, None)
               .cut(list(RELATION_CORE_FIELDS))
@@ -251,6 +276,14 @@ def fill_dag(t_dag: TDag):
     )
 
     PyTransform(
+        task_id='link_root_node_to_schema',
+        description='Link schemas to root tree node',
+        transformer_callable=link_root_node_to_schema,
+        source=['dump_pg_schemas'],
+        dag=t_dag
+    )
+
+    PyTransform(
         task_id='append_entities',
         description='Append entities to load in entity table',
         source=['transform_schema_to_entity',
@@ -263,7 +296,8 @@ def fill_dag(t_dag: TDag):
     PyTransform(
         task_id='append_relations',
         description='Append relations to load in relation table',
-        source=['link_schema_to_table',
+        source=['link_root_node_to_schema',
+                'link_schema_to_table',
                 'link_table_to_column'],
         transformer_callable=appender_petl2pandas,
         dag=t_dag,
