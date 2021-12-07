@@ -25,6 +25,11 @@
         {
             "breadcrumb_entity":"[]",
             "breadcrumb_urn":"[]",
+            "urn":"urn:tree_node:root:database"
+        },
+        {
+            "breadcrumb_entity":"[]",
+            "breadcrumb_urn":"[]",
             "urn":"urn:tree_node:root:documentation"
         },
         {

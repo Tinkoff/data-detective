@@ -233,13 +233,13 @@
         },
         {
             "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:dds:sample:cntrows",
+            "destination":"urn:column:postgres:pg:airflow:dds:sample:cnt_rows",
             "source":"urn:table:postgres:pg:airflow:dds:sample",
             "type":"Contains"
         },
         {
             "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:dds:sample:columndef",
+            "destination":"urn:column:postgres:pg:airflow:dds:sample:column_def",
             "source":"urn:table:postgres:pg:airflow:dds:sample",
             "type":"Contains"
         },

@@ -272,14 +272,14 @@
         },
         {
             "attribute":"non",
-            "destination":"urn:column:postgres:pg:airflow:dds:sample:cntrows",
+            "destination":"urn:column:postgres:pg:airflow:dds:sample:cnt_rows",
             "loaded_by":"dd_load_dds_pg",
             "source":"urn:table:postgres:pg:airflow:dds:sample",
             "type":"Contains"
         },
         {
             "attribute":"non",
-            "destination":"urn:column:postgres:pg:airflow:dds:sample:columndef",
+            "destination":"urn:column:postgres:pg:airflow:dds:sample:column_def",
             "loaded_by":"dd_load_dds_pg",
             "source":"urn:table:postgres:pg:airflow:dds:sample",
             "type":"Contains"
