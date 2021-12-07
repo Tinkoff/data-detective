@@ -247,6 +247,20 @@
                         "ddl":"CREATE UNIQUE INDEX entity_urn_index ON dds.entity USING btree (urn)",
                         "name":"entity_urn_index"
                     }
+                ],
+                "table_rights":[
+                    {
+                        "rights":[
+                            "TRIGGER",
+                            "INSERT",
+                            "SELECT",
+                            "UPDATE",
+                            "DELETE",
+                            "TRUNCATE",
+                            "REFERENCES"
+                        ],
+                        "grantee":"airflow"
+                    }
                 ]
             },
             "json_system":{
@@ -311,6 +325,20 @@
                     ],
                     "header":"Table indexes",
                     "display_headers":"1"
+                },
+                {
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['TRIGGER', 'INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES']"
+                        }
+                    ],
+                    "header":"Table rights",
+                    "display_headers":"1"
                 }
             ],
             "urn":"urn:table:postgres:pg:airflow:dds:entity"
@@ -344,6 +372,20 @@
                     {
                         "ddl":"CREATE INDEX relation_source_index ON dds.relation USING btree (source)",
                         "name":"relation_source_index"
+                    }
+                ],
+                "table_rights":[
+                    {
+                        "rights":[
+                            "TRIGGER",
+                            "REFERENCES",
+                            "TRUNCATE",
+                            "DELETE",
+                            "UPDATE",
+                            "SELECT",
+                            "INSERT"
+                        ],
+                        "grantee":"airflow"
                     }
                 ]
             },
@@ -405,6 +447,20 @@
                     ],
                     "header":"Table indexes",
                     "display_headers":"1"
+                },
+                {
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['TRIGGER', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT', 'INSERT']"
+                        }
+                    ],
+                    "header":"Table rights",
+                    "display_headers":"1"
                 }
             ],
             "urn":"urn:table:postgres:pg:airflow:dds:relation"
@@ -422,6 +478,20 @@
                     {
                         "ddl":"CREATE INDEX sample_urn_index ON dds.sample USING btree (urn)",
                         "name":"sample_urn_index"
+                    }
+                ],
+                "table_rights":[
+                    {
+                        "rights":[
+                            "TRIGGER",
+                            "INSERT",
+                            "SELECT",
+                            "UPDATE",
+                            "DELETE",
+                            "TRUNCATE",
+                            "REFERENCES"
+                        ],
+                        "grantee":"airflow"
                     }
                 ]
             },
@@ -467,6 +537,20 @@
                     ],
                     "header":"Table indexes",
                     "display_headers":"1"
+                },
+                {
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['TRIGGER', 'INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES']"
+                        }
+                    ],
+                    "header":"Table rights",
+                    "display_headers":"1"
                 }
             ],
             "urn":"urn:table:postgres:pg:airflow:dds:sample"
@@ -480,7 +564,21 @@
                 "estimated_rows":0,
                 "table_size":8192,
                 "full_table_size":8192,
-                "index_json":null
+                "index_json":null,
+                "table_rights":[
+                    {
+                        "rights":[
+                            "INSERT",
+                            "TRIGGER",
+                            "REFERENCES",
+                            "TRUNCATE",
+                            "DELETE",
+                            "UPDATE",
+                            "SELECT"
+                        ],
+                        "grantee":"airflow"
+                    }
+                ]
             },
             "json_system":{
                 "system_for_search":"Postgres",
@@ -522,6 +620,20 @@
                     ],
                     "header":"Table indexes",
                     "display_headers":"1"
+                },
+                {
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['INSERT', 'TRIGGER', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT']"
+                        }
+                    ],
+                    "header":"Table rights",
+                    "display_headers":"1"
                 }
             ],
             "urn":"urn:table:postgres:pg:airflow:mart:entity"
@@ -539,6 +651,20 @@
                     {
                         "ddl":"CREATE INDEX breadcrumb_urn_index ON tuning.breadcrumb USING btree (urn)",
                         "name":"breadcrumb_urn_index"
+                    }
+                ],
+                "table_rights":[
+                    {
+                        "rights":[
+                            "INSERT",
+                            "SELECT",
+                            "UPDATE",
+                            "DELETE",
+                            "TRUNCATE",
+                            "REFERENCES",
+                            "TRIGGER"
+                        ],
+                        "grantee":"airflow"
                     }
                 ]
             },
@@ -584,6 +710,20 @@
                     ],
                     "header":"Table indexes",
                     "display_headers":"1"
+                },
+                {
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES', 'TRIGGER']"
+                        }
+                    ],
+                    "header":"Table rights",
+                    "display_headers":"1"
                 }
             ],
             "urn":"urn:table:postgres:pg:airflow:tuning:breadcrumb"
@@ -597,7 +737,21 @@
                 "estimated_rows":0,
                 "table_size":8192,
                 "full_table_size":8192,
-                "index_json":null
+                "index_json":null,
+                "table_rights":[
+                    {
+                        "rights":[
+                            "INSERT",
+                            "TRIGGER",
+                            "REFERENCES",
+                            "TRUNCATE",
+                            "DELETE",
+                            "UPDATE",
+                            "SELECT"
+                        ],
+                        "grantee":"airflow"
+                    }
+                ]
             },
             "json_system":{
                 "system_for_search":"Postgres",
@@ -639,6 +793,20 @@
                     ],
                     "header":"Table indexes",
                     "display_headers":"1"
+                },
+                {
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['INSERT', 'TRIGGER', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT']"
+                        }
+                    ],
+                    "header":"Table rights",
+                    "display_headers":"1"
                 }
             ],
             "urn":"urn:table:postgres:pg:airflow:tuning:relations_type"
@@ -652,7 +820,21 @@
                 "estimated_rows":0,
                 "table_size":8192,
                 "full_table_size":8192,
-                "index_json":null
+                "index_json":null,
+                "table_rights":[
+                    {
+                        "rights":[
+                            "TRIGGER",
+                            "REFERENCES",
+                            "TRUNCATE",
+                            "DELETE",
+                            "UPDATE",
+                            "SELECT",
+                            "INSERT"
+                        ],
+                        "grantee":"airflow"
+                    }
+                ]
             },
             "json_system":{
                 "system_for_search":"Postgres",
@@ -694,6 +876,20 @@
                     ],
                     "header":"Table indexes",
                     "display_headers":"1"
+                },
+                {
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['TRIGGER', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT', 'INSERT']"
+                        }
+                    ],
+                    "header":"Table rights",
+                    "display_headers":"1"
                 }
             ],
             "urn":"urn:table:postgres:pg:airflow:tuning:search_help"
@@ -705,9 +901,23 @@
             "info":null,
             "json_data":{
                 "estimated_rows":0,
-                "table_size":16384,
-                "full_table_size":16384,
-                "index_json":null
+                "table_size":24576,
+                "full_table_size":24576,
+                "index_json":null,
+                "table_rights":[
+                    {
+                        "rights":[
+                            "TRIGGER",
+                            "INSERT",
+                            "SELECT",
+                            "UPDATE",
+                            "DELETE",
+                            "TRUNCATE",
+                            "REFERENCES"
+                        ],
+                        "grantee":"airflow"
+                    }
+                ]
             },
             "json_system":{
                 "system_for_search":"Postgres",
@@ -728,11 +938,11 @@
                         },
                         {
                             "Key":"Data size",
-                            "Value":"16.00 KB"
+                            "Value":"24.00 KB"
                         },
                         {
                             "Key":"Total relation size",
-                            "Value":"16.00 KB"
+                            "Value":"24.00 KB"
                         }
                     ],
                     "header":"General",
@@ -749,6 +959,20 @@
                     ],
                     "header":"Table indexes",
                     "display_headers":"1"
+                },
+                {
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['TRIGGER', 'INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES']"
+                        }
+                    ],
+                    "header":"Table rights",
+                    "display_headers":"1"
                 }
             ],
             "urn":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity"
@@ -762,7 +986,21 @@
                 "estimated_rows":178,
                 "table_size":40960,
                 "full_table_size":40960,
-                "index_json":null
+                "index_json":null,
+                "table_rights":[
+                    {
+                        "rights":[
+                            "INSERT",
+                            "SELECT",
+                            "UPDATE",
+                            "DELETE",
+                            "TRUNCATE",
+                            "REFERENCES",
+                            "TRIGGER"
+                        ],
+                        "grantee":"airflow"
+                    }
+                ]
             },
             "json_system":{
                 "system_for_search":"Postgres",
@@ -803,6 +1041,20 @@
                         }
                     ],
                     "header":"Table indexes",
+                    "display_headers":"1"
+                },
+                {
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES', 'TRIGGER']"
+                        }
+                    ],
+                    "header":"Table rights",
                     "display_headers":"1"
                 }
             ],

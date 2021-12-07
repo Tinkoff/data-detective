@@ -101,6 +101,17 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
     )
     table_index_builder = TableInfoBuilder(table_index_description)
 
+    table_rights_description = TableInfoDescriptionType(
+        keys={
+            'grantee': 'Account name',
+            'rights': 'Enable privilege',
+        },
+        header='Table rights',
+        display_headers='1',
+        orientation='horizontal'
+    )
+    table_rights_builder = TableInfoBuilder(table_rights_description)
+
     result = (petl.fromdataframe(tables)
               .addfield(EntityFields.URN,
                         lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']))
@@ -114,9 +125,11 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
                         lambda row: dict(estimated_rows=row['estimated_rows'],
                                          table_size=row['table_size'],
                                          full_table_size=row['full_table_size'],
-                                         index_json=row['index_json']))
+                                         index_json=row['index_json'],
+                                         table_rights=row['table_rights']))
               .addfield(EntityFields.TABLES, lambda row: [table_size_builder(row),
-                                                          table_index_builder(row['index_json'] or {})])
+                                                          table_index_builder(row['index_json'] or {}),
+                                                          table_rights_builder(row['table_rights'] or {})])
               .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.TABLES, EntityFields.JSON_SYSTEM])
               .distinct(key=EntityFields.URN)
               )
