@@ -13,6 +13,5 @@ __all__ = (
     'HtmlInfoBuilder',
     'CodeBuilder',
     'JsonSystemBuilder',
-    'NotificationBuilder',
     'LinkBuilder',
 )
