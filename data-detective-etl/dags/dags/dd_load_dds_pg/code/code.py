@@ -7,7 +7,7 @@ from data_detective_airflow.operators import DBDump, PgSingleTargetLoader, PyTra
 from data_detective_airflow.utils.petl_utils import appender_petl2pandas
 
 from common.builders import JsonSystemBuilder, TableInfoBuilder, TableInfoDescriptionType
-from common.urn import get_schema, get_table
+from common.urn import get_schema, get_table, get_column
 from common.utils import get_readable_size_bytes
 from common.utilities.entity_enums import (
     ENTITY_CORE_FIELDS,
@@ -106,6 +106,46 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
     return result.tupleoftuples()
 
 
+def transform_column_to_entity(_context: dict, columns: DataFrame) -> tuple[tuple]:
+    """
+
+    """
+    json_system_builder = JsonSystemBuilder(
+        system_for_search=SystemForSearch.POSTGRES.name,
+        type_for_search=TypeForSearch.COLUMN.name,
+    )
+
+    column_table_info_description = TableInfoDescriptionType(
+        keys={
+            'column_type': 'Type',
+            'ordinal_position': 'Position',
+        },
+        header='General',
+        display_headers='0',
+        orientation='vertical'
+    )
+    column_table_info_builder = TableInfoBuilder(column_table_info_description)
+
+    result = (petl.fromdataframe(columns)
+              .addfield(EntityFields.URN,
+                        lambda row: get_column('postgres', 'pg', 'airflow',
+                                               row['schema_name'], row['table_name'], row['column_name']))
+              .addfield(EntityFields.ENTITY_NAME,
+                        lambda row: f"{row['schema_name']}.{row['table_name']}.{row['column_name']}")
+              .addfield(EntityFields.ENTITY_NAME_SHORT, lambda row: row['column_name'])
+              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.COLUMN)
+              .addfield(EntityFields.SEARCH_DATA,
+                        lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
+              .addfield(EntityFields.JSON_DATA,
+                        lambda row: dict(ordinal_position=row['ordinal_position'], column_type=row['column_type']))
+              .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
+              .addfield(EntityFields.TABLES, lambda row: [column_table_info_builder(row)])
+              .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.TABLES, EntityFields.JSON_SYSTEM])
+              .distinct(key=EntityFields.URN)
+              )
+    return result.tupleoftuples()
+
+
 def fill_dag(t_dag: TDag):
 
     DBDump(
@@ -149,10 +189,19 @@ def fill_dag(t_dag: TDag):
     )
 
     PyTransform(
+        task_id='transform_column_to_entity',
+        description='Transform columns metadata to dds.entity',
+        source=['dump_pg_columns'],
+        transformer_callable=transform_column_to_entity,
+        dag=t_dag,
+    )
+
+    PyTransform(
         task_id='append_entities',
         description='Append entities to load in entity tables',
         source=['transform_schema_to_entity',
-                'transform_table_to_entity'],
+                'transform_table_to_entity',
+                'transform_column_to_entity'],
         transformer_callable=appender_petl2pandas,
         dag=t_dag,
     )

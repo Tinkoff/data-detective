@@ -30,12 +30,12 @@
     },
     "data":[
         {
-            "estimated_rows":0,
-            "full_table_size":98304,
+            "estimated_rows":11,
+            "full_table_size":163840,
             "schema_name":"dds",
             "table_name":"entity",
             "table_owner":"airflow",
-            "table_size":8192
+            "table_size":16384
         },
         {
             "estimated_rows":0,
@@ -84,6 +84,14 @@
             "table_name":"entity",
             "table_owner":"airflow",
             "table_size":8192
+        },
+        {
+            "estimated_rows":0,
+            "full_table_size":16384,
+            "schema_name":"wrk_dd_load_dds_pg",
+            "table_name":"entity",
+            "table_owner":"airflow",
+            "table_size":16384
         }
     ]
 }

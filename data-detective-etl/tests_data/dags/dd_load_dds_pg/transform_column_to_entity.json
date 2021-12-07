@@ -14,10 +14,6 @@
                 "type":"string"
             },
             {
-                "name":"info",
-                "type":"string"
-            },
-            {
                 "name":"json_data",
                 "type":"string"
             },
@@ -42,518 +38,9 @@
     },
     "data":[
         {
-            "entity_name":"dds",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":null,
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:dds dds",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Owner",
-                            "Value":"airflow"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:dds"
-        },
-        {
-            "entity_name":"mart",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":null,
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:mart mart",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Owner",
-                            "Value":"airflow"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:mart"
-        },
-        {
-            "entity_name":"public",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":"standard public schema",
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":[
-                    "airflow=UC\/airflow",
-                    "=UC\/airflow"
-                ]
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:public public",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Owner",
-                            "Value":"airflow"
-                        },
-                        {
-                            "Key":"Access privileges",
-                            "Value":"['airflow=UC\/airflow', '=UC\/airflow']"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:public"
-        },
-        {
-            "entity_name":"tuning",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":null,
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning tuning",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Owner",
-                            "Value":"airflow"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning"
-        },
-        {
-            "entity_name":"wrk_dd_load_dds_pg",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":null,
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg wrk_dd_load_dds_pg",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Owner",
-                            "Value":"airflow"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg"
-        },
-        {
-            "entity_name":"dds.entity",
-            "entity_name_short":"entity",
-            "entity_type":"TABLE",
-            "info":null,
-            "json_data":{
-                "estimated_rows":11,
-                "table_size":16384,
-                "full_table_size":163840
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Table",
-                "card_type":"Table"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity dds.entity",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Rows",
-                            "Value":"11"
-                        },
-                        {
-                            "Key":"Data size",
-                            "Value":"16.00 KB"
-                        },
-                        {
-                            "Key":"Total relation size",
-                            "Value":"160.00 KB"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity"
-        },
-        {
-            "entity_name":"dds.relation",
-            "entity_name_short":"relation",
-            "entity_type":"TABLE",
-            "info":null,
-            "json_data":{
-                "estimated_rows":0,
-                "table_size":8192,
-                "full_table_size":57344
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Table",
-                "card_type":"Table"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:relation dds.relation",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Rows",
-                            "Value":"0"
-                        },
-                        {
-                            "Key":"Data size",
-                            "Value":"8.00 KB"
-                        },
-                        {
-                            "Key":"Total relation size",
-                            "Value":"56.00 KB"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:relation"
-        },
-        {
-            "entity_name":"dds.sample",
-            "entity_name_short":"sample",
-            "entity_type":"TABLE",
-            "info":null,
-            "json_data":{
-                "estimated_rows":0,
-                "table_size":8192,
-                "full_table_size":16384
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Table",
-                "card_type":"Table"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:sample dds.sample",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Rows",
-                            "Value":"0"
-                        },
-                        {
-                            "Key":"Data size",
-                            "Value":"8.00 KB"
-                        },
-                        {
-                            "Key":"Total relation size",
-                            "Value":"16.00 KB"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:sample"
-        },
-        {
-            "entity_name":"mart.entity",
-            "entity_name_short":"entity",
-            "entity_type":"TABLE",
-            "info":null,
-            "json_data":{
-                "estimated_rows":0,
-                "table_size":8192,
-                "full_table_size":8192
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Table",
-                "card_type":"Table"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity mart.entity",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Rows",
-                            "Value":"0"
-                        },
-                        {
-                            "Key":"Data size",
-                            "Value":"8.00 KB"
-                        },
-                        {
-                            "Key":"Total relation size",
-                            "Value":"8.00 KB"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity"
-        },
-        {
-            "entity_name":"tuning.breadcrumb",
-            "entity_name_short":"breadcrumb",
-            "entity_type":"TABLE",
-            "info":null,
-            "json_data":{
-                "estimated_rows":0,
-                "table_size":8192,
-                "full_table_size":16384
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Table",
-                "card_type":"Table"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:breadcrumb tuning.breadcrumb",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Rows",
-                            "Value":"0"
-                        },
-                        {
-                            "Key":"Data size",
-                            "Value":"8.00 KB"
-                        },
-                        {
-                            "Key":"Total relation size",
-                            "Value":"16.00 KB"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:breadcrumb"
-        },
-        {
-            "entity_name":"tuning.relations_type",
-            "entity_name_short":"relations_type",
-            "entity_type":"TABLE",
-            "info":null,
-            "json_data":{
-                "estimated_rows":0,
-                "table_size":8192,
-                "full_table_size":8192
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Table",
-                "card_type":"Table"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type tuning.relations_type",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Rows",
-                            "Value":"0"
-                        },
-                        {
-                            "Key":"Data size",
-                            "Value":"8.00 KB"
-                        },
-                        {
-                            "Key":"Total relation size",
-                            "Value":"8.00 KB"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type"
-        },
-        {
-            "entity_name":"tuning.search_help",
-            "entity_name_short":"search_help",
-            "entity_type":"TABLE",
-            "info":null,
-            "json_data":{
-                "estimated_rows":0,
-                "table_size":8192,
-                "full_table_size":8192
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Table",
-                "card_type":"Table"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:search_help tuning.search_help",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Rows",
-                            "Value":"0"
-                        },
-                        {
-                            "Key":"Data size",
-                            "Value":"8.00 KB"
-                        },
-                        {
-                            "Key":"Total relation size",
-                            "Value":"8.00 KB"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:search_help"
-        },
-        {
-            "entity_name":"wrk_dd_load_dds_pg.entity",
-            "entity_name_short":"entity",
-            "entity_type":"TABLE",
-            "info":null,
-            "json_data":{
-                "estimated_rows":0,
-                "table_size":16384,
-                "full_table_size":16384
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Table",
-                "card_type":"Table"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg:entity wrk_dd_load_dds_pg.entity",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Rows",
-                            "Value":"0"
-                        },
-                        {
-                            "Key":"Data size",
-                            "Value":"16.00 KB"
-                        },
-                        {
-                            "Key":"Total relation size",
-                            "Value":"16.00 KB"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg:entity"
-        },
-        {
             "entity_name":"dds.entity.codes",
             "entity_name_short":"codes",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":8,
                 "column_type":"jsonb"
@@ -589,7 +76,6 @@
             "entity_name":"dds.entity.entity_name",
             "entity_name_short":"entity_name",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":3,
                 "column_type":"text"
@@ -625,7 +111,6 @@
             "entity_name":"dds.entity.entity_name_short",
             "entity_name_short":"entity_name_short",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":5,
                 "column_type":"text"
@@ -661,7 +146,6 @@
             "entity_name":"dds.entity.entity_type",
             "entity_name_short":"entity_type",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":4,
                 "column_type":"text"
@@ -697,7 +181,6 @@
             "entity_name":"dds.entity.grid",
             "entity_name_short":"grid",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":9,
                 "column_type":"jsonb"
@@ -733,7 +216,6 @@
             "entity_name":"dds.entity.htmls",
             "entity_name_short":"htmls",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":13,
                 "column_type":"jsonb"
@@ -769,7 +251,6 @@
             "entity_name":"dds.entity.info",
             "entity_name_short":"info",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":6,
                 "column_type":"text"
@@ -805,7 +286,6 @@
             "entity_name":"dds.entity.json_data",
             "entity_name_short":"json_data",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":10,
                 "column_type":"jsonb"
@@ -841,7 +321,6 @@
             "entity_name":"dds.entity.json_data_ui",
             "entity_name_short":"json_data_ui",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":12,
                 "column_type":"jsonb"
@@ -877,7 +356,6 @@
             "entity_name":"dds.entity.json_system",
             "entity_name_short":"json_system",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":11,
                 "column_type":"jsonb"
@@ -913,7 +391,6 @@
             "entity_name":"dds.entity.links",
             "entity_name_short":"links",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":14,
                 "column_type":"jsonb"
@@ -949,7 +426,6 @@
             "entity_name":"dds.entity.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":2,
                 "column_type":"text"
@@ -985,7 +461,6 @@
             "entity_name":"dds.entity.notifications",
             "entity_name_short":"notifications",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":15,
                 "column_type":"jsonb"
@@ -1021,7 +496,6 @@
             "entity_name":"dds.entity.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":18,
                 "column_type":"timestamp without time zone"
@@ -1057,7 +531,6 @@
             "entity_name":"dds.entity.search_data",
             "entity_name_short":"search_data",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":7,
                 "column_type":"text"
@@ -1093,7 +566,6 @@
             "entity_name":"dds.entity.tables",
             "entity_name_short":"tables",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":16,
                 "column_type":"jsonb"
@@ -1129,7 +601,6 @@
             "entity_name":"dds.entity.tags",
             "entity_name_short":"tags",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":17,
                 "column_type":"jsonb"
@@ -1165,7 +636,6 @@
             "entity_name":"dds.entity.urn",
             "entity_name_short":"urn",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":1,
                 "column_type":"text"
@@ -1201,7 +671,6 @@
             "entity_name":"dds.relation.attribute",
             "entity_name_short":"attribute",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":5,
                 "column_type":"text"
@@ -1237,7 +706,6 @@
             "entity_name":"dds.relation.destination",
             "entity_name_short":"destination",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":2,
                 "column_type":"text"
@@ -1273,7 +741,6 @@
             "entity_name":"dds.relation.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":4,
                 "column_type":"text"
@@ -1309,7 +776,6 @@
             "entity_name":"dds.relation.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":6,
                 "column_type":"timestamp without time zone"
@@ -1345,7 +811,6 @@
             "entity_name":"dds.relation.source",
             "entity_name_short":"source",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":1,
                 "column_type":"text"
@@ -1381,7 +846,6 @@
             "entity_name":"dds.relation.type",
             "entity_name_short":"type",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":3,
                 "column_type":"text"
@@ -1417,7 +881,6 @@
             "entity_name":"dds.sample.cntrows",
             "entity_name_short":"cntrows",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":3,
                 "column_type":"bigint"
@@ -1453,7 +916,6 @@
             "entity_name":"dds.sample.columndef",
             "entity_name_short":"columndef",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":2,
                 "column_type":"text"
@@ -1489,7 +951,6 @@
             "entity_name":"dds.sample.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":5,
                 "column_type":"timestamp without time zone"
@@ -1525,7 +986,6 @@
             "entity_name":"dds.sample.sample_data",
             "entity_name_short":"sample_data",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":4,
                 "column_type":"text"
@@ -1561,7 +1021,6 @@
             "entity_name":"dds.sample.urn",
             "entity_name_short":"urn",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":1,
                 "column_type":"text"
@@ -1597,7 +1056,6 @@
             "entity_name":"mart.entity.codes",
             "entity_name_short":"codes",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":12,
                 "column_type":"jsonb"
@@ -1633,7 +1091,6 @@
             "entity_name":"mart.entity.entity_name",
             "entity_name_short":"entity_name",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":4,
                 "column_type":"text"
@@ -1669,7 +1126,6 @@
             "entity_name":"mart.entity.entity_name_short",
             "entity_name_short":"entity_name_short",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":6,
                 "column_type":"text"
@@ -1705,7 +1161,6 @@
             "entity_name":"mart.entity.entity_type",
             "entity_name_short":"entity_type",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":5,
                 "column_type":"text"
@@ -1741,7 +1196,6 @@
             "entity_name":"mart.entity.grid",
             "entity_name_short":"grid",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":8,
                 "column_type":"jsonb"
@@ -1777,7 +1231,6 @@
             "entity_name":"mart.entity.htmls",
             "entity_name_short":"htmls",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":14,
                 "column_type":"jsonb"
@@ -1813,7 +1266,6 @@
             "entity_name":"mart.entity.info",
             "entity_name_short":"info",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":7,
                 "column_type":"text"
@@ -1849,7 +1301,6 @@
             "entity_name":"mart.entity.json_data",
             "entity_name_short":"json_data",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":9,
                 "column_type":"jsonb"
@@ -1885,7 +1336,6 @@
             "entity_name":"mart.entity.json_data_ui",
             "entity_name_short":"json_data_ui",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":11,
                 "column_type":"jsonb"
@@ -1921,7 +1371,6 @@
             "entity_name":"mart.entity.json_system",
             "entity_name_short":"json_system",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":10,
                 "column_type":"jsonb"
@@ -1957,7 +1406,6 @@
             "entity_name":"mart.entity.links",
             "entity_name_short":"links",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":13,
                 "column_type":"jsonb"
@@ -1993,7 +1441,6 @@
             "entity_name":"mart.entity.load_dt",
             "entity_name_short":"load_dt",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":1,
                 "column_type":"date"
@@ -2029,7 +1476,6 @@
             "entity_name":"mart.entity.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":3,
                 "column_type":"text"
@@ -2065,7 +1511,6 @@
             "entity_name":"mart.entity.notifications",
             "entity_name_short":"notifications",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":15,
                 "column_type":"jsonb"
@@ -2101,7 +1546,6 @@
             "entity_name":"mart.entity.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":19,
                 "column_type":"timestamp without time zone"
@@ -2137,7 +1581,6 @@
             "entity_name":"mart.entity.search_data",
             "entity_name_short":"search_data",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":17,
                 "column_type":"text"
@@ -2173,7 +1616,6 @@
             "entity_name":"mart.entity.tables",
             "entity_name_short":"tables",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":16,
                 "column_type":"jsonb"
@@ -2209,7 +1651,6 @@
             "entity_name":"mart.entity.tags",
             "entity_name_short":"tags",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":18,
                 "column_type":"jsonb"
@@ -2245,7 +1686,6 @@
             "entity_name":"mart.entity.urn",
             "entity_name_short":"urn",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":2,
                 "column_type":"text"
@@ -2281,7 +1721,6 @@
             "entity_name":"tuning.breadcrumb.breadcrumb_entity",
             "entity_name_short":"breadcrumb_entity",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":3,
                 "column_type":"jsonb"
@@ -2317,7 +1756,6 @@
             "entity_name":"tuning.breadcrumb.breadcrumb_urn",
             "entity_name_short":"breadcrumb_urn",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":2,
                 "column_type":"jsonb"
@@ -2353,7 +1791,6 @@
             "entity_name":"tuning.breadcrumb.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":4,
                 "column_type":"text"
@@ -2389,7 +1826,6 @@
             "entity_name":"tuning.breadcrumb.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":5,
                 "column_type":"timestamp without time zone"
@@ -2425,7 +1861,6 @@
             "entity_name":"tuning.breadcrumb.urn",
             "entity_name_short":"urn",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":1,
                 "column_type":"text"
@@ -2461,7 +1896,6 @@
             "entity_name":"tuning.relations_type.attribute_group_name",
             "entity_name_short":"attribute_group_name",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":7,
                 "column_type":"text"
@@ -2497,7 +1931,6 @@
             "entity_name":"tuning.relations_type.attribute_type",
             "entity_name_short":"attribute_type",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":3,
                 "column_type":"text"
@@ -2533,7 +1966,6 @@
             "entity_name":"tuning.relations_type.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":8,
                 "column_type":"text"
@@ -2569,7 +2001,6 @@
             "entity_name":"tuning.relations_type.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":9,
                 "column_type":"timestamp without time zone"
@@ -2605,7 +2036,6 @@
             "entity_name":"tuning.relations_type.relation_type",
             "entity_name_short":"relation_type",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":4,
                 "column_type":"text"
@@ -2641,7 +2071,6 @@
             "entity_name":"tuning.relations_type.source_group_name",
             "entity_name_short":"source_group_name",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":5,
                 "column_type":"text"
@@ -2677,7 +2106,6 @@
             "entity_name":"tuning.relations_type.source_type",
             "entity_name_short":"source_type",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":1,
                 "column_type":"text"
@@ -2713,7 +2141,6 @@
             "entity_name":"tuning.relations_type.target_group_name",
             "entity_name_short":"target_group_name",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":6,
                 "column_type":"text"
@@ -2749,7 +2176,6 @@
             "entity_name":"tuning.relations_type.target_type",
             "entity_name_short":"target_type",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":2,
                 "column_type":"text"
@@ -2785,7 +2211,6 @@
             "entity_name":"tuning.search_help.description",
             "entity_name_short":"description",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":3,
                 "column_type":"text"
@@ -2821,7 +2246,6 @@
             "entity_name":"tuning.search_help.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":4,
                 "column_type":"text"
@@ -2857,7 +2281,6 @@
             "entity_name":"tuning.search_help.name",
             "entity_name_short":"name",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":2,
                 "column_type":"text"
@@ -2893,7 +2316,6 @@
             "entity_name":"tuning.search_help.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":5,
                 "column_type":"timestamp without time zone"
@@ -2929,7 +2351,6 @@
             "entity_name":"tuning.search_help.type",
             "entity_name_short":"type",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":1,
                 "column_type":"text"
@@ -2965,7 +2386,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.codes",
             "entity_name_short":"codes",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":8,
                 "column_type":"jsonb"
@@ -3001,7 +2421,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.diff_flg",
             "entity_name_short":"diff_flg",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":19,
                 "column_type":"text"
@@ -3037,7 +2456,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.entity_name",
             "entity_name_short":"entity_name",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":3,
                 "column_type":"text"
@@ -3073,7 +2491,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.entity_name_short",
             "entity_name_short":"entity_name_short",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":5,
                 "column_type":"text"
@@ -3109,7 +2526,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.entity_type",
             "entity_name_short":"entity_type",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":4,
                 "column_type":"text"
@@ -3145,7 +2561,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.grid",
             "entity_name_short":"grid",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":9,
                 "column_type":"jsonb"
@@ -3181,7 +2596,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.htmls",
             "entity_name_short":"htmls",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":13,
                 "column_type":"jsonb"
@@ -3217,7 +2631,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.info",
             "entity_name_short":"info",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":6,
                 "column_type":"text"
@@ -3253,7 +2666,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.json_data",
             "entity_name_short":"json_data",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":10,
                 "column_type":"jsonb"
@@ -3289,7 +2701,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.json_data_ui",
             "entity_name_short":"json_data_ui",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":12,
                 "column_type":"jsonb"
@@ -3325,7 +2736,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.json_system",
             "entity_name_short":"json_system",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":11,
                 "column_type":"jsonb"
@@ -3361,7 +2771,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.links",
             "entity_name_short":"links",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":14,
                 "column_type":"jsonb"
@@ -3397,7 +2806,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":2,
                 "column_type":"text"
@@ -3433,7 +2841,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.notifications",
             "entity_name_short":"notifications",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":15,
                 "column_type":"jsonb"
@@ -3469,7 +2876,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":18,
                 "column_type":"timestamp without time zone"
@@ -3505,7 +2911,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.search_data",
             "entity_name_short":"search_data",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":7,
                 "column_type":"text"
@@ -3541,7 +2946,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.tables",
             "entity_name_short":"tables",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":16,
                 "column_type":"jsonb"
@@ -3577,7 +2981,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.tags",
             "entity_name_short":"tags",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":17,
                 "column_type":"jsonb"
@@ -3613,7 +3016,6 @@
             "entity_name":"wrk_dd_load_dds_pg.entity.urn",
             "entity_name_short":"urn",
             "entity_type":"COLUMN",
-            "info":null,
             "json_data":{
                 "ordinal_position":1,
                 "column_type":"text"
