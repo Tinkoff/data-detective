@@ -65,9 +65,9 @@ def get_table(db_type: str, location: str, database: str, schema: str, table: st
     :param database: database name
     :param schema: schema name
     :param table: table name, example - entity
-    :return: urn, example - urn:schema:postgres:pg:airflow:dds:entity
+    :return: urn, example - urn:table:postgres:pg:airflow:dds:entity
     """
-    return f'urn:schema:{_clear_and_lower_parts(locals().values())}'
+    return f'urn:table:{_clear_and_lower_parts(locals().values())}'
 
 
 def split_table(urn: str) -> tuple[str, str, str, str, str]:
@@ -89,9 +89,9 @@ def get_column(db_type: str, location: str, database: str, schema: str, table: s
     :param schema: schema name
     :param table: table name, example - entity
     :param column: column name, example - json_data
-    :return: urn, example: urn:schema:postgres:pg:airflow:dds:entity:json_data
+    :return: urn, example: urn:column:postgres:pg:airflow:dds:entity:json_data
     """
-    return f'urn:schema:{_clear_and_lower_parts(locals().values())}'
+    return f'urn:column:{_clear_and_lower_parts(locals().values())}'
 
 
 def split_column(urn: str) -> tuple[str, str, str, str, str]:
