@@ -65,7 +65,7 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
     """Transform tables metadata to dds entity table format
     :param _context: airflow DAG task run context
     :param tables: Dataframe['schema_name', 'table_name', 'table_owner', 'estimated_rows',
-                             'table_size', 'full_table_size']
+                             'table_size', 'full_table_size', 'index_json']
     :return: petl.tables(ENTITY_CORE_FIELDS + EntityFields.TABLES, EntityFields.JSON_SYSTEM)
     """
     json_system_builder = JsonSystemBuilder(
@@ -169,7 +169,7 @@ def link_schema_to_table(_context: dict, tables: DataFrame) -> tuple[tuple]:
     """Link schemas entity to tables
     :param _context: airflow DAG task run context
     :param tables: Dataframe['schema_name', 'table_name', 'table_owner', 'estimated_rows',
-                             'table_size', 'full_table_size']
+                             'table_size', 'full_table_size', 'index_json']
     :return: RELATION_CORE_FIELDS
     """
     result = (petl.fromdataframe(tables)
