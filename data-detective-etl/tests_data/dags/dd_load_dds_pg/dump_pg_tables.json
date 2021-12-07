@@ -70,20 +70,36 @@
             "table_size":8192
         },
         {
-            "estimated_rows":143,
-            "full_table_size":622592,
+            "estimated_rows":86,
+            "full_table_size":606208,
             "schema_name":"dds",
             "table_name":"entity",
             "table_owner":"airflow",
             "table_size":122880
         },
         {
-            "estimated_rows":142,
-            "full_table_size":237568,
+            "estimated_rows":85,
+            "full_table_size":229376,
             "schema_name":"dds",
             "table_name":"relation",
             "table_owner":"airflow",
             "table_size":73728
+        },
+        {
+            "estimated_rows":61,
+            "full_table_size":16384,
+            "schema_name":"wrk_dd_load_dds_pg",
+            "table_name":"entity",
+            "table_owner":"airflow",
+            "table_size":16384
+        },
+        {
+            "estimated_rows":59,
+            "full_table_size":24576,
+            "schema_name":"wrk_dd_load_dds_pg",
+            "table_name":"relation",
+            "table_owner":"airflow",
+            "table_size":24576
         }
     ]
 }

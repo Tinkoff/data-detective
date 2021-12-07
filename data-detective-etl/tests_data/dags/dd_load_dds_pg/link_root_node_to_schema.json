@@ -47,7 +47,7 @@
         },
         {
             "attribute":null,
-            "destination":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_root_10",
+            "destination":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg",
             "source":"urn:tree_node:database",
             "type":"Contains"
         }

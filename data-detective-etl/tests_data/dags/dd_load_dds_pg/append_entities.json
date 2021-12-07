@@ -181,7 +181,7 @@
             "urn":"urn:schema:postgres:pg:airflow:tuning"
         },
         {
-            "entity_name":"wrk_dd_load_dds_root_10",
+            "entity_name":"wrk_dd_load_dds_pg",
             "entity_name_short":null,
             "entity_type":"SCHEMA",
             "info":null,
@@ -194,7 +194,7 @@
                 "type_for_search":"Schema",
                 "card_type":"Schema"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_root_10 wrk_dd_load_dds_root_10",
+            "search_data":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg wrk_dd_load_dds_pg",
             "tables":[
                 {
                     "columns":[
@@ -211,7 +211,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_root_10"
+            "urn":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg"
         },
         {
             "entity_name":"dds.entity",
@@ -219,16 +219,16 @@
             "entity_type":"TABLE",
             "info":null,
             "json_data":{
-                "estimated_rows":143,
+                "estimated_rows":86,
                 "table_size":122880,
-                "full_table_size":622592
+                "full_table_size":606208
             },
             "json_system":{
                 "system_for_search":"Postgres",
                 "type_for_search":"Table",
                 "card_type":"Table"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity dds.entity",
+            "search_data":"urn:table:postgres:pg:airflow:dds:entity dds.entity",
             "tables":[
                 {
                     "columns":[
@@ -238,7 +238,7 @@
                     "data":[
                         {
                             "Key":"Rows",
-                            "Value":"143"
+                            "Value":"86"
                         },
                         {
                             "Key":"Data size",
@@ -246,14 +246,14 @@
                         },
                         {
                             "Key":"Total relation size",
-                            "Value":"608.00 KB"
+                            "Value":"592.00 KB"
                         }
                     ],
                     "header":"General",
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity"
+            "urn":"urn:table:postgres:pg:airflow:dds:entity"
         },
         {
             "entity_name":"dds.relation",
@@ -261,16 +261,16 @@
             "entity_type":"TABLE",
             "info":null,
             "json_data":{
-                "estimated_rows":142,
+                "estimated_rows":85,
                 "table_size":73728,
-                "full_table_size":237568
+                "full_table_size":229376
             },
             "json_system":{
                 "system_for_search":"Postgres",
                 "type_for_search":"Table",
                 "card_type":"Table"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:relation dds.relation",
+            "search_data":"urn:table:postgres:pg:airflow:dds:relation dds.relation",
             "tables":[
                 {
                     "columns":[
@@ -280,7 +280,7 @@
                     "data":[
                         {
                             "Key":"Rows",
-                            "Value":"142"
+                            "Value":"85"
                         },
                         {
                             "Key":"Data size",
@@ -288,14 +288,14 @@
                         },
                         {
                             "Key":"Total relation size",
-                            "Value":"232.00 KB"
+                            "Value":"224.00 KB"
                         }
                     ],
                     "header":"General",
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:relation"
+            "urn":"urn:table:postgres:pg:airflow:dds:relation"
         },
         {
             "entity_name":"dds.sample",
@@ -312,7 +312,7 @@
                 "type_for_search":"Table",
                 "card_type":"Table"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:sample dds.sample",
+            "search_data":"urn:table:postgres:pg:airflow:dds:sample dds.sample",
             "tables":[
                 {
                     "columns":[
@@ -337,7 +337,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:sample"
+            "urn":"urn:table:postgres:pg:airflow:dds:sample"
         },
         {
             "entity_name":"mart.entity",
@@ -354,7 +354,7 @@
                 "type_for_search":"Table",
                 "card_type":"Table"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity mart.entity",
+            "search_data":"urn:table:postgres:pg:airflow:mart:entity mart.entity",
             "tables":[
                 {
                     "columns":[
@@ -379,7 +379,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity"
+            "urn":"urn:table:postgres:pg:airflow:mart:entity"
         },
         {
             "entity_name":"tuning.breadcrumb",
@@ -396,7 +396,7 @@
                 "type_for_search":"Table",
                 "card_type":"Table"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:breadcrumb tuning.breadcrumb",
+            "search_data":"urn:table:postgres:pg:airflow:tuning:breadcrumb tuning.breadcrumb",
             "tables":[
                 {
                     "columns":[
@@ -421,7 +421,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:breadcrumb"
+            "urn":"urn:table:postgres:pg:airflow:tuning:breadcrumb"
         },
         {
             "entity_name":"tuning.relations_type",
@@ -438,7 +438,7 @@
                 "type_for_search":"Table",
                 "card_type":"Table"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type tuning.relations_type",
+            "search_data":"urn:table:postgres:pg:airflow:tuning:relations_type tuning.relations_type",
             "tables":[
                 {
                     "columns":[
@@ -463,7 +463,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type"
+            "urn":"urn:table:postgres:pg:airflow:tuning:relations_type"
         },
         {
             "entity_name":"tuning.search_help",
@@ -480,7 +480,7 @@
                 "type_for_search":"Table",
                 "card_type":"Table"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:search_help tuning.search_help",
+            "search_data":"urn:table:postgres:pg:airflow:tuning:search_help tuning.search_help",
             "tables":[
                 {
                     "columns":[
@@ -505,7 +505,91 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:search_help"
+            "urn":"urn:table:postgres:pg:airflow:tuning:search_help"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity",
+            "entity_name_short":"entity",
+            "entity_type":"TABLE",
+            "info":null,
+            "json_data":{
+                "estimated_rows":61,
+                "table_size":16384,
+                "full_table_size":16384
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Table",
+                "card_type":"Table"
+            },
+            "search_data":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity wrk_dd_load_dds_pg.entity",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Rows",
+                            "Value":"61"
+                        },
+                        {
+                            "Key":"Data size",
+                            "Value":"16.00 KB"
+                        },
+                        {
+                            "Key":"Total relation size",
+                            "Value":"16.00 KB"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.relation",
+            "entity_name_short":"relation",
+            "entity_type":"TABLE",
+            "info":null,
+            "json_data":{
+                "estimated_rows":59,
+                "table_size":24576,
+                "full_table_size":24576
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Table",
+                "card_type":"Table"
+            },
+            "search_data":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation wrk_dd_load_dds_pg.relation",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Rows",
+                            "Value":"59"
+                        },
+                        {
+                            "Key":"Data size",
+                            "Value":"24.00 KB"
+                        },
+                        {
+                            "Key":"Total relation size",
+                            "Value":"24.00 KB"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation"
         },
         {
             "entity_name":"dds.entity.codes",
@@ -520,7 +604,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:codes dds.entity.codes",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:codes dds.entity.codes",
             "tables":[
                 {
                     "columns":[
@@ -541,7 +625,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:codes"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:codes"
         },
         {
             "entity_name":"dds.entity.entity_name",
@@ -556,7 +640,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:entity_name dds.entity.entity_name",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:entity_name dds.entity.entity_name",
             "tables":[
                 {
                     "columns":[
@@ -577,7 +661,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:entity_name"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:entity_name"
         },
         {
             "entity_name":"dds.entity.entity_name_short",
@@ -592,7 +676,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:entity_name_short dds.entity.entity_name_short",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:entity_name_short dds.entity.entity_name_short",
             "tables":[
                 {
                     "columns":[
@@ -613,7 +697,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:entity_name_short"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:entity_name_short"
         },
         {
             "entity_name":"dds.entity.entity_type",
@@ -628,7 +712,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:entity_type dds.entity.entity_type",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:entity_type dds.entity.entity_type",
             "tables":[
                 {
                     "columns":[
@@ -649,7 +733,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:entity_type"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:entity_type"
         },
         {
             "entity_name":"dds.entity.grid",
@@ -664,7 +748,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:grid dds.entity.grid",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:grid dds.entity.grid",
             "tables":[
                 {
                     "columns":[
@@ -685,7 +769,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:grid"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:grid"
         },
         {
             "entity_name":"dds.entity.htmls",
@@ -700,7 +784,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:htmls dds.entity.htmls",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:htmls dds.entity.htmls",
             "tables":[
                 {
                     "columns":[
@@ -721,7 +805,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:htmls"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:htmls"
         },
         {
             "entity_name":"dds.entity.info",
@@ -736,7 +820,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:info dds.entity.info",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:info dds.entity.info",
             "tables":[
                 {
                     "columns":[
@@ -757,7 +841,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:info"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:info"
         },
         {
             "entity_name":"dds.entity.json_data",
@@ -772,7 +856,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:json_data dds.entity.json_data",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:json_data dds.entity.json_data",
             "tables":[
                 {
                     "columns":[
@@ -793,7 +877,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:json_data"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:json_data"
         },
         {
             "entity_name":"dds.entity.json_data_ui",
@@ -808,7 +892,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:json_data_ui dds.entity.json_data_ui",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:json_data_ui dds.entity.json_data_ui",
             "tables":[
                 {
                     "columns":[
@@ -829,7 +913,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:json_data_ui"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:json_data_ui"
         },
         {
             "entity_name":"dds.entity.json_system",
@@ -844,7 +928,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:json_system dds.entity.json_system",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:json_system dds.entity.json_system",
             "tables":[
                 {
                     "columns":[
@@ -865,7 +949,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:json_system"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:json_system"
         },
         {
             "entity_name":"dds.entity.links",
@@ -880,7 +964,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:links dds.entity.links",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:links dds.entity.links",
             "tables":[
                 {
                     "columns":[
@@ -901,7 +985,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:links"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:links"
         },
         {
             "entity_name":"dds.entity.loaded_by",
@@ -916,7 +1000,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:loaded_by dds.entity.loaded_by",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:loaded_by dds.entity.loaded_by",
             "tables":[
                 {
                     "columns":[
@@ -937,7 +1021,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:loaded_by"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:loaded_by"
         },
         {
             "entity_name":"dds.entity.notifications",
@@ -952,7 +1036,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:notifications dds.entity.notifications",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:notifications dds.entity.notifications",
             "tables":[
                 {
                     "columns":[
@@ -973,7 +1057,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:notifications"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:notifications"
         },
         {
             "entity_name":"dds.entity.processed_dttm",
@@ -988,7 +1072,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:processed_dttm dds.entity.processed_dttm",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:processed_dttm dds.entity.processed_dttm",
             "tables":[
                 {
                     "columns":[
@@ -1009,7 +1093,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:processed_dttm"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:processed_dttm"
         },
         {
             "entity_name":"dds.entity.search_data",
@@ -1024,7 +1108,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:search_data dds.entity.search_data",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:search_data dds.entity.search_data",
             "tables":[
                 {
                     "columns":[
@@ -1045,7 +1129,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:search_data"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:search_data"
         },
         {
             "entity_name":"dds.entity.tables",
@@ -1060,7 +1144,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:tables dds.entity.tables",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:tables dds.entity.tables",
             "tables":[
                 {
                     "columns":[
@@ -1081,7 +1165,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:tables"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:tables"
         },
         {
             "entity_name":"dds.entity.tags",
@@ -1096,7 +1180,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:tags dds.entity.tags",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:tags dds.entity.tags",
             "tables":[
                 {
                     "columns":[
@@ -1117,7 +1201,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:tags"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:tags"
         },
         {
             "entity_name":"dds.entity.urn",
@@ -1132,7 +1216,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:entity:urn dds.entity.urn",
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:urn dds.entity.urn",
             "tables":[
                 {
                     "columns":[
@@ -1153,7 +1237,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:entity:urn"
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:urn"
         },
         {
             "entity_name":"dds.relation.attribute",
@@ -1168,7 +1252,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:relation:attribute dds.relation.attribute",
+            "search_data":"urn:column:postgres:pg:airflow:dds:relation:attribute dds.relation.attribute",
             "tables":[
                 {
                     "columns":[
@@ -1189,7 +1273,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:relation:attribute"
+            "urn":"urn:column:postgres:pg:airflow:dds:relation:attribute"
         },
         {
             "entity_name":"dds.relation.destination",
@@ -1204,7 +1288,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:relation:destination dds.relation.destination",
+            "search_data":"urn:column:postgres:pg:airflow:dds:relation:destination dds.relation.destination",
             "tables":[
                 {
                     "columns":[
@@ -1225,7 +1309,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:relation:destination"
+            "urn":"urn:column:postgres:pg:airflow:dds:relation:destination"
         },
         {
             "entity_name":"dds.relation.loaded_by",
@@ -1240,7 +1324,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:relation:loaded_by dds.relation.loaded_by",
+            "search_data":"urn:column:postgres:pg:airflow:dds:relation:loaded_by dds.relation.loaded_by",
             "tables":[
                 {
                     "columns":[
@@ -1261,7 +1345,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:relation:loaded_by"
+            "urn":"urn:column:postgres:pg:airflow:dds:relation:loaded_by"
         },
         {
             "entity_name":"dds.relation.processed_dttm",
@@ -1276,7 +1360,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:relation:processed_dttm dds.relation.processed_dttm",
+            "search_data":"urn:column:postgres:pg:airflow:dds:relation:processed_dttm dds.relation.processed_dttm",
             "tables":[
                 {
                     "columns":[
@@ -1297,7 +1381,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:relation:processed_dttm"
+            "urn":"urn:column:postgres:pg:airflow:dds:relation:processed_dttm"
         },
         {
             "entity_name":"dds.relation.source",
@@ -1312,7 +1396,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:relation:source dds.relation.source",
+            "search_data":"urn:column:postgres:pg:airflow:dds:relation:source dds.relation.source",
             "tables":[
                 {
                     "columns":[
@@ -1333,7 +1417,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:relation:source"
+            "urn":"urn:column:postgres:pg:airflow:dds:relation:source"
         },
         {
             "entity_name":"dds.relation.type",
@@ -1348,7 +1432,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:relation:type dds.relation.type",
+            "search_data":"urn:column:postgres:pg:airflow:dds:relation:type dds.relation.type",
             "tables":[
                 {
                     "columns":[
@@ -1369,7 +1453,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:relation:type"
+            "urn":"urn:column:postgres:pg:airflow:dds:relation:type"
         },
         {
             "entity_name":"dds.sample.cntrows",
@@ -1384,7 +1468,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:sample:cntrows dds.sample.cntrows",
+            "search_data":"urn:column:postgres:pg:airflow:dds:sample:cntrows dds.sample.cntrows",
             "tables":[
                 {
                     "columns":[
@@ -1405,7 +1489,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:sample:cntrows"
+            "urn":"urn:column:postgres:pg:airflow:dds:sample:cntrows"
         },
         {
             "entity_name":"dds.sample.columndef",
@@ -1420,7 +1504,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:sample:columndef dds.sample.columndef",
+            "search_data":"urn:column:postgres:pg:airflow:dds:sample:columndef dds.sample.columndef",
             "tables":[
                 {
                     "columns":[
@@ -1441,7 +1525,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:sample:columndef"
+            "urn":"urn:column:postgres:pg:airflow:dds:sample:columndef"
         },
         {
             "entity_name":"dds.sample.processed_dttm",
@@ -1456,7 +1540,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:sample:processed_dttm dds.sample.processed_dttm",
+            "search_data":"urn:column:postgres:pg:airflow:dds:sample:processed_dttm dds.sample.processed_dttm",
             "tables":[
                 {
                     "columns":[
@@ -1477,7 +1561,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:sample:processed_dttm"
+            "urn":"urn:column:postgres:pg:airflow:dds:sample:processed_dttm"
         },
         {
             "entity_name":"dds.sample.sample_data",
@@ -1492,7 +1576,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:sample:sample_data dds.sample.sample_data",
+            "search_data":"urn:column:postgres:pg:airflow:dds:sample:sample_data dds.sample.sample_data",
             "tables":[
                 {
                     "columns":[
@@ -1513,7 +1597,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:sample:sample_data"
+            "urn":"urn:column:postgres:pg:airflow:dds:sample:sample_data"
         },
         {
             "entity_name":"dds.sample.urn",
@@ -1528,7 +1612,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:dds:sample:urn dds.sample.urn",
+            "search_data":"urn:column:postgres:pg:airflow:dds:sample:urn dds.sample.urn",
             "tables":[
                 {
                     "columns":[
@@ -1549,7 +1633,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:dds:sample:urn"
+            "urn":"urn:column:postgres:pg:airflow:dds:sample:urn"
         },
         {
             "entity_name":"mart.entity.codes",
@@ -1564,7 +1648,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:codes mart.entity.codes",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:codes mart.entity.codes",
             "tables":[
                 {
                     "columns":[
@@ -1585,7 +1669,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:codes"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:codes"
         },
         {
             "entity_name":"mart.entity.entity_name",
@@ -1600,7 +1684,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:entity_name mart.entity.entity_name",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:entity_name mart.entity.entity_name",
             "tables":[
                 {
                     "columns":[
@@ -1621,7 +1705,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:entity_name"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:entity_name"
         },
         {
             "entity_name":"mart.entity.entity_name_short",
@@ -1636,7 +1720,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:entity_name_short mart.entity.entity_name_short",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:entity_name_short mart.entity.entity_name_short",
             "tables":[
                 {
                     "columns":[
@@ -1657,7 +1741,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:entity_name_short"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:entity_name_short"
         },
         {
             "entity_name":"mart.entity.entity_type",
@@ -1672,7 +1756,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:entity_type mart.entity.entity_type",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:entity_type mart.entity.entity_type",
             "tables":[
                 {
                     "columns":[
@@ -1693,7 +1777,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:entity_type"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:entity_type"
         },
         {
             "entity_name":"mart.entity.grid",
@@ -1708,7 +1792,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:grid mart.entity.grid",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:grid mart.entity.grid",
             "tables":[
                 {
                     "columns":[
@@ -1729,7 +1813,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:grid"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:grid"
         },
         {
             "entity_name":"mart.entity.htmls",
@@ -1744,7 +1828,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:htmls mart.entity.htmls",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:htmls mart.entity.htmls",
             "tables":[
                 {
                     "columns":[
@@ -1765,7 +1849,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:htmls"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:htmls"
         },
         {
             "entity_name":"mart.entity.info",
@@ -1780,7 +1864,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:info mart.entity.info",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:info mart.entity.info",
             "tables":[
                 {
                     "columns":[
@@ -1801,7 +1885,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:info"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:info"
         },
         {
             "entity_name":"mart.entity.json_data",
@@ -1816,7 +1900,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:json_data mart.entity.json_data",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:json_data mart.entity.json_data",
             "tables":[
                 {
                     "columns":[
@@ -1837,7 +1921,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:json_data"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:json_data"
         },
         {
             "entity_name":"mart.entity.json_data_ui",
@@ -1852,7 +1936,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:json_data_ui mart.entity.json_data_ui",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:json_data_ui mart.entity.json_data_ui",
             "tables":[
                 {
                     "columns":[
@@ -1873,7 +1957,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:json_data_ui"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:json_data_ui"
         },
         {
             "entity_name":"mart.entity.json_system",
@@ -1888,7 +1972,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:json_system mart.entity.json_system",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:json_system mart.entity.json_system",
             "tables":[
                 {
                     "columns":[
@@ -1909,7 +1993,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:json_system"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:json_system"
         },
         {
             "entity_name":"mart.entity.links",
@@ -1924,7 +2008,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:links mart.entity.links",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:links mart.entity.links",
             "tables":[
                 {
                     "columns":[
@@ -1945,7 +2029,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:links"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:links"
         },
         {
             "entity_name":"mart.entity.load_dt",
@@ -1960,7 +2044,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:load_dt mart.entity.load_dt",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:load_dt mart.entity.load_dt",
             "tables":[
                 {
                     "columns":[
@@ -1981,7 +2065,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:load_dt"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:load_dt"
         },
         {
             "entity_name":"mart.entity.loaded_by",
@@ -1996,7 +2080,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:loaded_by mart.entity.loaded_by",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:loaded_by mart.entity.loaded_by",
             "tables":[
                 {
                     "columns":[
@@ -2017,7 +2101,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:loaded_by"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:loaded_by"
         },
         {
             "entity_name":"mart.entity.notifications",
@@ -2032,7 +2116,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:notifications mart.entity.notifications",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:notifications mart.entity.notifications",
             "tables":[
                 {
                     "columns":[
@@ -2053,7 +2137,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:notifications"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:notifications"
         },
         {
             "entity_name":"mart.entity.processed_dttm",
@@ -2068,7 +2152,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:processed_dttm mart.entity.processed_dttm",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:processed_dttm mart.entity.processed_dttm",
             "tables":[
                 {
                     "columns":[
@@ -2089,7 +2173,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:processed_dttm"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:processed_dttm"
         },
         {
             "entity_name":"mart.entity.search_data",
@@ -2104,7 +2188,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:search_data mart.entity.search_data",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:search_data mart.entity.search_data",
             "tables":[
                 {
                     "columns":[
@@ -2125,7 +2209,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:search_data"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:search_data"
         },
         {
             "entity_name":"mart.entity.tables",
@@ -2140,7 +2224,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:tables mart.entity.tables",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:tables mart.entity.tables",
             "tables":[
                 {
                     "columns":[
@@ -2161,7 +2245,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:tables"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:tables"
         },
         {
             "entity_name":"mart.entity.tags",
@@ -2176,7 +2260,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:tags mart.entity.tags",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:tags mart.entity.tags",
             "tables":[
                 {
                     "columns":[
@@ -2197,7 +2281,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:tags"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:tags"
         },
         {
             "entity_name":"mart.entity.urn",
@@ -2212,7 +2296,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:mart:entity:urn mart.entity.urn",
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:urn mart.entity.urn",
             "tables":[
                 {
                     "columns":[
@@ -2233,7 +2317,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:mart:entity:urn"
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:urn"
         },
         {
             "entity_name":"tuning.breadcrumb.breadcrumb_entity",
@@ -2248,7 +2332,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:breadcrumb:breadcrumb_entity tuning.breadcrumb.breadcrumb_entity",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:breadcrumb:breadcrumb_entity tuning.breadcrumb.breadcrumb_entity",
             "tables":[
                 {
                     "columns":[
@@ -2269,7 +2353,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:breadcrumb:breadcrumb_entity"
+            "urn":"urn:column:postgres:pg:airflow:tuning:breadcrumb:breadcrumb_entity"
         },
         {
             "entity_name":"tuning.breadcrumb.breadcrumb_urn",
@@ -2284,7 +2368,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:breadcrumb:breadcrumb_urn tuning.breadcrumb.breadcrumb_urn",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:breadcrumb:breadcrumb_urn tuning.breadcrumb.breadcrumb_urn",
             "tables":[
                 {
                     "columns":[
@@ -2305,7 +2389,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:breadcrumb:breadcrumb_urn"
+            "urn":"urn:column:postgres:pg:airflow:tuning:breadcrumb:breadcrumb_urn"
         },
         {
             "entity_name":"tuning.breadcrumb.loaded_by",
@@ -2320,7 +2404,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:breadcrumb:loaded_by tuning.breadcrumb.loaded_by",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:breadcrumb:loaded_by tuning.breadcrumb.loaded_by",
             "tables":[
                 {
                     "columns":[
@@ -2341,7 +2425,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:breadcrumb:loaded_by"
+            "urn":"urn:column:postgres:pg:airflow:tuning:breadcrumb:loaded_by"
         },
         {
             "entity_name":"tuning.breadcrumb.processed_dttm",
@@ -2356,7 +2440,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:breadcrumb:processed_dttm tuning.breadcrumb.processed_dttm",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:breadcrumb:processed_dttm tuning.breadcrumb.processed_dttm",
             "tables":[
                 {
                     "columns":[
@@ -2377,7 +2461,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:breadcrumb:processed_dttm"
+            "urn":"urn:column:postgres:pg:airflow:tuning:breadcrumb:processed_dttm"
         },
         {
             "entity_name":"tuning.breadcrumb.urn",
@@ -2392,7 +2476,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:breadcrumb:urn tuning.breadcrumb.urn",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:breadcrumb:urn tuning.breadcrumb.urn",
             "tables":[
                 {
                     "columns":[
@@ -2413,7 +2497,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:breadcrumb:urn"
+            "urn":"urn:column:postgres:pg:airflow:tuning:breadcrumb:urn"
         },
         {
             "entity_name":"tuning.relations_type.attribute_group_name",
@@ -2428,7 +2512,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type:attribute_group_name tuning.relations_type.attribute_group_name",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_name tuning.relations_type.attribute_group_name",
             "tables":[
                 {
                     "columns":[
@@ -2449,7 +2533,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type:attribute_group_name"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_name"
         },
         {
             "entity_name":"tuning.relations_type.attribute_type",
@@ -2464,7 +2548,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type:attribute_type tuning.relations_type.attribute_type",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_type tuning.relations_type.attribute_type",
             "tables":[
                 {
                     "columns":[
@@ -2485,7 +2569,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type:attribute_type"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_type"
         },
         {
             "entity_name":"tuning.relations_type.loaded_by",
@@ -2500,7 +2584,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type:loaded_by tuning.relations_type.loaded_by",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:loaded_by tuning.relations_type.loaded_by",
             "tables":[
                 {
                     "columns":[
@@ -2521,7 +2605,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type:loaded_by"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:loaded_by"
         },
         {
             "entity_name":"tuning.relations_type.processed_dttm",
@@ -2536,7 +2620,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type:processed_dttm tuning.relations_type.processed_dttm",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:processed_dttm tuning.relations_type.processed_dttm",
             "tables":[
                 {
                     "columns":[
@@ -2557,7 +2641,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type:processed_dttm"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:processed_dttm"
         },
         {
             "entity_name":"tuning.relations_type.relation_type",
@@ -2572,7 +2656,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type:relation_type tuning.relations_type.relation_type",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:relation_type tuning.relations_type.relation_type",
             "tables":[
                 {
                     "columns":[
@@ -2593,7 +2677,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type:relation_type"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:relation_type"
         },
         {
             "entity_name":"tuning.relations_type.source_group_name",
@@ -2608,7 +2692,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type:source_group_name tuning.relations_type.source_group_name",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_name tuning.relations_type.source_group_name",
             "tables":[
                 {
                     "columns":[
@@ -2629,7 +2713,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type:source_group_name"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_name"
         },
         {
             "entity_name":"tuning.relations_type.source_type",
@@ -2644,7 +2728,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type:source_type tuning.relations_type.source_type",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:source_type tuning.relations_type.source_type",
             "tables":[
                 {
                     "columns":[
@@ -2665,7 +2749,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type:source_type"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:source_type"
         },
         {
             "entity_name":"tuning.relations_type.target_group_name",
@@ -2680,7 +2764,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type:target_group_name tuning.relations_type.target_group_name",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_name tuning.relations_type.target_group_name",
             "tables":[
                 {
                     "columns":[
@@ -2701,7 +2785,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type:target_group_name"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_name"
         },
         {
             "entity_name":"tuning.relations_type.target_type",
@@ -2716,7 +2800,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:relations_type:target_type tuning.relations_type.target_type",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:target_type tuning.relations_type.target_type",
             "tables":[
                 {
                     "columns":[
@@ -2737,7 +2821,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:relations_type:target_type"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:target_type"
         },
         {
             "entity_name":"tuning.search_help.description",
@@ -2752,7 +2836,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:search_help:description tuning.search_help.description",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:description tuning.search_help.description",
             "tables":[
                 {
                     "columns":[
@@ -2773,7 +2857,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:search_help:description"
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:description"
         },
         {
             "entity_name":"tuning.search_help.loaded_by",
@@ -2788,7 +2872,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:search_help:loaded_by tuning.search_help.loaded_by",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:loaded_by tuning.search_help.loaded_by",
             "tables":[
                 {
                     "columns":[
@@ -2809,7 +2893,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:search_help:loaded_by"
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:loaded_by"
         },
         {
             "entity_name":"tuning.search_help.name",
@@ -2824,7 +2908,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:search_help:name tuning.search_help.name",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:name tuning.search_help.name",
             "tables":[
                 {
                     "columns":[
@@ -2845,7 +2929,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:search_help:name"
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:name"
         },
         {
             "entity_name":"tuning.search_help.processed_dttm",
@@ -2860,7 +2944,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:search_help:processed_dttm tuning.search_help.processed_dttm",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:processed_dttm tuning.search_help.processed_dttm",
             "tables":[
                 {
                     "columns":[
@@ -2881,7 +2965,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:search_help:processed_dttm"
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:processed_dttm"
         },
         {
             "entity_name":"tuning.search_help.type",
@@ -2896,7 +2980,7 @@
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:schema:postgres:pg:airflow:tuning:search_help:type tuning.search_help.type",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:type tuning.search_help.type",
             "tables":[
                 {
                     "columns":[
@@ -2917,7 +3001,943 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:schema:postgres:pg:airflow:tuning:search_help:type"
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:type"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.codes",
+            "entity_name_short":"codes",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":8,
+                "column_type":"jsonb"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:codes wrk_dd_load_dds_pg.entity.codes",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"8"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:codes"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.diff_flg",
+            "entity_name_short":"diff_flg",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":19,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:diff_flg wrk_dd_load_dds_pg.entity.diff_flg",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"19"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:diff_flg"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.entity_name",
+            "entity_name_short":"entity_name",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":3,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:entity_name wrk_dd_load_dds_pg.entity.entity_name",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"3"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:entity_name"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.entity_name_short",
+            "entity_name_short":"entity_name_short",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":5,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:entity_name_short wrk_dd_load_dds_pg.entity.entity_name_short",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"5"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:entity_name_short"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.entity_type",
+            "entity_name_short":"entity_type",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":4,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:entity_type wrk_dd_load_dds_pg.entity.entity_type",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"4"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:entity_type"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.grid",
+            "entity_name_short":"grid",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":9,
+                "column_type":"jsonb"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:grid wrk_dd_load_dds_pg.entity.grid",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"9"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:grid"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.htmls",
+            "entity_name_short":"htmls",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":13,
+                "column_type":"jsonb"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:htmls wrk_dd_load_dds_pg.entity.htmls",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"13"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:htmls"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.info",
+            "entity_name_short":"info",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":6,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:info wrk_dd_load_dds_pg.entity.info",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"6"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:info"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.json_data",
+            "entity_name_short":"json_data",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":10,
+                "column_type":"jsonb"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:json_data wrk_dd_load_dds_pg.entity.json_data",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"10"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:json_data"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.json_data_ui",
+            "entity_name_short":"json_data_ui",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":12,
+                "column_type":"jsonb"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:json_data_ui wrk_dd_load_dds_pg.entity.json_data_ui",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"12"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:json_data_ui"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.json_system",
+            "entity_name_short":"json_system",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":11,
+                "column_type":"jsonb"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:json_system wrk_dd_load_dds_pg.entity.json_system",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"11"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:json_system"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.links",
+            "entity_name_short":"links",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":14,
+                "column_type":"jsonb"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:links wrk_dd_load_dds_pg.entity.links",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"14"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:links"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.loaded_by",
+            "entity_name_short":"loaded_by",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":2,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:loaded_by wrk_dd_load_dds_pg.entity.loaded_by",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"2"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:loaded_by"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.notifications",
+            "entity_name_short":"notifications",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":15,
+                "column_type":"jsonb"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:notifications wrk_dd_load_dds_pg.entity.notifications",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"15"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:notifications"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.processed_dttm",
+            "entity_name_short":"processed_dttm",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":18,
+                "column_type":"timestamp without time zone"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:processed_dttm wrk_dd_load_dds_pg.entity.processed_dttm",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"timestamp without time zone"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"18"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:processed_dttm"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.search_data",
+            "entity_name_short":"search_data",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":7,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:search_data wrk_dd_load_dds_pg.entity.search_data",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"7"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:search_data"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.tables",
+            "entity_name_short":"tables",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":16,
+                "column_type":"jsonb"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:tables wrk_dd_load_dds_pg.entity.tables",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"16"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:tables"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.tags",
+            "entity_name_short":"tags",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":17,
+                "column_type":"jsonb"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:tags wrk_dd_load_dds_pg.entity.tags",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"17"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:tags"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity.urn",
+            "entity_name_short":"urn",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":1,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:urn wrk_dd_load_dds_pg.entity.urn",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"1"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:urn"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.relation.attribute",
+            "entity_name_short":"attribute",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":5,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:attribute wrk_dd_load_dds_pg.relation.attribute",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"5"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:attribute"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.relation.destination",
+            "entity_name_short":"destination",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":2,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:destination wrk_dd_load_dds_pg.relation.destination",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"2"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:destination"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.relation.diff_flg",
+            "entity_name_short":"diff_flg",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":7,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:diff_flg wrk_dd_load_dds_pg.relation.diff_flg",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"7"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:diff_flg"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.relation.loaded_by",
+            "entity_name_short":"loaded_by",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":4,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:loaded_by wrk_dd_load_dds_pg.relation.loaded_by",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"4"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:loaded_by"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.relation.processed_dttm",
+            "entity_name_short":"processed_dttm",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":6,
+                "column_type":"timestamp without time zone"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:processed_dttm wrk_dd_load_dds_pg.relation.processed_dttm",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"timestamp without time zone"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"6"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:processed_dttm"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.relation.source",
+            "entity_name_short":"source",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":1,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:source wrk_dd_load_dds_pg.relation.source",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"1"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:source"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.relation.type",
+            "entity_name_short":"type",
+            "entity_type":"COLUMN",
+            "info":null,
+            "json_data":{
+                "ordinal_position":3,
+                "column_type":"text"
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Column"
+            },
+            "search_data":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:type wrk_dd_load_dds_pg.relation.type",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"3"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:type"
         }
     ]
 }

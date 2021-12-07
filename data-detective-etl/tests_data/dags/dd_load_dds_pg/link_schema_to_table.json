@@ -23,44 +23,56 @@
     "data":[
         {
             "attribute":null,
-            "destination":"urn:schema:postgres:pg:airflow:dds:entity",
+            "destination":"urn:table:postgres:pg:airflow:dds:entity",
             "source":"urn:schema:postgres:pg:airflow:dds",
             "type":"Contains"
         },
         {
             "attribute":null,
-            "destination":"urn:schema:postgres:pg:airflow:dds:relation",
+            "destination":"urn:table:postgres:pg:airflow:dds:relation",
             "source":"urn:schema:postgres:pg:airflow:dds",
             "type":"Contains"
         },
         {
             "attribute":null,
-            "destination":"urn:schema:postgres:pg:airflow:dds:sample",
+            "destination":"urn:table:postgres:pg:airflow:dds:sample",
             "source":"urn:schema:postgres:pg:airflow:dds",
             "type":"Contains"
         },
         {
             "attribute":null,
-            "destination":"urn:schema:postgres:pg:airflow:mart:entity",
+            "destination":"urn:table:postgres:pg:airflow:mart:entity",
             "source":"urn:schema:postgres:pg:airflow:mart",
             "type":"Contains"
         },
         {
             "attribute":null,
-            "destination":"urn:schema:postgres:pg:airflow:tuning:breadcrumb",
+            "destination":"urn:table:postgres:pg:airflow:tuning:breadcrumb",
             "source":"urn:schema:postgres:pg:airflow:tuning",
             "type":"Contains"
         },
         {
             "attribute":null,
-            "destination":"urn:schema:postgres:pg:airflow:tuning:relations_type",
+            "destination":"urn:table:postgres:pg:airflow:tuning:relations_type",
             "source":"urn:schema:postgres:pg:airflow:tuning",
             "type":"Contains"
         },
         {
             "attribute":null,
-            "destination":"urn:schema:postgres:pg:airflow:tuning:search_help",
+            "destination":"urn:table:postgres:pg:airflow:tuning:search_help",
             "source":"urn:schema:postgres:pg:airflow:tuning",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
+            "source":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation",
+            "source":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg",
             "type":"Contains"
         }
     ]
