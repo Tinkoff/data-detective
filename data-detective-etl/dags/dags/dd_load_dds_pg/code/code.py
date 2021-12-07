@@ -19,9 +19,9 @@ from common.utilities.search_enums import CardType, SystemForSearch, TypeForSear
 
 def transform_schema_to_entity(_context: dict, schemas: DataFrame) -> tuple[tuple]:
     """Transform schema metadata to dds entity table format
-    :param _context: airflow DAG run context
+    :param _context: airflow DAG task run context
     :param schemas: Dataframe['schema_name', 'schema_owner', 'schema_acl', 'schema_description']
-    :return: petl.tables(ENTITY_CORE_FIELDS + EntityFields.TABLES, EntityFields.JSON_SYSTEM)
+    :return: petl.tables(ENTITY_CORE_FIELDS + EntityFields.TABLES, EntityFields.JSON_SYSTEM, EntityFields.INFO)
     """
     json_system_builder = JsonSystemBuilder(
         system_for_search=SystemForSearch.POSTGRES.name,
@@ -61,8 +61,11 @@ def transform_schema_to_entity(_context: dict, schemas: DataFrame) -> tuple[tupl
 
 
 def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]:
-    """
-
+    """Transform tables metadata to dds entity table format
+    :param _context: airflow DAG task run context
+    :param tables: Dataframe['schema_name', 'table_name', 'table_owner', 'estimated_rows',
+                             'table_size', 'full_table_size']
+    :return: petl.tables(ENTITY_CORE_FIELDS + EntityFields.TABLES, EntityFields.JSON_SYSTEM)
     """
     json_system_builder = JsonSystemBuilder(
         system_for_search=SystemForSearch.POSTGRES.name,
@@ -107,8 +110,10 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
 
 
 def transform_column_to_entity(_context: dict, columns: DataFrame) -> tuple[tuple]:
-    """
-
+    """Transform tables metadata to dds entity table format
+    :param _context: airflow DAG task run context
+    :param columns: Dataframe['schema_name', 'table_name', 'column_name', 'column_type', 'ordinal_position']
+    :return: petl.tables(ENTITY_CORE_FIELDS + EntityFields.TABLES, EntityFields.JSON_SYSTEM)
     """
     json_system_builder = JsonSystemBuilder(
         system_for_search=SystemForSearch.POSTGRES.name,

@@ -179,39 +179,6 @@
                 }
             ],
             "urn":"urn:schema:postgres:pg:airflow:tuning"
-        },
-        {
-            "entity_name":"wrk_dd_load_dds_pg",
-            "entity_name_short":null,
-            "entity_type":"SCHEMA",
-            "info":null,
-            "json_data":{
-                "schema_owner":"airflow",
-                "schema_acl":null
-            },
-            "json_system":{
-                "system_for_search":"Postgres",
-                "type_for_search":"Schema",
-                "card_type":"Schema"
-            },
-            "search_data":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg wrk_dd_load_dds_pg",
-            "tables":[
-                {
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "data":[
-                        {
-                            "Key":"Owner",
-                            "Value":"airflow"
-                        }
-                    ],
-                    "header":"General",
-                    "display_headers":"0"
-                }
-            ],
-            "urn":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg"
         }
     ]
 }
