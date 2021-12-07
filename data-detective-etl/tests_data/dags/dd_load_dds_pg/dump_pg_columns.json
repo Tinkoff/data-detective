@@ -495,6 +495,55 @@
             "table_name":"relation"
         },
         {
+            "column_name":"source",
+            "column_type":"text",
+            "ordinal_position":1,
+            "schema_name":"wrk_dd_load_dds_pg",
+            "table_name":"relation"
+        },
+        {
+            "column_name":"destination",
+            "column_type":"text",
+            "ordinal_position":2,
+            "schema_name":"wrk_dd_load_dds_pg",
+            "table_name":"relation"
+        },
+        {
+            "column_name":"type",
+            "column_type":"text",
+            "ordinal_position":3,
+            "schema_name":"wrk_dd_load_dds_pg",
+            "table_name":"relation"
+        },
+        {
+            "column_name":"loaded_by",
+            "column_type":"text",
+            "ordinal_position":4,
+            "schema_name":"wrk_dd_load_dds_pg",
+            "table_name":"relation"
+        },
+        {
+            "column_name":"attribute",
+            "column_type":"text",
+            "ordinal_position":5,
+            "schema_name":"wrk_dd_load_dds_pg",
+            "table_name":"relation"
+        },
+        {
+            "column_name":"processed_dttm",
+            "column_type":"timestamp without time zone",
+            "ordinal_position":6,
+            "schema_name":"wrk_dd_load_dds_pg",
+            "table_name":"relation"
+        },
+        {
+            "column_name":"diff_flg",
+            "column_type":"text",
+            "ordinal_position":7,
+            "schema_name":"wrk_dd_load_dds_pg",
+            "table_name":"relation"
+        },
+        {
             "column_name":"urn",
             "column_type":"text",
             "ordinal_position":1,
@@ -626,55 +675,6 @@
             "ordinal_position":19,
             "schema_name":"wrk_dd_load_dds_pg",
             "table_name":"entity"
-        },
-        {
-            "column_name":"source",
-            "column_type":"text",
-            "ordinal_position":1,
-            "schema_name":"wrk_dd_load_dds_pg",
-            "table_name":"relation"
-        },
-        {
-            "column_name":"destination",
-            "column_type":"text",
-            "ordinal_position":2,
-            "schema_name":"wrk_dd_load_dds_pg",
-            "table_name":"relation"
-        },
-        {
-            "column_name":"type",
-            "column_type":"text",
-            "ordinal_position":3,
-            "schema_name":"wrk_dd_load_dds_pg",
-            "table_name":"relation"
-        },
-        {
-            "column_name":"loaded_by",
-            "column_type":"text",
-            "ordinal_position":4,
-            "schema_name":"wrk_dd_load_dds_pg",
-            "table_name":"relation"
-        },
-        {
-            "column_name":"attribute",
-            "column_type":"text",
-            "ordinal_position":5,
-            "schema_name":"wrk_dd_load_dds_pg",
-            "table_name":"relation"
-        },
-        {
-            "column_name":"processed_dttm",
-            "column_type":"timestamp without time zone",
-            "ordinal_position":6,
-            "schema_name":"wrk_dd_load_dds_pg",
-            "table_name":"relation"
-        },
-        {
-            "column_name":"diff_flg",
-            "column_type":"text",
-            "ordinal_position":7,
-            "schema_name":"wrk_dd_load_dds_pg",
-            "table_name":"relation"
         }
     ]
 }

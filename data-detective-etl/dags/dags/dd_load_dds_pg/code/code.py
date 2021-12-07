@@ -1,3 +1,4 @@
+import json
 from pandas import DataFrame
 import petl
 
@@ -89,6 +90,17 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
     )
     table_size_builder = TableInfoBuilder(table_size_description)
 
+    table_index_description = TableInfoDescriptionType(
+        keys={
+            'name': 'Name',
+            'ddl': 'Definitions',
+        },
+        header='Table indexes',
+        display_headers='1',
+        orientation='horizontal'
+    )
+    table_index_builder = TableInfoBuilder(table_index_description)
+
     result = (petl.fromdataframe(tables)
               .addfield(EntityFields.URN,
                         lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']))
@@ -101,8 +113,10 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
               .addfield(EntityFields.JSON_DATA,
                         lambda row: dict(estimated_rows=row['estimated_rows'],
                                          table_size=row['table_size'],
-                                         full_table_size=row['full_table_size']))
-              .addfield(EntityFields.TABLES, lambda row: [table_size_builder(row)])
+                                         full_table_size=row['full_table_size'],
+                                         index_json=row['index_json']))
+              .addfield(EntityFields.TABLES, lambda row: [table_size_builder(row),
+                                                          table_index_builder(row['index_json'] or {})])
               .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.TABLES, EntityFields.JSON_SYSTEM])
               .distinct(key=EntityFields.URN)
               )

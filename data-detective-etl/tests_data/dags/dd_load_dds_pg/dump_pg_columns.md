@@ -67,6 +67,13 @@
 | dds                | relation       | loaded_by            | text                        |                  4 |
 | dds                | relation       | attribute            | text                        |                  5 |
 | dds                | relation       | processed_dttm       | timestamp without time zone |                  6 |
+| wrk_dd_load_dds_pg | relation       | source               | text                        |                  1 |
+| wrk_dd_load_dds_pg | relation       | destination          | text                        |                  2 |
+| wrk_dd_load_dds_pg | relation       | type                 | text                        |                  3 |
+| wrk_dd_load_dds_pg | relation       | loaded_by            | text                        |                  4 |
+| wrk_dd_load_dds_pg | relation       | attribute            | text                        |                  5 |
+| wrk_dd_load_dds_pg | relation       | processed_dttm       | timestamp without time zone |                  6 |
+| wrk_dd_load_dds_pg | relation       | diff_flg             | text                        |                  7 |
 | wrk_dd_load_dds_pg | entity         | urn                  | text                        |                  1 |
 | wrk_dd_load_dds_pg | entity         | loaded_by            | text                        |                  2 |
 | wrk_dd_load_dds_pg | entity         | entity_name          | text                        |                  3 |
@@ -86,10 +93,3 @@
 | wrk_dd_load_dds_pg | entity         | tags                 | jsonb                       |                 17 |
 | wrk_dd_load_dds_pg | entity         | processed_dttm       | timestamp without time zone |                 18 |
 | wrk_dd_load_dds_pg | entity         | diff_flg             | text                        |                 19 |
-| wrk_dd_load_dds_pg | relation       | source               | text                        |                  1 |
-| wrk_dd_load_dds_pg | relation       | destination          | text                        |                  2 |
-| wrk_dd_load_dds_pg | relation       | type                 | text                        |                  3 |
-| wrk_dd_load_dds_pg | relation       | loaded_by            | text                        |                  4 |
-| wrk_dd_load_dds_pg | relation       | attribute            | text                        |                  5 |
-| wrk_dd_load_dds_pg | relation       | processed_dttm       | timestamp without time zone |                  6 |
-| wrk_dd_load_dds_pg | relation       | diff_flg             | text                        |                  7 |
