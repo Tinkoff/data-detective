@@ -47,12 +47,6 @@
         },
         {
             "attribute":null,
-            "destination":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg",
-            "source":"urn:tree_node:database",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
             "destination":"urn:table:postgres:pg:airflow:dds:entity",
             "source":"urn:schema:postgres:pg:airflow:dds",
             "type":"Contains"
@@ -91,18 +85,6 @@
             "attribute":null,
             "destination":"urn:table:postgres:pg:airflow:tuning:search_help",
             "source":"urn:schema:postgres:pg:airflow:tuning",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "source":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation",
-            "source":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg",
             "type":"Contains"
         },
         {
@@ -505,162 +487,6 @@
             "attribute":null,
             "destination":"urn:column:postgres:pg:airflow:tuning:search_help:type",
             "source":"urn:table:postgres:pg:airflow:tuning:search_help",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:codes",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:diff_flg",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:entity_name",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:entity_name_short",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:entity_type",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:grid",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:htmls",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:info",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:json_data",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:json_data_ui",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:json_system",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:links",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:loaded_by",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:notifications",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:processed_dttm",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:search_data",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:tables",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:tags",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:entity:urn",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:attribute",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:destination",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:diff_flg",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:loaded_by",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:processed_dttm",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:source",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:column:postgres:pg:airflow:wrk_dd_load_dds_pg:relation:type",
-            "source":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation",
             "type":"Contains"
         }
     ]

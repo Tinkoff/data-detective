@@ -3,6 +3,7 @@ with ns as (
     from pg_namespace
     where true
       and nspname !~ '^pg_'
+      and nspname !~ '^wrk_dd_'
       and nspname <> 'information_schema'
 )
 select lower(ns.nspname)                               as schema_name,

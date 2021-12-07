@@ -5,5 +5,6 @@ select lower(ns.nspname)                                  as schema_name,
 from pg_namespace as ns
 where true
   and ns.nspname !~ '^pg_'
+  and ns.nspname !~ '^wrk_dd_'
   and ns.nspname <> 'information_schema'
 ;

@@ -44,12 +44,6 @@
             "destination":"urn:schema:postgres:pg:airflow:tuning",
             "source":"urn:tree_node:database",
             "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg",
-            "source":"urn:tree_node:database",
-            "type":"Contains"
         }
     ]
 }

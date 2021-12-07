@@ -3,6 +3,7 @@ with ns as (
     from pg_namespace
     where true
       and nspname !~ '^pg_'
+      and nspname !~ '^wrk_dd_'
       and nspname <> 'information_schema'
 ),
      ind as (
@@ -17,6 +18,7 @@ with ns as (
          from pg_indexes
          where True
            and schemaname !~ '^pg_'
+           and schemaname !~ '^wrk_dd_'
          group by schemaname, tablename
      ),
      table_grantee as (select grantee,
@@ -26,6 +28,7 @@ with ns as (
                        from information_schema.role_table_grants
                        where true
                          and table_schema !~ '^pg_'
+                         and table_schema !~ '^wrk_dd_'
                          and table_schema <> 'information_schema'
                        group by table_schema, table_name, grantee
      ),

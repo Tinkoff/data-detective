@@ -16,7 +16,7 @@ dag = generate_dag(dag_dir=f'{settings.DAGS_FOLDER}/dags/{dag_name}')
 dataset = JSONPandasDataset(f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}')
 
 gen_dataset = is_gen_dataset_mode()
-gen_dataset = True
+
 
 @pytest.mark.skipif(condition=gen_dataset, reason='Gen dataset')
 @pytest.mark.parametrize(
@@ -30,7 +30,7 @@ def test_task(task, mocker, setup_tables):
 @pytest.mark.parametrize(
     'task', dag.tasks
 )
-def test_gen_tests_data(task, mocker, setup_tables):
+def test_gen_tests_data(task, setup_tables):
     run_and_gen_ds(task, f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}')
 
 
@@ -38,6 +38,8 @@ def test_gen_tests_data(task, mocker, setup_tables):
 def setup_tables():
     hook = PostgresHook(postgres_conn_id=PG_CONN_ID)
     queries = [
+        'truncate dds.entity;',
+        'truncate dds.relation;',
     ]
     hook.run(queries)
     yield

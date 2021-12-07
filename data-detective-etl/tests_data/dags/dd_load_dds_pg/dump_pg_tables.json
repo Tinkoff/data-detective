@@ -52,13 +52,13 @@
             "table_rights":[
                 {
                     "rights":[
-                        "TRIGGER",
                         "INSERT",
-                        "SELECT",
-                        "UPDATE",
-                        "DELETE",
+                        "TRIGGER",
+                        "REFERENCES",
                         "TRUNCATE",
-                        "REFERENCES"
+                        "DELETE",
+                        "UPDATE",
+                        "SELECT"
                     ],
                     "grantee":"airflow"
                 }
@@ -80,13 +80,13 @@
             "table_rights":[
                 {
                     "rights":[
-                        "INSERT",
-                        "SELECT",
-                        "UPDATE",
-                        "DELETE",
-                        "TRUNCATE",
+                        "TRIGGER",
                         "REFERENCES",
-                        "TRIGGER"
+                        "TRUNCATE",
+                        "DELETE",
+                        "UPDATE",
+                        "SELECT",
+                        "INSERT"
                     ],
                     "grantee":"airflow"
                 }
@@ -104,12 +104,12 @@
                 {
                     "rights":[
                         "INSERT",
-                        "TRIGGER",
-                        "REFERENCES",
-                        "TRUNCATE",
-                        "DELETE",
+                        "SELECT",
                         "UPDATE",
-                        "SELECT"
+                        "DELETE",
+                        "TRUNCATE",
+                        "REFERENCES",
+                        "TRIGGER"
                     ],
                     "grantee":"airflow"
                 }
@@ -149,13 +149,13 @@
             "table_rights":[
                 {
                     "rights":[
-                        "INSERT",
                         "TRIGGER",
-                        "REFERENCES",
-                        "TRUNCATE",
-                        "DELETE",
+                        "INSERT",
+                        "SELECT",
                         "UPDATE",
-                        "SELECT"
+                        "DELETE",
+                        "TRUNCATE",
+                        "REFERENCES"
                     ],
                     "grantee":"airflow"
                 }
@@ -163,8 +163,8 @@
             "table_size":8192
         },
         {
-            "estimated_rows":114,
-            "full_table_size":696320,
+            "estimated_rows":0,
+            "full_table_size":98304,
             "index_json":[
                 {
                     "ddl":"CREATE INDEX entity_name_trgm_index ON dds.entity USING gin (entity_name gin_trgm_ops)",
@@ -197,22 +197,22 @@
             "table_rights":[
                 {
                     "rights":[
-                        "TRIGGER",
                         "INSERT",
-                        "SELECT",
-                        "UPDATE",
-                        "DELETE",
+                        "TRIGGER",
+                        "REFERENCES",
                         "TRUNCATE",
-                        "REFERENCES"
+                        "DELETE",
+                        "UPDATE",
+                        "SELECT"
                     ],
                     "grantee":"airflow"
                 }
             ],
-            "table_size":188416
+            "table_size":8192
         },
         {
-            "estimated_rows":113,
-            "full_table_size":286720,
+            "estimated_rows":0,
+            "full_table_size":57344,
             "index_json":[
                 {
                     "ddl":"CREATE UNIQUE INDEX rel_unique ON dds.relation USING btree (source, destination, type)",
@@ -242,52 +242,6 @@
                 {
                     "rights":[
                         "TRIGGER",
-                        "REFERENCES",
-                        "TRUNCATE",
-                        "DELETE",
-                        "UPDATE",
-                        "SELECT",
-                        "INSERT"
-                    ],
-                    "grantee":"airflow"
-                }
-            ],
-            "table_size":90112
-        },
-        {
-            "estimated_rows":178,
-            "full_table_size":40960,
-            "index_json":null,
-            "schema_name":"wrk_dd_load_dds_pg",
-            "table_name":"relation",
-            "table_owner":"airflow",
-            "table_rights":[
-                {
-                    "rights":[
-                        "INSERT",
-                        "SELECT",
-                        "UPDATE",
-                        "DELETE",
-                        "TRUNCATE",
-                        "REFERENCES",
-                        "TRIGGER"
-                    ],
-                    "grantee":"airflow"
-                }
-            ],
-            "table_size":40960
-        },
-        {
-            "estimated_rows":0,
-            "full_table_size":24576,
-            "index_json":null,
-            "schema_name":"wrk_dd_load_dds_pg",
-            "table_name":"entity",
-            "table_owner":"airflow",
-            "table_rights":[
-                {
-                    "rights":[
-                        "TRIGGER",
                         "INSERT",
                         "SELECT",
                         "UPDATE",
@@ -298,7 +252,7 @@
                     "grantee":"airflow"
                 }
             ],
-            "table_size":24576
+            "table_size":8192
         }
     ]
 }

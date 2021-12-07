@@ -76,6 +76,7 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
 
     table_size_description = TableInfoDescriptionType(
         keys={
+            'table_owner': 'Owner',
             'estimated_rows': 'Rows',
             'table_size': 'Data size',
             'full_table_size': 'Total relation size',

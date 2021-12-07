@@ -62,18 +62,6 @@
             "destination":"urn:table:postgres:pg:airflow:tuning:search_help",
             "source":"urn:schema:postgres:pg:airflow:tuning",
             "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:entity",
-            "source":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg",
-            "type":"Contains"
-        },
-        {
-            "attribute":null,
-            "destination":"urn:table:postgres:pg:airflow:wrk_dd_load_dds_pg:relation",
-            "source":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg",
-            "type":"Contains"
         }
     ]
 }

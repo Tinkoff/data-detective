@@ -47,12 +47,6 @@
             "schema_description":null,
             "schema_name":"mart",
             "schema_owner":"airflow"
-        },
-        {
-            "schema_acl":null,
-            "schema_description":null,
-            "schema_name":"wrk_dd_load_dds_pg",
-            "schema_owner":"airflow"
         }
     ]
 }
