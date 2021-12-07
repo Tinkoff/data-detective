@@ -1754,19 +1754,19 @@
             "urn":"urn:column:postgres:pg:airflow:dds:relation:type"
         },
         {
-            "entity_name":"dds.sample.cntrows",
-            "entity_name_short":"cntrows",
+            "entity_name":"dds.sample.cnt_rows",
+            "entity_name_short":"cnt_rows",
             "entity_type":"COLUMN",
             "info":null,
             "json_data":{
                 "ordinal_position":3,
-                "column_type":"bigint"
+                "column_type":"integer"
             },
             "json_system":{
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:column:postgres:pg:airflow:dds:sample:cntrows dds.sample.cntrows",
+            "search_data":"urn:column:postgres:pg:airflow:dds:sample:cnt_rows dds.sample.cnt_rows",
             "tables":[
                 {
                     "columns":[
@@ -1776,7 +1776,7 @@
                     "data":[
                         {
                             "Key":"Type",
-                            "Value":"bigint"
+                            "Value":"integer"
                         },
                         {
                             "Key":"Position",
@@ -1787,22 +1787,22 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:column:postgres:pg:airflow:dds:sample:cntrows"
+            "urn":"urn:column:postgres:pg:airflow:dds:sample:cnt_rows"
         },
         {
-            "entity_name":"dds.sample.columndef",
-            "entity_name_short":"columndef",
+            "entity_name":"dds.sample.column_def",
+            "entity_name_short":"column_def",
             "entity_type":"COLUMN",
             "info":null,
             "json_data":{
                 "ordinal_position":2,
-                "column_type":"text"
+                "column_type":"jsonb"
             },
             "json_system":{
                 "system_for_search":"Postgres",
                 "type_for_search":"Column"
             },
-            "search_data":"urn:column:postgres:pg:airflow:dds:sample:columndef dds.sample.columndef",
+            "search_data":"urn:column:postgres:pg:airflow:dds:sample:column_def dds.sample.column_def",
             "tables":[
                 {
                     "columns":[
@@ -1812,7 +1812,7 @@
                     "data":[
                         {
                             "Key":"Type",
-                            "Value":"text"
+                            "Value":"jsonb"
                         },
                         {
                             "Key":"Position",
@@ -1823,7 +1823,7 @@
                     "display_headers":"0"
                 }
             ],
-            "urn":"urn:column:postgres:pg:airflow:dds:sample:columndef"
+            "urn":"urn:column:postgres:pg:airflow:dds:sample:column_def"
         },
         {
             "entity_name":"dds.sample.processed_dttm",
@@ -1868,7 +1868,7 @@
             "info":null,
             "json_data":{
                 "ordinal_position":4,
-                "column_type":"text"
+                "column_type":"jsonb"
             },
             "json_system":{
                 "system_for_search":"Postgres",
@@ -1884,7 +1884,7 @@
                     "data":[
                         {
                             "Key":"Type",
-                            "Value":"text"
+                            "Value":"jsonb"
                         },
                         {
                             "Key":"Position",

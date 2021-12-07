@@ -38,6 +38,11 @@
             "source":"urn:tree_node:root"
         },
         {
+            "destination":"urn:tree_node:root:database",
+            "entity_name":"root",
+            "source":"urn:tree_node:root"
+        },
+        {
             "destination":"urn:tree_node:root:documentation",
             "entity_name":"root",
             "source":"urn:tree_node:root"

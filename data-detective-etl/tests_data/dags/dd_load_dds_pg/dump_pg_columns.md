@@ -1,9 +1,9 @@
 | schema_name   | table_name     | column_name          | column_type                 |   ordinal_position |
 |:--------------|:---------------|:---------------------|:----------------------------|-------------------:|
 | dds           | sample         | urn                  | text                        |                  1 |
-| dds           | sample         | columndef            | text                        |                  2 |
-| dds           | sample         | cntrows              | bigint                      |                  3 |
-| dds           | sample         | sample_data          | text                        |                  4 |
+| dds           | sample         | column_def           | jsonb                       |                  2 |
+| dds           | sample         | cnt_rows             | integer                     |                  3 |
+| dds           | sample         | sample_data          | jsonb                       |                  4 |
 | dds           | sample         | processed_dttm       | timestamp without time zone |                  5 |
 | tuning        | breadcrumb     | urn                  | text                        |                  1 |
 | tuning        | breadcrumb     | breadcrumb_urn       | jsonb                       |                  2 |

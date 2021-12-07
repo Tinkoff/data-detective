@@ -33,22 +33,22 @@
             "table_name":"sample"
         },
         {
-            "column_name":"columndef",
-            "column_type":"text",
+            "column_name":"column_def",
+            "column_type":"jsonb",
             "ordinal_position":2,
             "schema_name":"dds",
             "table_name":"sample"
         },
         {
-            "column_name":"cntrows",
-            "column_type":"bigint",
+            "column_name":"cnt_rows",
+            "column_type":"integer",
             "ordinal_position":3,
             "schema_name":"dds",
             "table_name":"sample"
         },
         {
             "column_name":"sample_data",
-            "column_type":"text",
+            "column_type":"jsonb",
             "ordinal_position":4,
             "schema_name":"dds",
             "table_name":"sample"

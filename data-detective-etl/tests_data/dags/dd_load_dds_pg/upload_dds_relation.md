@@ -35,8 +35,8 @@
 | urn:table:postgres:pg:airflow:dds:relation          | urn:column:postgres:pg:airflow:dds:relation:processed_dttm                | Contains | dd_load_dds_pg | non         |
 | urn:table:postgres:pg:airflow:dds:relation          | urn:column:postgres:pg:airflow:dds:relation:source                        | Contains | dd_load_dds_pg | non         |
 | urn:table:postgres:pg:airflow:dds:relation          | urn:column:postgres:pg:airflow:dds:relation:type                          | Contains | dd_load_dds_pg | non         |
-| urn:table:postgres:pg:airflow:dds:sample            | urn:column:postgres:pg:airflow:dds:sample:cntrows                         | Contains | dd_load_dds_pg | non         |
-| urn:table:postgres:pg:airflow:dds:sample            | urn:column:postgres:pg:airflow:dds:sample:columndef                       | Contains | dd_load_dds_pg | non         |
+| urn:table:postgres:pg:airflow:dds:sample            | urn:column:postgres:pg:airflow:dds:sample:cnt_rows                        | Contains | dd_load_dds_pg | non         |
+| urn:table:postgres:pg:airflow:dds:sample            | urn:column:postgres:pg:airflow:dds:sample:column_def                      | Contains | dd_load_dds_pg | non         |
 | urn:table:postgres:pg:airflow:dds:sample            | urn:column:postgres:pg:airflow:dds:sample:processed_dttm                  | Contains | dd_load_dds_pg | non         |
 | urn:table:postgres:pg:airflow:dds:sample            | urn:column:postgres:pg:airflow:dds:sample:sample_data                     | Contains | dd_load_dds_pg | non         |
 | urn:table:postgres:pg:airflow:dds:sample            | urn:column:postgres:pg:airflow:dds:sample:urn                             | Contains | dd_load_dds_pg | non         |
