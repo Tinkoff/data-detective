@@ -1,4 +1,3 @@
-import json
 from pandas import DataFrame
 import petl
 
