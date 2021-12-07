@@ -38,6 +38,15 @@ class RelationTypes:
     Loads = 'Loads'
 
 
+class RelationFields:
+    SOURCE = 'source'
+    DESTINATION = 'destination'
+    TYPE = 'type'
+    ATTRIBUTE = 'attribute'
+
+
 ENTITY_CORE_FIELDS: FrozenSet[str] = frozenset({EntityFields.URN, EntityFields.ENTITY_TYPE,
                                                 EntityFields.ENTITY_NAME, EntityFields.ENTITY_NAME_SHORT,
                                                 EntityFields.JSON_DATA, EntityFields.SEARCH_DATA})
+RELATION_CORE_FIELDS: FrozenSet[str] = frozenset({RelationFields.SOURCE, RelationFields.DESTINATION,
+                                                  RelationFields.TYPE, RelationFields.ATTRIBUTE})
