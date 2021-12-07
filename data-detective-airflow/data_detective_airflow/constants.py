@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import FrozenSet
 
 from airflow.models.variable import Variable
@@ -15,7 +15,7 @@ WORK_FILE_PREFIX: str = 'wrk'
 WORK_PG_SCHEMA_PREFIX: str = 'wrk'
 
 # DAG
-DEFAULT_START_DATE = datetime.now().date() - timedelta(days=1)
+DEFAULT_START_DATE = datetime(2020, 4, 8)
 DAG_ID_KEY: str = 'dag_id'
 TASK_ID_KEY: str = 'task_id'
 
