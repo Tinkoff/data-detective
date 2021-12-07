@@ -43,8 +43,8 @@
             "entity_type":"TABLE",
             "json_data":{
                 "estimated_rows":99,
-                "table_size":98304,
-                "full_table_size":557056
+                "table_size":114688,
+                "full_table_size":573440
             },
             "json_system":{
                 "system_for_search":"Postgres",
@@ -65,11 +65,11 @@
                         },
                         {
                             "Key":"Data size",
-                            "Value":"96.00 KB"
+                            "Value":"112.00 KB"
                         },
                         {
                             "Key":"Total relation size",
-                            "Value":"544.00 KB"
+                            "Value":"560.00 KB"
                         }
                     ],
                     "header":"General",
@@ -83,9 +83,9 @@
             "entity_name_short":"relation",
             "entity_type":"TABLE",
             "json_data":{
-                "estimated_rows":0,
-                "table_size":8192,
-                "full_table_size":57344
+                "estimated_rows":8,
+                "table_size":16384,
+                "full_table_size":106496
             },
             "json_system":{
                 "system_for_search":"Postgres",
@@ -102,15 +102,15 @@
                     "data":[
                         {
                             "Key":"Rows",
-                            "Value":"0"
+                            "Value":"8"
                         },
                         {
                             "Key":"Data size",
-                            "Value":"8.00 KB"
+                            "Value":"16.00 KB"
                         },
                         {
                             "Key":"Total relation size",
-                            "Value":"56.00 KB"
+                            "Value":"104.00 KB"
                         }
                     ],
                     "header":"General",
@@ -323,6 +323,88 @@
                 }
             ],
             "urn":"urn:schema:postgres:pg:airflow:tuning:search_help"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.entity",
+            "entity_name_short":"entity",
+            "entity_type":"TABLE",
+            "json_data":{
+                "estimated_rows":0,
+                "table_size":24576,
+                "full_table_size":24576
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Table",
+                "card_type":"Table"
+            },
+            "search_data":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg:entity wrk_dd_load_dds_pg.entity",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Rows",
+                            "Value":"0"
+                        },
+                        {
+                            "Key":"Data size",
+                            "Value":"24.00 KB"
+                        },
+                        {
+                            "Key":"Total relation size",
+                            "Value":"24.00 KB"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg:entity"
+        },
+        {
+            "entity_name":"wrk_dd_load_dds_pg.relation",
+            "entity_name_short":"relation",
+            "entity_type":"TABLE",
+            "json_data":{
+                "estimated_rows":0,
+                "table_size":16384,
+                "full_table_size":16384
+            },
+            "json_system":{
+                "system_for_search":"Postgres",
+                "type_for_search":"Table",
+                "card_type":"Table"
+            },
+            "search_data":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg:relation wrk_dd_load_dds_pg.relation",
+            "tables":[
+                {
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "data":[
+                        {
+                            "Key":"Rows",
+                            "Value":"0"
+                        },
+                        {
+                            "Key":"Data size",
+                            "Value":"16.00 KB"
+                        },
+                        {
+                            "Key":"Total relation size",
+                            "Value":"16.00 KB"
+                        }
+                    ],
+                    "header":"General",
+                    "display_headers":"0"
+                }
+            ],
+            "urn":"urn:schema:postgres:pg:airflow:wrk_dd_load_dds_pg:relation"
         }
     ]
 }

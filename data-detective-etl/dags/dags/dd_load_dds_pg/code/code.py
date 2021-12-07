@@ -10,9 +10,9 @@ from common.builders import JsonSystemBuilder, TableInfoBuilder, TableInfoDescri
 from common.urn import get_schema, get_table, get_column
 from common.utils import get_readable_size_bytes
 from common.utilities.entity_enums import (
-    ENTITY_CORE_FIELDS,
+    ENTITY_CORE_FIELDS, RELATION_CORE_FIELDS,
     EntityTypes, EntityFields,
-    RelationTypes
+    RelationTypes, RelationFields
 )
 from common.utilities.search_enums import CardType, SystemForSearch, TypeForSearch
 
@@ -42,7 +42,7 @@ def transform_schema_to_entity(_context: dict, schemas: DataFrame) -> tuple[tupl
 
     result = (petl.fromdataframe(schemas)
               .addfield(EntityFields.ENTITY_TYPE, EntityTypes.SCHEMA)
-              .addfield(EntityFields.ENTITY_NAME, lambda row: row['schema_name'].lower())
+              .addfield(EntityFields.ENTITY_NAME, lambda row: row['schema_name'])
               .addfield(EntityFields.ENTITY_NAME_SHORT, None)
               .addfield(EntityFields.URN,
                         lambda row: get_schema('postgres', 'pg', 'airflow', row[EntityFields.ENTITY_NAME]))
@@ -151,6 +151,39 @@ def transform_column_to_entity(_context: dict, columns: DataFrame) -> tuple[tupl
     return result.tupleoftuples()
 
 
+def link_schema_to_table(_context: dict, tables: DataFrame) -> tuple[tuple]:
+    """
+    """
+    result = (petl.fromdataframe(tables)
+              .addfield(RelationFields.SOURCE,
+                        lambda row: get_schema('postgres', 'pg', 'airflow', row['schema_name']))
+              .addfield(RelationFields.DESTINATION,
+                        lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']))
+              .addfield(RelationFields.TYPE, RelationTypes.Contains)
+              .addfield(RelationFields.ATTRIBUTE, None)
+              .cut(list(RELATION_CORE_FIELDS))
+              .distinct()
+              )
+    return result.tupleoftuples()
+
+
+def link_table_to_column(_context: dict, columns: DataFrame) -> tuple[tuple]:
+    """
+    """
+    result = (petl.fromdataframe(columns)
+              .addfield(RelationFields.SOURCE,
+                        lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']))
+              .addfield(RelationFields.DESTINATION,
+                        lambda row: get_column('postgres', 'pg', 'airflow',
+                                               row['schema_name'], row['table_name'], row['column_name']))
+              .addfield(RelationFields.TYPE, RelationTypes.Contains)
+              .addfield(RelationFields.ATTRIBUTE, None)
+              .cut(list(RELATION_CORE_FIELDS))
+              .distinct()
+              )
+    return result.tupleoftuples()
+
+
 def fill_dag(t_dag: TDag):
 
     DBDump(
@@ -202,8 +235,24 @@ def fill_dag(t_dag: TDag):
     )
 
     PyTransform(
+        task_id='link_schema_to_table',
+        description='Link schemas to tables for dds.relation',
+        source=['dump_pg_tables'],
+        transformer_callable=link_schema_to_table,
+        dag=t_dag,
+    )
+
+    PyTransform(
+        task_id='link_table_to_column',
+        description='Link tables to columns for dds.relation',
+        source=['dump_pg_columns'],
+        transformer_callable=link_table_to_column,
+        dag=t_dag,
+    )
+
+    PyTransform(
         task_id='append_entities',
-        description='Append entities to load in entity tables',
+        description='Append entities to load in entity table',
         source=['transform_schema_to_entity',
                 'transform_table_to_entity',
                 'transform_column_to_entity'],
@@ -211,4 +260,14 @@ def fill_dag(t_dag: TDag):
         dag=t_dag,
     )
 
+    PyTransform(
+        task_id='append_relations',
+        description='Append relations to load in relation table',
+        source=['link_schema_to_table',
+                'link_table_to_column'],
+        transformer_callable=appender_petl2pandas,
+        dag=t_dag,
+    )
+
     PgSingleTargetLoader.upload_dds_entity(dag=t_dag, sources=['append_entities'])
+    PgSingleTargetLoader.upload_dds_relation(dag=t_dag, sources=['append_relations'])
