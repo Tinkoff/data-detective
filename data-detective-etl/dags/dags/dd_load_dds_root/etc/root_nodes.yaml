@@ -6,6 +6,10 @@ root:
       info: >
         Service documentation
 
+    Database:
+      info: >
+        Metadata of schemas, tables and columns in Data Detective postgres database
+
     Data Detective:
       info: >
         This section contains all available information about Data Detective

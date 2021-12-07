@@ -10,6 +10,7 @@ x-airflow: &airflow
     - AIRFLOW__CORE__EXECUTOR=LocalExecutor
     - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${META_USER}:airflow@metadb:5432/airflow
     - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW__WEBSERVER__SECRET_KEY}
+    - AIRFLOW__SCHEDULER__CATCHUP_BY_DEFAULT=False
 
 services:
 
