@@ -1,5 +1,5 @@
 ---
-id: tools-overview
+id: data-catalogs-overview
 ---
 
 # OpenSource Data Catalog projects overview
@@ -17,7 +17,11 @@ This is a simple tool that may be suitable for a small number of user scenarios,
 * [Amundsen](https://github.com/amundsen-io/amundsen). Amundsen is a data discovery and metadata engine for improving the productivity of data analysts, data scientists and engineers when interacting with data.
 This project supports working with apache Airflow ETL Orchestrator.
 Amundsen includes metadata service currently uses a Neo4j proxy to interact with Neo4j graph db and serves frontend service's metadata. The metadata is represented as a graph model.
-To search for amundsen, you need to enter the whole word, which makes the search more difficult.
+
+* [Metacat](https://github.com/Netflix/metacat). Metacat is a unified metadata exploration API service developed by Netflix.
+It can work with Hive, RS, Teradata, Redshift, S3 and Cassandra. 
+The source code of the project is mostly written in Java. Development of Metacat is actively continuing, but documentation is not fully ready at the moment.
+The project can be used for enterprise, however adding changes to Metacat can be difficult.
 
 * [OpenLineage](https://github.com/OpenLineage/OpenLineage). OpenLineage defines the metadata for running jobs and the corresponding events. A configurable backend allows choosing what protocol to send the events to.
 The main goal of the OpenLineage is to have a unified schema for describing metadata and data lineage across tools to make data lineage collection and analysis easier.
