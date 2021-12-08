@@ -16,6 +16,7 @@ const sidebars = {
     // By default, Docusaurus generates a sidebar from the docs folder structure
  tutorialSidebar: [
      {type: 'doc', id: 'welcome'},
+     {type: 'doc', id: 'data-catalogs-overview'},
      {
          type: 'category',
          label: 'Data Detective Project',
