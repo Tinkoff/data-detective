@@ -10,6 +10,7 @@ class SystemForSearch(namedtuple('SearchSystem', 'name description'), Enum):
     ORACLE = 'Oracle', 'Oracle databases from replication'
     POSTGRES = 'Postgres', 'Postgres databases from replication'
     LOGICAL_MODEL = 'Logical Model', 'Logical Model DWH'
+    DATA_DETECTIVE = 'Data Detective', 'Data Catalog for entities of any type'
 
     def __str__(self) -> str:
         return self.name
