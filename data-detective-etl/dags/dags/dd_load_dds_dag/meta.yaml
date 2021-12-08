@@ -1,0 +1,11 @@
+description: Loading meta information from dag in data detective
+schedule_interval: 18 03 * * *
+tags:
+  - dds
+default_args:
+  owner: airflow
+  result_type: pickle
+  retries: 1
+  work_conn_id: s3work
+  work_type: s3
+factory: Python
