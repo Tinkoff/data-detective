@@ -1,18 +1,19 @@
 from pathlib import Path
 
 from airflow.models import DagBag
+from pandas import DataFrame
 import petl
 
 from data_detective_airflow.dag_generator import TDag
 from data_detective_airflow.operators import PgSingleTargetLoader, PyTransform
-from data_detective_airflow.utils.petl_utils import appender_petl2pandas
 
 from common.builders import JsonSystemBuilder, CodeBuilder
 from common.utilities.entity_enums import (
-    ENTITY_CORE_FIELDS,
-    EntityTypes, EntityFields
+    ENTITY_CORE_FIELDS, RELATION_CORE_FIELDS,
+    EntityTypes, EntityFields,
+    RelationTypes, RelationFields,
 )
-from common.urn import get_etl_job
+from common.urn import get_etl_job, get_tree_node
 from common.utilities.search_enums import SystemForSearch, TypeForSearch
 
 
@@ -26,7 +27,7 @@ def _get_file_content(filename: Path) -> str:
         return file.read()
 
 
-def _get_code_files(path: str, code_type: str, exclude_files: list = None) -> dict:
+def _get_code_files(path: str, code_type: str, exclude_files: list = None) -> list[dict]:
     """Get contents of DAG code files
 
     :param path: str name of absolute path to get code files
@@ -84,7 +85,7 @@ def add_code_files_to_dags(_context: dict, dags: tuple[tuple]) -> tuple[tuple]:
     return result.tupleoftuples()
 
 
-def transform_dag_to_entity(_context: dict, dags: tuple[tuple]) -> tuple[tuple]:
+def transform_dag_to_entity(_context: dict, dags: tuple[tuple]) -> DataFrame:
     """Transform DAGs metadata to dds entity table format
 
     :param _context: airflow DAG task run context
@@ -132,7 +133,26 @@ def transform_dag_to_entity(_context: dict, dags: tuple[tuple]) -> tuple[tuple]:
               .distinct(key=EntityFields.URN)
               )
 
-    return result.tupleoftuples()
+    return result.todataframe()
+
+
+def link_root_node_to_dag(_context: dict, dags: DataFrame) -> DataFrame:
+    """Link dags to root tree node urn:tree_node:root:etl_dags
+
+    :param _context: airflow DAG task run context
+    :param dags: [ENTITY_CORE_FIELDS] + [EntityFields.JSON_SYSTEM, EntityFields.INFO, EntityFields.CODES]]
+    :return: DataFrame RELATION_CORE_FIELDS
+    """
+    result = (petl.fromdataframe(dags)
+              .cut([EntityFields.URN])
+              .addfield(RelationFields.SOURCE, lambda row: get_tree_node(['ETL DAGS']))
+              .rename(EntityFields.URN, RelationFields.DESTINATION)
+              .addfield(RelationFields.TYPE, RelationTypes.Contains)
+              .addfield(RelationFields.ATTRIBUTE, None)
+              .cut(list(RELATION_CORE_FIELDS))
+              .distinct()
+              )
+    return result.todataframe()
 
 
 def fill_dag(t_dag: TDag):
@@ -161,11 +181,12 @@ def fill_dag(t_dag: TDag):
     )
 
     PyTransform(
-        task_id='append_entities',
-        description='Append entities to load in entity table',
+        task_id='link_root_node_to_dag',
+        description='Link dags to root tree node',
+        transformer_callable=link_root_node_to_dag,
         source=['transform_dag_to_entity'],
-        transformer_callable=appender_petl2pandas,
-        dag=t_dag,
+        dag=t_dag
     )
 
-    PgSingleTargetLoader.upload_dds_entity(dag=t_dag, sources=['append_entities'])
+    PgSingleTargetLoader.upload_dds_entity(dag=t_dag, sources=['transform_dag_to_entity'])
+    PgSingleTargetLoader.upload_dds_relation(dag=t_dag, sources=['link_root_node_to_dag'])
