@@ -28,6 +28,10 @@
             {
                 "name":"tags",
                 "type":"string"
+            },
+            {
+                "name":"tasks",
+                "type":"string"
             }
         ],
         "pandas_version":"0.20.0"
@@ -45,6 +49,11 @@
             "schedule_interval":"5 3 * * *",
             "tags":[
                 "system"
+            ],
+            "tasks":[
+                "clean_s3_works",
+                "clean_pg_works",
+                "clean_local_works"
             ]
         },
         {
@@ -57,11 +66,18 @@
                 "work_conn_id":"s3work",
                 "work_type":"s3"
             },
-            "description":"Loading meta information from dag in data detective",
+            "description":"Loading meta information from dag to data detective entity",
             "factory":"Python",
             "schedule_interval":"18 03 * * *",
             "tags":[
                 "dds"
+            ],
+            "tasks":[
+                "get_list_of_dags",
+                "add_code_files_to_dags",
+                "transform_dag_to_entity",
+                "append_entities",
+                "upload_dds_entity"
             ]
         },
         {
@@ -79,6 +95,21 @@
             "schedule_interval":"13 03 * * *",
             "tags":[
                 "dds"
+            ],
+            "tasks":[
+                "dump_pg_schemas",
+                "dump_pg_tables",
+                "dump_pg_columns",
+                "transform_schema_to_entity",
+                "transform_table_to_entity",
+                "transform_column_to_entity",
+                "link_schema_to_table",
+                "link_table_to_column",
+                "link_root_node_to_schema",
+                "append_entities",
+                "append_relations",
+                "upload_dds_entity",
+                "upload_dds_relation"
             ]
         },
         {
@@ -95,6 +126,12 @@
             "schedule_interval":"5 1 * * *",
             "tags":[
                 "tuning"
+            ],
+            "tasks":[
+                "dump_root_nodes_entities",
+                "dump_root_nodes_relations",
+                "upload_dds_entity",
+                "upload_dds_relation"
             ]
         },
         {
@@ -111,6 +148,11 @@
             "schedule_interval":"0 *\/2 * * *",
             "tags":[
                 "tuning"
+            ],
+            "tasks":[
+                "dump_relation_contains",
+                "transform_breadcrumb",
+                "upload_tuning_breadcrumb"
             ]
         },
         {
@@ -129,6 +171,10 @@
             "tags":[
                 "SLA3",
                 "prod_dev"
+            ],
+            "tasks":[
+                "dump_relations_types",
+                "upload_tuning_relations_type"
             ]
         },
         {
@@ -146,6 +192,10 @@
             "schedule_interval":"12 03 * * *",
             "tags":[
                 "tuning"
+            ],
+            "tasks":[
+                "get_data_from_search_enums",
+                "upload_data_to_tuning_search_help"
             ]
         }
     ]
