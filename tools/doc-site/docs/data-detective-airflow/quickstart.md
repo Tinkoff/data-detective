@@ -14,7 +14,7 @@ echo "SECRET_KEY=${randstr}" >> .env
 docker-compose up -d
 ```
 
-It is possible to check mg-airflow with [Celery Executor](https://airflow.apache.org/docs/stable/executor/celery.html)
+It is possible to check data-detective-airflow with [Celery Executor](https://airflow.apache.org/docs/stable/executor/celery.html)
 as follows:
 ```bash
 docker-compose -f docker-compose.CeleryExecutor.yml up -d

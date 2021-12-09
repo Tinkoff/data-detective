@@ -48,9 +48,9 @@ create index relation_loaded_by_index on dds.relation using gin (loaded_by);
 create table dds.sample
 (
 	urn text not null,
-	columndef text not null,
-	cntrows bigint not null,
-	sample_data text not null,
+	column_def jsonb not null,
+	cnt_rows int not null,
+	sample_data jsonb not null,
 	processed_dttm timestamp default now()
 );
 create index sample_urn_index on dds.sample (urn);
