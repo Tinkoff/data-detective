@@ -1,4 +1,4 @@
-description: Loading meta information from dag in data detective
+description: Loading meta information from dag to data detective entity
 schedule_interval: 18 03 * * *
 tags:
   - dds
