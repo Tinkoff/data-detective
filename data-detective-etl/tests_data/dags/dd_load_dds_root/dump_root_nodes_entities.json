@@ -56,6 +56,17 @@
             "urn":"urn:tree_node:root:database"
         },
         {
+            "entity_name":"ETL DAGS",
+            "entity_name_short":null,
+            "entity_type":"TREE_NODE",
+            "json_data":{
+                "info":"Metadata of Directed Acyclic Graph loaded metadata to Data Detective database\n"
+            },
+            "loaded_by":"dd_load_dds_root",
+            "search_data":"urn:tree_node:root:etl_dags etl dags",
+            "urn":"urn:tree_node:root:etl_dags"
+        },
+        {
             "entity_name":"Logical Model",
             "entity_name_short":null,
             "entity_type":"TREE_NODE",

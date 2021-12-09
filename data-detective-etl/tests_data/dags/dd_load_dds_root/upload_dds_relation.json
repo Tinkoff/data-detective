@@ -41,6 +41,13 @@
         },
         {
             "attribute":"non",
+            "destination":"urn:tree_node:root:etl_dags",
+            "loaded_by":"dd_load_dds_root",
+            "source":"urn:tree_node:root",
+            "type":"Contains"
+        },
+        {
+            "attribute":"non",
             "destination":"urn:tree_node:root:data_detective:logical_model",
             "loaded_by":"dd_load_dds_root",
             "source":"urn:tree_node:root:data_detective",

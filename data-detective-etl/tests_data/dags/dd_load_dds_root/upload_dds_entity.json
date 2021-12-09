@@ -117,6 +117,27 @@
         },
         {
             "codes":null,
+            "entity_name":"ETL DAGS",
+            "entity_name_short":null,
+            "entity_type":"TREE_NODE",
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "info":"Metadata of Directed Acyclic Graph loaded metadata to Data Detective database\n"
+            },
+            "json_data_ui":null,
+            "json_system":null,
+            "links":null,
+            "loaded_by":"dd_load_dds_root",
+            "notifications":null,
+            "search_data":"urn:tree_node:root:etl_dags etl dags",
+            "tables":null,
+            "tags":null,
+            "urn":"urn:tree_node:root:etl_dags"
+        },
+        {
+            "codes":null,
             "entity_name":"Logical Model",
             "entity_name_short":null,
             "entity_type":"TREE_NODE",
