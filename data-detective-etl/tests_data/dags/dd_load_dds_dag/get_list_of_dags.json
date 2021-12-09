@@ -76,8 +76,9 @@
                 "get_list_of_dags",
                 "add_code_files_to_dags",
                 "transform_dag_to_entity",
-                "append_entities",
-                "upload_dds_entity"
+                "link_root_node_to_dag",
+                "upload_dds_entity",
+                "upload_dds_relation"
             ]
         },
         {
