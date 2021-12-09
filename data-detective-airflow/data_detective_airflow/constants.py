@@ -58,4 +58,4 @@ RELATION_KEY_FIELDS: FrozenSet[str] = frozenset({RelationFields.SOURCE, Relation
 JSON_FIELDS: FrozenSet[str] = frozenset({EntityFields.JSON_DATA, EntityFields.JSON_SYSTEM, EntityFields.CODES,
                                          EntityFields.HTMLS, EntityFields.TABLES, EntityFields.NOTIFICATIONS,
                                          EntityFields.JSON_DATA_UI, EntityFields.GRID,
-                                         EntityFields.LINKS})
+                                         EntityFields.LINKS, EntityFields.TAGS})
