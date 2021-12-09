@@ -1,0 +1,158 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"entity_name",
+                "type":"string"
+            },
+            {
+                "name":"entity_name_short",
+                "type":"string"
+            },
+            {
+                "name":"entity_type",
+                "type":"string"
+            },
+            {
+                "name":"info",
+                "type":"string"
+            },
+            {
+                "name":"json_data",
+                "type":"string"
+            },
+            {
+                "name":"json_system",
+                "type":"string"
+            },
+            {
+                "name":"search_data",
+                "type":"string"
+            },
+            {
+                "name":"tags",
+                "type":"string"
+            },
+            {
+                "name":"urn",
+                "type":"string"
+            }
+        ],
+        "pandas_version":"0.20.0"
+    },
+    "data":[
+        {
+            "entity_name":"dd_load_dds_dag",
+            "entity_name_short":null,
+            "entity_type":"JOB",
+            "info":"Loading meta information from dag in data detective",
+            "json_data":null,
+            "json_system":{
+                "system_for_search":"Data Detective",
+                "type_for_search":"Job"
+            },
+            "search_data":"urn:job:dd:airflow:dd_load_dds_dag dd_load_dds_dag",
+            "tags":[
+                "dds"
+            ],
+            "urn":"urn:job:dd:airflow:dd_load_dds_dag"
+        },
+        {
+            "entity_name":"dd_load_dds_pg",
+            "entity_name_short":null,
+            "entity_type":"JOB",
+            "info":"Loading meta information from postgres database",
+            "json_data":null,
+            "json_system":{
+                "system_for_search":"Data Detective",
+                "type_for_search":"Job"
+            },
+            "search_data":"urn:job:dd:airflow:dd_load_dds_pg dd_load_dds_pg",
+            "tags":[
+                "dds"
+            ],
+            "urn":"urn:job:dd:airflow:dd_load_dds_pg"
+        },
+        {
+            "entity_name":"dd_load_dds_root",
+            "entity_name_short":null,
+            "entity_type":"JOB",
+            "info":"Loading root entities",
+            "json_data":null,
+            "json_system":{
+                "system_for_search":"Data Detective",
+                "type_for_search":"Job"
+            },
+            "search_data":"urn:job:dd:airflow:dd_load_dds_root dd_load_dds_root",
+            "tags":[
+                "tuning"
+            ],
+            "urn":"urn:job:dd:airflow:dd_load_dds_root"
+        },
+        {
+            "entity_name":"dd_load_tuning_breadcrumb",
+            "entity_name_short":null,
+            "entity_type":"JOB",
+            "info":"Loading the breadcrumb of relations from root to entity",
+            "json_data":null,
+            "json_system":{
+                "system_for_search":"Data Detective",
+                "type_for_search":"Job"
+            },
+            "search_data":"urn:job:dd:airflow:dd_load_tuning_breadcrumb dd_load_tuning_breadcrumb",
+            "tags":[
+                "tuning"
+            ],
+            "urn":"urn:job:dd:airflow:dd_load_tuning_breadcrumb"
+        },
+        {
+            "entity_name":"dd_load_tuning_relations_type",
+            "entity_name_short":null,
+            "entity_type":"JOB",
+            "info":"Loading entity relationship types",
+            "json_data":null,
+            "json_system":{
+                "system_for_search":"Data Detective",
+                "type_for_search":"Job"
+            },
+            "search_data":"urn:job:dd:airflow:dd_load_tuning_relations_type dd_load_tuning_relations_type",
+            "tags":[
+                "SLA3",
+                "prod_dev"
+            ],
+            "urn":"urn:job:dd:airflow:dd_load_tuning_relations_type"
+        },
+        {
+            "entity_name":"dd_load_tuning_search_help",
+            "entity_name_short":null,
+            "entity_type":"JOB",
+            "info":"Loading information about systems and types into tuning.search_help table",
+            "json_data":null,
+            "json_system":{
+                "system_for_search":"Data Detective",
+                "type_for_search":"Job"
+            },
+            "search_data":"urn:job:dd:airflow:dd_load_tuning_search_help dd_load_tuning_search_help",
+            "tags":[
+                "tuning"
+            ],
+            "urn":"urn:job:dd:airflow:dd_load_tuning_search_help"
+        },
+        {
+            "entity_name":"dd_system_remove_works",
+            "entity_name_short":null,
+            "entity_type":"JOB",
+            "info":"Clean of unremoved works",
+            "json_data":null,
+            "json_system":{
+                "system_for_search":"Data Detective",
+                "type_for_search":"Job"
+            },
+            "search_data":"urn:job:dd:airflow:dd_system_remove_works dd_system_remove_works",
+            "tags":[
+                "system"
+            ],
+            "urn":"urn:job:dd:airflow:dd_system_remove_works"
+        }
+    ]
+}

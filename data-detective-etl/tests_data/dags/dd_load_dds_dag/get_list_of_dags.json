@@ -1,0 +1,152 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"dag_dir",
+                "type":"string"
+            },
+            {
+                "name":"dag_id",
+                "type":"string"
+            },
+            {
+                "name":"default_args",
+                "type":"string"
+            },
+            {
+                "name":"description",
+                "type":"string"
+            },
+            {
+                "name":"factory",
+                "type":"string"
+            },
+            {
+                "name":"schedule_interval",
+                "type":"string"
+            },
+            {
+                "name":"tags",
+                "type":"string"
+            }
+        ],
+        "pandas_version":"0.20.0"
+    },
+    "data":[
+        {
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_system_remove_works",
+            "dag_id":"dd_system_remove_works",
+            "default_args":{
+                "owner":"airflow",
+                "retries":1
+            },
+            "description":"Clean of unremoved works",
+            "factory":"Python",
+            "schedule_interval":"5 3 * * *",
+            "tags":[
+                "system"
+            ]
+        },
+        {
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_dds_dag",
+            "dag_id":"dd_load_dds_dag",
+            "default_args":{
+                "owner":"airflow",
+                "result_type":"pickle",
+                "retries":1,
+                "work_conn_id":"s3work",
+                "work_type":"s3"
+            },
+            "description":"Loading meta information from dag in data detective",
+            "factory":"Python",
+            "schedule_interval":"18 03 * * *",
+            "tags":[
+                "dds"
+            ]
+        },
+        {
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_dds_pg",
+            "dag_id":"dd_load_dds_pg",
+            "default_args":{
+                "owner":"airflow",
+                "result_type":"pickle",
+                "retries":1,
+                "work_conn_id":"s3work",
+                "work_type":"s3"
+            },
+            "description":"Loading meta information from postgres database",
+            "factory":"Python",
+            "schedule_interval":"13 03 * * *",
+            "tags":[
+                "dds"
+            ]
+        },
+        {
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_dds_root",
+            "dag_id":"dd_load_dds_root",
+            "default_args":{
+                "owner":"airflow",
+                "result_type":"pickle",
+                "retries":1,
+                "work_type":"file"
+            },
+            "description":"Loading root entities",
+            "factory":"YAML",
+            "schedule_interval":"5 1 * * *",
+            "tags":[
+                "tuning"
+            ]
+        },
+        {
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_tuning_breadcrumb",
+            "dag_id":"dd_load_tuning_breadcrumb",
+            "default_args":{
+                "owner":"airflow",
+                "result_type":"pickle",
+                "retries":1,
+                "work_type":"file"
+            },
+            "description":"Loading the breadcrumb of relations from root to entity",
+            "factory":"YAML",
+            "schedule_interval":"0 *\/2 * * *",
+            "tags":[
+                "tuning"
+            ]
+        },
+        {
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_tuning_relations_type",
+            "dag_id":"dd_load_tuning_relations_type",
+            "default_args":{
+                "owner":"airflow",
+                "result_type":"pickle",
+                "retries":1,
+                "work_conn_id":"s3work",
+                "work_type":"s3"
+            },
+            "description":"Loading entity relationship types",
+            "factory":"YAML",
+            "schedule_interval":"5 2 * * *",
+            "tags":[
+                "SLA3",
+                "prod_dev"
+            ]
+        },
+        {
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_tuning_search_help",
+            "dag_id":"dd_load_tuning_search_help",
+            "default_args":{
+                "owner":"airflow",
+                "result_type":"pickle",
+                "retries":1,
+                "work_conn_id":"s3work",
+                "work_type":"s3"
+            },
+            "description":"Loading information about systems and types into tuning.search_help table",
+            "factory":"Python",
+            "schedule_interval":"12 03 * * *",
+            "tags":[
+                "tuning"
+            ]
+        }
+    ]
+}
