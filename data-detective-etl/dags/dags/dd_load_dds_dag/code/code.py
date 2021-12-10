@@ -17,16 +17,6 @@ from common.urn import get_etl_job, get_tree_node
 from common.utilities.search_enums import SystemForSearch, TypeForSearch
 
 
-def _get_file_content(filename: Path) -> str:
-    """Read file contents from Path
-
-    :param filename: Path style file_name
-    :return: contents of file in text mode
-    """
-    with filename.open(mode='r+t', encoding='utf-8') as file:
-        return file.read()
-
-
 def _get_code_files(path: str, code_type: str, exclude_files: list = None) -> list[dict]:
     """Get contents of DAG code files
 
@@ -43,7 +33,7 @@ def _get_code_files(path: str, code_type: str, exclude_files: list = None) -> li
 
     result = [{'name': str(code_file.relative_to(pathname)),
                'type': code_type,
-               'data': _get_file_content(code_file)}
+               'data': code_file.read_text(encoding='utf-8')}
               for code_file in pathname.glob(f'**/*.{code_type}')
               if code_file not in [pathname / ex_file for ex_file in exclude_files]]
 
@@ -76,7 +66,7 @@ def add_code_files_to_dags(_context: dict, dags: tuple[tuple]) -> tuple[tuple]:
     :return: dags + ('meta_yaml', 'yaml_files', 'py_files', 'sql_files')
     """
     result = (petl.wrap(dags)
-              .addfield('meta_yaml', lambda row: _get_file_content(Path(row['dag_dir']) / 'meta.yaml'))
+              .addfield('meta_yaml', lambda row: (Path(row['dag_dir']) / 'meta.yaml').read_text(encoding='utf-8'))
               .addfield('yaml_files', lambda row: _get_code_files(row['dag_dir'], 'yaml', exclude_files=['meta.yaml']))
               .addfield('py_files', lambda row: _get_code_files(row['dag_dir'], 'py'))
               .addfield('sql_files', lambda row: _get_code_files(row['dag_dir'], 'sql'))
