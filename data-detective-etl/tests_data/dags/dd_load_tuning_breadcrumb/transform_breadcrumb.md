@@ -1,6 +1,7 @@
 | urn                                              | breadcrumb_urn                        | breadcrumb_entity   |
 |:-------------------------------------------------|:--------------------------------------|:--------------------|
 | urn:tree_node:root:data_detective                | []                                    | []                  |
+| urn:tree_node:root:etl_dags                      | []                                    | []                  |
 | urn:tree_node:root:database                      | []                                    | []                  |
 | urn:tree_node:root:documentation                 | []                                    | []                  |
 | urn:tree_node:root:data_detective:dags           | ["urn:tree_node:root:data_detective"] | ["Data Detective"]  |

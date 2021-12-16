@@ -10,6 +10,10 @@ root:
       info: >
         Metadata of schemas, tables and columns in Data Detective postgres database
 
+    ETL DAGS:
+      info: >
+        Metadata of Directed Acyclic Graph loaded metadata to Data Detective database
+
     Data Detective:
       info: >
         This section contains all available information about Data Detective

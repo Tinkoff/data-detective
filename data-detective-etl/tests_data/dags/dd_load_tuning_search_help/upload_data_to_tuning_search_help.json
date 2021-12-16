@@ -22,6 +22,12 @@
     },
     "data":[
         {
+            "description":"Data Catalog for entities of any type",
+            "loaded_by":"dd_load_tuning_search_help",
+            "name":"Data Detective",
+            "type":"SYSTEM"
+        },
+        {
             "description":"Logical Model DWH",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Logical Model",
