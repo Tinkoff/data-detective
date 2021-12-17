@@ -28,6 +28,10 @@ Quickstart instructions for each component of the project are available in the o
 ## Contributing
 Our team always welcomes contributions to the project. Please see the [contributing](https://github.com/TinkoffCreditSystems/data-detective/blob/master/CONTRIBUTING.md) instruction for more information.
 
+## Articles & Talks
+
+- [Testing of Apache Airflow’s DAGs with docker compose and pytest](https://medium.com/its-tinkoff/testing-of-apache-airflows-dags-with-docker-compose-and-pytest-c75be554b184)
+
 ## Data Detective team
 
 ## License
