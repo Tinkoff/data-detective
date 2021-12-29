@@ -20,8 +20,8 @@ Quickstart instructions for each component of the project are available in the o
 
 ## Subprojects and repositories
 
-- [data-detective-airflow](https://github.com/dmitriy-e/metadata-governance/tree/master/data-detective-airflow): This repository contains the source code of data-detective-airflow project. Also available in the [PyPi](https://pypi.org/project/data-detective-airflow/) repository. 
-- [data-detective-etl](https://github.com/dmitriy-e/metadata-governance/tree/master/data-detective-etl): This repository contains the source code of data-detective-etl project.
+- [data-detective-airflow](https://github.com/tinkoff/data-detective/tree/master/data-detective-airflow): This repository contains the source code of data-detective-airflow project. Also available in the [PyPi](https://pypi.org/project/data-detective-airflow/) repository. 
+- [data-detective-etl](https://github.com/tinkoff/data-detective/tree/master/data-detective-etl): This repository contains the source code of data-detective-etl project.
 - [data-detective-api](): Coming soon.
 - [data-detective-web](): Coming soon.
 
