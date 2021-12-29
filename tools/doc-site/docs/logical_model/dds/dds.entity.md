@@ -239,7 +239,7 @@ Example
 ```json
 [
   {
-    "link": "https://github.com/TinkoffCreditSystems/data-detective",
+    "link": "https://github.com/tinkoff/data-detective",
     "type": "external"
   }
 ]

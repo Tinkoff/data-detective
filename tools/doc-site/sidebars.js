@@ -95,7 +95,7 @@ const sidebars = {
           {
               type: 'link',
               label: 'Official Github repository',
-              href: 'https://github.com/TinkoffCreditSystems/data-detective/tree/master/data-detective-etl',
+              href: 'https://github.com/tinkoff/data-detective/tree/master/data-detective-etl',
           },
           {
               type: 'doc',
