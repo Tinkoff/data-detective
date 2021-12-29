@@ -51,7 +51,7 @@ jobs:
         working-directory: data-detective-airflow
         run: |-
             poetry install --no-dev
-            pipx install 'pydoc-markdown>=4.0.0,<5.0.0'
+            pipx install 'pydoc-markdown==4.3.2'
             pydoc-markdown
 
       - name: Set up cache for etl
