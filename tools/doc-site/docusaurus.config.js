@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Data Detective',
   tagline: 'Data Detective docs',
-  url: 'https://tinkoffcreditsystems.github.io',
+  url: 'https://tinkoff.github.io',
   baseUrl: '/data-detective/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -24,7 +24,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/TinkoffCreditSystems/data-detective/edit/master/tools/doc-site/',
+          editUrl: 'https://github.com/tinkoff/data-detective/edit/master/tools/doc-site/',
         },
         blog: {
           showReadingTime: true,
@@ -76,7 +76,7 @@ const config = {
           // },
           // {to: '/blog', label: 'Blog', position: 'right'},
           {
-            href: 'https://github.com/TinkoffCreditSystems/data-detective',
+            href: 'https://github.com/tinkoff/data-detective',
             label: 'GitHub',
             position: 'right',
           },

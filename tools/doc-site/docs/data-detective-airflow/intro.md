@@ -8,4 +8,4 @@ A framework based on Apache Airflow for ETL Batch.
 
 ## Repository link
 
-https://github.com/TinkoffCreditSystems/data-detective/tree/master/data-detective-airflow
+https://github.com/tinkoff/data-detective/tree/master/data-detective-airflow
