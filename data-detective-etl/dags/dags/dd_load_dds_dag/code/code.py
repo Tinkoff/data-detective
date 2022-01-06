@@ -103,8 +103,7 @@ def transform_dag_to_entity(_context: dict, dags: tuple[tuple]) -> DataFrame:
                                                                  default_args=row['default_args'],
                                                                  schedule_interval=row['schedule_interval'],
                                                                  tasks=row['tasks'],
-                                                                 meta_yaml=row['meta_yaml'],
-                                                                 tags=row['tags']))
+                                                                 meta_yaml=row['meta_yaml']))
               .addfield(EntityFields.CODES,
                         lambda row: (
                             [meta_yaml_code_builder(data=row['meta_yaml'])] +
@@ -118,8 +117,8 @@ def transform_dag_to_entity(_context: dict, dags: tuple[tuple]) -> DataFrame:
                         )
               .rename('description', EntityFields.INFO)
               .rename('tags', EntityFields.TAGS)
-              # TAGS removed because of bag in dd-airflow JSON_FIELDS, need to add after dd-airflow release
-              .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.JSON_SYSTEM, EntityFields.INFO, EntityFields.CODES])
+              .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.JSON_SYSTEM, EntityFields.INFO,
+                                               EntityFields.CODES, EntityFields.TAGS])
               .distinct(key=EntityFields.URN)
               )
 
