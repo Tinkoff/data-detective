@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdata_detective_docusaurus=self.webpackChunkdata_detective_docusaurus||[]).push([[7259],{8133:function(a){a.exports=JSON.parse('{"allTagsPath":"/data-detective/blog/tags","slug":"/data-detective/blog/tags/hola","name":"hola","count":1,"permalink":"/data-detective/blog/tags/hola"}')}}]);
