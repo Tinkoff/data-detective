@@ -8,7 +8,7 @@ Filling the Data Detective repository with demo data.
 
 The development environment runs in Docker containers on the local machine.
 
-[Quickstart](ttps://tinkoff.github.io/data-detective/docs/data-detective-etl/quickstart-etl) is available in the official documentation.
+[Quickstart](ttps://data-detective.dev/docs/data-detective-etl/quickstart-etl) is available in the official documentation.
 
 * Run the sandbox with docker-compose `docker-compose up -d`
 * Run tests: `make tests`
