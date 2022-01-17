@@ -1,6 +1,6 @@
 # Data Detective
 
-### Official homepage: [Data Detective](https://tinkoff.github.io/data-detective/)
+### Official homepage: [Data Detective](https://data-detective.dev/)
 
 ## Features
 
@@ -12,7 +12,7 @@ Data Catalog is an open-source metadata platform for your company.
 
 ## Documentation
 
-Official documentation is available [here](https://tinkoff.github.io/data-detective/docs/welcome).
+Official documentation is available [here](https://data-detective.dev/docs/welcome).
 
 ## Quickstart
 

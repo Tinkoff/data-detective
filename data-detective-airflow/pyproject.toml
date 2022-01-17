@@ -16,7 +16,7 @@ classifiers = [
 
 [tool.poetry.urls]
 "Issue Tracker" = "https://github.com/tinkoff/data-detective/issues"
-"Documentation" = "https://tinkoff.github.io/data-detective/docs/data-detective-airflow/intro"
+"Documentation" = "https://data-detective.dev/docs/data-detective-airflow/intro"
 "Repository" = "https://github.com/tinkoff/data-detective/tree/master/data-detective-airflow"
 
 [tool.poetry.dependencies]

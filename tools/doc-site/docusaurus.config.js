@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Data Detective',
   tagline: 'Data Detective docs',
-  url: 'https://tinkoff.github.io',
-  baseUrl: '/data-detective/',
+  url: 'https://data-detective.dev',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.svg',
