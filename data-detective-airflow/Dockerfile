@@ -1,5 +1,6 @@
 # Main docker building
-FROM python:3.9-slim-buster as base
+ARG PYTHON_VERSION=${PYTHON_VERSION:-3.9}
+FROM python:${PYTHON_VERSION}-slim-buster as base
 
 ARG AIRFLOW_USER_UID=50000
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -21,10 +22,10 @@ ENV PYTHONPATH=$PATH:${AIRFLOW_HOME} \
 
 
 # Устанавливаем pip из более полного образа python-image (в основном - slim не достаточно утилит для pip install)
-FROM python:3.9-buster as builder
+FROM python:${PYTHON_VERSION}-buster as builder
 
 ARG AIRFLOW_USER_UID=50000
-ARG POETRY_VERSION=1.1.8
+ARG POETRY_VERSION=${POETRY_VERSION:-1.1.13}
 
 ENV AIRFLOW_HOME=/usr/local/airflow/ \
     AIRFLOW_USER_UID=${AIRFLOW_USER_UID}
@@ -36,6 +37,8 @@ USER airflow
 
 ENV POETRY_VERSION=${POETRY_VERSION} \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_DEFAULT_TIMEOUT=120 \
+    POETRY_INSTALLER_PARALLEL=false \
     PATH=${AIRFLOW_HOME}/.local/bin:${PATH}
 
 WORKDIR ${AIRFLOW_HOME}

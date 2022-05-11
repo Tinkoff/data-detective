@@ -6,7 +6,13 @@ on:
       - ".github/workflows/data-detective-airflow-test.yml"
 jobs:
   test-mg-airflow:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ 3.9, 3.10 ]
+        poetry-version: [ 1.1.13 ]
+        os: [ ubuntu-latest ]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
       - name: Test
@@ -15,4 +21,6 @@ jobs:
           cp .env.example .env
           randstr=`shuf -zer -n32  {A..Z} {a..z} {0..9} | tr -d '\0'`
           echo "SECRET_KEY=${randstr}" >> .env
+          echo "PYTHON_VERSION=${{ matrix.python-version }}"  >> .env
+          echo "POETRY_VERSION=${{ matrix.poetry-version }}"  >> .env
           docker-compose -f docker-compose.tests.yml up --build --exit-code-from=tests
