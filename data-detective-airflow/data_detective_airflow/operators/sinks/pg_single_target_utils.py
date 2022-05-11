@@ -4,6 +4,7 @@ from functools import cmp_to_key
 from hashlib import md5
 from typing import Optional
 
+import numpy
 from pandas import DataFrame
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 
@@ -64,6 +65,7 @@ def filter_for_entity(source_df: DataFrame, context: dict, hook: PostgresHook):
         logging.warning(f"Duplicate rows in dds.entity DAG {context['dag'].dag_id}")
 
     json_columns = list(JSON_FIELDS & set(source_df.columns))
+    source_df = source_df.replace({numpy.nan: None})
     source_df[json_columns] = source_df[json_columns].applymap(_reordering_json_str)
     source_df['hash'] = source_df \
         .apply(lambda row: (row.get('json_data') or '')
