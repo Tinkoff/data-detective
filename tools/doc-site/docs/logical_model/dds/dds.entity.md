@@ -29,6 +29,7 @@ id: dds.entity
 |     |notifications     | List of notification blocks                         | JSON type                                   |
 |     |tables            | List of table blocks                                | JSON type                                   |
 |     |tags              | Simple list with text tags                          | JSON type                                   |
+|     |filters           | Filter for search and display                       | JSON type                                   |
 |     |processed_dttm    | Datetime of ETL record processing                   | Timestamp                                   |
 
 
