@@ -50,6 +50,7 @@ class EntityFields:
     SEARCH_DATA = 'search_data'
     LINKS = 'links'
     TAGS = 'tags'
+    FILTERS = 'filters'
 
 
 RELATION_NONE = 'non'
@@ -58,4 +59,4 @@ RELATION_KEY_FIELDS: FrozenSet[str] = frozenset({RelationFields.SOURCE, Relation
 JSON_FIELDS: FrozenSet[str] = frozenset({EntityFields.JSON_DATA, EntityFields.JSON_SYSTEM, EntityFields.CODES,
                                          EntityFields.HTMLS, EntityFields.TABLES, EntityFields.NOTIFICATIONS,
                                          EntityFields.JSON_DATA_UI, EntityFields.GRID,
-                                         EntityFields.LINKS, EntityFields.TAGS})
+                                         EntityFields.LINKS, EntityFields.TAGS, EntityFields.FILTERS})
