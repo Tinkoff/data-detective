@@ -57,6 +57,7 @@ create table dds.entity
     notifications jsonb,
     tables jsonb,
     tags jsonb,
+    filters jsonb,
 	processed_dttm timestamp default now()
 );
 
