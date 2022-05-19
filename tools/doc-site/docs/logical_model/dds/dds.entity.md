@@ -376,3 +376,39 @@ Example
   }
 ]
 ```
+
+
+### filters
+
+JSON Schema
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "FilterCategoryName": {
+      "description": "Filters for objects category in widescreen tree",
+      "default": "Label for filter category name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "FilterCategoryName"
+  ]
+}
+```
+
+Example
+
+```JSON
+ {
+  "filters": {
+    "Type": "Object type",
+    "User": "Object users",
+    "Support Team": "Team for support object",
+    "Customer Team": "Customer of object",
+    "Author": "Author of object"
+  }
+}
+```
