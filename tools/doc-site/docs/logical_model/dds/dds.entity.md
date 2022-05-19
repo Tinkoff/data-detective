@@ -29,6 +29,7 @@ id: dds.entity
 |     |notifications     | List of notification blocks                         | JSON type                                   |
 |     |tables            | List of table blocks                                | JSON type                                   |
 |     |tags              | Simple list with text tags                          | JSON type                                   |
+|     |filters           | Filter for search and display                       | JSON type                                   |
 |     |processed_dttm    | Datetime of ETL record processing                   | Timestamp                                   |
 
 
@@ -374,4 +375,40 @@ Example
     "display_headers": "1"
   }
 ]
+```
+
+
+### filters
+
+JSON Schema
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "FilterCategoryName": {
+      "description": "Filters for objects category in widescreen tree",
+      "default": "Label for filter category name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "FilterCategoryName"
+  ]
+}
+```
+
+Example
+
+```JSON
+ {
+  "filters": {
+    "Type": "Object type",
+    "User": "Object users",
+    "Support Team": "Team for support object",
+    "Customer Team": "Customer of object",
+    "Author": "Author of object"
+  }
+}
 ```
