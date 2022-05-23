@@ -80,10 +80,8 @@
             "entity_type":"TREE_NODE",
             "grid":null,
             "htmls":null,
-            "info":null,
-            "json_data":{
-                "info":"Service documentation\n"
-            },
+            "info":"Service documentation\n",
+            "json_data":null,
             "json_data_ui":null,
             "json_system":null,
             "links":null,
@@ -101,10 +99,8 @@
             "entity_type":"TREE_NODE",
             "grid":null,
             "htmls":null,
-            "info":null,
-            "json_data":{
-                "info":"Metadata of schemas, tables and columns in Data Detective postgres database\n"
-            },
+            "info":"Metadata of schemas, tables and columns in Data Detective postgres database\n",
+            "json_data":null,
             "json_data_ui":null,
             "json_system":null,
             "links":null,
@@ -122,13 +118,16 @@
             "entity_type":"TREE_NODE",
             "grid":null,
             "htmls":null,
-            "info":null,
-            "json_data":{
-                "info":"Metadata of Directed Acyclic Graph loaded metadata to Data Detective database\n"
-            },
+            "info":"Metadata of Directed Acyclic Graph loaded metadata to Data Detective database\n",
+            "json_data":null,
             "json_data_ui":null,
             "json_system":null,
-            "links":null,
+            "links":[
+                {
+                    "link":"https:\/\/github.com\/Tinkoff\/data-detective\/tree\/master\/data-detective-etl\/dags",
+                    "type":"external"
+                }
+            ],
             "loaded_by":"dd_load_dds_root",
             "notifications":null,
             "search_data":"urn:tree_node:root:etl_dags etl dags",
@@ -143,10 +142,8 @@
             "entity_type":"TREE_NODE",
             "grid":null,
             "htmls":null,
-            "info":null,
-            "json_data":{
-                "info":"Description of tables in the Data Detective service\n"
-            },
+            "info":"Description of tables in the Data Detective service\n",
+            "json_data":null,
             "json_data_ui":null,
             "json_system":null,
             "links":null,
@@ -164,10 +161,8 @@
             "entity_type":"TREE_NODE",
             "grid":null,
             "htmls":null,
-            "info":null,
-            "json_data":{
-                "info":"This section contains technical information on Data Detective tables"
-            },
+            "info":"This section contains technical information on Data Detective tables",
+            "json_data":null,
             "json_data_ui":null,
             "json_system":null,
             "links":null,
@@ -185,10 +180,8 @@
             "entity_type":"TREE_NODE",
             "grid":null,
             "htmls":null,
-            "info":null,
-            "json_data":{
-                "info":"This section contains information on all ETL processes in the Data Platform"
-            },
+            "info":"This section contains information on all ETL processes in the Data Platform",
+            "json_data":null,
             "json_data_ui":null,
             "json_system":null,
             "links":null,
@@ -206,10 +199,8 @@
             "entity_type":"TREE_NODE",
             "grid":null,
             "htmls":null,
-            "info":null,
-            "json_data":{
-                "info":"This section contains all available information about Data Detective\n"
-            },
+            "info":"This section contains all available information about Data Detective\n",
+            "json_data":null,
             "json_data_ui":null,
             "json_system":null,
             "links":null,
@@ -227,10 +218,8 @@
             "entity_type":"TREE_NODE",
             "grid":null,
             "htmls":null,
-            "info":null,
-            "json_data":{
-                "info":"The root entity"
-            },
+            "info":"The root entity",
+            "json_data":null,
             "json_data_ui":null,
             "json_system":null,
             "links":null,
