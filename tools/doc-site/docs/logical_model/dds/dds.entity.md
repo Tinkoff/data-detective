@@ -153,6 +153,45 @@ Example
 }
 ```
 
+### json_system
+
+JSON Schema
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "card_type": {
+      "description": "Displayed entity",
+      "type": "string"
+    },
+    "type_for_search": {
+      "description": "Entity type for search",
+      "type": "string"
+    },
+    "system_for_search": {
+      "description": "System for search",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type_for_search"
+  ]
+}
+```
+
+Example
+```json
+[
+    {
+        "card_type": "Table",
+        "type_for_search": "Table",
+        "system_for_search": "Greenplum",
+    }
+]
+```
+
 ### htmls
 
 JSON Schema
