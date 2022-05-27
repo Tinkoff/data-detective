@@ -174,10 +174,7 @@ JSON Schema
       "description": "System for search",
       "type": "string"
     }
-  },
-  "required": [
-    "type_for_search"
-  ]
+  }
 }
 ```
 
