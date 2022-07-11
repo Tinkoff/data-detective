@@ -13,6 +13,7 @@ root:
     ETL DAGS:
       info: >
         Metadata of Directed Acyclic Graph loaded metadata to Data Detective database
+      link: https://github.com/Tinkoff/data-detective/tree/master/data-detective-etl/dags
 
     Data Detective:
       info: >

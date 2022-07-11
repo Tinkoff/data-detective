@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "data_detective_airflow"
 license = "Apache-2.0"
-version = "1.0.1"
+version = "1.0.3"
 description = "Framework with task testing over Apache Airflow"
 authors = ["Tinkoff Data Detective Team"]
 readme = 'README.md'  # Markdown files are supported
@@ -30,6 +30,7 @@ apache-airflow-providers-ssh = "*"
 pandas = "^1.1, <1.4"
 petl = "^1.7"
 psycopg2-binary = "^2.8"
+sqlalchemy = "<=1.3.24"
 
 
 [tool.poetry.dev-dependencies]

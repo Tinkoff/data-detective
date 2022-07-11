@@ -6,7 +6,7 @@ from pandas import DataFrame
 
 from common.urn import get_tree_node
 from common.utilities.entity_enums import EntityTypes, RelationTypes
-
+from common.builders import LinkBuilder
 
 def walk_relations(nodes: dict, source: tuple[str] = None) -> dict:
     """Observe root_nodes with outputting relationships
@@ -54,8 +54,11 @@ def dump_root_nodes_entities(context: dict, file_name: str) -> DataFrame:
     root_nodes['entity_type'] = EntityTypes.TREE_NODE
     root_nodes['entity_name_short'] = None
     root_nodes['search_data'] = root_nodes['urn'] + ' ' + root_nodes['entity_name'].str.lower()
-    return root_nodes[['urn', 'entity_name', 'loaded_by', 'entity_type',
-                       'json_data', 'entity_name_short', 'search_data']]
+    root_nodes['info'] = root_nodes['json_data'].apply(lambda row: row.pop('info', ''))
+    links_builder = LinkBuilder()
+    root_nodes['links'] = root_nodes['json_data'].apply(links_builder)
+    return root_nodes[['urn', 'entity_name', 'loaded_by', 'entity_type', 'entity_name_short', 'search_data',
+                       'links', 'info']]
 
 
 def dump_root_nodes_relations(context: dict, file_name: str) -> DataFrame:
