@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import inspect
 from abc import ABC, abstractmethod
-from datetime import datetime, timedelta
+from datetime import timedelta
 from typing import Any, Dict
 
 from airflow.lineage import apply_lineage, prepare_lineage
-from airflow.models import BaseOperator, TaskInstance
+from airflow.models import BaseOperator
+from airflow.utils.context import Context
 
 from data_detective_airflow.constants import EXECUTION_TIMEOUT
 from data_detective_airflow.dag_generator.works.base_db_work import BaseDBWork
@@ -91,7 +92,7 @@ class TBaseOperator(BaseOperator, ABC):
         """Execute the operator"""
 
     @prepare_lineage
-    def pre_execute(self, context: dict = None):
+    def pre_execute(self, context: Context = None):
         """The method is called before calling self.execute()"""
         work = self.dag.get_work(self.work_type, self.work_conn_id)
         work.create(context)
@@ -100,16 +101,11 @@ class TBaseOperator(BaseOperator, ABC):
             self.thread = LoggingThread(context=context)
 
     @apply_lineage
-    def post_execute(self, context: dict = None, result=None):
+    def post_execute(self, context: Context = None, result=None):
         """The method is called immediately after calling self.execute()"""
         if self.thread:
             self.thread.stop()
         self.log.info(f'{self.task_id} finished')
-
-    def generate_context(self, execution_date=datetime.now()) -> Dict[str, Any]:
-        """Generate a context for an execution_date of any kind."""
-        task_instance = TaskInstance(task=self, execution_date=execution_date)
-        return task_instance.get_template_context()
 
     @property
     def exclude_columns(self):
