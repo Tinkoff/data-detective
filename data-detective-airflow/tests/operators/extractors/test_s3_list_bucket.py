@@ -28,7 +28,6 @@ def test_s3_list_bucket(test_dag: TDag, context, setup_storage):
 
     df = task.result.read(context)
     assert_frame_equal(df[[*dataset['list_bucket'].columns]], dataset['list_bucket'])
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Extractors')
@@ -51,4 +50,3 @@ def test_s3_empty_list(test_dag: TDag, context, setup_storage):
 
     df = task.result.read(context)
     assert_frame_equal(df[[*dataset['empty_list'].columns]], dataset['empty_list'])
-    test_dag.clear_all_works(context)

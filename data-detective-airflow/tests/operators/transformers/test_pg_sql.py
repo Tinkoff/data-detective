@@ -1,17 +1,15 @@
 import logging
 from contextlib import closing
-from datetime import datetime
 
 import allure
 import pytest
-
 from airflow.providers.postgres.hooks.postgres import PostgresHook
-from airflow.models.taskinstance import TaskInstance
 
 from data_detective_airflow.constants import WORK_PG_SCHEMA_PREFIX, PG_CONN_ID
 from data_detective_airflow.dag_generator import ResultType, WorkType
 from data_detective_airflow.operators.transformers.pg_sql import PgSQL
 from data_detective_airflow.test_utilities.generate_df import generate_single_dataframe, fill_table_from_dataframe
+from data_detective_airflow.test_utilities import get_template_context, run_task
 from tests_data.operators.transformers import pg_sql_queries as pg_test_data
 
 TEST_SCHEMA = f'{WORK_PG_SCHEMA_PREFIX}_test'
@@ -47,9 +45,8 @@ def setup_sources(test_dag):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True, ids=['pg-result-write'])
-def test_pg_sql(test_dag, setup_sources):
+def test_pg_sql_work(test_dag, setup_sources):
     with allure.step('Init'):
-        test_dag.clear()
         hook = PostgresHook(test_dag.conn_id)
 
     with closing(hook.get_conn()) as conn:
@@ -64,22 +61,18 @@ def test_pg_sql(test_dag, setup_sources):
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_view',
                           dag=test_dag)
 
-            ti = TaskInstance(task=task1, execution_date=datetime.now())
-            context = ti.get_template_context()
-
         with allure.step('Run tasks'):
-            logging.info('TEST: Create work:')
-            test_dag.get_work(test_dag.work_type, test_dag.conn_id).create(context)
-
             logging.info('TEST: Task1 execute:')
-            task1.post_execute(context, result=task1.execute(context))
+            context1 = get_template_context(task1)
+            run_task(task1, context1)
+            context2 = get_template_context(task2)
             logging.info('TEST: Task2 execute:')
-            task2.post_execute(context, result=task2.execute(context))
+            run_task(task2, context2)
 
         with closing(conn.cursor()) as cur:
             with allure.step('Check the result of task1'):
                 sql = f"SELECT COUNT(*)" \
-                      f"FROM {task1.result.work.get_path(context)}.{task1.result.name};"
+                      f"FROM {task1.result.work.get_path(context1)}.{task1.result.name};"
                 logging.info(sql)
                 cur.execute(sql)
                 query_result1 = cur.fetchone()
@@ -87,13 +80,11 @@ def test_pg_sql(test_dag, setup_sources):
 
             with allure.step('Check the result of task2'):
                 sql = f"SELECT COUNT(*)" \
-                      f"FROM {task2.result.work.get_path(context)}.{task2.result.name};"
+                      f"FROM {task2.result.work.get_path(context2)}.{task2.result.name};"
                 logging.info(sql)
                 cur.execute(sql)
                 query_result2 = cur.fetchone()
                 assert query_result2[0] == 3
-
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Transformers')
@@ -105,7 +96,6 @@ def test_pg_sql(test_dag, setup_sources):
                          indirect=True, ids=['pg-result-write'])
 def test_pg_sql_with_view_src(test_dag, setup_sources):
     with allure.step('Init'):
-        test_dag.clear()
         view_even = "test_view_even"
         view_odd = "test_view_odd"
         hook = PostgresHook(test_dag.conn_id)
@@ -139,36 +129,30 @@ def test_pg_sql_with_view_src(test_dag, setup_sources):
                           conn_id=test_dag.conn_id, task_id='test_pg_res',
                           dag=test_dag)
 
-            ti = TaskInstance(task=task1, execution_date=datetime.now())
-            context = ti.get_template_context()
-
         with allure.step('Run tasks'):
-            logging.info('TEST: Create work:')
-            test_dag.get_work(test_dag.work_type, test_dag.conn_id).create(context)
-
             logging.info('TEST: Task1 execute:')
-            task1.post_execute(context, result=task1.execute(context))
+            context1 = get_template_context(task1)
+            run_task(task1, context1)
             logging.info('TEST: Task2 execute:')
-            task2.post_execute(context, result=task2.execute(context))
+            context2 = get_template_context(task2)
+            run_task(task2, context2)
 
         with closing(conn.cursor()) as cur:
             with allure.step('Compare the results of task1 and task2'):
                 sql = f"SELECT COUNT(*)" \
-                      f"FROM {task1.result.work.get_path(context)}.{task1.result.name};"
+                      f"FROM {task1.result.work.get_path(context1)}.{task1.result.name};"
                 logging.info(sql)
                 cur.execute(sql)
                 query_result1 = cur.fetchone()
 
                 sql = f"SELECT COUNT(*)" \
-                      f"FROM {task2.result.work.get_path(context)}.{task2.result.name};"
+                      f"FROM {task2.result.work.get_path(context2)}.{task2.result.name};"
                 logging.info(sql)
                 cur.execute(sql)
                 query_result2 = cur.fetchone()
                 assert len(query_result1) > 0 and \
                        len(query_result2) > 0 and \
                        query_result1[0] == query_result2[0]
-
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Transformers')
@@ -180,7 +164,6 @@ def test_pg_sql_with_view_src(test_dag, setup_sources):
                          indirect=True, ids=['pg-result-write'])
 def test_pg_sql_with_duplicates_data(test_dag, setup_sources):
     with allure.step('Init'):
-        test_dag.clear()
         hook = PostgresHook(test_dag.conn_id)
 
     with allure.step('Add data'):
@@ -196,20 +179,15 @@ def test_pg_sql_with_duplicates_data(test_dag, setup_sources):
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_table',
                           dag=test_dag)
 
-            ti = TaskInstance(task=task1, execution_date=datetime.now())
-            context = ti.get_template_context()
-
         with allure.step('Run tasks'):
-            logging.info('TEST: Create work:')
-            test_dag.get_work(test_dag.work_type, test_dag.conn_id).create(context)
-
             logging.info('TEST: Task1 execute:')
-            task1.post_execute(context, result=task1.execute(context))
+            context1 = get_template_context(task1)
+            run_task(task1, context1)
 
         with closing(conn.cursor()) as cur:
             with allure.step('Check result contains all rows'):
                 sql = f"SELECT COUNT(*) " \
-                      f"FROM {task1.result.work.get_path(context)}.{task1.result.name};"
+                      f"FROM {task1.result.work.get_path(context1)}.{task1.result.name};"
                 logging.info(sql)
                 cur.execute(sql)
                 query_result1 = cur.fetchone()
@@ -218,14 +196,12 @@ def test_pg_sql_with_duplicates_data(test_dag, setup_sources):
 
             with allure.step('Check the number of unique rows'):
                 sql = f"SELECT COUNT (DISTINCT id) " \
-                      f"FROM {task1.result.work.get_path(context)}.{task1.result.name} ;"
+                      f"FROM {task1.result.work.get_path(context1)}.{task1.result.name} ;"
                 logging.info(sql)
                 cur.execute(sql)
                 query_result1 = cur.fetchone()
                 assert len(query_result1) > 0 and \
                        query_result1[0] == 4
-
-    test_dag.clear_all_works(context)
 
 
 @pytest.mark.skip('FIXME')
@@ -238,7 +214,6 @@ def test_pg_sql_with_duplicates_data(test_dag, setup_sources):
                          indirect=True, ids=['pg-result-write'])
 def test_pg_sql_with_heavy_query(test_dag):
     with allure.step('Init'):
-        test_dag.clear()
         hook = PostgresHook(test_dag.conn_id)
         tab1 = "first_test_tab"
         tab2 = "second_test_tab"
@@ -292,20 +267,15 @@ def test_pg_sql_with_heavy_query(test_dag):
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_table',
                           analyze='id', dag=test_dag)
 
-            ti = TaskInstance(task=task1, execution_date=datetime.now())
-            context = ti.get_template_context()
-
         with allure.step('Run tasks'):
-            logging.info('TEST: Create work:')
-            test_dag.get_work(test_dag.work_type, test_dag.conn_id).create(context)
-
             logging.info('TEST: Task1 execute:')
-            task1.post_execute(context, result=task1.execute(context))
+            context1 = get_template_context(task1)
+            run_task(task1, context1)
 
         with closing(conn.cursor()) as cur:
             with allure.step('Check the result'):
                 sql = f"SELECT COUNT(*) " \
-                      f"FROM {task1.result.work.get_path(context)}.{task1.result.name};"
+                      f"FROM {task1.result.work.get_path(context1)}.{task1.result.name};"
                 logging.info(sql)
                 cur.execute(sql)
                 query_result = cur.fetchone()
@@ -315,8 +285,6 @@ def test_pg_sql_with_heavy_query(test_dag):
             sql = f"DROP SCHEMA IF EXISTS {TEST_SCHEMA} CASCADE;"
             logging.info(sql)
             cur.execute(sql)
-
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Transformers')
@@ -328,7 +296,6 @@ def test_pg_sql_with_heavy_query(test_dag):
                          indirect=True, ids=['pg-result-write'])
 def test_pg_sql_with_an_empty_result(test_dag, setup_sources):
     with allure.step('Init'):
-        test_dag.clear()
         hook = PostgresHook(test_dag.conn_id)
 
     with closing(hook.get_conn()) as conn:
@@ -338,27 +305,20 @@ def test_pg_sql_with_an_empty_result(test_dag, setup_sources):
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_table',
                           dag=test_dag)
 
-            ti = TaskInstance(task=task1, execution_date=datetime.now())
-            context = ti.get_template_context()
-
         with allure.step('Run tasks'):
-            logging.info('TEST: Create work:')
-            test_dag.get_work(test_dag.work_type, test_dag.conn_id).create(context)
-
             logging.info('TEST: Task1 execute:')
-            task1.post_execute(context, result=task1.execute(context))
+            context1 = get_template_context(task1)
+            run_task(task1, context1)
 
         with closing(conn.cursor()) as cur:
             with allure.step('Check result'):
                 sql = f"SELECT COUNT(*) " \
-                      f"FROM {task1.result.work.get_path(context)}.{task1.result.name};"
+                      f"FROM {task1.result.work.get_path(context1)}.{task1.result.name};"
                 logging.info(sql)
                 cur.execute(sql)
                 query_result1 = cur.fetchone()
                 assert len(query_result1) > 0 and \
                        query_result1[0] == 0
-
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Transformers')
@@ -370,7 +330,6 @@ def test_pg_sql_with_an_empty_result(test_dag, setup_sources):
                          indirect=True, ids=['pg-result-write'])
 def test_pg_sql_with_non_existent_field(test_dag, setup_sources):
     with allure.step('Init'):
-        test_dag.clear()
         hook = PostgresHook(test_dag.conn_id)
 
     with closing(hook.get_conn()) as conn:
@@ -381,16 +340,12 @@ def test_pg_sql_with_non_existent_field(test_dag, setup_sources):
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_table',
                           dag=test_dag)
 
-            ti = TaskInstance(task=task1, execution_date=datetime.now())
-            context = ti.get_template_context()
-
         with allure.step('Run tasks with exception'):
-            logging.info('TEST: Create work:')
-            test_dag.get_work(test_dag.work_type, test_dag.conn_id).create(context)
             try:
                 err = None
                 logging.info('TEST: Task1 execute:')
-                task1.post_execute(context, result=task1.execute(context))
+                context1 = get_template_context(task1)
+                run_task(task1, context1)
                 # state: '0'-отработал, '1'-упал с ожидаемой ошибкой, '-1'-упал с другой ошибкой
                 state = 0
             except Exception as exc:
@@ -399,8 +354,6 @@ def test_pg_sql_with_non_existent_field(test_dag, setup_sources):
             if err:
                 logging.info(f"Task1 failed with an error: {err}.")
             assert state == 1
-
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Transformers')
@@ -412,7 +365,6 @@ def test_pg_sql_with_non_existent_field(test_dag, setup_sources):
                          indirect=True, ids=['pg-result-write'])
 def test_pg_sql_with_non_existent_source(test_dag, setup_sources):
     with allure.step('Init'):
-        test_dag.clear()
         hook = PostgresHook(test_dag.conn_id)
 
     with closing(hook.get_conn()) as conn:
@@ -422,16 +374,12 @@ def test_pg_sql_with_non_existent_source(test_dag, setup_sources):
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_table',
                           dag=test_dag)
 
-            ti = TaskInstance(task=task1, execution_date=datetime.now())
-            context = ti.get_template_context()
-
         with allure.step('Run tasks with exception'):
-            logging.info('TEST: Create work:')
-            test_dag.get_work(test_dag.work_type, test_dag.conn_id).create(context)
             try:
                 err = None
                 logging.info('TEST: Task1 execute:')
-                task1.post_execute(context, result=task1.execute(context))
+                context1 = get_template_context(task1)
+                run_task(task1, context1)
                 # state: '0'-отработал, '1'-упал с ожидаемой ошибкой, '-1'-упал с другой ошибкой
                 state = 0
             except Exception as exc:
@@ -441,5 +389,3 @@ def test_pg_sql_with_non_existent_source(test_dag, setup_sources):
             if err:
                 logging.info(f"Task1 failed with an error: {err}.")
             assert state == 1
-
-    test_dag.clear_all_works(context)

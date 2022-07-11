@@ -1,10 +1,12 @@
+import uuid
+
 import allure
 import pytest
 from pandas import DataFrame
 
 from data_detective_airflow.operators import PythonDump, PgSingleTargetLoader,\
     filter_for_entity, filter_for_relation, filter_for_breadcrumb
-from data_detective_airflow.test_utilities.test_helper import run_task, assert_frame_equal
+from data_detective_airflow.test_utilities import run_task, assert_frame_equal, get_template_context
 from data_detective_airflow.constants import PG_CONN_ID
 from tests_data.operators.sinks.pg_single_table_loader_dataset import dataset, setup_tables, setup_tables_empty
 
@@ -25,17 +27,18 @@ setups = ['setup_tables_empty', 'setup_tables']
 @pytest.mark.parametrize('deleted_flg', tracking_deletions)
 @pytest.mark.parametrize('target', targets)
 @pytest.mark.parametrize('setup', setups)
-def test_pg_single_table_loader_main(test_dag, context, target, deleted_flg, setup, request):
+def test_pg_single_table_loader_main(test_dag, target, deleted_flg, setup, request):
     request.getfixturevalue(setup)
-    test_dag.clear()
+
     source = dataset[f"source_{target['table_name']}"]
-    source_task = PythonDump(task_id='source_task',
+    task_uuid = uuid.uuid1()
+    source_task = PythonDump(task_id=f'source_pg_stl_main__{task_uuid}',
                              python_callable=lambda x: source,
                              dag=test_dag)
     task_params = {
         'conn_id': PG_CONN_ID,
-        'task_id': 'test_task',
-        'source': ['source_task'],
+        'task_id': f'test_pg_stl__{task_uuid}',
+        'source': [source_task.task_id],
         'table_name': target['table_name'],
         'key': target['key'],
         'dag': test_dag,
@@ -45,7 +48,9 @@ def test_pg_single_table_loader_main(test_dag, context, target, deleted_flg, set
 
     task = PgSingleTargetLoader(**task_params)
 
-    run_task(task=source_task, context=context)
+    source_context = get_template_context(source_task)
+    run_task(task=source_task, context=source_context)
+    context = get_template_context(task)
     run_task(task=task, context=context)
 
     actual = task.read_result(context)
@@ -55,25 +60,23 @@ def test_pg_single_table_loader_main(test_dag, context, target, deleted_flg, set
     actual = actual.drop(labels=set(actual.columns) - set(expected.columns), axis=1)
     assert_frame_equal(expected, actual, debug=True)
 
-    test_dag.clear_all_works(context)
-
 
 @allure.feature('Operators')
 @allure.story('PG Single Table Loader')
 @pytest.mark.parametrize('deleted_flg', tracking_deletions)
 @pytest.mark.parametrize('target', targets)
 @pytest.mark.parametrize('setup', setups)
-def test_pg_single_table_loader_empty_source(test_dag, context, target, deleted_flg, setup, request):
+def test_pg_single_table_loader_empty_source(test_dag, target, deleted_flg, setup, request):
     request.getfixturevalue(setup)
-    test_dag.clear()
     source = DataFrame(columns=dataset[f"source_{target['table_name']}"].columns)
-    source_task = PythonDump(task_id='source_task',
+    task_uuid = uuid.uuid1()
+    source_task = PythonDump(task_id=f'test_pg_stl_empty__{task_uuid}',
                              python_callable=lambda _context: source,
                              dag=test_dag)
     task_params = {
         'conn_id': PG_CONN_ID,
-        'task_id': 'test_task',
-        'source': ['source_task'],
+        'task_id': f'test_task__{task_uuid}',
+        'source': [source_task.task_id],
         'table_name': target['table_name'],
         'key': target['key'],
         'dag': test_dag,
@@ -83,7 +86,7 @@ def test_pg_single_table_loader_empty_source(test_dag, context, target, deleted_
 
     task = PgSingleTargetLoader(**task_params)
 
-    run_task(task=source_task, context=context)
+    source_context = get_template_context(source_task)
+    run_task(task=source_task, context=source_context)
+    context = get_template_context(task)
     run_task(task=task, context=context)
-
-    test_dag.clear_all_works(context)

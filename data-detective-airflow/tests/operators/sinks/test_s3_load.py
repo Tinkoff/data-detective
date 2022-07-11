@@ -7,7 +7,7 @@ from data_detective_airflow.constants import S3_CONN_ID, WORK_S3_BUCKET
 from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
 from data_detective_airflow.operators.extractors import PythonDump
 from data_detective_airflow.operators.sinks import S3Load
-from data_detective_airflow.test_utilities import run_task
+from data_detective_airflow.test_utilities import get_template_context, run_task
 from tests_data.operators.sinks.s3_load_dataset import dataset
 
 
@@ -26,7 +26,7 @@ def test_s3_load_single(test_dag: TDag, mocker, context):
         task_id='upstream_task',
         dag=test_dag)
 
-    run_task(upstream_task, context)
+    run_task(upstream_task, get_template_context(upstream_task))
     upstream_task.result.read = mocker.MagicMock(return_value=dataset)
 
     task = S3Load(
@@ -54,7 +54,6 @@ def test_s3_load_single(test_dag: TDag, mocker, context):
 
     # check all True
     assert dataset['comparison'].all()
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Sinks')
@@ -72,7 +71,7 @@ def test_s3_load_with_metadata(test_dag: TDag, mocker, context):
         task_id='upstream_task',
         dag=test_dag)
 
-    run_task(upstream_task, context)
+    run_task(upstream_task, get_template_context(upstream_task))
     upstream_task.result.read = mocker.MagicMock(return_value=dataset)
 
     task = S3Load(
@@ -99,7 +98,6 @@ def test_s3_load_with_metadata(test_dag: TDag, mocker, context):
     )
     assert dataset['upload'][1]['Metadata'] == {'content-type': 'image/svg+xml'}
     assert dataset['upload'][1]['ContentType'] == 'image/svg+xml'
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Sinks')
@@ -117,7 +115,7 @@ def test_s3_load_update_metadata(test_dag: TDag, mocker, context):
         task_id='upstream_task',
         dag=test_dag)
 
-    run_task(upstream_task, context)
+    run_task(upstream_task, get_template_context(upstream_task))
     upstream_task.result.read = mocker.MagicMock(return_value=dataset)
 
     task = S3Load(
@@ -163,4 +161,3 @@ def test_s3_load_update_metadata(test_dag: TDag, mocker, context):
     )
 
     assert dataset['upload'][1]['ContentType'] == 'binary/octet-stream'
-    test_dag.clear_all_works(context)

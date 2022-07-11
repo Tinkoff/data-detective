@@ -32,7 +32,6 @@ def test_s3_dump_single(test_dag: TDag, context, setup_storage):
 
     df = task.result.read(context)
     assert_frame_equal(df, dataset['source'][['response']].iloc[0])
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Extractors')
@@ -67,4 +66,3 @@ def test_s3_dump_source(test_dag: TDag, mocker, context, setup_storage):
 
     df = task.result.read(context)
     assert_frame_equal(df, dataset['source'])
-    test_dag.clear_all_works(context)

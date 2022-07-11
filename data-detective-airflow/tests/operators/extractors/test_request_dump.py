@@ -11,7 +11,7 @@ from requests import Session
 
 from data_detective_airflow.operators.extractors import RequestDump
 from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
-from data_detective_airflow.test_utilities import run_task
+from data_detective_airflow.test_utilities import run_task, get_template_context
 from data_detective_airflow.constants import PG_CONN_ID
 from tests_data.operators.extractors.request_dump_dataset import dataset, empty_dataset
 
@@ -31,19 +31,15 @@ def test_bad_request(test_dag, mocker):
                             ok=False)
                         )
 
-    test_dag.clear()
-
     task = RequestDump(conn_id=PG_CONN_ID,
                        url='bad_url',
                        task_id="test_request_dump",
                        dag=test_dag)
-    ti = TaskInstance(task=task, execution_date=datetime.now())  # test_dag.start_date
-    context = ti.get_template_context()
+    context = get_template_context(task)
     test_dag.get_work(test_dag.conn_id).create(context)
 
     with pytest.raises(AirflowBadRequest):
         assert run_task(task=task, context=context)
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Extractors')
@@ -88,7 +84,6 @@ def test_normal_request(test_dag, mocker, context, response_dataset):
             expected = expected.mask(expected.isna(), 0)
 
         assert_array_equal(actual.values, expected.values)
-        test_dag.clear_all_works(context)
 
 
 @allure.feature('Extractors')
@@ -106,8 +101,6 @@ def test_params(test_dag, mocker, context):
                                 content=dataset['request_dump']['response'],
                                 ok=True)
                             )
-
-        test_dag.clear()
 
         params = DataFrame({
             'param': ('param1', 'param2')})
@@ -135,7 +128,6 @@ def test_params(test_dag, mocker, context):
         expected['response'] = dataset['request_dump'].iloc[0]['response']
 
         assert_array_equal(actual.values, expected.values)
-        test_dag.clear_all_works(context)
 
 
 @allure.feature('Extractors')
@@ -153,8 +145,6 @@ def test_source(test_dag: TDag, mocker, context):
                                 content=dataset['request_dump']['response'],
                                 ok=True)
                             )
-
-        test_dag.clear()
 
         params = DataFrame({
             'param': ('param1', 'param2')
@@ -190,7 +180,6 @@ def test_source(test_dag: TDag, mocker, context):
         expected['response'] = dataset['request_dump'].iloc[0]['response']
 
         assert_array_equal(actual.values, expected.values)
-        test_dag.clear_all_works(context)
 
 
 @allure.feature('Extractors')
@@ -208,8 +197,6 @@ def test_request_with_sleep(test_dag: TDag, mocker, context):
                             content=dataset['request_dump']['response'],
                             ok=True)
                         )
-    test_dag.clear()
-
     task = RequestDump(conn_id=PG_CONN_ID,
                        url='good_url',
                        task_id="test_request_dump",
@@ -219,7 +206,6 @@ def test_request_with_sleep(test_dag: TDag, mocker, context):
     test_dag.get_work(test_dag.conn_id).create(context)
     run_task(task=task, context=context)
     sleep_mock.assert_called_once()
-    test_dag.clear_all_works(context)
 
 
 @allure.feature('Extractors')
@@ -237,8 +223,6 @@ def test_source_with_an_unformed_result(test_dag: TDag, mocker, context):
                                 content=dataset['request_dump']['response'],
                                 ok=True)
                             )
-
-        test_dag.clear()
 
         params = DataFrame({
             'param': ('param1', 'param2')
@@ -332,5 +316,3 @@ def test_long_request(test_dag: TDag, mocker, context, time_params):
         except Exception as exc:
             state = -1
         assert (scs and not state) or (not scs and state)
-
-        test_dag.clear_all_works(context)
