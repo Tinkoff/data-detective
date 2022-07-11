@@ -8,9 +8,9 @@ from data_detective_airflow.dag_generator import generate_dag
 from data_detective_airflow.test_utilities import (
     is_gen_dataset_mode,
     JSONPandasDataset,
-    run_and_assert_task,
     run_and_gen_ds,
 )
+from data_detective_airflow.test_utilities.test_helper import run_dag_and_assert_tasks
 
 dag_name = 'dummy'
 dag = generate_dag(dag_dir=f'{settings.DAGS_FOLDER}/dags/{dag_name}')
@@ -22,12 +22,8 @@ gen_dataset = is_gen_dataset_mode()
 @pytest.mark.skipif(condition=gen_dataset, reason='Gen dataset')
 @allure.feature('Dags')
 @allure.story(dag_name)
-@pytest.mark.parametrize(
-    'task', dag.tasks
-)
-def test_task(task, mocker, setup_tables):
-    with allure.step(task.task_id):
-        run_and_assert_task(task=task, dataset=dataset, mocker=mocker)
+def test_task(mocker, setup_tables):
+    run_dag_and_assert_tasks(dag, dataset)
 
 
 @pytest.mark.skipif(condition=(not gen_dataset), reason='Gen dataset')

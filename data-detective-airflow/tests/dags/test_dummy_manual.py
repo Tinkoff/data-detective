@@ -1,11 +1,10 @@
-from datetime import datetime
+import uuid
 
 import allure
 from airflow import settings
-from airflow.models.taskinstance import TaskInstance
 
 from data_detective_airflow.dag_generator import generate_dag
-from data_detective_airflow.test_utilities import run_and_read, run_task
+from data_detective_airflow.test_utilities import get_template_context, run_and_read, run_task
 
 
 @allure.feature('Dags')
@@ -13,26 +12,37 @@ from data_detective_airflow.test_utilities import run_and_read, run_task
 def test_dummy_dag():
     with allure.step('Init'):
         dag = generate_dag(dag_dir=f'{settings.DAGS_FOLDER}/dags/dummy')
-        ti = TaskInstance(task=dag.task_dict['df_now1'], execution_date=datetime.now())
-        context = ti.get_template_context()
-        dag.get_work(work_type=dag.work_type, work_conn_id=dag.work_conn_id).create(context)
+        run_id = f'{__name__}__{uuid.uuid1()}'
+        dag.create_dagrun(
+            run_id=run_id,
+            external_trigger=True,
+            state='queued'
+        )
+        context = get_template_context(dag.tasks[0])
+        dag.clear_all_works(context)
 
     with allure.step('Check df_now1 step'):
-        df = run_and_read(task=dag.task_dict['df_now1'], context=context)
+        task = dag.task_dict['df_now1']
+        df = run_and_read(task=task, context=get_template_context(task))
         assert df.shape == (1, 2)
 
     with allure.step('Check df_now2 step'):
-        df = run_and_read(task=dag.task_dict['df_now2'], context=context)
+        task = dag.task_dict['df_now2']
+        df = run_and_read(task=task, context=get_template_context(task))
         assert df.shape == (1, 2)
 
     with allure.step('Check transform step'):
-        df = run_and_read(task=dag.task_dict['transform'], context=context)
+        task = dag.task_dict['transform']
+        df = run_and_read(task=task, context=get_template_context(task))
         assert df.shape == (1, 2)
 
     with allure.step('Check append_all step'):
-        df = run_and_read(dag.task_dict['append_all'], context=context)
+        task = dag.task_dict['append_all']
+        df = run_and_read(task=task, context=get_template_context(task))
         assert df.shape == (2, 2)
 
-    run_task(dag.task_dict['sink'], context=context)
+    with allure.step('Run sink'):
+        task = dag.task_dict['sink']
+        run_task(task=task, context=get_template_context(task))
 
     dag.clear_all_works(context)
