@@ -21,13 +21,13 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-apache-airflow = "~2.1"
+apache-airflow = ">=2.1, < 2.3"
 apache-airflow-providers-amazon = "*"
 apache-airflow-providers-celery = "*"
 apache-airflow-providers-postgres = "*"
 apache-airflow-providers-redis = "*"
 apache-airflow-providers-ssh = "*"
-pandas = "^1.1"
+pandas = "^1.1, <1.4"
 petl = "^1.7"
 psycopg2-binary = "^2.8"
 
