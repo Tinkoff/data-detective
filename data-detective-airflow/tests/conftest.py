@@ -10,7 +10,6 @@ from data_detective_airflow.test_utilities import get_template_context
 
 
 @pytest.fixture(scope='function')
-#  airflow.exceptions.DuplicateTaskIdFound: Task id 'test_task_pgscd1df' has already been added to the DAG
 def test_dag(request) -> TDag:
     """Airflow DAG for testing."""
     if hasattr(request, 'param'):
@@ -34,6 +33,8 @@ def test_dag(request) -> TDag:
         template_searchpath='/'
     )
     tdag.clear()
+
+    # Tasks are absent. Create dag_run without tasks
     run = tdag.create_dagrun(
         execution_date=datetime.utcnow(),
         run_type=DagRunType.MANUAL,
@@ -65,6 +66,4 @@ def dummy_task(test_dag):
 @pytest.fixture
 def context(dummy_task):
     """context for testing"""
-    # run = dummy_task.dag.get_last_dagrun(include_externally_triggered=True)
-    # task_instance = TaskInstance(task=dummy_task, run_id=run.run_id)
     return get_template_context(dummy_task)
