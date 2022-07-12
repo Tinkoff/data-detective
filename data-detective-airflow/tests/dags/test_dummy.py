@@ -6,6 +6,7 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 from data_detective_airflow.constants import PG_CONN_ID
 from data_detective_airflow.dag_generator import generate_dag
 from data_detective_airflow.test_utilities import (
+    create_or_get_dagrun,
     is_gen_dataset_mode,
     JSONPandasDataset,
     run_and_assert_task,
@@ -22,20 +23,18 @@ gen_dataset = is_gen_dataset_mode()
 @pytest.mark.skipif(condition=gen_dataset, reason='Gen dataset')
 @allure.feature('Dags')
 @allure.story(dag_name)
-@pytest.mark.parametrize(
-    'task', dag.tasks
-)
+@pytest.mark.parametrize('task', dag.tasks)
 def test_task(task, mocker, setup_tables):
+    dag_run = create_or_get_dagrun(dag, task)
     with allure.step(task.task_id):
-        run_and_assert_task(task=task, dataset=dataset, mocker=mocker)
+        run_and_assert_task(task=task, dataset=dataset, dag_run=dag_run, mocker=mocker)
 
 
 @pytest.mark.skipif(condition=(not gen_dataset), reason='Gen dataset')
-@pytest.mark.parametrize(
-    'task', dag.tasks
-)
+@pytest.mark.parametrize('task', dag.tasks)
 def test_gen_tests_data(task, mocker, setup_tables):
-    run_and_gen_ds(task, f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}')
+    dag_run = create_or_get_dagrun(dag, task)
+    run_and_gen_ds(task, f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}', dag_run)
 
 
 @pytest.fixture(scope='module')
