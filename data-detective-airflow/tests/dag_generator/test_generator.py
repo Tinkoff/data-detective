@@ -5,7 +5,7 @@ import allure
 from airflow import settings
 
 from data_detective_airflow.dag_generator import generate_dag
-from data_detective_airflow.test_utilities import get_template_context, run_and_read
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context, run_and_read
 
 
 @allure.feature('Dag Generator')
@@ -44,12 +44,7 @@ def test_generate_dag_yaml_sql_file():
         assert task.sql == '/code/sql.sql'
 
     with allure.step('Check result'):
-        run_id = f'{__name__}__{uuid.uuid1()}'
-        dag.create_dagrun(
-            run_id=run_id,
-            external_trigger=True,
-            state='queued'
-        )
+        create_or_get_dagrun(dag, task)
         context = get_template_context(task)
         res1 = run_and_read(task, context)
         assert res1 is not None
