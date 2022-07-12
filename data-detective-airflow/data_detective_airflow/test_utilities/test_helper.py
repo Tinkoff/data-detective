@@ -4,10 +4,8 @@ import logging
 from typing import Any, Union
 
 import petl
-from airflow.models import BaseOperator, TaskInstance
-from airflow.utils import timezone
+from airflow.models import BaseOperator, DagRun, TaskInstance
 from airflow.utils.context import Context
-from airflow.models.dagrun import DagRun
 from pandas import DataFrame
 from pytest_mock.plugin import MockerFixture
 
@@ -16,7 +14,7 @@ from data_detective_airflow.operators.tbaseoperator import TBaseOperator
 from data_detective_airflow.test_utilities.assertions import assert_frame_equal
 
 
-def run_task(task: Union[TBaseOperator, BaseOperator], context: Context = None):
+def run_task(task: Union[TBaseOperator, BaseOperator], context: Context):
     """Run a task"""
     logging.info(f'Running task {task.task_id}')
     task.trigger_rule = 'dummy'
@@ -31,7 +29,7 @@ def mock_task_inputs(task, dataset, mocker):
         task.upstream_list[i].result.read = mocker.MagicMock(return_value=dataset[uptask.task_id])
 
 
-def run_and_read(task: Union[TBaseOperator, BaseOperator], context: Context = None) -> DataFrame:
+def run_and_read(task: Union[TBaseOperator, BaseOperator], context: Context) -> DataFrame:
     """Run the task and return the DataFrame from the BaseResult instance."""
     run_task(task, context)
     return task.read_result(context)
@@ -45,14 +43,15 @@ def run_and_assert_task(
     exclude_cols: list = None,
     **kwargs
 ) -> None:
-    """Run the task, get the result and compare
+    """Run the task, get the result and compare.
 
     :param task: Id of the running task
     :param dataset: Dictionary with comparison examples. Output and input datasets are needed.
-    :param dag_run: Airflow Dag Run
+    :param dag_run: Airflow DagRun
     :param exclude_cols: Columns excluded from comparison
     :param mocker: MockerFixture fixture
     """
+    logging.info(f'Running task {task.task_id}')
     task_instance = TaskInstance(task=task, run_id=dag_run.run_id, execution_date=dag_run.execution_date)
     context = task_instance.get_template_context()
 
@@ -82,27 +81,16 @@ def run_and_assert_task(
             assert actual == expected
 
 
-def run_dag_and_assert_tasks(
-        dag: TDag,
-        dataset: "JSONPandasDataset",
-        mocker: MockerFixture = None,
-        exclude_cols: list = None,
-        **kwargs
+def run_and_assert(
+    dag: TDag, task_id: str, test_datasets: dict, mocker: MockerFixture, dag_run: DagRun, exclude_cols: list = None
 ):
-    exec_date = timezone.utcnow()
-    run_id = f'{__name__}__{exec_date}'
-    dag_run = dag.create_dagrun(
-        run_id=run_id,
-        external_trigger=True,
-        state='queued'
-    )
-    for task in dag.tasks:
-        logging.info('Running task %s', task.task_id)
-        run_and_assert_task(
-            task=task,
-            dataset=dataset,
-            dag_run=dag_run,
-            mocker=mocker,
-            exclude_cols=exclude_cols,
-            **kwargs
-        )
+    """Run task and assert with dataset in test_datasets
+    :param dag: TDag
+    :param task_id: Id of the running task
+    :param test_datasets: Dictionary with examples
+    :param mocker: MockerFixture fixture
+    :param dag_run: Airflow DagRun
+    :param exclude_cols: Columns excluded from comparison
+    """
+    task: BaseOperator = dag.task_dict[task_id]
+    run_and_assert_task(task, dataset=test_datasets, dag_run=dag_run, mocker=mocker, exclude_cols=exclude_cols)
