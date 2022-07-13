@@ -8,8 +8,7 @@ from airflow.utils.timezone import utcnow
 
 from data_detective_airflow.dag_generator import ResultType, WorkType
 from data_detective_airflow.operators.transformers import PyTransform
-from data_detective_airflow.test_utilities import run_task
-
+from data_detective_airflow.test_utilities import get_template_context, run_task
 
 # petl tests
 
@@ -46,18 +45,13 @@ def truncate_func(_context, source: Table):
                            None)],
                          indirect=True)
 def test_pytransform_petl(test_dag):
-    test_dag.clear()
-
     source_task = PyTransform(transformer_callable=lambda _context: table1, task_id='source_task',
                               dag=test_dag)
-    task = PyTransform(task_id='test_pytransform_petl', source=['source_task'],
+    task = PyTransform(task_id='test_pytransform_petl', source=[source_task.task_id],
                        transformer_callable=transform, dag=test_dag)
 
-    ti = TaskInstance(task=source_task, execution_date=utcnow())  # test_dag.start_date
-    context = ti.get_template_context()
-    test_dag.get_work(work_type=test_dag.work_type).create(context)
-
-    run_task(task=source_task, context=context)
+    run_task(task=source_task, context=get_template_context(source_task))
+    context = get_template_context(task)
     run_task(task=task, context=context)
 
     result = task.result.read(context)
@@ -74,19 +68,14 @@ def test_pytransform_petl(test_dag):
                            None)],
                          indirect=True)
 def test_petl_op_kwargs(test_dag):
-    test_dag.clear()
-
     source_task = PyTransform(transformer_callable=lambda _context: table1, task_id='source_task',
                               dag=test_dag)
     task = PyTransform(task_id='test_petl', source=['source_task'],
                        op_kwargs={'p1': 'test1', 'p2': 'test2'},
                        transformer_callable=transform_with_result_kwargs, dag=test_dag)
 
-    ti = TaskInstance(task=source_task, execution_date=utcnow())  # test_dag.start_date
-    context = ti.get_template_context()
-    test_dag.get_work(work_type=test_dag.work_type).create(context)
-
-    run_task(task=source_task, context=context)
+    run_task(task=source_task, context=get_template_context(source_task))
+    context = get_template_context(task)
     run_task(task=task, context=context)
 
     result = task.result.read(context)
@@ -109,8 +98,6 @@ def test_petl_op_kwargs(test_dag):
                            None)],
                          indirect=True)
 def test_multiple_sources(test_dag):
-    test_dag.clear()
-
     source_task = PyTransform(
         task_id='source_task',
         transformer_callable=lambda _context: table1,
@@ -123,11 +110,8 @@ def test_multiple_sources(test_dag):
         dag=test_dag
     )
 
-    ti = TaskInstance(task=source_task, execution_date=utcnow())  # test_dag.start_date
-    context = ti.get_template_context()
-    test_dag.get_work(work_type=test_dag.work_type).create(context)
-
-    run_task(task=source_task, context=context)
+    run_task(task=source_task, context=get_template_context(source_task))
+    context = get_template_context(task)
     run_task(task=task, context=context)
 
     result = task.result.read(context)
@@ -145,8 +129,6 @@ def test_multiple_sources(test_dag):
                          indirect=True)
 def test_petl_empty_source(test_dag):
     with allure.step('Create tasks and context'):
-        test_dag.clear()
-
         source_task = PyTransform(
             task_id='source_task',
             transformer_callable=lambda _context: table_empty,
@@ -159,12 +141,10 @@ def test_petl_empty_source(test_dag):
             dag=test_dag
         )
 
-        ti = TaskInstance(task=source_task, execution_date=utcnow())  # test_dag.start_date
-        context = ti.get_template_context()
-        test_dag.get_work(work_type=test_dag.work_type).create(context)
+        context = get_template_context(task)
 
     with allure.step('Run tasks'):
-        run_task(task=source_task, context=context)
+        run_task(task=source_task, context=get_template_context(source_task))
         run_task(task=task, context=context)
 
     with allure.step('Check empty result'):
@@ -182,8 +162,6 @@ def test_petl_empty_source(test_dag):
                          indirect=True)
 def test_petl_empty_target(test_dag):
     with allure.step('Create tasks and context'):
-        test_dag.clear()
-
         source_task = PyTransform(
             task_id='source_task',
             transformer_callable=lambda _context: table1,
@@ -196,12 +174,10 @@ def test_petl_empty_target(test_dag):
             dag=test_dag
         )
 
-        ti = TaskInstance(task=source_task, execution_date=utcnow())  # test_dag.start_date
-        context = ti.get_template_context()
-        test_dag.get_work(work_type=test_dag.work_type).create(context)
+        context = get_template_context(task)
 
     with allure.step('Run tasks'):
-        run_task(task=source_task, context=context)
+        run_task(task=source_task, context=get_template_context(source_task))
         run_task(task=task, context=context)
 
     with allure.step('Check empty result'):
@@ -219,7 +195,6 @@ def test_petl_empty_target(test_dag):
                          indirect=True)
 def test_petl_not_exist_source(test_dag):
     with allure.step('Create tasks and context'):
-        test_dag.clear()
         source_task = PyTransform(
             task_id='source_task',
             transformer_callable=lambda _context: table1,
@@ -232,9 +207,7 @@ def test_petl_not_exist_source(test_dag):
             dag=test_dag
         )
 
-        ti = TaskInstance(task=source_task, execution_date=utcnow())  # test_dag.start_date
-        context = ti.get_template_context()
-        test_dag.get_work(work_type=test_dag.work_type).create(context)
+        context = get_template_context(task)
 
     with allure.step('Run tasks with exception'):
         state = -1

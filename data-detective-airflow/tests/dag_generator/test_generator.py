@@ -1,12 +1,11 @@
-from datetime import datetime
+import uuid
 
 import allure
 
 from airflow import settings
-from airflow.models.taskinstance import TaskInstance
 
 from data_detective_airflow.dag_generator import generate_dag
-from data_detective_airflow.test_utilities import run_and_read
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context, run_and_read
 
 
 @allure.feature('Dag Generator')
@@ -45,11 +44,8 @@ def test_generate_dag_yaml_sql_file():
         assert task.sql == '/code/sql.sql'
 
     with allure.step('Check result'):
-        task_instance = TaskInstance(task=task, execution_date=datetime.now())  # test_dag.start_dt
-        context = task_instance.get_template_context()
-        dag.get_work(dag.work_conn_id).create(context)
-        task.render_template_fields(context=context)
-
+        create_or_get_dagrun(dag, task)
+        context = get_template_context(task)
         res1 = run_and_read(task, context)
         assert res1 is not None
         assert task.sql == "SELECT 1 as value, TO_CHAR(10, 'l99999D99') as currency"

@@ -1,14 +1,15 @@
-import datetime
+from datetime import datetime, timedelta, timezone
 
 import pytest
-from airflow.models import DagRun
 from airflow.models.taskinstance import TaskInstance
 from airflow.operators.dummy import DummyOperator
+from airflow.utils.types import DagRunType
 
 from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
+from data_detective_airflow.test_utilities import get_template_context
 
 
-@pytest.fixture
+@pytest.fixture(scope='function')
 def test_dag(request) -> TDag:
     """Airflow DAG for testing."""
     if hasattr(request, 'param'):
@@ -27,9 +28,21 @@ def test_dag(request) -> TDag:
             'work_conn_id': work_conn_id,
             'work_type': work_type
         },
-        schedule_interval=datetime.timedelta(days=1),
-        start_date=datetime.datetime(2020, 2, 2),
+        schedule_interval=timedelta(days=1),
+        start_date=datetime(2020, 2, 2),
         template_searchpath='/'
+    )
+    tdag.clear()
+
+    # Tasks are absent. Create dag_run without tasks
+    run = tdag.create_dagrun(
+        execution_date=datetime.utcnow(),
+        run_type=DagRunType.MANUAL,
+        state='queued',
+        data_interval=(
+            datetime.now(timezone(offset=timedelta(hours=0))),
+            datetime.now(timezone(offset=timedelta(hours=0))) + timedelta(hours=1)
+        )
     )
 
     yield tdag
@@ -38,7 +51,7 @@ def test_dag(request) -> TDag:
         task = tdag.tasks[0]
     else:
         task = DummyOperator(task_id='dummy', dag=tdag)
-    ti = TaskInstance(task=task, execution_date=tdag.start_date)
+    ti = TaskInstance(task=task, run_id=run.run_id)
     context = ti.get_template_context()
 
     tdag.clear_all_works(context)
@@ -53,9 +66,4 @@ def dummy_task(test_dag):
 @pytest.fixture
 def context(dummy_task):
     """context for testing"""
-    task_instance = TaskInstance(task=dummy_task, execution_date=dummy_task.dag.start_date)
-    res = task_instance.get_template_context()
-    dag_run = DagRun(external_trigger=True)
-    dag_run.id = 1
-    res.update({'dag_run': dag_run})
-    return res
+    return get_template_context(dummy_task)

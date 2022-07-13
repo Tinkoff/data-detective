@@ -1,14 +1,13 @@
 import logging
-from datetime import datetime
+import uuid
 
 import allure
 import pytest
-from airflow.models import TaskInstance
 from pandas import DataFrame
 
 from data_detective_airflow.operators.extractors import PythonDump
 from data_detective_airflow.dag_generator import ResultType, WorkType
-from data_detective_airflow.test_utilities import run_task
+from data_detective_airflow.test_utilities import get_template_context, run_task
 
 
 @allure.feature('Works')
@@ -23,17 +22,13 @@ from data_detective_airflow.test_utilities import run_task
     ],
     indirect=['test_dag'],
 )
-def test_get_size(test_dag, context, expected, caplog):
+def test_get_size(test_dag, expected, caplog):
     task = PythonDump(
-        task_id="test_python_dump",
+        task_id=f'test_get_size__{uuid.uuid1()}',
         dag=test_dag,
         python_callable=lambda _context: DataFrame([[1, 2], [3, 4]], columns=('foo', 'bar'))
     )
 
-    TaskInstance(task=task, execution_date=datetime.now())
-    test_dag.get_work(test_dag.conn_id).create(context)
     with caplog.at_level(logging.INFO):
-        run_task(task=task, context=context)
+        run_task(task=task, context=get_template_context(task))
     assert f'Dumped {expected}' in caplog.text
-
-    test_dag.clear_all_works(context)

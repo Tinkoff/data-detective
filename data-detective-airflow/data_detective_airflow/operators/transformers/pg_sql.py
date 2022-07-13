@@ -1,5 +1,7 @@
 from typing import Union
 
+from airflow.utils.context import Context
+
 from data_detective_airflow.operators.tbaseoperator import TBaseOperator
 
 
@@ -34,7 +36,7 @@ class PgSQL(TBaseOperator):
         for src in self.source:
             self.dag.task_dict[src] >> self  # pylint: disable=pointless-statement
 
-    def execute(self, context: dict):
+    def execute(self, context: Context):
         """Execute the query to the Postgres
 
         :param context: context

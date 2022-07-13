@@ -2,7 +2,7 @@ import logging
 import os
 from typing import Union
 
-import pandas as pd
+import pandas
 import petl as etl
 from airflow.models import BaseOperator, TaskInstance
 from airflow.utils import timezone
@@ -13,21 +13,20 @@ from data_detective_airflow.test_utilities.test_helper import run_and_read
 
 
 # pylint: disable=too-many-statements
-def run_and_gen_ds(task: Union[TBaseOperator, BaseOperator], folder, drop_cols: list[str] = None):
+def run_and_gen_ds(task: Union[TBaseOperator, BaseOperator], folder, dag_run, drop_cols: list[str] = None):
     drop_cols = drop_cols or []
     if 'processed_dttm' not in drop_cols:
         drop_cols.append('processed_dttm')
-    dag = task.dag
-    task_instance = TaskInstance(task=task, execution_date=timezone.utcnow())
+
+    task_instance = TaskInstance(task=task, run_id=dag_run.run_id, execution_date=dag_run.execution_date)
     context = task_instance.get_template_context()
-    dag.get_work(task.work_type, task.work_conn_id).create(context)
 
     task_result = run_and_read(task=task, context=context)
 
     if isinstance(task_result, tuple):
         task_result = etl.wrap(task_result)
 
-    if isinstance(task_result, pd.DataFrame):
+    if isinstance(task_result, pandas.DataFrame):
         pd_result = task_result.drop(labels=drop_cols, axis=1, errors='ignore')
 
         dataset = JSONPandasDataset(folder)

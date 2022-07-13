@@ -2,8 +2,8 @@
 from typing import Callable
 
 from airflow import DAG
-from airflow.models import BaseOperator
 from airflow.models.xcom import XCom
+from airflow.utils.context import Context
 from airflow.utils.module_loading import import_string
 
 from data_detective_airflow.constants import PG_CONN_ID, S3_CONN_ID, SFTP_CONN_ID
@@ -85,15 +85,15 @@ class TDag(DAG):
             return PgWork(self, work_conn_id or PG_CONN_ID)
         return FileWork(self)
 
-    def clear_all_works(self, context: dict):
+    def clear_all_works(self, context: Context):
         """Clearing all works after execution"""
         for work in self.get_all_works(context):
             work.clear(context)
 
-    def get_all_works(self, context: dict):
+    def get_all_works(self, context: Context):
         """Clearing all work on completion of execution"""
         dag_id = self.dag_id
-        execution_date = context['execution_date']
+        execution_date = context['logical_date']
         xcoms = XCom.get_many(task_ids='work', dag_ids=dag_id, execution_date=execution_date)
         works = set()
         for xcom in xcoms:

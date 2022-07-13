@@ -4,8 +4,8 @@ import logging
 from typing import Any, Union
 
 import petl
-from airflow.models import BaseOperator, TaskInstance
-from airflow.utils import timezone
+from airflow.models import BaseOperator, DagRun, TaskInstance
+from airflow.utils.context import Context
 from pandas import DataFrame
 from pytest_mock.plugin import MockerFixture
 
@@ -14,11 +14,11 @@ from data_detective_airflow.operators.tbaseoperator import TBaseOperator
 from data_detective_airflow.test_utilities.assertions import assert_frame_equal
 
 
-def run_task(task: Union[TBaseOperator, BaseOperator], context: dict = None):
+def run_task(task: Union[TBaseOperator, BaseOperator], context: Context):
     """Run a task"""
-    # Removing launch restrictions based on the status of previous operators
+    logging.info(f'Running task {task.task_id}')
     task.trigger_rule = 'dummy'
-    task.render_template_fields(task.generate_context())
+    task.render_template_fields(context)
     task.pre_execute(context)
     task.execute(context)
     task.post_execute(context)
@@ -29,9 +29,8 @@ def mock_task_inputs(task, dataset, mocker):
         task.upstream_list[i].result.read = mocker.MagicMock(return_value=dataset[uptask.task_id])
 
 
-def run_and_read(task: Union[TBaseOperator, BaseOperator], context: dict = None) -> DataFrame:
+def run_and_read(task: Union[TBaseOperator, BaseOperator], context: Context) -> DataFrame:
     """Run the task and return the DataFrame from the BaseResult instance."""
-    logging.info(f'Running task {task.task_id}')
     run_task(task, context)
     return task.read_result(context)
 
@@ -39,18 +38,21 @@ def run_and_read(task: Union[TBaseOperator, BaseOperator], context: dict = None)
 def run_and_assert_task(
     task: Union[TBaseOperator, BaseOperator],
     dataset: dict[str, Any],
+    dag_run: DagRun,
     mocker: MockerFixture = None,
     exclude_cols: list = None,
     **kwargs
-):
-    """Run the task, get the result and compare
+) -> None:
+    """Run the task, get the result and compare.
 
     :param task: Id of the running task
     :param dataset: Dictionary with comparison examples. Output and input datasets are needed.
+    :param dag_run: Airflow DagRun
     :param exclude_cols: Columns excluded from comparison
     :param mocker: MockerFixture fixture
     """
-    task_instance = TaskInstance(task=task, execution_date=timezone.utcnow())
+    logging.info(f'Running task {task.task_id}')
+    task_instance = TaskInstance(task=task, run_id=dag_run.run_id, execution_date=dag_run.execution_date)
     context = task_instance.get_template_context()
 
     if mocker and dataset:
@@ -80,18 +82,15 @@ def run_and_assert_task(
 
 
 def run_and_assert(
-    dag: TDag, task_id: str, test_datasets: dict, mocker: MockerFixture, exclude_cols: list = None
-):  # pylint: disable=inconsistent-return-statements
-    """Using run_and_assert_task
-
-    Run the task and if it is TBaseOperator then get the result and compare it with the example
-    Also if the task is PgReplacePartitions then the target table will be cleared first,
-    and then after the launch, compare the contents of the target table with the example
+    dag: TDag, task_id: str, test_datasets: dict, mocker: MockerFixture, dag_run: DagRun, exclude_cols: list = None
+):
+    """Run task and assert with dataset in test_datasets
     :param dag: TDag
     :param task_id: Id of the running task
     :param test_datasets: Dictionary with examples
-    :param exclude_cols: Columns excluded from comparison
     :param mocker: MockerFixture fixture
+    :param dag_run: Airflow DagRun
+    :param exclude_cols: Columns excluded from comparison
     """
-    task: TBaseOperator = dag.task_dict[task_id]
-    run_and_assert_task(task, dataset=test_datasets, mocker=mocker, exclude_cols=exclude_cols)
+    task: BaseOperator = dag.task_dict[task_id]
+    run_and_assert_task(task, dataset=test_datasets, dag_run=dag_run, mocker=mocker, exclude_cols=exclude_cols)

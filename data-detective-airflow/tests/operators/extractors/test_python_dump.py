@@ -34,7 +34,6 @@ def test_python_dump_without_args(test_dag, context):
             python_callable=python2df_callable_without_args
         )
 
-        TaskInstance(task=task, execution_date=datetime.now())  # test_dag.start_date
         test_dag.get_work(test_dag.conn_id).create(context)
         run_task(task=task, context=context)
 
@@ -46,8 +45,6 @@ def test_python_dump_without_args(test_dag, context):
         assert Path(result).exists()
         assert Path(result).is_file()
         assert task.result.read(context).shape == (3, 2)
-
-        test_dag.clear_all_works(context)
 
 
 @allure.feature('Extractors')
@@ -83,8 +80,6 @@ def test_python_dump_with_args(test_dag, context):
         assert Path(result).is_file()
         assert task.result.read(context).shape == (3, 2)
 
-        test_dag.clear_all_works(context)
-
 
 @allure.feature('Extractors')
 @allure.story('Python dump with lambda args')
@@ -117,8 +112,6 @@ def test_python_dump_lambda_with_args(test_dag, context):
         assert Path(result).is_file()
         assert task.result.read(context).shape == (3, 2)
 
-        test_dag.clear_all_works(context)
-
 
 @allure.feature('Extractors')
 @allure.story('Python dump with an empty target')
@@ -140,7 +133,6 @@ def test_python_dump_empty_target(test_dag, context):
             python_callable=python2df_callable_without_args
         )
 
-        TaskInstance(task=task, execution_date=datetime.now())  # test_dag.start_date
         test_dag.get_work(test_dag.conn_id).create(context)
         run_task(task=task, context=context)
 
@@ -152,8 +144,6 @@ def test_python_dump_empty_target(test_dag, context):
         assert Path(result).exists()
         assert Path(result).is_file()
         assert task.result.read(context).empty
-
-        test_dag.clear_all_works(context)
 
 
 @allure.feature('Extractors')
@@ -173,7 +163,6 @@ def test_python_dump_invalid_code(test_dag, context, _data):
             python_callable=_data.extract_func
         )
 
-        ti = TaskInstance(task=task, execution_date=datetime.now())  # test_dag.start_date
         test_dag.get_work(test_dag.conn_id).create(context)
 
         with allure.step('Run task with exception'):
@@ -191,5 +180,3 @@ def test_python_dump_invalid_code(test_dag, context, _data):
             if err:
                 logging.error(f"Task failed with an error: {err}.")
             assert state == 1
-
-        test_dag.clear_all_works(context)
