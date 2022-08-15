@@ -9,7 +9,7 @@ authors = ["Tinkoff Data Detective Team"]
 python = "^3.9"
 apache-airflow = ">=2.1, < 2.3"
 apache-airflow-providers-amazon = "*"
-apache-airflow-providers-celery = "*"
+apache-airflow-providers-celery = "^2.1.0"
 apache-airflow-providers-postgres = "*"
 apache-airflow-providers-redis = "*"
 apache-airflow-providers-ssh = "*"
