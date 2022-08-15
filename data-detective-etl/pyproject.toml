@@ -9,7 +9,7 @@ authors = ["Tinkoff Data Detective Team"]
 python = "^3.9"
 apache-airflow = ">=2.1, < 2.3"
 apache-airflow-providers-amazon = "*"
-apache-airflow-providers-celery = "^2.1.0"
+apache-airflow-providers-celery = "*"
 apache-airflow-providers-postgres = "*"
 apache-airflow-providers-redis = "*"
 apache-airflow-providers-ssh = "*"
@@ -24,7 +24,7 @@ xmljson = "0.2.1"
 pydantic = "^1.9"
 lxml = "^4.7"
 # airflow 2.1.3 импортирует flower.command.FlowerCommand недоступный в 1.0.0
-flower = "0.9.7"
+# flower = "0.9.7"
 # conflict with flask_appbuilder, need < 3.x
 wtforms = "^2.3.0"
 

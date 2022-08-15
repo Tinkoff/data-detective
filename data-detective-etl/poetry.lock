@@ -15,14 +15,14 @@ tz = ["python-dateutil"]
 
 [[package]]
 name = "amqp"
-version = "2.6.1"
+version = "5.1.1"
 description = "Low-level AMQP client for Python (fork of amqplib)."
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.6"
 
 [package.dependencies]
-vine = ">=1.1.3,<5.0.0a1"
+vine = ">=5.0.0"
 
 [[package]]
 name = "anyio"
@@ -111,7 +111,7 @@ wtforms = "<3.0.0"
 zendesk = ["apache-airflow-providers-zendesk"]
 yandex = ["apache-airflow-providers-yandex"]
 winrm = ["apache-airflow-providers-microsoft-winrm"]
-webhdfs = ["hdfs[kerberos,dataframe,avro] (>=2.0.4)"]
+webhdfs = ["hdfs[avro,kerberos,dataframe] (>=2.0.4)"]
 virtualenv = ["virtualenv"]
 vertica = ["apache-airflow-providers-vertica"]
 trino = ["apache-airflow-providers-trino"]
@@ -182,12 +182,12 @@ elasticsearch = ["apache-airflow-providers-elasticsearch"]
 druid = ["apache-airflow-providers-apache-druid"]
 docker = ["apache-airflow-providers-docker"]
 doc = ["sphinxcontrib-spelling (>=7.3,<8.0)", "sphinxcontrib-redoc (>=1.6.0)", "sphinxcontrib-httpdomain (>=1.7.0)", "sphinx (>=4.0.0,<5.0.0)", "sphinx-rtd-theme (>=0.1.6)", "sphinx-jinja (>=1.1,<2.0)", "sphinx-copybutton", "sphinx-autoapi (>=1.8.0,<1.9.0)", "sphinx-argparse (>=0.1.13)", "sphinx-airflow-theme", "click (>=7.1,<9)"]
-devel_hadoop = ["sphinxcontrib-httpdomain (>=1.7.0)", "sphinx (>=4.0.0,<5.0.0)", "sphinx-rtd-theme (>=0.1.6)", "sphinx-jinja (>=1.1,<2.0)", "sphinx-copybutton", "sphinx-autoapi (>=1.8.0,<1.9.0)", "sphinx-argparse (>=0.1.13)", "sphinx-airflow-theme", "snakebite-py3", "semver", "rich-click", "requests-mock", "requests-kerberos (>=0.10.0)", "qds-sdk (>=1.9.6)", "pywinrm", "python-jose", "pytest (>=6.0,<7.0)", "pytest-xdist", "pytest-timeouts", "pytest-rerunfailures (>=9.1,<10.0)", "pytest-instafail", "pytest-httpx", "pytest-cov", "pytest-asyncio", "pysftp", "pypsrp", "pykerberos (>=1.1.13)", "pyhive[hive] (>=0.6.0)", "pygithub", "presto-python-client (>=0.7.0,<0.8)", "pre-commit", "pipdeptree", "paramiko", "parameterized", "pandas (>=0.17.1,<1.4)", "mypy (==0.770)", "moto (>=2.2.12,<3.0)", "mongomock", "kubernetes (>=3.0.0,<12.0.0)", "jsondiff", "jira", "ipdb", "hmsclient (>=0.1.0)", "hdfs[kerberos,dataframe,avro] (>=2.0.4)", "gitpython", "github3.py (<3.1.0)", "freezegun", "flask-bcrypt (>=0.7.1)", "flaky", "flake8 (>=3.6.0)", "flake8-colors", "filelock", "cryptography (>=2.0.0)", "coverage", "click (>=7.1,<9)", "click (>=7.1)", "cgroupspy (>0.1.4)", "bowler", "blinker", "black", "beautifulsoup4 (>=4.7.1)", "bcrypt (>=2.0.0)", "aws-xray-sdk", "sasl (>=0.3.1)", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "apache-airflow-providers-trino", "apache-airflow-providers-presto", "apache-airflow-providers-apache-hive", "apache-airflow-providers-apache-hdfs", "yamllint", "wheel", "twine", "thrift-sasl (>=0.2.0)", "thrift (>=0.9.2)", "sphinxcontrib-spelling (>=7.3,<8.0)", "sphinxcontrib-redoc (>=1.6.0)"]
-devel_ci = ["sasl (>=0.3.1)", "looker-sdk (>=22.2.0)", "celery (>=5.2.3)", "celery (>=5.1.2,<6.0)", "pymssql (>=2.1.5)", "plyvel", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "apache-airflow-providers-zendesk", "apache-airflow-providers-yandex", "apache-airflow-providers-vertica", "apache-airflow-providers-trino", "apache-airflow-providers-telegram", "apache-airflow-providers-tableau", "apache-airflow-providers-ssh", "apache-airflow-providers-sqlite", "apache-airflow-providers-snowflake", "apache-airflow-providers-slack", "apache-airflow-providers-singularity", "apache-airflow-providers-sftp", "apache-airflow-providers-sendgrid", "apache-airflow-providers-segment", "apache-airflow-providers-samba", "apache-airflow-providers-salesforce", "apache-airflow-providers-redis", "apache-airflow-providers-qubole", "apache-airflow-providers-presto", "apache-airflow-providers-postgres", "apache-airflow-providers-plexus", "apache-airflow-providers-papermill", "apache-airflow-providers-pagerduty", "apache-airflow-providers-oracle", "apache-airflow-providers-opsgenie", "apache-airflow-providers-openfaas", "apache-airflow-providers-odbc", "apache-airflow-providers-neo4j", "apache-airflow-providers-mysql", "apache-airflow-providers-mongo", "apache-airflow-providers-microsoft-winrm", "apache-airflow-providers-microsoft-psrp", "apache-airflow-providers-microsoft-mssql", "apache-airflow-providers-microsoft-azure", "apache-airflow-providers-jira", "apache-airflow-providers-jenkins", "apache-airflow-providers-jdbc", "apache-airflow-providers-influxdb", "apache-airflow-providers-imap", "apache-airflow-providers-hashicorp", "apache-airflow-providers-grpc", "apache-airflow-providers-google", "apache-airflow-providers-github", "apache-airflow-providers-ftp", "apache-airflow-providers-facebook", "apache-airflow-providers-exasol", "apache-airflow-providers-elasticsearch", "apache-airflow-providers-docker", "apache-airflow-providers-discord", "apache-airflow-providers-dingding", "apache-airflow-providers-dbt-cloud", "apache-airflow-providers-datadog", "apache-airflow-providers-databricks", "apache-airflow-providers-cncf-kubernetes", "apache-airflow-providers-cloudant", "apache-airflow-providers-celery", "apache-airflow-providers-asana", "apache-airflow-providers-apache-sqoop", "apache-airflow-providers-apache-spark", "apache-airflow-providers-apache-pinot", "apache-airflow-providers-apache-pig", "apache-airflow-providers-apache-livy", "apache-airflow-providers-apache-kylin", "apache-airflow-providers-apache-hive", "apache-airflow-providers-apache-hdfs", "apache-airflow-providers-apache-druid", "apache-airflow-providers-apache-drill", "apache-airflow-providers-apache-cassandra", "apache-airflow-providers-apache-beam", "apache-airflow-providers-amazon", "apache-airflow-providers-alibaba", "apache-airflow-providers-airbyte", "zenpy (>=2.0.24)", "yandexcloud (>=0.146.0)", "yamllint", "wheel", "watchtower (>=2.0.1,<2.1.0)", "virtualenv", "vertica-python (>=0.5.1)", "twine", "trino (>=0.301.0)", "thrift-sasl (>=0.2.0)", "thrift (>=0.9.2)", "tableauserverclient", "statsd (>=3.3.0)", "sshtunnel (>=0.3.2)", "sqlparse (>=0.4.1)", "sqlalchemy-redshift (>=0.8.6)", "sqlalchemy-drill (>=1.1.0)", "sqlalchemy-bigquery (>=1.2.1)", "spython (>=0.0.56)", "sphinxcontrib-spelling (>=7.3,<8.0)", "sphinxcontrib-redoc (>=1.6.0)", "sphinxcontrib-httpdomain (>=1.7.0)", "sphinx (>=4.0.0,<5.0.0)", "sphinx-rtd-theme (>=0.1.6)", "sphinx-jinja (>=1.1,<2.0)", "sphinx-copybutton", "sphinx-autoapi (>=1.8.0,<1.9.0)", "sphinx-argparse (>=0.1.13)", "sphinx-airflow-theme", "snowflake-sqlalchemy (>=1.1.0,!=1.2.5)", "snowflake-connector-python (>=2.4.1)", "smbprotocol (>=1.5.0)", "slack-sdk (>=3.0.0)", "simple-salesforce (>=1.0.0)", "sentry-sdk (>=0.8.0)", "sendgrid (>=6.0.0)", "semver", "scrapbook", "rich-click", "requests-mock", "requests-kerberos (>=0.10.0)", "requests (>=2.26.0,<3)", "requests (>=2.26.0)", "redshift-connector (>=2.0.888)", "redis (>=3.2,<4.0)", "qds-sdk (>=1.9.6)", "qds-sdk (>=1.10.4)", "pywinrm (>=0.4)", "pywinrm", "python-telegram-bot (>=13.0)", "python-ldap", "python-jose", "python-jenkins (>=1.0.0)", "pytest (>=6.0,<7.0)", "pytest-xdist", "pytest-timeouts", "pytest-rerunfailures (>=9.1,<10.0)", "pytest-instafail", "pytest-httpx", "pytest-cov", "pytest-asyncio", "pyspark", "pysftp (>=0.2.9)", "pysftp", "pypsrp (>=0.8)", "pypsrp", "pyodbc", "pymongo (>=3.6.0,<4.0.0)", "pykerberos (>=1.1.13)", "pyhive[hive] (>=0.6.0)", "pygithub", "pyexasol (>=0.5.1)", "pydruid (>=0.4.1)", "psycopg2-binary (>=2.7.4)", "grpcio (>=1.15.0)", "grpcio-gcp (>=0.2.2)", "greenlet (>=0.4.9)", "google-cloud-workflows (>=0.1.0,<2.0.0)", "google-cloud-vision (>=0.35.2,<2.0.0)", "google-cloud-videointelligence (>=1.7.0,<2.0.0)", "google-cloud-translate (>=1.5.0,<2.0.0)", "google-cloud-texttospeech (>=0.4.0,<2.0.0)", "google-cloud-tasks (>=2.0.0)", "google-cloud-storage (>=1.30,<2.0.0)", "google-cloud-speech (>=0.36.3,<2.0.0)", "google-cloud-spanner (>=1.10.0,<2.0.0)", "google-cloud-secret-manager (>=0.2.0,<2.0.0)", "google-cloud-redis (>=2.0.0)", "google-cloud-pubsub (>=2.0.0)", "google-cloud-os-login (>=2.0.0)", "google-cloud-orchestration-airflow (>=1.0.0,<2.0.0)", "google-cloud-monitoring (>=2.0.0)", "google-cloud-memcache (>=0.2.0)", "google-cloud-logging (>=2.1.1)", "google-cloud-language (>=1.1.1,<2.0.0)", "google-cloud-kms (>=2.0.0)", "google-cloud-dlp (>=0.11.0,<2.0.0)", "google-cloud-dataproc (>=3.1.0)", "google-cloud-dataproc-metastore (>=1.2.0,<2.0.0)", "google-cloud-dataplex (>=0.1.0)", "google-cloud-datacatalog (>=3.0.0)", "google-cloud-container (>=0.1.1,<2.0.0)", "google-cloud-build (>=3.0.0)", "google-cloud-bigtable (>=1.0.0,<2.0.0)", "google-cloud-bigquery-datatransfer (>=3.0.0)", "google-cloud-automl (>=2.1.0)", "google-cloud-aiplatform (>=1.7.1,<2.0.0)", "google-auth (>=1.0.0,<3.0.0)", "google-auth (>=1.0.0)", "google-auth-httplib2 (>=0.0.1)", "google-api-python-client (>=1.6.0,<2.0.0)", "google-api-core (>=1.25.1,<3.0.0)", "google-ads (>=12.0.0,<14.0.1)", "gitpython", "github3.py (<3.1.0)", "gevent (>=0.13)", "freezegun", "flower (>=1.0.0)", "flask-bcrypt (>=0.7.1)", "flaky", "flake8 (>=3.6.0)", "flake8-colors", "filelock", "facebook-business (>=6.0.2)", "eventlet (>=0.9.7)", "elasticsearch (>7)", "elasticsearch-dsl (>=5.0.0)", "elasticsearch-dbapi", "docker (>=5.0.3)", "dnspython (>=1.13.0)", "distributed (>=2.11.1)", "datadog (>=0.14.0)", "databricks-sql-connector (>=1.0.0,<2.0.0)", "dask (>=2.9.0)", "cx-Oracle (>=5.1.2)", "cryptography (>=2.0.0)", "coverage", "cloudpickle (>=1.4.1)", "cloudant (>=2.0)", "click (>=7.1,<9)", "click (>=7.1)", "cgroupspy (>0.1.4)", "cassandra-driver (>=3.13.0)", "bowler", "boto3 (>=1.15.0)", "blinker (>=1.1)", "blinker", "black", "beautifulsoup4 (>=4.7.1)", "bcrypt (>=2.0.0)", "azure-storage-file (>=2.1.0)", "azure-storage-common (>=2.1.0)", "azure-storage-blob (>=12.7.0,<12.9.0)", "azure-mgmt-resource (>=2.2.0)", "azure-mgmt-datalake-store (>=0.5.0)", "azure-mgmt-datafactory (>=1.0.0,<2.0)", "azure-mgmt-containerinstance (>=1.5.0,<2.0)", "azure-kusto-data (>=0.0.43,<0.1)", "azure-keyvault (>=4.1.0)", "azure-identity (>=1.3.1)", "azure-datalake-store (>=0.0.45)", "azure-cosmos (>=4.0.0)", "azure-batch (>=8.0.0)", "aws-xray-sdk", "authlib", "atlasclient (>=0.1.2)", "asana (>=0.10)", "arrow (>=0.16.0)", "apache-beam (>=2.20.0)", "apache-airflow-providers-http", "analytics-python (>=1.2.9)", "amqp", "pyopenssl", "JIRA (>1.0.7)", "presto-python-client (>=0.7.0,<0.8)", "pre-commit", "pipdeptree", "pinotdb (>0.1.2)", "pdpyras (>=4.1.2)", "paramiko (>=2.6.0)", "paramiko", "parameterized", "papermill[all] (>=1.2.1)", "pandas (>=0.17.1,<1.4)", "pandas-gbq (<0.15.0)", "oss2 (>=2.14.0)", "opsgenie-sdk (>=2.1.5)", "neo4j (>=4.2.1)", "mypy (==0.770)", "mypy-boto3-redshift-data (>=1.21.0)", "mypy-boto3-rds (>=1.21.0)", "moto (>=2.2.12,<3.0)", "mongomock", "ldap3 (>=2.5.1)", "kylinpy (>=2.6)", "kubernetes (>=3.0.0,<12.0.0)", "jsonpath-ng (>=1.5.3)", "jsondiff", "json-merge-patch (>=0.2)", "jira", "jaydebeapi (>=1.1.1)", "ipdb", "influxdb-client (>=1.19.0)", "hvac (>=0.10)", "httpx", "hmsclient (>=0.1.0)", "hdfs[kerberos,dataframe,avro] (>=2.0.4)"]
-devel_all = ["apache-airflow-providers-telegram", "apache-airflow-providers-tableau", "apache-airflow-providers-ssh", "apache-airflow-providers-sqlite", "apache-airflow-providers-snowflake", "apache-airflow-providers-slack", "apache-airflow-providers-singularity", "apache-airflow-providers-sftp", "apache-airflow-providers-sendgrid", "apache-airflow-providers-segment", "apache-airflow-providers-samba", "apache-airflow-providers-salesforce", "apache-airflow-providers-redis", "apache-airflow-providers-qubole", "apache-airflow-providers-presto", "apache-airflow-providers-postgres", "apache-airflow-providers-plexus", "apache-airflow-providers-papermill", "apache-airflow-providers-pagerduty", "apache-airflow-providers-oracle", "apache-airflow-providers-opsgenie", "apache-airflow-providers-openfaas", "apache-airflow-providers-odbc", "apache-airflow-providers-neo4j", "apache-airflow-providers-mysql", "apache-airflow-providers-mongo", "apache-airflow-providers-microsoft-winrm", "apache-airflow-providers-microsoft-psrp", "apache-airflow-providers-microsoft-mssql", "apache-airflow-providers-microsoft-azure", "apache-airflow-providers-jira", "apache-airflow-providers-jenkins", "apache-airflow-providers-jdbc", "apache-airflow-providers-influxdb", "apache-airflow-providers-imap", "apache-airflow-providers-hashicorp", "apache-airflow-providers-grpc", "apache-airflow-providers-google", "apache-airflow-providers-github", "apache-airflow-providers-ftp", "apache-airflow-providers-facebook", "apache-airflow-providers-exasol", "apache-airflow-providers-elasticsearch", "apache-airflow-providers-docker", "apache-airflow-providers-discord", "apache-airflow-providers-dingding", "apache-airflow-providers-dbt-cloud", "apache-airflow-providers-datadog", "apache-airflow-providers-databricks", "apache-airflow-providers-cncf-kubernetes", "apache-airflow-providers-cloudant", "apache-airflow-providers-celery", "apache-airflow-providers-asana", "apache-airflow-providers-apache-sqoop", "apache-airflow-providers-apache-spark", "apache-airflow-providers-apache-pinot", "apache-airflow-providers-apache-pig", "apache-airflow-providers-apache-livy", "apache-airflow-providers-apache-kylin", "apache-airflow-providers-apache-hive", "apache-airflow-providers-apache-hdfs", "apache-airflow-providers-apache-druid", "apache-airflow-providers-apache-drill", "apache-airflow-providers-apache-cassandra", "apache-airflow-providers-apache-beam", "apache-airflow-providers-amazon", "apache-airflow-providers-alibaba", "apache-airflow-providers-airbyte", "zenpy (>=2.0.24)", "yandexcloud (>=0.146.0)", "yamllint", "wheel", "watchtower (>=2.0.1,<2.1.0)", "virtualenv", "vertica-python (>=0.5.1)", "twine", "trino (>=0.301.0)", "thrift-sasl (>=0.2.0)", "thrift (>=0.9.2)", "tableauserverclient", "statsd (>=3.3.0)", "sshtunnel (>=0.3.2)", "sqlparse (>=0.4.1)", "sqlalchemy-redshift (>=0.8.6)", "sqlalchemy-drill (>=1.1.0)", "sqlalchemy-bigquery (>=1.2.1)", "spython (>=0.0.56)", "sphinxcontrib-spelling (>=7.3,<8.0)", "sphinxcontrib-redoc (>=1.6.0)", "sphinxcontrib-httpdomain (>=1.7.0)", "sphinx (>=4.0.0,<5.0.0)", "sphinx-rtd-theme (>=0.1.6)", "sphinx-jinja (>=1.1,<2.0)", "sphinx-copybutton", "sphinx-autoapi (>=1.8.0,<1.9.0)", "sphinx-argparse (>=0.1.13)", "sphinx-airflow-theme", "snowflake-sqlalchemy (>=1.1.0,!=1.2.5)", "snowflake-connector-python (>=2.4.1)", "smbprotocol (>=1.5.0)", "slack-sdk (>=3.0.0)", "simple-salesforce (>=1.0.0)", "sentry-sdk (>=0.8.0)", "sendgrid (>=6.0.0)", "semver", "scrapbook", "rich-click", "requests-mock", "requests-kerberos (>=0.10.0)", "requests (>=2.26.0,<3)", "requests (>=2.26.0)", "redshift-connector (>=2.0.888)", "redis (>=3.2,<4.0)", "pytest-timeouts", "pytest-rerunfailures (>=9.1,<10.0)", "pytest-instafail", "pytest-httpx", "pytest-cov", "pytest-asyncio", "pyspark", "pysftp (>=0.2.9)", "pysftp", "pypsrp (>=0.8)", "pypsrp", "pyodbc", "pymongo (>=3.6.0,<4.0.0)", "pykerberos (>=1.1.13)", "pyhive[hive] (>=0.6.0)", "pygithub", "pyexasol (>=0.5.1)", "pydruid (>=0.4.1)", "psycopg2-binary (>=2.7.4)", "presto-python-client (>=0.7.0,<0.8)", "pre-commit", "pipdeptree", "pinotdb (>0.1.2)", "pdpyras (>=4.1.2)", "paramiko (>=2.6.0)", "paramiko", "parameterized", "papermill[all] (>=1.2.1)", "pandas (>=0.17.1,<1.4)", "pandas-gbq (<0.15.0)", "oss2 (>=2.14.0)", "opsgenie-sdk (>=2.1.5)", "neo4j (>=4.2.1)", "mypy (==0.770)", "mypy-boto3-redshift-data (>=1.21.0)", "mypy-boto3-rds (>=1.21.0)", "moto (>=2.2.12,<3.0)", "mongomock", "ldap3 (>=2.5.1)", "kylinpy (>=2.6)", "kubernetes (>=3.0.0,<12.0.0)", "jsonpath-ng (>=1.5.3)", "jsondiff", "json-merge-patch (>=0.2)", "jira", "jaydebeapi (>=1.1.1)", "ipdb", "influxdb-client (>=1.19.0)", "hvac (>=0.10)", "httpx", "hmsclient (>=0.1.0)", "hdfs[kerberos,dataframe,avro] (>=2.0.4)", "grpcio (>=1.15.0)", "grpcio-gcp (>=0.2.2)", "greenlet (>=0.4.9)", "google-cloud-workflows (>=0.1.0,<2.0.0)", "google-cloud-vision (>=0.35.2,<2.0.0)", "google-cloud-videointelligence (>=1.7.0,<2.0.0)", "google-cloud-translate (>=1.5.0,<2.0.0)", "google-cloud-texttospeech (>=0.4.0,<2.0.0)", "google-cloud-tasks (>=2.0.0)", "google-cloud-storage (>=1.30,<2.0.0)", "google-cloud-speech (>=0.36.3,<2.0.0)", "google-cloud-spanner (>=1.10.0,<2.0.0)", "google-cloud-secret-manager (>=0.2.0,<2.0.0)", "google-cloud-redis (>=2.0.0)", "google-cloud-pubsub (>=2.0.0)", "google-cloud-os-login (>=2.0.0)", "google-cloud-orchestration-airflow (>=1.0.0,<2.0.0)", "google-cloud-monitoring (>=2.0.0)", "google-cloud-memcache (>=0.2.0)", "sasl (>=0.3.1)", "looker-sdk (>=22.2.0)", "celery (>=5.2.3)", "celery (>=5.1.2,<6.0)", "pymssql (>=2.1.5)", "plyvel", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "apache-airflow-providers-zendesk", "apache-airflow-providers-yandex", "apache-airflow-providers-vertica", "apache-airflow-providers-trino", "google-cloud-logging (>=2.1.1)", "google-cloud-language (>=1.1.1,<2.0.0)", "google-cloud-kms (>=2.0.0)", "google-cloud-dlp (>=0.11.0,<2.0.0)", "google-cloud-dataproc (>=3.1.0)", "google-cloud-dataproc-metastore (>=1.2.0,<2.0.0)", "google-cloud-dataplex (>=0.1.0)", "google-cloud-datacatalog (>=3.0.0)", "google-cloud-container (>=0.1.1,<2.0.0)", "google-cloud-build (>=3.0.0)", "google-cloud-bigtable (>=1.0.0,<2.0.0)", "google-cloud-bigquery-datatransfer (>=3.0.0)", "google-cloud-automl (>=2.1.0)", "google-cloud-aiplatform (>=1.7.1,<2.0.0)", "google-auth (>=1.0.0,<3.0.0)", "google-auth (>=1.0.0)", "google-auth-httplib2 (>=0.0.1)", "google-api-python-client (>=1.6.0,<2.0.0)", "google-api-core (>=1.25.1,<3.0.0)", "google-ads (>=12.0.0,<14.0.1)", "gitpython", "github3.py (<3.1.0)", "gevent (>=0.13)", "freezegun", "flower (>=1.0.0)", "flask-bcrypt (>=0.7.1)", "flaky", "flake8 (>=3.6.0)", "flake8-colors", "filelock", "facebook-business (>=6.0.2)", "eventlet (>=0.9.7)", "elasticsearch (>7)", "elasticsearch-dsl (>=5.0.0)", "elasticsearch-dbapi", "docker (>=5.0.3)", "dnspython (>=1.13.0)", "distributed (>=2.11.1)", "datadog (>=0.14.0)", "databricks-sql-connector (>=1.0.0,<2.0.0)", "dask (>=2.9.0)", "cx-Oracle (>=5.1.2)", "qds-sdk (>=1.9.6)", "qds-sdk (>=1.10.4)", "pywinrm (>=0.4)", "pywinrm", "python-telegram-bot (>=13.0)", "python-ldap", "python-jose", "python-jenkins (>=1.0.0)", "pytest (>=6.0,<7.0)", "pytest-xdist", "cryptography (>=2.0.0)", "coverage", "cloudpickle (>=1.4.1)", "cloudant (>=2.0)", "click (>=7.1,<9)", "click (>=7.1)", "cgroupspy (>0.1.4)", "cassandra-driver (>=3.13.0)", "bowler", "boto3 (>=1.15.0)", "blinker (>=1.1)", "blinker", "black", "beautifulsoup4 (>=4.7.1)", "bcrypt (>=2.0.0)", "azure-storage-file (>=2.1.0)", "azure-storage-common (>=2.1.0)", "azure-storage-blob (>=12.7.0,<12.9.0)", "azure-mgmt-resource (>=2.2.0)", "azure-mgmt-datalake-store (>=0.5.0)", "azure-mgmt-datafactory (>=1.0.0,<2.0)", "azure-mgmt-containerinstance (>=1.5.0,<2.0)", "azure-kusto-data (>=0.0.43,<0.1)", "azure-keyvault (>=4.1.0)", "azure-identity (>=1.3.1)", "azure-datalake-store (>=0.0.45)", "azure-cosmos (>=4.0.0)", "azure-batch (>=8.0.0)", "aws-xray-sdk", "authlib", "atlasclient (>=0.1.2)", "asana (>=0.10)", "arrow (>=0.16.0)", "apache-beam (>=2.20.0)", "apache-airflow-providers-http", "analytics-python (>=1.2.9)", "amqp", "pyopenssl", "JIRA (>1.0.7)"]
+devel_hadoop = ["sphinxcontrib-httpdomain (>=1.7.0)", "sphinx (>=4.0.0,<5.0.0)", "sphinx-rtd-theme (>=0.1.6)", "sphinx-jinja (>=1.1,<2.0)", "sphinx-copybutton", "sphinx-autoapi (>=1.8.0,<1.9.0)", "sphinx-argparse (>=0.1.13)", "sphinx-airflow-theme", "snakebite-py3", "semver", "rich-click", "requests-mock", "requests-kerberos (>=0.10.0)", "qds-sdk (>=1.9.6)", "pywinrm", "python-jose", "pytest (>=6.0,<7.0)", "pytest-xdist", "pytest-timeouts", "pytest-rerunfailures (>=9.1,<10.0)", "pytest-instafail", "pytest-httpx", "pytest-cov", "pytest-asyncio", "pysftp", "pypsrp", "pykerberos (>=1.1.13)", "pyhive[hive] (>=0.6.0)", "pygithub", "presto-python-client (>=0.7.0,<0.8)", "pre-commit", "pipdeptree", "paramiko", "parameterized", "pandas (>=0.17.1,<1.4)", "mypy (==0.770)", "moto (>=2.2.12,<3.0)", "mongomock", "kubernetes (>=3.0.0,<12.0.0)", "jsondiff", "jira", "ipdb", "hmsclient (>=0.1.0)", "hdfs[avro,kerberos,dataframe] (>=2.0.4)", "gitpython", "github3.py (<3.1.0)", "freezegun", "flask-bcrypt (>=0.7.1)", "flaky", "flake8 (>=3.6.0)", "flake8-colors", "filelock", "cryptography (>=2.0.0)", "coverage", "click (>=7.1,<9)", "click (>=7.1)", "cgroupspy (>0.1.4)", "bowler", "blinker", "black", "beautifulsoup4 (>=4.7.1)", "bcrypt (>=2.0.0)", "aws-xray-sdk", "sasl (>=0.3.1)", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "apache-airflow-providers-trino", "apache-airflow-providers-presto", "apache-airflow-providers-apache-hive", "apache-airflow-providers-apache-hdfs", "yamllint", "wheel", "twine", "thrift-sasl (>=0.2.0)", "thrift (>=0.9.2)", "sphinxcontrib-spelling (>=7.3,<8.0)", "sphinxcontrib-redoc (>=1.6.0)"]
+devel_ci = ["sasl (>=0.3.1)", "looker-sdk (>=22.2.0)", "celery (>=5.2.3)", "celery (>=5.1.2,<6.0)", "pymssql (>=2.1.5)", "plyvel", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "apache-airflow-providers-zendesk", "apache-airflow-providers-yandex", "apache-airflow-providers-vertica", "apache-airflow-providers-trino", "apache-airflow-providers-telegram", "apache-airflow-providers-tableau", "apache-airflow-providers-ssh", "apache-airflow-providers-sqlite", "apache-airflow-providers-snowflake", "apache-airflow-providers-slack", "apache-airflow-providers-singularity", "apache-airflow-providers-sftp", "apache-airflow-providers-sendgrid", "apache-airflow-providers-segment", "apache-airflow-providers-samba", "apache-airflow-providers-salesforce", "apache-airflow-providers-redis", "apache-airflow-providers-qubole", "apache-airflow-providers-presto", "apache-airflow-providers-postgres", "apache-airflow-providers-plexus", "apache-airflow-providers-papermill", "apache-airflow-providers-pagerduty", "apache-airflow-providers-oracle", "apache-airflow-providers-opsgenie", "apache-airflow-providers-openfaas", "apache-airflow-providers-odbc", "apache-airflow-providers-neo4j", "apache-airflow-providers-mysql", "apache-airflow-providers-mongo", "apache-airflow-providers-microsoft-winrm", "apache-airflow-providers-microsoft-psrp", "apache-airflow-providers-microsoft-mssql", "apache-airflow-providers-microsoft-azure", "apache-airflow-providers-jira", "apache-airflow-providers-jenkins", "apache-airflow-providers-jdbc", "apache-airflow-providers-influxdb", "apache-airflow-providers-imap", "apache-airflow-providers-hashicorp", "apache-airflow-providers-grpc", "apache-airflow-providers-google", "apache-airflow-providers-github", "apache-airflow-providers-ftp", "apache-airflow-providers-facebook", "apache-airflow-providers-exasol", "apache-airflow-providers-elasticsearch", "apache-airflow-providers-docker", "apache-airflow-providers-discord", "apache-airflow-providers-dingding", "apache-airflow-providers-dbt-cloud", "apache-airflow-providers-datadog", "apache-airflow-providers-databricks", "apache-airflow-providers-cncf-kubernetes", "apache-airflow-providers-cloudant", "apache-airflow-providers-celery", "apache-airflow-providers-asana", "apache-airflow-providers-apache-sqoop", "apache-airflow-providers-apache-spark", "apache-airflow-providers-apache-pinot", "apache-airflow-providers-apache-pig", "apache-airflow-providers-apache-livy", "apache-airflow-providers-apache-kylin", "apache-airflow-providers-apache-hive", "apache-airflow-providers-apache-hdfs", "apache-airflow-providers-apache-druid", "apache-airflow-providers-apache-drill", "apache-airflow-providers-apache-cassandra", "apache-airflow-providers-apache-beam", "apache-airflow-providers-amazon", "apache-airflow-providers-alibaba", "apache-airflow-providers-airbyte", "zenpy (>=2.0.24)", "yandexcloud (>=0.146.0)", "yamllint", "wheel", "watchtower (>=2.0.1,<2.1.0)", "virtualenv", "vertica-python (>=0.5.1)", "twine", "trino (>=0.301.0)", "thrift-sasl (>=0.2.0)", "thrift (>=0.9.2)", "tableauserverclient", "statsd (>=3.3.0)", "sshtunnel (>=0.3.2)", "sqlparse (>=0.4.1)", "sqlalchemy-redshift (>=0.8.6)", "sqlalchemy-drill (>=1.1.0)", "sqlalchemy-bigquery (>=1.2.1)", "spython (>=0.0.56)", "sphinxcontrib-spelling (>=7.3,<8.0)", "sphinxcontrib-redoc (>=1.6.0)", "sphinxcontrib-httpdomain (>=1.7.0)", "sphinx (>=4.0.0,<5.0.0)", "sphinx-rtd-theme (>=0.1.6)", "sphinx-jinja (>=1.1,<2.0)", "sphinx-copybutton", "sphinx-autoapi (>=1.8.0,<1.9.0)", "sphinx-argparse (>=0.1.13)", "sphinx-airflow-theme", "snowflake-sqlalchemy (>=1.1.0,!=1.2.5)", "snowflake-connector-python (>=2.4.1)", "smbprotocol (>=1.5.0)", "slack-sdk (>=3.0.0)", "simple-salesforce (>=1.0.0)", "sentry-sdk (>=0.8.0)", "sendgrid (>=6.0.0)", "semver", "scrapbook", "rich-click", "requests-mock", "requests-kerberos (>=0.10.0)", "requests (>=2.26.0,<3)", "requests (>=2.26.0)", "redshift-connector (>=2.0.888)", "redis (>=3.2,<4.0)", "qds-sdk (>=1.9.6)", "qds-sdk (>=1.10.4)", "pywinrm (>=0.4)", "pywinrm", "python-telegram-bot (>=13.0)", "python-ldap", "python-jose", "python-jenkins (>=1.0.0)", "pytest (>=6.0,<7.0)", "pytest-xdist", "pytest-timeouts", "pytest-rerunfailures (>=9.1,<10.0)", "pytest-instafail", "pytest-httpx", "pytest-cov", "pytest-asyncio", "pyspark", "pysftp (>=0.2.9)", "pysftp", "pypsrp (>=0.8)", "pypsrp", "pyodbc", "pymongo (>=3.6.0,<4.0.0)", "pykerberos (>=1.1.13)", "pyhive[hive] (>=0.6.0)", "pygithub", "pyexasol (>=0.5.1)", "pydruid (>=0.4.1)", "psycopg2-binary (>=2.7.4)", "grpcio (>=1.15.0)", "grpcio-gcp (>=0.2.2)", "greenlet (>=0.4.9)", "google-cloud-workflows (>=0.1.0,<2.0.0)", "google-cloud-vision (>=0.35.2,<2.0.0)", "google-cloud-videointelligence (>=1.7.0,<2.0.0)", "google-cloud-translate (>=1.5.0,<2.0.0)", "google-cloud-texttospeech (>=0.4.0,<2.0.0)", "google-cloud-tasks (>=2.0.0)", "google-cloud-storage (>=1.30,<2.0.0)", "google-cloud-speech (>=0.36.3,<2.0.0)", "google-cloud-spanner (>=1.10.0,<2.0.0)", "google-cloud-secret-manager (>=0.2.0,<2.0.0)", "google-cloud-redis (>=2.0.0)", "google-cloud-pubsub (>=2.0.0)", "google-cloud-os-login (>=2.0.0)", "google-cloud-orchestration-airflow (>=1.0.0,<2.0.0)", "google-cloud-monitoring (>=2.0.0)", "google-cloud-memcache (>=0.2.0)", "google-cloud-logging (>=2.1.1)", "google-cloud-language (>=1.1.1,<2.0.0)", "google-cloud-kms (>=2.0.0)", "google-cloud-dlp (>=0.11.0,<2.0.0)", "google-cloud-dataproc (>=3.1.0)", "google-cloud-dataproc-metastore (>=1.2.0,<2.0.0)", "google-cloud-dataplex (>=0.1.0)", "google-cloud-datacatalog (>=3.0.0)", "google-cloud-container (>=0.1.1,<2.0.0)", "google-cloud-build (>=3.0.0)", "google-cloud-bigtable (>=1.0.0,<2.0.0)", "google-cloud-bigquery-datatransfer (>=3.0.0)", "google-cloud-automl (>=2.1.0)", "google-cloud-aiplatform (>=1.7.1,<2.0.0)", "google-auth (>=1.0.0,<3.0.0)", "google-auth (>=1.0.0)", "google-auth-httplib2 (>=0.0.1)", "google-api-python-client (>=1.6.0,<2.0.0)", "google-api-core (>=1.25.1,<3.0.0)", "google-ads (>=12.0.0,<14.0.1)", "gitpython", "github3.py (<3.1.0)", "gevent (>=0.13)", "freezegun", "flower (>=1.0.0)", "flask-bcrypt (>=0.7.1)", "flaky", "flake8 (>=3.6.0)", "flake8-colors", "filelock", "facebook-business (>=6.0.2)", "eventlet (>=0.9.7)", "elasticsearch (>7)", "elasticsearch-dsl (>=5.0.0)", "elasticsearch-dbapi", "docker (>=5.0.3)", "dnspython (>=1.13.0)", "distributed (>=2.11.1)", "datadog (>=0.14.0)", "databricks-sql-connector (>=1.0.0,<2.0.0)", "dask (>=2.9.0)", "cx-Oracle (>=5.1.2)", "cryptography (>=2.0.0)", "coverage", "cloudpickle (>=1.4.1)", "cloudant (>=2.0)", "click (>=7.1,<9)", "click (>=7.1)", "cgroupspy (>0.1.4)", "cassandra-driver (>=3.13.0)", "bowler", "boto3 (>=1.15.0)", "blinker (>=1.1)", "blinker", "black", "beautifulsoup4 (>=4.7.1)", "bcrypt (>=2.0.0)", "azure-storage-file (>=2.1.0)", "azure-storage-common (>=2.1.0)", "azure-storage-blob (>=12.7.0,<12.9.0)", "azure-mgmt-resource (>=2.2.0)", "azure-mgmt-datalake-store (>=0.5.0)", "azure-mgmt-datafactory (>=1.0.0,<2.0)", "azure-mgmt-containerinstance (>=1.5.0,<2.0)", "azure-kusto-data (>=0.0.43,<0.1)", "azure-keyvault (>=4.1.0)", "azure-identity (>=1.3.1)", "azure-datalake-store (>=0.0.45)", "azure-cosmos (>=4.0.0)", "azure-batch (>=8.0.0)", "aws-xray-sdk", "authlib", "atlasclient (>=0.1.2)", "asana (>=0.10)", "arrow (>=0.16.0)", "apache-beam (>=2.20.0)", "apache-airflow-providers-http", "analytics-python (>=1.2.9)", "amqp", "pyopenssl", "JIRA (>1.0.7)", "presto-python-client (>=0.7.0,<0.8)", "pre-commit", "pipdeptree", "pinotdb (>0.1.2)", "pdpyras (>=4.1.2)", "paramiko (>=2.6.0)", "paramiko", "parameterized", "papermill[all] (>=1.2.1)", "pandas (>=0.17.1,<1.4)", "pandas-gbq (<0.15.0)", "oss2 (>=2.14.0)", "opsgenie-sdk (>=2.1.5)", "neo4j (>=4.2.1)", "mypy (==0.770)", "mypy-boto3-redshift-data (>=1.21.0)", "mypy-boto3-rds (>=1.21.0)", "moto (>=2.2.12,<3.0)", "mongomock", "ldap3 (>=2.5.1)", "kylinpy (>=2.6)", "kubernetes (>=3.0.0,<12.0.0)", "jsonpath-ng (>=1.5.3)", "jsondiff", "json-merge-patch (>=0.2)", "jira", "jaydebeapi (>=1.1.1)", "ipdb", "influxdb-client (>=1.19.0)", "hvac (>=0.10)", "httpx", "hmsclient (>=0.1.0)", "hdfs[avro,kerberos,dataframe] (>=2.0.4)"]
+devel_all = ["apache-airflow-providers-telegram", "apache-airflow-providers-tableau", "apache-airflow-providers-ssh", "apache-airflow-providers-sqlite", "apache-airflow-providers-snowflake", "apache-airflow-providers-slack", "apache-airflow-providers-singularity", "apache-airflow-providers-sftp", "apache-airflow-providers-sendgrid", "apache-airflow-providers-segment", "apache-airflow-providers-samba", "apache-airflow-providers-salesforce", "apache-airflow-providers-redis", "apache-airflow-providers-qubole", "apache-airflow-providers-presto", "apache-airflow-providers-postgres", "apache-airflow-providers-plexus", "apache-airflow-providers-papermill", "apache-airflow-providers-pagerduty", "apache-airflow-providers-oracle", "apache-airflow-providers-opsgenie", "apache-airflow-providers-openfaas", "apache-airflow-providers-odbc", "apache-airflow-providers-neo4j", "apache-airflow-providers-mysql", "apache-airflow-providers-mongo", "apache-airflow-providers-microsoft-winrm", "apache-airflow-providers-microsoft-psrp", "apache-airflow-providers-microsoft-mssql", "apache-airflow-providers-microsoft-azure", "apache-airflow-providers-jira", "apache-airflow-providers-jenkins", "apache-airflow-providers-jdbc", "apache-airflow-providers-influxdb", "apache-airflow-providers-imap", "apache-airflow-providers-hashicorp", "apache-airflow-providers-grpc", "apache-airflow-providers-google", "apache-airflow-providers-github", "apache-airflow-providers-ftp", "apache-airflow-providers-facebook", "apache-airflow-providers-exasol", "apache-airflow-providers-elasticsearch", "apache-airflow-providers-docker", "apache-airflow-providers-discord", "apache-airflow-providers-dingding", "apache-airflow-providers-dbt-cloud", "apache-airflow-providers-datadog", "apache-airflow-providers-databricks", "apache-airflow-providers-cncf-kubernetes", "apache-airflow-providers-cloudant", "apache-airflow-providers-celery", "apache-airflow-providers-asana", "apache-airflow-providers-apache-sqoop", "apache-airflow-providers-apache-spark", "apache-airflow-providers-apache-pinot", "apache-airflow-providers-apache-pig", "apache-airflow-providers-apache-livy", "apache-airflow-providers-apache-kylin", "apache-airflow-providers-apache-hive", "apache-airflow-providers-apache-hdfs", "apache-airflow-providers-apache-druid", "apache-airflow-providers-apache-drill", "apache-airflow-providers-apache-cassandra", "apache-airflow-providers-apache-beam", "apache-airflow-providers-amazon", "apache-airflow-providers-alibaba", "apache-airflow-providers-airbyte", "zenpy (>=2.0.24)", "yandexcloud (>=0.146.0)", "yamllint", "wheel", "watchtower (>=2.0.1,<2.1.0)", "virtualenv", "vertica-python (>=0.5.1)", "twine", "trino (>=0.301.0)", "thrift-sasl (>=0.2.0)", "thrift (>=0.9.2)", "tableauserverclient", "statsd (>=3.3.0)", "sshtunnel (>=0.3.2)", "sqlparse (>=0.4.1)", "sqlalchemy-redshift (>=0.8.6)", "sqlalchemy-drill (>=1.1.0)", "sqlalchemy-bigquery (>=1.2.1)", "spython (>=0.0.56)", "sphinxcontrib-spelling (>=7.3,<8.0)", "sphinxcontrib-redoc (>=1.6.0)", "sphinxcontrib-httpdomain (>=1.7.0)", "sphinx (>=4.0.0,<5.0.0)", "sphinx-rtd-theme (>=0.1.6)", "sphinx-jinja (>=1.1,<2.0)", "sphinx-copybutton", "sphinx-autoapi (>=1.8.0,<1.9.0)", "sphinx-argparse (>=0.1.13)", "sphinx-airflow-theme", "snowflake-sqlalchemy (>=1.1.0,!=1.2.5)", "snowflake-connector-python (>=2.4.1)", "smbprotocol (>=1.5.0)", "slack-sdk (>=3.0.0)", "simple-salesforce (>=1.0.0)", "sentry-sdk (>=0.8.0)", "sendgrid (>=6.0.0)", "semver", "scrapbook", "rich-click", "requests-mock", "requests-kerberos (>=0.10.0)", "requests (>=2.26.0,<3)", "requests (>=2.26.0)", "redshift-connector (>=2.0.888)", "redis (>=3.2,<4.0)", "pytest-timeouts", "pytest-rerunfailures (>=9.1,<10.0)", "pytest-instafail", "pytest-httpx", "pytest-cov", "pytest-asyncio", "pyspark", "pysftp (>=0.2.9)", "pysftp", "pypsrp (>=0.8)", "pypsrp", "pyodbc", "pymongo (>=3.6.0,<4.0.0)", "pykerberos (>=1.1.13)", "pyhive[hive] (>=0.6.0)", "pygithub", "pyexasol (>=0.5.1)", "pydruid (>=0.4.1)", "psycopg2-binary (>=2.7.4)", "presto-python-client (>=0.7.0,<0.8)", "pre-commit", "pipdeptree", "pinotdb (>0.1.2)", "pdpyras (>=4.1.2)", "paramiko (>=2.6.0)", "paramiko", "parameterized", "papermill[all] (>=1.2.1)", "pandas (>=0.17.1,<1.4)", "pandas-gbq (<0.15.0)", "oss2 (>=2.14.0)", "opsgenie-sdk (>=2.1.5)", "neo4j (>=4.2.1)", "mypy (==0.770)", "mypy-boto3-redshift-data (>=1.21.0)", "mypy-boto3-rds (>=1.21.0)", "moto (>=2.2.12,<3.0)", "mongomock", "ldap3 (>=2.5.1)", "kylinpy (>=2.6)", "kubernetes (>=3.0.0,<12.0.0)", "jsonpath-ng (>=1.5.3)", "jsondiff", "json-merge-patch (>=0.2)", "jira", "jaydebeapi (>=1.1.1)", "ipdb", "influxdb-client (>=1.19.0)", "hvac (>=0.10)", "httpx", "hmsclient (>=0.1.0)", "hdfs[avro,kerberos,dataframe] (>=2.0.4)", "grpcio (>=1.15.0)", "grpcio-gcp (>=0.2.2)", "greenlet (>=0.4.9)", "google-cloud-workflows (>=0.1.0,<2.0.0)", "google-cloud-vision (>=0.35.2,<2.0.0)", "google-cloud-videointelligence (>=1.7.0,<2.0.0)", "google-cloud-translate (>=1.5.0,<2.0.0)", "google-cloud-texttospeech (>=0.4.0,<2.0.0)", "google-cloud-tasks (>=2.0.0)", "google-cloud-storage (>=1.30,<2.0.0)", "google-cloud-speech (>=0.36.3,<2.0.0)", "google-cloud-spanner (>=1.10.0,<2.0.0)", "google-cloud-secret-manager (>=0.2.0,<2.0.0)", "google-cloud-redis (>=2.0.0)", "google-cloud-pubsub (>=2.0.0)", "google-cloud-os-login (>=2.0.0)", "google-cloud-orchestration-airflow (>=1.0.0,<2.0.0)", "google-cloud-monitoring (>=2.0.0)", "google-cloud-memcache (>=0.2.0)", "sasl (>=0.3.1)", "looker-sdk (>=22.2.0)", "celery (>=5.2.3)", "celery (>=5.1.2,<6.0)", "pymssql (>=2.1.5)", "plyvel", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "apache-airflow-providers-zendesk", "apache-airflow-providers-yandex", "apache-airflow-providers-vertica", "apache-airflow-providers-trino", "google-cloud-logging (>=2.1.1)", "google-cloud-language (>=1.1.1,<2.0.0)", "google-cloud-kms (>=2.0.0)", "google-cloud-dlp (>=0.11.0,<2.0.0)", "google-cloud-dataproc (>=3.1.0)", "google-cloud-dataproc-metastore (>=1.2.0,<2.0.0)", "google-cloud-dataplex (>=0.1.0)", "google-cloud-datacatalog (>=3.0.0)", "google-cloud-container (>=0.1.1,<2.0.0)", "google-cloud-build (>=3.0.0)", "google-cloud-bigtable (>=1.0.0,<2.0.0)", "google-cloud-bigquery-datatransfer (>=3.0.0)", "google-cloud-automl (>=2.1.0)", "google-cloud-aiplatform (>=1.7.1,<2.0.0)", "google-auth (>=1.0.0,<3.0.0)", "google-auth (>=1.0.0)", "google-auth-httplib2 (>=0.0.1)", "google-api-python-client (>=1.6.0,<2.0.0)", "google-api-core (>=1.25.1,<3.0.0)", "google-ads (>=12.0.0,<14.0.1)", "gitpython", "github3.py (<3.1.0)", "gevent (>=0.13)", "freezegun", "flower (>=1.0.0)", "flask-bcrypt (>=0.7.1)", "flaky", "flake8 (>=3.6.0)", "flake8-colors", "filelock", "facebook-business (>=6.0.2)", "eventlet (>=0.9.7)", "elasticsearch (>7)", "elasticsearch-dsl (>=5.0.0)", "elasticsearch-dbapi", "docker (>=5.0.3)", "dnspython (>=1.13.0)", "distributed (>=2.11.1)", "datadog (>=0.14.0)", "databricks-sql-connector (>=1.0.0,<2.0.0)", "dask (>=2.9.0)", "cx-Oracle (>=5.1.2)", "qds-sdk (>=1.9.6)", "qds-sdk (>=1.10.4)", "pywinrm (>=0.4)", "pywinrm", "python-telegram-bot (>=13.0)", "python-ldap", "python-jose", "python-jenkins (>=1.0.0)", "pytest (>=6.0,<7.0)", "pytest-xdist", "cryptography (>=2.0.0)", "coverage", "cloudpickle (>=1.4.1)", "cloudant (>=2.0)", "click (>=7.1,<9)", "click (>=7.1)", "cgroupspy (>0.1.4)", "cassandra-driver (>=3.13.0)", "bowler", "boto3 (>=1.15.0)", "blinker (>=1.1)", "blinker", "black", "beautifulsoup4 (>=4.7.1)", "bcrypt (>=2.0.0)", "azure-storage-file (>=2.1.0)", "azure-storage-common (>=2.1.0)", "azure-storage-blob (>=12.7.0,<12.9.0)", "azure-mgmt-resource (>=2.2.0)", "azure-mgmt-datalake-store (>=0.5.0)", "azure-mgmt-datafactory (>=1.0.0,<2.0)", "azure-mgmt-containerinstance (>=1.5.0,<2.0)", "azure-kusto-data (>=0.0.43,<0.1)", "azure-keyvault (>=4.1.0)", "azure-identity (>=1.3.1)", "azure-datalake-store (>=0.0.45)", "azure-cosmos (>=4.0.0)", "azure-batch (>=8.0.0)", "aws-xray-sdk", "authlib", "atlasclient (>=0.1.2)", "asana (>=0.10)", "arrow (>=0.16.0)", "apache-beam (>=2.20.0)", "apache-airflow-providers-http", "analytics-python (>=1.2.9)", "amqp", "pyopenssl", "JIRA (>1.0.7)"]
 discord = ["apache-airflow-providers-discord"]
 dingding = ["apache-airflow-providers-dingding"]
-all = ["looker-sdk (>=22.2.0)", "celery (>=5.2.3)", "celery (>=5.1.2,<6.0)", "pymssql (>=2.1.5)", "plyvel", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "apache-airflow-providers-zendesk", "apache-airflow-providers-yandex", "apache-airflow-providers-vertica", "apache-airflow-providers-trino", "apache-airflow-providers-telegram", "apache-airflow-providers-tableau", "apache-airflow-providers-ssh", "apache-airflow-providers-sqlite", "apache-airflow-providers-snowflake", "apache-airflow-providers-slack", "apache-airflow-providers-singularity", "apache-airflow-providers-sftp", "apache-airflow-providers-sendgrid", "apache-airflow-providers-segment", "apache-airflow-providers-samba", "apache-airflow-providers-salesforce", "apache-airflow-providers-redis", "apache-airflow-providers-qubole", "apache-airflow-providers-presto", "apache-airflow-providers-postgres", "apache-airflow-providers-plexus", "apache-airflow-providers-papermill", "apache-airflow-providers-pagerduty", "apache-airflow-providers-oracle", "apache-airflow-providers-opsgenie", "apache-airflow-providers-openfaas", "apache-airflow-providers-odbc", "apache-airflow-providers-neo4j", "apache-airflow-providers-mysql", "apache-airflow-providers-mongo", "apache-airflow-providers-microsoft-winrm", "apache-airflow-providers-microsoft-psrp", "apache-airflow-providers-microsoft-mssql", "apache-airflow-providers-microsoft-azure", "apache-airflow-providers-jira", "apache-airflow-providers-jenkins", "apache-airflow-providers-jdbc", "apache-airflow-providers-influxdb", "apache-airflow-providers-imap", "apache-airflow-providers-hashicorp", "apache-airflow-providers-grpc", "apache-airflow-providers-google", "apache-airflow-providers-github", "apache-airflow-providers-ftp", "apache-airflow-providers-facebook", "apache-airflow-providers-exasol", "apache-airflow-providers-elasticsearch", "apache-airflow-providers-docker", "apache-airflow-providers-discord", "apache-airflow-providers-dingding", "apache-airflow-providers-dbt-cloud", "apache-airflow-providers-datadog", "apache-airflow-providers-databricks", "apache-airflow-providers-cncf-kubernetes", "apache-airflow-providers-cloudant", "apache-airflow-providers-celery", "apache-airflow-providers-asana", "apache-airflow-providers-apache-sqoop", "apache-airflow-providers-apache-spark", "apache-airflow-providers-apache-pinot", "apache-airflow-providers-apache-pig", "apache-airflow-providers-apache-livy", "apache-airflow-providers-apache-kylin", "apache-airflow-providers-apache-hive", "apache-airflow-providers-apache-hdfs", "apache-airflow-providers-apache-druid", "apache-airflow-providers-apache-drill", "apache-airflow-providers-apache-cassandra", "apache-airflow-providers-apache-beam", "apache-airflow-providers-amazon", "apache-airflow-providers-alibaba", "apache-airflow-providers-airbyte", "zenpy (>=2.0.24)", "yandexcloud (>=0.146.0)", "watchtower (>=2.0.1,<2.1.0)", "virtualenv", "vertica-python (>=0.5.1)", "trino (>=0.301.0)", "thrift-sasl (>=0.2.0)", "thrift (>=0.9.2)", "tableauserverclient", "statsd (>=3.3.0)", "sshtunnel (>=0.3.2)", "sqlparse (>=0.4.1)", "sqlalchemy-redshift (>=0.8.6)", "sqlalchemy-drill (>=1.1.0)", "sqlalchemy-bigquery (>=1.2.1)", "spython (>=0.0.56)", "snowflake-sqlalchemy (>=1.1.0,!=1.2.5)", "snowflake-connector-python (>=2.4.1)", "snakebite-py3", "smbprotocol (>=1.5.0)", "slack-sdk (>=3.0.0)", "simple-salesforce (>=1.0.0)", "sentry-sdk (>=0.8.0)", "sendgrid (>=6.0.0)", "scrapbook", "requests-kerberos (>=0.10.0)", "requests (>=2.26.0,<3)", "requests (>=2.26.0)", "redshift-connector (>=2.0.888)", "redis (>=3.2,<4.0)", "qds-sdk (>=1.10.4)", "pywinrm (>=0.4)", "python-telegram-bot (>=13.0)", "python-ldap", "python-jenkins (>=1.0.0)", "pyspark", "pysftp (>=0.2.9)", "pypsrp (>=0.8)", "pyodbc", "pymongo (>=3.6.0,<4.0.0)", "pykerberos (>=1.1.13)", "pyhive[hive] (>=0.6.0)", "pygithub", "pyexasol (>=0.5.1)", "pydruid (>=0.4.1)", "psycopg2-binary (>=2.7.4)", "presto-python-client (>=0.7.0,<0.8)", "pinotdb (>0.1.2)", "pdpyras (>=4.1.2)", "paramiko (>=2.6.0)", "papermill[all] (>=1.2.1)", "pandas (>=0.17.1,<1.4)", "pandas-gbq (<0.15.0)", "oss2 (>=2.14.0)", "opsgenie-sdk (>=2.1.5)", "neo4j (>=4.2.1)", "mypy-boto3-redshift-data (>=1.21.0)", "mypy-boto3-rds (>=1.21.0)", "ldap3 (>=2.5.1)", "kylinpy (>=2.6)", "kubernetes (>=3.0.0,<12.0.0)", "jsonpath-ng (>=1.5.3)", "json-merge-patch (>=0.2)", "jaydebeapi (>=1.1.1)", "influxdb-client (>=1.19.0)", "hvac (>=0.10)", "httpx", "hmsclient (>=0.1.0)", "hdfs[kerberos,dataframe,avro] (>=2.0.4)", "grpcio (>=1.15.0)", "grpcio-gcp (>=0.2.2)", "greenlet (>=0.4.9)", "google-cloud-workflows (>=0.1.0,<2.0.0)", "google-cloud-vision (>=0.35.2,<2.0.0)", "google-cloud-videointelligence (>=1.7.0,<2.0.0)", "google-cloud-translate (>=1.5.0,<2.0.0)", "google-cloud-texttospeech (>=0.4.0,<2.0.0)", "google-cloud-tasks (>=2.0.0)", "google-cloud-storage (>=1.30,<2.0.0)", "google-cloud-speech (>=0.36.3,<2.0.0)", "google-cloud-spanner (>=1.10.0,<2.0.0)", "google-cloud-secret-manager (>=0.2.0,<2.0.0)", "google-cloud-redis (>=2.0.0)", "google-cloud-pubsub (>=2.0.0)", "google-cloud-os-login (>=2.0.0)", "google-cloud-orchestration-airflow (>=1.0.0,<2.0.0)", "google-cloud-monitoring (>=2.0.0)", "google-cloud-memcache (>=0.2.0)", "google-cloud-logging (>=2.1.1)", "google-cloud-language (>=1.1.1,<2.0.0)", "google-cloud-kms (>=2.0.0)", "google-cloud-dlp (>=0.11.0,<2.0.0)", "google-cloud-dataproc (>=3.1.0)", "google-cloud-dataproc-metastore (>=1.2.0,<2.0.0)", "google-cloud-dataplex (>=0.1.0)", "google-cloud-datacatalog (>=3.0.0)", "google-cloud-container (>=0.1.1,<2.0.0)", "google-cloud-build (>=3.0.0)", "google-cloud-bigtable (>=1.0.0,<2.0.0)", "google-cloud-bigquery-datatransfer (>=3.0.0)", "google-cloud-automl (>=2.1.0)", "google-cloud-aiplatform (>=1.7.1,<2.0.0)", "google-auth (>=1.0.0,<3.0.0)", "google-auth (>=1.0.0)", "google-auth-httplib2 (>=0.0.1)", "sasl (>=0.3.1)", "google-api-python-client (>=1.6.0,<2.0.0)", "google-api-core (>=1.25.1,<3.0.0)", "google-ads (>=12.0.0,<14.0.1)", "gevent (>=0.13)", "flower (>=1.0.0)", "flask-bcrypt (>=0.7.1)", "facebook-business (>=6.0.2)", "eventlet (>=0.9.7)", "elasticsearch (>7)", "elasticsearch-dsl (>=5.0.0)", "elasticsearch-dbapi", "docker (>=5.0.3)", "dnspython (>=1.13.0)", "distributed (>=2.11.1)", "datadog (>=0.14.0)", "databricks-sql-connector (>=1.0.0,<2.0.0)", "dask (>=2.9.0)", "cx-Oracle (>=5.1.2)", "cryptography (>=2.0.0)", "cloudpickle (>=1.4.1)", "cloudant (>=2.0)", "cgroupspy (>0.1.4)", "cassandra-driver (>=3.13.0)", "boto3 (>=1.15.0)", "blinker (>=1.1)", "bcrypt (>=2.0.0)", "azure-storage-file (>=2.1.0)", "azure-storage-common (>=2.1.0)", "azure-storage-blob (>=12.7.0,<12.9.0)", "azure-mgmt-resource (>=2.2.0)", "azure-mgmt-datalake-store (>=0.5.0)", "azure-mgmt-datafactory (>=1.0.0,<2.0)", "azure-mgmt-containerinstance (>=1.5.0,<2.0)", "azure-kusto-data (>=0.0.43,<0.1)", "azure-keyvault (>=4.1.0)", "azure-identity (>=1.3.1)", "azure-datalake-store (>=0.0.45)", "azure-cosmos (>=4.0.0)", "azure-batch (>=8.0.0)", "authlib", "atlasclient (>=0.1.2)", "asana (>=0.10)", "arrow (>=0.16.0)", "apache-beam (>=2.20.0)", "apache-airflow-providers-http", "analytics-python (>=1.2.9)", "amqp", "pyopenssl", "JIRA (>1.0.7)"]
+all = ["looker-sdk (>=22.2.0)", "celery (>=5.2.3)", "celery (>=5.1.2,<6.0)", "pymssql (>=2.1.5)", "plyvel", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "apache-airflow-providers-zendesk", "apache-airflow-providers-yandex", "apache-airflow-providers-vertica", "apache-airflow-providers-trino", "apache-airflow-providers-telegram", "apache-airflow-providers-tableau", "apache-airflow-providers-ssh", "apache-airflow-providers-sqlite", "apache-airflow-providers-snowflake", "apache-airflow-providers-slack", "apache-airflow-providers-singularity", "apache-airflow-providers-sftp", "apache-airflow-providers-sendgrid", "apache-airflow-providers-segment", "apache-airflow-providers-samba", "apache-airflow-providers-salesforce", "apache-airflow-providers-redis", "apache-airflow-providers-qubole", "apache-airflow-providers-presto", "apache-airflow-providers-postgres", "apache-airflow-providers-plexus", "apache-airflow-providers-papermill", "apache-airflow-providers-pagerduty", "apache-airflow-providers-oracle", "apache-airflow-providers-opsgenie", "apache-airflow-providers-openfaas", "apache-airflow-providers-odbc", "apache-airflow-providers-neo4j", "apache-airflow-providers-mysql", "apache-airflow-providers-mongo", "apache-airflow-providers-microsoft-winrm", "apache-airflow-providers-microsoft-psrp", "apache-airflow-providers-microsoft-mssql", "apache-airflow-providers-microsoft-azure", "apache-airflow-providers-jira", "apache-airflow-providers-jenkins", "apache-airflow-providers-jdbc", "apache-airflow-providers-influxdb", "apache-airflow-providers-imap", "apache-airflow-providers-hashicorp", "apache-airflow-providers-grpc", "apache-airflow-providers-google", "apache-airflow-providers-github", "apache-airflow-providers-ftp", "apache-airflow-providers-facebook", "apache-airflow-providers-exasol", "apache-airflow-providers-elasticsearch", "apache-airflow-providers-docker", "apache-airflow-providers-discord", "apache-airflow-providers-dingding", "apache-airflow-providers-dbt-cloud", "apache-airflow-providers-datadog", "apache-airflow-providers-databricks", "apache-airflow-providers-cncf-kubernetes", "apache-airflow-providers-cloudant", "apache-airflow-providers-celery", "apache-airflow-providers-asana", "apache-airflow-providers-apache-sqoop", "apache-airflow-providers-apache-spark", "apache-airflow-providers-apache-pinot", "apache-airflow-providers-apache-pig", "apache-airflow-providers-apache-livy", "apache-airflow-providers-apache-kylin", "apache-airflow-providers-apache-hive", "apache-airflow-providers-apache-hdfs", "apache-airflow-providers-apache-druid", "apache-airflow-providers-apache-drill", "apache-airflow-providers-apache-cassandra", "apache-airflow-providers-apache-beam", "apache-airflow-providers-amazon", "apache-airflow-providers-alibaba", "apache-airflow-providers-airbyte", "zenpy (>=2.0.24)", "yandexcloud (>=0.146.0)", "watchtower (>=2.0.1,<2.1.0)", "virtualenv", "vertica-python (>=0.5.1)", "trino (>=0.301.0)", "thrift-sasl (>=0.2.0)", "thrift (>=0.9.2)", "tableauserverclient", "statsd (>=3.3.0)", "sshtunnel (>=0.3.2)", "sqlparse (>=0.4.1)", "sqlalchemy-redshift (>=0.8.6)", "sqlalchemy-drill (>=1.1.0)", "sqlalchemy-bigquery (>=1.2.1)", "spython (>=0.0.56)", "snowflake-sqlalchemy (>=1.1.0,!=1.2.5)", "snowflake-connector-python (>=2.4.1)", "snakebite-py3", "smbprotocol (>=1.5.0)", "slack-sdk (>=3.0.0)", "simple-salesforce (>=1.0.0)", "sentry-sdk (>=0.8.0)", "sendgrid (>=6.0.0)", "scrapbook", "requests-kerberos (>=0.10.0)", "requests (>=2.26.0,<3)", "requests (>=2.26.0)", "redshift-connector (>=2.0.888)", "redis (>=3.2,<4.0)", "qds-sdk (>=1.10.4)", "pywinrm (>=0.4)", "python-telegram-bot (>=13.0)", "python-ldap", "python-jenkins (>=1.0.0)", "pyspark", "pysftp (>=0.2.9)", "pypsrp (>=0.8)", "pyodbc", "pymongo (>=3.6.0,<4.0.0)", "pykerberos (>=1.1.13)", "pyhive[hive] (>=0.6.0)", "pygithub", "pyexasol (>=0.5.1)", "pydruid (>=0.4.1)", "psycopg2-binary (>=2.7.4)", "presto-python-client (>=0.7.0,<0.8)", "pinotdb (>0.1.2)", "pdpyras (>=4.1.2)", "paramiko (>=2.6.0)", "papermill[all] (>=1.2.1)", "pandas (>=0.17.1,<1.4)", "pandas-gbq (<0.15.0)", "oss2 (>=2.14.0)", "opsgenie-sdk (>=2.1.5)", "neo4j (>=4.2.1)", "mypy-boto3-redshift-data (>=1.21.0)", "mypy-boto3-rds (>=1.21.0)", "ldap3 (>=2.5.1)", "kylinpy (>=2.6)", "kubernetes (>=3.0.0,<12.0.0)", "jsonpath-ng (>=1.5.3)", "json-merge-patch (>=0.2)", "jaydebeapi (>=1.1.1)", "influxdb-client (>=1.19.0)", "hvac (>=0.10)", "httpx", "hmsclient (>=0.1.0)", "hdfs[avro,kerberos,dataframe] (>=2.0.4)", "grpcio (>=1.15.0)", "grpcio-gcp (>=0.2.2)", "greenlet (>=0.4.9)", "google-cloud-workflows (>=0.1.0,<2.0.0)", "google-cloud-vision (>=0.35.2,<2.0.0)", "google-cloud-videointelligence (>=1.7.0,<2.0.0)", "google-cloud-translate (>=1.5.0,<2.0.0)", "google-cloud-texttospeech (>=0.4.0,<2.0.0)", "google-cloud-tasks (>=2.0.0)", "google-cloud-storage (>=1.30,<2.0.0)", "google-cloud-speech (>=0.36.3,<2.0.0)", "google-cloud-spanner (>=1.10.0,<2.0.0)", "google-cloud-secret-manager (>=0.2.0,<2.0.0)", "google-cloud-redis (>=2.0.0)", "google-cloud-pubsub (>=2.0.0)", "google-cloud-os-login (>=2.0.0)", "google-cloud-orchestration-airflow (>=1.0.0,<2.0.0)", "google-cloud-monitoring (>=2.0.0)", "google-cloud-memcache (>=0.2.0)", "google-cloud-logging (>=2.1.1)", "google-cloud-language (>=1.1.1,<2.0.0)", "google-cloud-kms (>=2.0.0)", "google-cloud-dlp (>=0.11.0,<2.0.0)", "google-cloud-dataproc (>=3.1.0)", "google-cloud-dataproc-metastore (>=1.2.0,<2.0.0)", "google-cloud-dataplex (>=0.1.0)", "google-cloud-datacatalog (>=3.0.0)", "google-cloud-container (>=0.1.1,<2.0.0)", "google-cloud-build (>=3.0.0)", "google-cloud-bigtable (>=1.0.0,<2.0.0)", "google-cloud-bigquery-datatransfer (>=3.0.0)", "google-cloud-automl (>=2.1.0)", "google-cloud-aiplatform (>=1.7.1,<2.0.0)", "google-auth (>=1.0.0,<3.0.0)", "google-auth (>=1.0.0)", "google-auth-httplib2 (>=0.0.1)", "sasl (>=0.3.1)", "google-api-python-client (>=1.6.0,<2.0.0)", "google-api-core (>=1.25.1,<3.0.0)", "google-ads (>=12.0.0,<14.0.1)", "gevent (>=0.13)", "flower (>=1.0.0)", "flask-bcrypt (>=0.7.1)", "facebook-business (>=6.0.2)", "eventlet (>=0.9.7)", "elasticsearch (>7)", "elasticsearch-dsl (>=5.0.0)", "elasticsearch-dbapi", "docker (>=5.0.3)", "dnspython (>=1.13.0)", "distributed (>=2.11.1)", "datadog (>=0.14.0)", "databricks-sql-connector (>=1.0.0,<2.0.0)", "dask (>=2.9.0)", "cx-Oracle (>=5.1.2)", "cryptography (>=2.0.0)", "cloudpickle (>=1.4.1)", "cloudant (>=2.0)", "cgroupspy (>0.1.4)", "cassandra-driver (>=3.13.0)", "boto3 (>=1.15.0)", "blinker (>=1.1)", "bcrypt (>=2.0.0)", "azure-storage-file (>=2.1.0)", "azure-storage-common (>=2.1.0)", "azure-storage-blob (>=12.7.0,<12.9.0)", "azure-mgmt-resource (>=2.2.0)", "azure-mgmt-datalake-store (>=0.5.0)", "azure-mgmt-datafactory (>=1.0.0,<2.0)", "azure-mgmt-containerinstance (>=1.5.0,<2.0)", "azure-kusto-data (>=0.0.43,<0.1)", "azure-keyvault (>=4.1.0)", "azure-identity (>=1.3.1)", "azure-datalake-store (>=0.0.45)", "azure-cosmos (>=4.0.0)", "azure-batch (>=8.0.0)", "authlib", "atlasclient (>=0.1.2)", "asana (>=0.10)", "arrow (>=0.16.0)", "apache-beam (>=2.20.0)", "apache-airflow-providers-http", "analytics-python (>=1.2.9)", "amqp", "pyopenssl", "JIRA (>1.0.7)"]
 devel = ["pytest (>=6.0,<7.0)", "pytest-xdist", "pytest-timeouts", "pytest-rerunfailures (>=9.1,<10.0)", "pytest-instafail", "pytest-httpx", "pytest-cov", "pytest-asyncio", "pysftp", "pypsrp", "pygithub", "pre-commit", "pipdeptree", "paramiko", "parameterized", "pandas (>=0.17.1,<1.4)", "mypy (==0.770)", "moto (>=2.2.12,<3.0)", "mongomock", "kubernetes (>=3.0.0,<12.0.0)", "jsondiff", "jira", "ipdb", "gitpython", "github3.py (<3.1.0)", "freezegun", "flask-bcrypt (>=0.7.1)", "flaky", "flake8 (>=3.6.0)", "flake8-colors", "filelock", "cryptography (>=2.0.0)", "coverage", "click (>=7.1,<9)", "click (>=7.1)", "cgroupspy (>0.1.4)", "bowler", "blinker", "black", "beautifulsoup4 (>=4.7.1)", "bcrypt (>=2.0.0)", "aws-xray-sdk", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "yamllint", "wheel", "twine", "sphinxcontrib-spelling (>=7.3,<8.0)", "sphinxcontrib-redoc (>=1.6.0)", "sphinxcontrib-httpdomain (>=1.7.0)", "sphinx (>=4.0.0,<5.0.0)", "sphinx-rtd-theme (>=0.1.6)", "sphinx-jinja (>=1.1,<2.0)", "sphinx-copybutton", "sphinx-autoapi (>=1.8.0,<1.9.0)", "sphinx-argparse (>=0.1.13)", "sphinx-airflow-theme", "semver", "rich-click", "requests-mock", "qds-sdk (>=1.9.6)", "pywinrm", "python-jose"]
 deprecated_api = ["requests (>=2.26.0)"]
 "dbt.cloud" = ["apache-airflow-providers-dbt-cloud"]
@@ -204,7 +204,7 @@ aws = ["apache-airflow-providers-amazon"]
 atlas = ["apache-airflow-providers-apache-atlas"]
 async = ["greenlet (>=0.4.9)", "gevent (>=0.13)", "eventlet (>=0.9.7)"]
 asana = ["apache-airflow-providers-asana"]
-"apache.webhdfs" = ["hdfs[kerberos,dataframe,avro] (>=2.0.4)"]
+"apache.webhdfs" = ["hdfs[avro,kerberos,dataframe] (>=2.0.4)"]
 "apache.sqoop" = ["apache-airflow-providers-apache-sqoop"]
 "apache.spark" = ["apache-airflow-providers-apache-spark"]
 "apache.pinot" = ["apache-airflow-providers-apache-pinot"]
@@ -219,13 +219,13 @@ asana = ["apache-airflow-providers-asana"]
 "apache.beam" = ["apache-airflow-providers-apache-beam"]
 "apache.atlas" = ["atlasclient (>=0.1.2)"]
 amazon = ["apache-airflow-providers-amazon"]
-all_dbs = ["sasl (>=0.3.1)", "pymssql (>=2.1.5)", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "apache-airflow-providers-vertica", "apache-airflow-providers-trino", "apache-airflow-providers-presto", "apache-airflow-providers-postgres", "apache-airflow-providers-neo4j", "apache-airflow-providers-mysql", "apache-airflow-providers-mongo", "apache-airflow-providers-microsoft-mssql", "apache-airflow-providers-influxdb", "apache-airflow-providers-exasol", "apache-airflow-providers-databricks", "apache-airflow-providers-cloudant", "apache-airflow-providers-apache-pinot", "apache-airflow-providers-apache-hive", "apache-airflow-providers-apache-hdfs", "apache-airflow-providers-apache-druid", "apache-airflow-providers-apache-drill", "apache-airflow-providers-apache-cassandra", "vertica-python (>=0.5.1)", "trino (>=0.301.0)", "thrift (>=0.9.2)", "sqlparse (>=0.4.1)", "sqlalchemy-drill (>=1.1.0)", "snakebite-py3", "requests (>=2.26.0,<3)", "pymongo (>=3.6.0,<4.0.0)", "pyhive[hive] (>=0.6.0)", "pyexasol (>=0.5.1)", "pydruid (>=0.4.1)", "psycopg2-binary (>=2.7.4)", "presto-python-client (>=0.7.0,<0.8)", "pinotdb (>0.1.2)", "pandas (>=0.17.1,<1.4)", "neo4j (>=4.2.1)", "influxdb-client (>=1.19.0)", "hmsclient (>=0.1.0)", "hdfs[kerberos,dataframe,avro] (>=2.0.4)", "dnspython (>=1.13.0)", "databricks-sql-connector (>=1.0.0,<2.0.0)", "cloudant (>=2.0)", "cassandra-driver (>=3.13.0)"]
+all_dbs = ["sasl (>=0.3.1)", "pymssql (>=2.1.5)", "mysqlclient (>=1.3.6)", "mysql-connector-python (>=8.0.11)", "apache-airflow-providers-vertica", "apache-airflow-providers-trino", "apache-airflow-providers-presto", "apache-airflow-providers-postgres", "apache-airflow-providers-neo4j", "apache-airflow-providers-mysql", "apache-airflow-providers-mongo", "apache-airflow-providers-microsoft-mssql", "apache-airflow-providers-influxdb", "apache-airflow-providers-exasol", "apache-airflow-providers-databricks", "apache-airflow-providers-cloudant", "apache-airflow-providers-apache-pinot", "apache-airflow-providers-apache-hive", "apache-airflow-providers-apache-hdfs", "apache-airflow-providers-apache-druid", "apache-airflow-providers-apache-drill", "apache-airflow-providers-apache-cassandra", "vertica-python (>=0.5.1)", "trino (>=0.301.0)", "thrift (>=0.9.2)", "sqlparse (>=0.4.1)", "sqlalchemy-drill (>=1.1.0)", "snakebite-py3", "requests (>=2.26.0,<3)", "pymongo (>=3.6.0,<4.0.0)", "pyhive[hive] (>=0.6.0)", "pyexasol (>=0.5.1)", "pydruid (>=0.4.1)", "psycopg2-binary (>=2.7.4)", "presto-python-client (>=0.7.0,<0.8)", "pinotdb (>0.1.2)", "pandas (>=0.17.1,<1.4)", "neo4j (>=4.2.1)", "influxdb-client (>=1.19.0)", "hmsclient (>=0.1.0)", "hdfs[avro,kerberos,dataframe] (>=2.0.4)", "dnspython (>=1.13.0)", "databricks-sql-connector (>=1.0.0,<2.0.0)", "cloudant (>=2.0)", "cassandra-driver (>=3.13.0)"]
 alibaba = ["apache-airflow-providers-alibaba"]
 airbyte = ["apache-airflow-providers-airbyte"]
 
 [[package]]
 name = "apache-airflow-providers-amazon"
-version = "4.1.0"
+version = "5.0.0"
 description = "Provider for Apache Airflow. Implements apache-airflow-providers-amazon package"
 category = "main"
 optional = false
@@ -245,30 +245,29 @@ sqlalchemy-redshift = ">=0.8.6"
 watchtower = ">=2.0.1,<2.1.0"
 
 [package.extras]
-"apache.hive" = ["apache-airflow-providers-apache-hive"]
-"cncf.kubernetes" = ["apache-airflow-providers-cncf-kubernetes"]
-"common.sql" = ["apache-airflow-providers-common-sql"]
-exasol = ["apache-airflow-providers-exasol"]
-ftp = ["apache-airflow-providers-ftp"]
-google = ["apache-airflow-providers-google"]
-imap = ["apache-airflow-providers-imap"]
-mongo = ["apache-airflow-providers-mongo"]
-salesforce = ["apache-airflow-providers-salesforce"]
 ssh = ["apache-airflow-providers-ssh"]
+salesforce = ["apache-airflow-providers-salesforce"]
+mongo = ["apache-airflow-providers-mongo"]
+imap = ["apache-airflow-providers-imap"]
+google = ["apache-airflow-providers-google"]
+ftp = ["apache-airflow-providers-ftp"]
+exasol = ["apache-airflow-providers-exasol"]
+"common.sql" = ["apache-airflow-providers-common-sql"]
+"cncf.kubernetes" = ["apache-airflow-providers-cncf-kubernetes"]
+"apache.hive" = ["apache-airflow-providers-apache-hive"]
 
 [[package]]
 name = "apache-airflow-providers-celery"
-version = "2.0.0"
-description = "Provider package apache-airflow-providers-celery for Apache Airflow"
+version = "3.0.0"
+description = "Provider for Apache Airflow. Implements apache-airflow-providers-celery package"
 category = "main"
 optional = false
-python-versions = "~=3.6"
+python-versions = "~=3.7"
 
 [package.dependencies]
-apache-airflow = ">=2.1.0"
-celery = ">=4.4.2,<4.5.0"
-flower = ">=0.7.3,<1.0"
-vine = ">=1.3,<2.0"
+apache-airflow = ">=2.2.0"
+celery = ">=5.2.3,<6"
+flower = ">=1.0.0"
 
 [[package]]
 name = "apache-airflow-providers-common-sql"
@@ -311,7 +310,7 @@ python-versions = "~=3.7"
 
 [[package]]
 name = "apache-airflow-providers-postgres"
-version = "5.1.0"
+version = "5.2.0"
 description = "Provider for Apache Airflow. Implements apache-airflow-providers-postgres package"
 category = "main"
 optional = false
@@ -323,8 +322,8 @@ apache-airflow-providers-common-sql = "*"
 psycopg2-binary = ">=2.7.4"
 
 [package.extras]
-amazon = ["apache-airflow-providers-amazon"]
 "common.sql" = ["apache-airflow-providers-common-sql"]
+amazon = ["apache-airflow-providers-amazon (>=2.6.0)"]
 
 [[package]]
 name = "apache-airflow-providers-redis"
@@ -340,7 +339,7 @@ redis = ">=3.2,<4.0"
 
 [[package]]
 name = "apache-airflow-providers-sqlite"
-version = "3.1.0"
+version = "3.2.0"
 description = "Provider for Apache Airflow. Implements apache-airflow-providers-sqlite package"
 category = "main"
 optional = false
@@ -496,14 +495,14 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "boto3"
-version = "1.24.50"
+version = "1.24.51"
 description = "The AWS SDK for Python"
 category = "main"
 optional = false
 python-versions = ">= 3.7"
 
 [package.dependencies]
-botocore = ">=1.27.50,<1.28.0"
+botocore = ">=1.27.51,<1.28.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.6.0,<0.7.0"
 
@@ -512,7 +511,7 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.27.50"
+version = "1.27.51"
 description = "Low-level, data-driven core of boto 3."
 category = "main"
 optional = false
@@ -547,51 +546,54 @@ attrs = ">=20"
 
 [[package]]
 name = "celery"
-version = "4.4.7"
+version = "5.2.7"
 description = "Distributed Task Queue."
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.7"
 
 [package.dependencies]
-billiard = ">=3.6.3.0,<4.0"
-kombu = ">=4.6.10,<4.7"
-pytz = ">0.0-dev"
-vine = "1.3.0"
+billiard = ">=3.6.4.0,<4.0"
+click = ">=8.0.3,<9.0"
+click-didyoumean = ">=0.0.3"
+click-plugins = ">=1.1.1"
+click-repl = ">=0.2.0"
+kombu = ">=5.2.3,<6.0"
+pytz = ">=2021.3"
+vine = ">=5.0.0,<6.0"
 
 [package.extras]
-arangodb = ["pyArango (>=1.3.2)"]
-auth = ["cryptography"]
-azureblockblob = ["azure-storage (==0.36.0)", "azure-common (==1.1.5)", "azure-storage-common (==1.1.0)"]
-brotli = ["brotli (>=1.0.0)", "brotlipy (>=0.7.0)"]
-cassandra = ["cassandra-driver (<3.21.0)"]
-consul = ["python-consul"]
-cosmosdbsql = ["pydocumentdb (==2.3.2)"]
-couchbase = ["couchbase-cffi (<3.0.0)", "couchbase (<3.0.0)"]
-couchdb = ["pycouchdb"]
-django = ["Django (>=1.11)"]
-dynamodb = ["boto3 (>=1.9.178)"]
-elasticsearch = ["elasticsearch"]
-eventlet = ["eventlet (>=0.24.1)"]
-gevent = ["gevent"]
-librabbitmq = ["librabbitmq (>=1.5.0)"]
-lzma = ["backports.lzma"]
-memcache = ["pylibmc"]
-mongodb = ["pymongo[srv] (>=3.3.0)"]
-msgpack = ["msgpack"]
-pymemcache = ["python-memcached"]
-pyro = ["pyro4"]
-redis = ["redis (>=3.2.0)"]
-riak = ["riak (>=2.0)"]
-s3 = ["boto3 (>=1.9.125)"]
-slmq = ["softlayer-messaging (>=1.0.3)"]
-solar = ["ephem"]
-sqlalchemy = ["sqlalchemy"]
-sqs = ["boto3 (>=1.9.125)", "pycurl (==7.43.0.5)"]
-tblib = ["tblib (>=1.3.0)", "tblib (>=1.5.0)"]
-yaml = ["PyYAML (>=3.10)"]
-zookeeper = ["kazoo (>=1.3.1)"]
 zstd = ["zstandard"]
+zookeeper = ["kazoo (>=1.3.1)"]
+yaml = ["PyYAML (>=3.10)"]
+tblib = ["tblib (>=1.5.0)", "tblib (>=1.3.0)"]
+sqs = ["kombu"]
+sqlalchemy = ["sqlalchemy"]
+solar = ["ephem"]
+slmq = ["softlayer-messaging (>=1.0.3)"]
+s3 = ["boto3 (>=1.9.125)"]
+redis = ["redis (>=3.4.1,!=4.0.0,!=4.0.1)"]
+pytest = ["pytest-celery"]
+pyro = ["pyro4"]
+pymemcache = ["python-memcached"]
+msgpack = ["msgpack"]
+mongodb = ["pymongo[srv] (>=3.11.1)"]
+memcache = ["pylibmc"]
+librabbitmq = ["librabbitmq (>=1.5.0)"]
+gevent = ["gevent (>=1.5.0)"]
+eventlet = ["eventlet (>=0.32.0)"]
+elasticsearch = ["elasticsearch"]
+dynamodb = ["boto3 (>=1.9.178)"]
+django = ["Django (>=1.11)"]
+couchdb = ["pycouchdb"]
+couchbase = ["couchbase (>=3.0.0)"]
+cosmosdbsql = ["pydocumentdb (==2.3.2)"]
+consul = ["python-consul2"]
+cassandra = ["cassandra-driver (<3.21.0)"]
+brotli = ["brotlipy (>=0.7.0)", "brotli (>=1.0.0)"]
+azureblockblob = ["azure-storage-blob (==12.9.0)"]
+auth = ["cryptography"]
+arangodb = ["pyArango (>=1.3.2)"]
 
 [[package]]
 name = "certifi"
@@ -625,11 +627,52 @@ unicode_backport = ["unicodedata2"]
 
 [[package]]
 name = "click"
-version = "7.1.2"
+version = "8.1.3"
 description = "Composable command line interface toolkit"
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.7"
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[[package]]
+name = "click-didyoumean"
+version = "0.3.0"
+description = "Enables git-like *did-you-mean* feature in click"
+category = "main"
+optional = false
+python-versions = ">=3.6.2,<4.0.0"
+
+[package.dependencies]
+click = ">=7"
+
+[[package]]
+name = "click-plugins"
+version = "1.1.1"
+description = "An extension module for click to enable registering CLI commands via setuptools entry-points."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+click = ">=4.0"
+
+[package.extras]
+dev = ["coveralls", "wheel", "pytest-cov", "pytest (>=3.6)"]
+
+[[package]]
+name = "click-repl"
+version = "0.2.0"
+description = "REPL plugin for Click"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+click = "*"
+prompt-toolkit = "*"
+six = "*"
 
 [[package]]
 name = "clickclick"
@@ -869,7 +912,7 @@ dev = ["zest.releaser", "tox", "wheel (>=0.32.0)", "mongoengine", "sqlalchemy", 
 
 [[package]]
 name = "faker"
-version = "13.15.1"
+version = "14.0.0"
 description = "Faker is a Python package that generates fake data for you."
 category = "dev"
 optional = false
@@ -905,17 +948,17 @@ flake8 = "*"
 
 [[package]]
 name = "flask"
-version = "1.1.4"
+version = "1.1.2"
 description = "A simple framework for building complex web applications."
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [package.dependencies]
-click = ">=5.1,<8.0"
-itsdangerous = ">=0.24,<2.0"
-Jinja2 = ">=2.10.1,<3.0"
-Werkzeug = ">=0.15,<2.0"
+click = ">=5.1"
+itsdangerous = ">=0.24"
+Jinja2 = ">=2.10.1"
+Werkzeug = ">=0.15"
 
 [package.extras]
 dotenv = ["python-dotenv"]
@@ -1065,19 +1108,18 @@ WTForms = "*"
 
 [[package]]
 name = "flower"
-version = "0.9.7"
+version = "1.2.0"
 description = "Celery Flower"
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-celery = {version = ">=4.3.0,<5.0.0", markers = "python_version >= \"3.7\""}
+celery = ">=5.0.5"
 humanize = "*"
-prometheus-client = "0.8.0"
+prometheus-client = ">=0.8.0"
 pytz = "*"
-tornado = {version = ">=5.0.0,<7.0.0", markers = "python_version >= \"3.5.2\""}
-vine = "1.3.0"
+tornado = ">=5.0.0,<7.0.0"
 
 [[package]]
 name = "graphviz"
@@ -1256,17 +1298,17 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "jinja2"
-version = "2.11.3"
+version = "3.0.3"
 description = "A very fast and expressive template engine."
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.6"
 
 [package.dependencies]
-MarkupSafe = ">=0.23"
+MarkupSafe = ">=2.0"
 
 [package.extras]
-i18n = ["Babel (>=0.8)"]
+i18n = ["Babel (>=2.7)"]
 
 [[package]]
 name = "jmespath"
@@ -1308,30 +1350,31 @@ format = ["webcolors", "strict-rfc3339", "rfc3987", "jsonpointer (>1.13)", "idna
 
 [[package]]
 name = "kombu"
-version = "4.6.11"
+version = "5.2.4"
 description = "Messaging library for Python."
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.7"
 
 [package.dependencies]
-amqp = ">=2.6.0,<2.7"
+amqp = ">=5.0.9,<6.0.0"
+vine = "*"
 
 [package.extras]
-azureservicebus = ["azure-servicebus (>=0.21.1)"]
-azurestoragequeues = ["azure-storage-queue"]
-consul = ["python-consul (>=0.6.0)"]
-librabbitmq = ["librabbitmq (>=1.5.2)"]
-mongodb = ["pymongo (>=3.3.0)"]
-msgpack = ["msgpack"]
-pyro = ["pyro4"]
-qpid = ["qpid-python (>=0.26)", "qpid-tools (>=0.26)"]
-redis = ["redis (>=3.3.11)"]
-slmq = ["softlayer-messaging (>=1.0.3)"]
-sqlalchemy = ["sqlalchemy"]
-sqs = ["boto3 (>=1.4.4)", "pycurl (==7.43.0.2)"]
-yaml = ["PyYAML (>=3.10)"]
 zookeeper = ["kazoo (>=1.3.1)"]
+yaml = ["PyYAML (>=3.10)"]
+sqs = ["urllib3 (>=1.26.7)", "pycurl (>=7.44.1,<7.45.0)", "boto3 (>=1.9.12)"]
+sqlalchemy = ["sqlalchemy"]
+slmq = ["softlayer-messaging (>=1.0.3)"]
+redis = ["redis (>=3.4.1,!=4.0.0,!=4.0.1)"]
+qpid = ["qpid-tools (>=0.26)", "qpid-python (>=0.26)"]
+pyro = ["pyro4"]
+msgpack = ["msgpack"]
+mongodb = ["pymongo (>=3.3.0,<3.12.1)"]
+librabbitmq = ["librabbitmq (>=2.0.0)"]
+consul = ["python-consul (>=0.6.0)"]
+azurestoragequeues = ["azure-storage-queue"]
+azureservicebus = ["azure-servicebus (>=7.0.0)"]
 
 [[package]]
 name = "lazy-object-proxy"
@@ -1500,8 +1543,8 @@ typing-extensions = ">=4.1.0"
 
 [[package]]
 name = "mypy-boto3-rds"
-version = "1.24.38"
-description = "Type annotations for boto3.RDS 1.24.38 service generated with mypy-boto3-builder 7.10.1"
+version = "1.24.51"
+description = "Type annotations for boto3.RDS 1.24.51 service generated with mypy-boto3-builder 7.11.6"
 category = "main"
 optional = false
 python-versions = ">=3.7"
@@ -1530,7 +1573,7 @@ python-versions = "*"
 
 [[package]]
 name = "numpy"
-version = "1.23.1"
+version = "1.23.2"
 description = "NumPy is the fundamental package for array computing with Python."
 category = "main"
 optional = false
@@ -1671,14 +1714,25 @@ dev = ["twine", "pipreqs", "nose"]
 
 [[package]]
 name = "prometheus-client"
-version = "0.8.0"
+version = "0.14.1"
 description = "Python client for the Prometheus monitoring system."
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.6"
 
 [package.extras]
 twisted = ["twisted"]
+
+[[package]]
+name = "prompt-toolkit"
+version = "3.0.30"
+description = "Library for building powerful interactive command lines in Python"
+category = "main"
+optional = false
+python-versions = ">=3.6.2"
+
+[package.dependencies]
+wcwidth = "*"
 
 [[package]]
 name = "psutil"
@@ -2391,11 +2445,11 @@ brotli = ["brotlipy (>=0.6.0)", "brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
 
 [[package]]
 name = "vine"
-version = "1.3.0"
+version = "5.0.0"
 description = "Promises, promises, promises."
 category = "main"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=3.6"
 
 [[package]]
 name = "watchtower"
@@ -2410,6 +2464,14 @@ boto3 = ">=1.9.253,<2"
 
 [package.extras]
 tests = ["mypy", "wheel", "build", "coverage", "flake8 (>=4.0.1,<5)", "pyyaml (>=5.3.1,<6)"]
+
+[[package]]
+name = "wcwidth"
+version = "0.2.5"
+description = "Measures the displayed width of unicode strings in a terminal"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "webencodings"
@@ -2478,7 +2540,7 @@ docs = ["jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "jaraco.packaging (>=9)
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "745437a25b84ae528b76fadee5378f46a968cfd49a387f36517940a9c5a9d3ae"
+content-hash = "afd1cf9b3b102eb8f90cc4920fe1bf53ccf87d7d699ec4481c2094cbd13f4458"
 
 [metadata.files]
 alembic = []
@@ -2515,6 +2577,9 @@ certifi = []
 cffi = []
 charset-normalizer = []
 click = []
+click-didyoumean = []
+click-plugins = []
+click-repl = []
 clickclick = []
 colorama = []
 colorlog = []
@@ -2593,6 +2658,7 @@ pluggy = []
 ply = []
 prison = []
 prometheus-client = []
+prompt-toolkit = []
 psutil = []
 psycopg2-binary = []
 py = []
@@ -2657,6 +2723,7 @@ unicodecsv = []
 urllib3 = []
 vine = []
 watchtower = []
+wcwidth = []
 webencodings = []
 werkzeug = []
 wrapt = []
