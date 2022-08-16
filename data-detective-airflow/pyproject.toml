@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "data_detective_airflow"
 license = "Apache-2.0"
-version = "1.1.0"
+version = "1.1.0-alpha.1"
 description = "Framework with task testing over Apache Airflow"
 authors = ["Tinkoff Data Detective Team"]
 readme = 'README.md'  # Markdown files are supported
@@ -21,7 +21,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-apache-airflow = ">=2.1, < 2.3"
+apache-airflow = "~2.2"
 apache-airflow-providers-amazon = "*"
 apache-airflow-providers-celery = "*"
 apache-airflow-providers-postgres = "*"
