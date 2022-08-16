@@ -24,30 +24,32 @@ gen_dataset = is_gen_dataset_mode()
 
 
 @pytest.mark.skipif(condition=gen_dataset, reason='Gen dataset')
-@pytest.mark.parametrize(
-    'task', dag.tasks
-)
+@pytest.mark.parametrize('task', dag.tasks)
 def test_task(task, mocker, setup_tables):
     run_and_assert_task(task=task, dataset=dataset, dag_run=create_or_get_dagrun(dag, task), mocker=mocker)
 
 
 @pytest.mark.skipif(condition=(not gen_dataset), reason='Gen dataset')
-@pytest.mark.parametrize(
-    'task', dag.tasks
-)
+@pytest.mark.parametrize('task', dag.tasks)
 def test_gen_tests_data(task, mocker, setup_tables):
-    run_and_gen_ds(task, f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}')
+    run_and_gen_ds(
+        task=task, folder=f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}', dag_run=create_or_get_dagrun(dag, task)
+    )
 
 
 setup_dataset = {
-    'dds_entity': pandas.concat([
-        root_dataset['upload_dds_entity'],
-    ],
-        ignore_index=True),
-    'dds_relation': pandas.concat([
-        root_dataset['upload_dds_relation'],
-    ],
-        ignore_index=True)
+    'dds_entity': pandas.concat(
+        [
+            root_dataset['upload_dds_entity'],
+        ],
+        ignore_index=True,
+    ),
+    'dds_relation': pandas.concat(
+        [
+            root_dataset['upload_dds_relation'],
+        ],
+        ignore_index=True,
+    ),
 }
 
 
@@ -66,11 +68,8 @@ def setup_tables():
         if df_name == 'dds_entity':
             json_columns = list(JSON_FIELDS & set(df.columns))
             for column in json_columns:
-                df[column] = df[column].apply(
-                    lambda row: json.dumps(row) if isinstance(row, dict) else None
-                )
+                df[column] = df[column].apply(lambda row: json.dumps(row) if isinstance(row, dict) else None)
             name = 'entity'
-        df.to_sql(con=hook.get_uri(), schema='dds', name=name,
-                  if_exists='append', index=False)
+        df.to_sql(con=hook.get_uri(), schema='dds', name=name, if_exists='append', index=False)
     yield
     hook.run(queries)

@@ -20,17 +20,13 @@ gen_dataset = is_gen_dataset_mode()
 
 
 @pytest.mark.skipif(condition=gen_dataset, reason='Gen dataset')
-@pytest.mark.parametrize(
-    'task', dag.tasks
-)
+@pytest.mark.parametrize('task', dag.tasks)
 def test_task(task, mocker, setup_tables):
     run_and_assert_task(task=task, dataset=dataset, dag_run=create_or_get_dagrun(dag, task), mocker=mocker)
 
 
 @pytest.mark.skipif(condition=(not gen_dataset), reason='Gen dataset')
-@pytest.mark.parametrize(
-    'task', dag.tasks
-)
+@pytest.mark.parametrize('task', dag.tasks)
 def test_gen_tests_data(task, mocker, setup_tables):
     run_and_gen_ds(task, f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}')
 
