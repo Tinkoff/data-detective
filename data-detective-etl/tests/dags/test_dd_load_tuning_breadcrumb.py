@@ -25,13 +25,13 @@ gen_dataset = is_gen_dataset_mode()
 
 @pytest.mark.skipif(condition=gen_dataset, reason='Gen dataset')
 @pytest.mark.parametrize('task', dag.tasks)
-def test_task(task, mocker, setup_tables):
+def test_task(task, mocker):
     run_and_assert_task(task=task, dataset=dataset, dag_run=create_or_get_dagrun(dag, task), mocker=mocker)
 
 
 @pytest.mark.skipif(condition=(not gen_dataset), reason='Gen dataset')
 @pytest.mark.parametrize('task', dag.tasks)
-def test_gen_tests_data(task, mocker, setup_tables):
+def test_gen_tests_data(task):
     run_and_gen_ds(
         task=task, folder=f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}', dag_run=create_or_get_dagrun(dag, task)
     )
@@ -53,7 +53,7 @@ setup_dataset = {
 }
 
 
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='module', autouse=True)
 def setup_tables():
     hook = PostgresHook(postgres_conn_id=PG_CONN_ID)
     queries = [

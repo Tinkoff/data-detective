@@ -47,7 +47,8 @@ def setup_works():
 
 
 @pytest.mark.parametrize('task', dag.tasks)
-def test_task(task, setup_works):
+@pytest.mark.usefixtures('setup_works')
+def test_task(task):
     task.execute(context={})
 
 
