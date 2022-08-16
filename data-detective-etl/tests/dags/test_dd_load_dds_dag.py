@@ -32,7 +32,7 @@ def test_task(task, mocker, setup_tables):
     'task', dag.tasks
 )
 def test_gen_tests_data(task, setup_tables):
-    run_and_gen_ds(task, f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}')
+    run_and_gen_ds(task=task, folder=f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}', dag_run=create_or_get_dagrun(dag, task))
 
 
 @pytest.fixture(scope='module')
