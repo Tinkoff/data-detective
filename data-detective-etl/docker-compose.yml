@@ -83,4 +83,3 @@ services:
       - ./tests_data:${AIRFLOW_HOME}/tests_data
       - ./.coveragerc:${AIRFLOW_HOME}/.coveragerc
       - ./tox.ini:${AIRFLOW_HOME}/tox.ini
-      - ./wrk:/tmp

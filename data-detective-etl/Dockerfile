@@ -65,4 +65,4 @@ RUN mkdir $AIRFLOW_HOME/dags \
 VOLUME $AIRFLOW_HOME/dags \
        $AIRFLOW_HOME/common \
        $AIRFLOW_HOME/tests \
-       $AIRFLOW_HOME/tests_data \
+       $AIRFLOW_HOME/tests_data
