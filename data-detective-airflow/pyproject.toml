@@ -21,7 +21,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-apache-airflow = ">=2.1, < 2.3"
+apache-airflow = "~2.2"
 apache-airflow-providers-amazon = "*"
 apache-airflow-providers-celery = "*"
 apache-airflow-providers-postgres = "*"
