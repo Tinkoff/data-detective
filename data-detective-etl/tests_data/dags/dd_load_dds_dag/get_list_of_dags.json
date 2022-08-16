@@ -38,27 +38,30 @@
     },
     "data":[
         {
-            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_system_remove_works",
-            "dag_id":"dd_system_remove_works",
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_dds_root",
+            "dag_id":"dd_load_dds_root",
             "default_args":{
                 "owner":"airflow",
-                "retries":1
+                "result_type":"pickle",
+                "retries":1,
+                "work_type":"file"
             },
-            "description":"Clean of unremoved works",
-            "factory":"Python",
-            "schedule_interval":"5 3 * * *",
+            "description":"Loading root entities",
+            "factory":"YAML",
+            "schedule_interval":"5 1 * * *",
             "tags":[
-                "system"
+                "tuning"
             ],
             "tasks":[
-                "clean_s3_works",
-                "clean_pg_works",
-                "clean_local_works"
+                "dump_root_nodes_entities",
+                "dump_root_nodes_relations",
+                "upload_dds_entity",
+                "upload_dds_relation"
             ]
         },
         {
-            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_dds_dag",
-            "dag_id":"dd_load_dds_dag",
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_tuning_relations_type",
+            "dag_id":"dd_load_tuning_relations_type",
             "default_args":{
                 "owner":"airflow",
                 "result_type":"pickle",
@@ -66,19 +69,16 @@
                 "work_conn_id":"s3work",
                 "work_type":"s3"
             },
-            "description":"Loading meta information from dag to data detective entity",
-            "factory":"Python",
-            "schedule_interval":"18 03 * * *",
+            "description":"Loading entity relationship types",
+            "factory":"YAML",
+            "schedule_interval":"5 2 * * *",
             "tags":[
-                "dds"
+                "SLA3",
+                "prod_dev"
             ],
             "tasks":[
-                "get_list_of_dags",
-                "add_code_files_to_dags",
-                "transform_dag_to_entity",
-                "link_root_node_to_dag",
-                "upload_dds_entity",
-                "upload_dds_relation"
+                "dump_relations_types",
+                "upload_tuning_relations_type"
             ]
         },
         {
@@ -114,51 +114,8 @@
             ]
         },
         {
-            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_dds_root",
-            "dag_id":"dd_load_dds_root",
-            "default_args":{
-                "owner":"airflow",
-                "result_type":"pickle",
-                "retries":1,
-                "work_type":"file"
-            },
-            "description":"Loading root entities",
-            "factory":"YAML",
-            "schedule_interval":"5 1 * * *",
-            "tags":[
-                "tuning"
-            ],
-            "tasks":[
-                "dump_root_nodes_entities",
-                "dump_root_nodes_relations",
-                "upload_dds_entity",
-                "upload_dds_relation"
-            ]
-        },
-        {
-            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_tuning_breadcrumb",
-            "dag_id":"dd_load_tuning_breadcrumb",
-            "default_args":{
-                "owner":"airflow",
-                "result_type":"pickle",
-                "retries":1,
-                "work_type":"file"
-            },
-            "description":"Loading the breadcrumb of relations from root to entity",
-            "factory":"YAML",
-            "schedule_interval":"0 *\/2 * * *",
-            "tags":[
-                "tuning"
-            ],
-            "tasks":[
-                "dump_relation_contains",
-                "transform_breadcrumb",
-                "upload_tuning_breadcrumb"
-            ]
-        },
-        {
-            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_tuning_relations_type",
-            "dag_id":"dd_load_tuning_relations_type",
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_dds_dag",
+            "dag_id":"dd_load_dds_dag",
             "default_args":{
                 "owner":"airflow",
                 "result_type":"pickle",
@@ -166,16 +123,38 @@
                 "work_conn_id":"s3work",
                 "work_type":"s3"
             },
-            "description":"Loading entity relationship types",
-            "factory":"YAML",
-            "schedule_interval":"5 2 * * *",
+            "description":"Loading meta information from dag to data detective entity",
+            "factory":"Python",
+            "schedule_interval":"18 03 * * *",
             "tags":[
-                "SLA3",
-                "prod_dev"
+                "dds"
             ],
             "tasks":[
-                "dump_relations_types",
-                "upload_tuning_relations_type"
+                "get_list_of_dags",
+                "add_code_files_to_dags",
+                "transform_dag_to_entity",
+                "link_root_node_to_dag",
+                "upload_dds_entity",
+                "upload_dds_relation"
+            ]
+        },
+        {
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_system_remove_works",
+            "dag_id":"dd_system_remove_works",
+            "default_args":{
+                "owner":"airflow",
+                "retries":1
+            },
+            "description":"Clean of unremoved works",
+            "factory":"Python",
+            "schedule_interval":"5 3 * * *",
+            "tags":[
+                "system"
+            ],
+            "tasks":[
+                "clean_s3_works",
+                "clean_pg_works",
+                "clean_local_works"
             ]
         },
         {
@@ -197,6 +176,27 @@
             "tasks":[
                 "get_data_from_search_enums",
                 "upload_data_to_tuning_search_help"
+            ]
+        },
+        {
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_tuning_breadcrumb",
+            "dag_id":"dd_load_tuning_breadcrumb",
+            "default_args":{
+                "owner":"airflow",
+                "result_type":"pickle",
+                "retries":1,
+                "work_type":"file"
+            },
+            "description":"Loading the breadcrumb of relations from root to entity",
+            "factory":"YAML",
+            "schedule_interval":"0 *\/2 * * *",
+            "tags":[
+                "tuning"
+            ],
+            "tasks":[
+                "dump_relation_contains",
+                "transform_breadcrumb",
+                "upload_tuning_breadcrumb"
             ]
         }
     ]
