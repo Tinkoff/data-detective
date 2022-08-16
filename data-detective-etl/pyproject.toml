@@ -1,19 +1,19 @@
 [tool.poetry]
 name = "date-detective-etl"
 license = "Apache-2.0"
-version = "1.1.0a0"
+version = "1.1.0a1"
 description = "ETL with data-detective-airflow"
 authors = ["Tinkoff Data Detective Team"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-apache-airflow = ">=2.1, < 2.3"
+apache-airflow = "~2.2"
 apache-airflow-providers-amazon = "*"
 apache-airflow-providers-celery = "*"
 apache-airflow-providers-postgres = "*"
 apache-airflow-providers-redis = "*"
 apache-airflow-providers-ssh = "*"
-data-detective-airflow = "1.1.0a0"
+data-detective-airflow = "1.1.0a1"
 petl = "^1.7"
 # Not all airflow providers support pandas > 1.4.0
 pandas = "^1.1, <1.4"
