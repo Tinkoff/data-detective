@@ -83,7 +83,7 @@ class S3Work(BaseFileWork):
         raise FileNotFoundError
 
     def write_bytes(self, path, bts: bytes):
-        self.get_hook().load_bytes(bytes_data=bts, key=path, bucket_name=self.bucket, replace=True)
+        self.hook.load_bytes(bytes_data=bts, key=path, bucket_name=self.bucket, replace=True)
 
     def read_bytes(self, path):
         return self.hook.get_key(key=path, bucket_name=self.bucket).get()['Body'].read()
