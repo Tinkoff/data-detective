@@ -1,0 +1,15 @@
+---
+- entity_name:
+    - "dds.*"
+    - "dds_dic.*"
+  entity_type:
+    - "TABLE"
+  rank: 7.4
+  description: "Up rank for dds table"
+
+- entity_name:
+    - "dd_*"
+  entity_type:
+    - "JOB"
+  rank: 12.1
+  description: "Up rank for DD DAG"
