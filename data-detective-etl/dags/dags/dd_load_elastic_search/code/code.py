@@ -1,15 +1,12 @@
-from fnmatch import fnmatch
-import io
 import json
-import logging
-import time
-from typing import Union
+from fnmatch import fnmatch
 from pathlib import Path
+from typing import Union
 
 import pandas as pd
 import yaml
 from airflow.models.taskinstance import Context
-from airflow.providers.elasticsearch.hooks.elasticsearch import ElasticsearchPythonHook
+from airflow.providers.elasticsearch.hooks.elasticsearch import ElasticsearchSQLHook
 from data_detective_airflow.constants import PG_CONN_ID
 from data_detective_airflow.dag_generator import TDag
 from data_detective_airflow.operators import DBDump, PyTransform
@@ -40,6 +37,7 @@ def _apply_rank(entity: pd.Series, rank_groups: list[dict[str, str]]) -> Union[s
 
     return 1
 
+
 def apply_rank_to_entities(context: Context, source: pd.DataFrame) -> pd.DataFrame:
     """Apply search rank to entities
     :param context: Task running context
@@ -62,6 +60,39 @@ def apply_rank_to_entities(context: Context, source: pd.DataFrame) -> pd.DataFra
     return entities_with_weights
 
 
+def upload_dd_search(_context: Context, source: pd.DataFrame, conn_id: str, index_name: str, chunk_size: int) -> None:
+    """Load search data to ElasticSearch
+    :param _context: Task running context
+    :param source: dds.entity with rank
+    :param conn_id: ElasticSearch connection id
+    :param index_name: ElasticSearch index to load search data
+    :param chunk_size: Number of entity to load with one ElasticSearch bulk operations
+    :return:
+    """
+
+    es_hook = ElasticsearchSQLHook(elasticsearch_conn_id=conn_id)
+    elastic = es_hook.get_conn().es
+
+    shard_num = 0
+    chunk_num = len(source.index) // chunk_size
+    while shard_num < chunk_num:
+        partly_df = source.head(chunk_size).to_dict(orient='records')
+        source.drop(source.head(chunk_size).index, inplace=True)
+        body = ''
+        for item in partly_df:
+            body += json.dumps({'index': {'_index': index_name, '_id': item['id']}}) + '\n'
+            body += json.dumps(item) + '\n'
+        elastic.bulk(body)
+        shard_num += 1
+
+    partly_df = source.to_dict(orient='records')
+    body = ''
+    for item in partly_df:
+        body += json.dumps({'index': {'_index': index_name, '_id': item['id']}}) + '\n'
+        body += json.dumps(item) + '\n'
+    elastic.bulk(body)
+
+
 def fill_dag(t_dag: TDag) -> None:
 
     DBDump(
@@ -77,5 +108,18 @@ def fill_dag(t_dag: TDag) -> None:
         description='Apply search rank to entities',
         source=['dump_search_data'],
         transformer_callable=apply_rank_to_entities,
+        dag=t_dag,
+    )
+
+    PyTransform(
+        task_id='upload_dd_search',
+        description='Load search data to ElasticSearch',
+        source=['apply_rank_to_entities'],
+        transformer_callable=upload_dd_search,
+        op_kwargs={
+            'conn_id': 'dd-search',
+            'index_name': 'dd-search',
+            'chunk_size': 10_000,
+        },
         dag=t_dag,
     )
