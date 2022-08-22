@@ -13,9 +13,8 @@ x-airflow: &airflow
     - AIRFLOW__SCHEDULER__CATCHUP_BY_DEFAULT=False
 
 services:
-
   pg:
-    image: postgres:13.4-alpine
+    image: postgres:13.8-bullseye
     environment:
       - POSTGRES_USER=${META_USER}
       - POSTGRES_PASSWORD=${META_PASS}
@@ -30,8 +29,9 @@ services:
       retries: 50
 
 
+
   metadb:
-    image: postgres:13.4-alpine
+    image: postgres:13.8-bullseye
     environment:
       - POSTGRES_USER=${META_USER}
       - POSTGRES_PASSWORD=${META_PASS}
@@ -44,17 +44,8 @@ services:
       retries: 10
 
 
-#  web_service:
-#    build:
-#      context: docker/web_service
-#    ports:
-#      - "5656:5000"
-#    volumes:
-#      -  ./docker/web_service:/usr/src/app
-
-
   s3work:
-    image: localstack/localstack:0.11.5
+    image: localstack/localstack:1.0.4
     ports:
       - "4566:4566"
       - "8055:8080"

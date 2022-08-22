@@ -11,6 +11,7 @@ The development environment runs in Docker containers on the local machine.
 [Quickstart](ttps://data-detective.dev/docs/data-detective-etl/quickstart-etl) is available in the official documentation.
 
 * Run the sandbox with docker-compose `docker-compose up -d`
+* Run the sandbox with ElasticSearch  `docker-compose -f docker-compose.yml -f docker-compose.elastic.yml up -d`
 * Run tests: `make tests`
 * Run linters: `make lint`
 
