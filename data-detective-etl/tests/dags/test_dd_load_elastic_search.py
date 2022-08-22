@@ -4,13 +4,12 @@ import pandas
 import pytest
 from airflow import settings
 from airflow.providers.postgres.hooks.postgres import PostgresHook
-
 from data_detective_airflow.constants import JSON_FIELDS, PG_CONN_ID
 from data_detective_airflow.dag_generator import generate_dag
 from data_detective_airflow.test_utilities import (
+    JSONPandasDataset,
     create_or_get_dagrun,
     is_gen_dataset_mode,
-    JSONPandasDataset,
     run_and_assert_task,
     run_and_gen_ds,
 )
@@ -24,20 +23,24 @@ dds_root_entity = JSONPandasDataset(f'{settings.AIRFLOW_HOME}/tests_data/dags/dd
 dds_dag_entity = JSONPandasDataset(f'{settings.AIRFLOW_HOME}/tests_data/dags/dd_load_dds_dag')['upload_dds_entity']
 
 gen_dataset = is_gen_dataset_mode()
-gen_dataset = True
+
 
 @pytest.mark.skipif(condition=gen_dataset, reason='Gen dataset')
 @pytest.mark.parametrize('task', dag.tasks)
 def test_task(task, mocker):
-    run_and_assert_task(task=task, dataset=dataset, dag_run=create_or_get_dagrun(dag, task), mocker=mocker)
+    if task.task_id != 'upload_dd_search':
+        run_and_assert_task(task=task, dataset=dataset, dag_run=create_or_get_dagrun(dag, task), mocker=mocker)
 
 
 @pytest.mark.skipif(condition=(not gen_dataset), reason='Gen dataset')
 @pytest.mark.parametrize('task', dag.tasks)
 def test_gen_tests_data(task):
-    run_and_gen_ds(
-        task=task, folder=f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}', dag_run=create_or_get_dagrun(dag, task)
-    )
+    if task.task_id != 'upload_dd_search':
+        run_and_gen_ds(
+            task=task,
+            folder=f'{settings.AIRFLOW_HOME}/tests_data/dags/{dag_name}',
+            dag_run=create_or_get_dagrun(dag, task),
+        )
 
 
 @pytest.fixture(scope='module', autouse=True)
