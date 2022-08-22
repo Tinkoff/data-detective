@@ -1022,6 +1022,17 @@
         },
         {
             "entity_type":"JOB",
+            "id":"dd_load_elastic_search",
+            "info":"Loading search data to ElasticSearch",
+            "rank":12.1,
+            "search_data":"urn:job:dd:airflow:dd_load_elastic_search dd_load_elastic_search",
+            "system_for_search":"Data Detective",
+            "tags":null,
+            "type_for_search":"Job",
+            "urn":"urn:job:dd:airflow:dd_load_elastic_search"
+        },
+        {
+            "entity_type":"JOB",
             "id":"dd_load_tuning_breadcrumb",
             "info":"Loading the breadcrumb of relations from root to entity",
             "rank":12.1,

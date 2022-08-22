@@ -48,6 +48,13 @@
         },
         {
             "attribute":"non",
+            "destination":"urn:job:dd:airflow:dd_load_elastic_search",
+            "loaded_by":"dd_load_dds_dag",
+            "source":"urn:tree_node:etl_dags",
+            "type":"Contains"
+        },
+        {
+            "attribute":"non",
             "destination":"urn:job:dd:airflow:dd_load_tuning_breadcrumb",
             "loaded_by":"dd_load_dds_dag",
             "source":"urn:tree_node:etl_dags",

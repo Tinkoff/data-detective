@@ -225,6 +225,58 @@
                 {
                     "header":"DAG main meta.yaml",
                     "language":"yaml",
+                    "data":"description: Loading search data to ElasticSearch\nschedule_interval: 11 05 * * *\ntags:\n  - search\ndefault_args:\n  owner: airflow\n  result_type: pickle\n  retries: 1\n  work_conn_id: s3work\n  work_type: s3\nfactory: Python\n",
+                    "opened":"1"
+                },
+                {
+                    "header":"code\/code.py",
+                    "language":"py",
+                    "data":"import json\nfrom fnmatch import fnmatch\nfrom pathlib import Path\nfrom typing import Union\n\nimport pandas as pd\nimport yaml\nfrom airflow.models.taskinstance import Context\nfrom airflow.providers.elasticsearch.hooks.elasticsearch import ElasticsearchSQLHook\nfrom data_detective_airflow.constants import PG_CONN_ID\nfrom data_detective_airflow.dag_generator import TDag\nfrom data_detective_airflow.operators import DBDump, PyTransform\n\n\ndef _apply_rank(entity: pd.Series, rank_groups: list[dict[str, str]]) -> Union[str, list[str], float, int]:\n    \"\"\"Apply search rank for every entity\n    If more then one rank for entity choose max rank\n    If rank not found set rank 1\n    :param entity: dds.entity\n    :param rank_groups: search rank group for entity\n    :return: search rank\n    \"\"\"\n    ranks = []\n\n    entity_name = entity['id']\n    entity_type = entity['entity_type']\n\n    for rank_group in rank_groups:\n        entity_mask_rank_group = rank_group['entity_name']\n        entity_type_rank_group = rank_group['entity_type']\n\n        if fnmatch(entity_name, entity_mask_rank_group) is True and entity_type == entity_type_rank_group:\n            ranks.append(rank_group['rank'])\n\n    if ranks:\n        return max(ranks)\n\n    return 1\n\n\ndef apply_rank_to_entities(context: Context, source: pd.DataFrame) -> pd.DataFrame:\n    \"\"\"Apply search rank to entities\n    :param context: Task running context\n    :param source: dds.entity\n    :return: dds.entity with rank\n    \"\"\"\n\n    entities_with_weights = source\n\n    rank_file_dir = Path(f\"{context['dag'].etc_dir}\/{'entity_rank.yml'}\")\n    rank_file = yaml.safe_load(rank_file_dir.read_text(encoding='utf-8'))\n    exploded_rank_file = (\n        pd.DataFrame.from_dict(rank_file)[['entity_name', 'entity_type', 'rank']]\n        .explode('entity_type')\n        .explode('entity_name')\n    )\n    exploded_dicts = pd.DataFrame.to_dict(exploded_rank_file, orient='records')\n    entities_with_weights['rank'] = entities_with_weights.apply(lambda row: _apply_rank(row, exploded_dicts), axis=1)\n\n    return entities_with_weights\n\n\ndef upload_dd_search(_context: Context, source: pd.DataFrame, conn_id: str, index_name: str, chunk_size: int) -> None:\n    \"\"\"Load search data to ElasticSearch\n    :param _context: Task running context\n    :param source: dds.entity with rank\n    :param conn_id: ElasticSearch connection id\n    :param index_name: ElasticSearch index to load search data\n    :param chunk_size: Number of entity to load with one ElasticSearch bulk operations\n    :return:\n    \"\"\"\n\n    es_hook = ElasticsearchSQLHook(elasticsearch_conn_id=conn_id)\n    elastic = es_hook.get_conn().es\n\n    shard_num = 0\n    chunk_num = len(source.index) \/\/ chunk_size\n    while shard_num < chunk_num:\n        partly_df = source.head(chunk_size).to_dict(orient='records')\n        source.drop(source.head(chunk_size).index, inplace=True)\n        body = ''\n        for item in partly_df:\n            body += json.dumps({'index': {'_index': index_name, '_id': item['id']}}) + '\\n'\n            body += json.dumps(item) + '\\n'\n        elastic.bulk(body)\n        shard_num += 1\n\n    partly_df = source.to_dict(orient='records')\n    body = ''\n    for item in partly_df:\n        body += json.dumps({'index': {'_index': index_name, '_id': item['id']}}) + '\\n'\n        body += json.dumps(item) + '\\n'\n    elastic.bulk(body)\n\n\ndef fill_dag(t_dag: TDag) -> None:\n\n    DBDump(\n        task_id='dump_search_data',\n        description='Dump data from DD pg_base for search',\n        conn_id=PG_CONN_ID,\n        sql='\/code\/dump_search_data.sql',\n        dag=t_dag,\n    )\n\n    PyTransform(\n        task_id='apply_rank_to_entities',\n        description='Apply search rank to entities',\n        source=['dump_search_data'],\n        transformer_callable=apply_rank_to_entities,\n        dag=t_dag,\n    )\n\n    PyTransform(\n        task_id='upload_dd_search',\n        description='Load search data to ElasticSearch',\n        source=['apply_rank_to_entities'],\n        transformer_callable=upload_dd_search,\n        op_kwargs={\n            'conn_id': 'dd-search',\n            'index_name': 'dd-search',\n            'chunk_size': 10_000,\n        },\n        dag=t_dag,\n    )\n",
+                    "opened":"0"
+                },
+                {
+                    "header":"code\/dump_search_data.sql",
+                    "language":"sql",
+                    "data":"select  urn\n        , lower(entity_name) as id\n        , json_system->'type_for_search' as type_for_search\n        , json_system->'system_for_search' as system_for_search\n        , entity_type\n        , search_data\n        , info\n        , tags\n\nfrom dds.entity\n",
+                    "opened":"0"
+                }
+            ],
+            "entity_name":"dd_load_elastic_search",
+            "entity_name_short":null,
+            "entity_type":"JOB",
+            "info":"Loading search data to ElasticSearch",
+            "json_data":{
+                "factory":"Python",
+                "default_args":{
+                    "owner":"airflow",
+                    "result_type":"pickle",
+                    "retries":1,
+                    "work_conn_id":"s3work",
+                    "work_type":"s3"
+                },
+                "schedule_interval":"11 05 * * *",
+                "tasks":[
+                    "dump_search_data",
+                    "apply_rank_to_entities",
+                    "upload_dd_search"
+                ],
+                "meta_yaml":"description: Loading search data to ElasticSearch\nschedule_interval: 11 05 * * *\ntags:\n  - search\ndefault_args:\n  owner: airflow\n  result_type: pickle\n  retries: 1\n  work_conn_id: s3work\n  work_type: s3\nfactory: Python\n"
+            },
+            "json_system":{
+                "system_for_search":"Data Detective",
+                "type_for_search":"Job"
+            },
+            "search_data":"urn:job:dd:airflow:dd_load_elastic_search dd_load_elastic_search",
+            "tags":[
+                "search"
+            ],
+            "urn":"urn:job:dd:airflow:dd_load_elastic_search"
+        },
+        {
+            "codes":[
+                {
+                    "header":"DAG main meta.yaml",
+                    "language":"yaml",
                     "data":"description: Loading the breadcrumb of relations from root to entity\nschedule_interval: 0 *\/2 * * *\ntags:\n  - tuning\ndefault_args:\n  owner: airflow\n  result_type: pickle\n  retries: 1\n  work_type: file\nfactory: YAML\ntasks:\n\n  - task_id: dump_relation_contains\n    description: Load relations with type Contains\n    type: data_detective_airflow.operators.DBDump\n    sql: \/code\/dump_relation_contains.sql\n    conn_id: pg\n\n  - task_id: transform_breadcrumb\n    description: Create transform breadcrumbs\n    type: data_detective_airflow.operators.PyTransform\n    source:\n      - dump_relation_contains\n    transformer_callable: transform_breadcrumb\n\n  - task_id: upload_tuning_breadcrumb\n    description: Upload entities to tuning.breadcrumb\n    type: data_detective_airflow.operators.PgSingleTargetLoader\n    chunk_row_number: 30000\n    source:\n      - transform_breadcrumb\n    conn_id: pg\n    table_name: tuning.breadcrumb\n    key:\n      - urn\n    filter_callable: data_detective_airflow.operators.sinks.pg_single_target_utils.filter_for_breadcrumb\n",
                     "opened":"1"
                 },

@@ -158,6 +158,28 @@
             ]
         },
         {
+            "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_elastic_search",
+            "dag_id":"dd_load_elastic_search",
+            "default_args":{
+                "owner":"airflow",
+                "result_type":"pickle",
+                "retries":1,
+                "work_conn_id":"s3work",
+                "work_type":"s3"
+            },
+            "description":"Loading search data to ElasticSearch",
+            "factory":"Python",
+            "schedule_interval":"11 05 * * *",
+            "tags":[
+                "search"
+            ],
+            "tasks":[
+                "dump_search_data",
+                "apply_rank_to_entities",
+                "upload_dd_search"
+            ]
+        },
+        {
             "dag_dir":"\/usr\/local\/airflow\/dags\/dags\/dd_load_tuning_search_help",
             "dag_id":"dd_load_tuning_search_help",
             "default_args":{
