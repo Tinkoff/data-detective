@@ -29,7 +29,7 @@ def _apply_rank(entity: pd.Series, rank_groups: list[dict[str, str]]) -> Union[s
         entity_mask_rank_group = rank_group['entity_name']
         entity_type_rank_group = rank_group['entity_type']
 
-        if fnmatch(entity_name, entity_mask_rank_group) is True and entity_type == entity_type_rank_group:
+        if fnmatch(entity_name, entity_mask_rank_group) and entity_type == entity_type_rank_group:
             ranks.append(rank_group['rank'])
 
     if ranks:
@@ -117,7 +117,7 @@ def fill_dag(t_dag: TDag) -> None:
         source=['apply_rank_to_entities'],
         transformer_callable=upload_dd_search,
         op_kwargs={
-            'conn_id': 'dd-search',
+            'conn_id': 'dd_search',
             'index_name': 'dd-search',
             'chunk_size': 10_000,
         },
