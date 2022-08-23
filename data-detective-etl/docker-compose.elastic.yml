@@ -1,0 +1,44 @@
+version: '2.4'
+
+services:
+  dd_search:
+    image: elasticsearch:${ELASTIC_STACK_VERSION}
+    environment:
+      - node.name=dd_search01
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - ingest.geoip.downloader.enabled=false
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test: curl -s http://dd_search:9200/_cluster/health?wait_for_status=green >/dev/null || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  setup_kibana:
+    image: curlimages/curl:${CURL_VERSION}
+    depends_on:
+      dd_search:
+        condition: service_healthy
+    command: >
+      -s -X POST -u elastic:${ELASTIC_PASSWORD} -H "Content-Type: application/json" http://dd_search:9200/_security/user/kibana_system/_password -d "{\"password\":\"${KIBANA_PASSWORD}\"}"
+
+  kibana:
+    depends_on:
+      dd_search:
+        condition: service_healthy
+    image: kibana:${ELASTIC_STACK_VERSION}
+    ports:
+      - "5601:5601"
+    environment:
+      - SERVERNAME=kibana
+      - ELASTICSEARCH_HOSTS=http://dd_search:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+    healthcheck:
+      test: curl -s -I http://localhost:5601 | grep -q 'HTTP/1.1 302 Found' || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 10
