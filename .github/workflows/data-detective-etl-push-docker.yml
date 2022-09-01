@@ -1,0 +1,32 @@
+---
+name: Publish docker image for data-detective-etl
+
+on:
+  push:
+    tags:
+      - "data-detective-etl/*.*.*"
+
+env:
+  DOCKER_USER: ${{secrets.DOCKER_USER}}
+  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+  REPO_NAME: ${{secrets.DD_ETL_REPO_NAME}}
+  TAG: ${{github.ref_name}}
+
+jobs:
+  push-dd-etl-image-to-docker-hub:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: docker login
+        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Get tag digit
+        id: docker_tag
+        run: echo "::set-output name=tag::${TAG##*/}"
+
+      - name: Build docker image
+        run: docker build -f data-detective-etl/Dockerfile.dockerhub -t $DOCKER_USER/$REPO_NAME:${{steps.docker_tag.outputs.tag}} data-detective-etl/
+
+      - name: Push docker image to registry
+        run: docker push $DOCKER_USER/$REPO_NAME:${{steps.docker_tag.outputs.tag}}
