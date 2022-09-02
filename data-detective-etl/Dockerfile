@@ -66,3 +66,10 @@ VOLUME $AIRFLOW_HOME/dags \
        $AIRFLOW_HOME/common \
        $AIRFLOW_HOME/tests \
        $AIRFLOW_HOME/tests_data
+
+FROM prod as demo
+
+USER airflow
+
+COPY dags $AIRFLOW_HOME/dags
+COPY common $AIRFLOW_HOME/common
