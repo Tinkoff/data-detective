@@ -26,7 +26,7 @@ jobs:
         run: echo "::set-output name=tag::${TAG##*/}"
 
       - name: Build docker image
-        run: docker build -f data-detective-etl/Dockerfile.dockerhub -t $DOCKER_USER/$REPO_NAME:${{steps.docker_tag.outputs.tag}} data-detective-etl/
+        run: docker build --target demo -t $DOCKER_USER/$REPO_NAME:${{steps.docker_tag.outputs.tag}} data-detective-etl/
 
       - name: Push docker image to registry
         run: docker push $DOCKER_USER/$REPO_NAME:${{steps.docker_tag.outputs.tag}}
