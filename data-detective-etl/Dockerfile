@@ -69,26 +69,7 @@ VOLUME $AIRFLOW_HOME/dags \
 
 FROM prod as demo
 
-USER root
-RUN apt-get update --allow-releaseinfo-change \
- && apt-get install -q -y --no-install-recommends curl openssh-server \
- && apt-get install -q -y --no-install-recommends sudo -o DPkg::Options::="--force-confnew" \
- && apt-get clean all \
- && echo 'airflow:airflow' | chpasswd \
- && echo "airflow ALL = NOPASSWD: /usr/sbin/sshd" >> /etc/sudoers.d/airflow \
- && mkdir /var/run/sshd \
- && sed -i 's/\#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
- && sed -i 's/\#PermitUserEnvironment no/PermitUserEnvironment yes/' /etc/ssh/sshd_config \
- && mkdir $AIRFLOW_HOME/.ssh \
- && echo "AIRFLOW_HOME=$AIRFLOW_HOME" > $AIRFLOW_HOME/.ssh/environment \
- && echo "PYTHONPATH=$PATH:$AIRFLOW_HOME:$AIRFLOW_HOME/dags" >> $AIRFLOW_HOME/.ssh/environment \
- && chown -R airflow:airflow $AIRFLOW_HOME
-EXPOSE 22
-
 USER airflow
-
-RUN mkdir $AIRFLOW_HOME/dags \
- && mkdir $AIRFLOW_HOME/common
 
 COPY dags $AIRFLOW_HOME/dags
 COPY common $AIRFLOW_HOME/common
