@@ -17,7 +17,7 @@ services:
       context: docker/ssh_service
 
   metadb:
-    image: postgres:13.8-bullseye
+    image: postgres:13.4-alpine
     environment:
       - POSTGRES_USER=${META_USER}
       - POSTGRES_PASSWORD=${META_PASS}
@@ -30,7 +30,7 @@ services:
       retries: 10
 
   pg:
-    image: postgres:13.8-bullseye
+    image: postgres:13.4-alpine
     environment:
       - POSTGRES_USER=${META_USER}
       - POSTGRES_PASSWORD=${META_PASS}
