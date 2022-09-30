@@ -33,7 +33,7 @@ services:
     retries: 30
 
   metadb:
-    image: postgres:13.4-alpine
+    image: postgres:13.8-bullseye
     environment:
       - POSTGRES_USER=${META_USER}
       - POSTGRES_PASSWORD=${META_PASS}
@@ -47,7 +47,7 @@ services:
     restart: always
 
   pg:
-    image: postgres:13.4-alpine
+    image: postgres:13.8-bullseye
     environment:
       - POSTGRES_USER=${META_USER}
       - POSTGRES_PASSWORD=${META_PASS}
