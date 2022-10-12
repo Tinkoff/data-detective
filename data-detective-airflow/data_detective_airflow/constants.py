@@ -13,6 +13,7 @@ WORK_S3_BUCKET: str = Variable.get('WORK_S3_BUCKET', default_var='dev')
 WORK_S3_PREFIX: str = 'dd_airflow'
 WORK_FILE_PREFIX: str = 'wrk'
 WORK_PG_SCHEMA_PREFIX: str = 'wrk'
+XCOM_WORK_KEY_PREFIX = 'work_'
 
 # DAG
 DEFAULT_START_DATE = datetime(2020, 4, 8)
