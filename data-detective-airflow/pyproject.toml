@@ -27,7 +27,7 @@ apache-airflow-providers-celery = "*"
 apache-airflow-providers-postgres = "*"
 apache-airflow-providers-redis = "*"
 apache-airflow-providers-ssh = "*"
-pandas = "^1.1, <1.4"
+pandas = "^1.1, <1.6"
 petl = "^1.7"
 
 
