@@ -1,6 +1,6 @@
 # Main docker building
 ARG PYTHON_VERSION=${PYTHON_VERSION:-3.9}
-FROM python:${PYTHON_VERSION}-slim-buster as base
+FROM python:${PYTHON_VERSION}-slim-bullseye as base
 
 ARG AIRFLOW_USER_UID=50000
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -22,10 +22,10 @@ ENV PYTHONPATH=$PATH:${AIRFLOW_HOME} \
 
 
 # Устанавливаем pip из более полного образа python-image (в основном - slim не достаточно утилит для pip install)
-FROM python:${PYTHON_VERSION}-buster as builder
+FROM python:${PYTHON_VERSION}-bullseye as builder
 
 ARG AIRFLOW_USER_UID=50000
-ARG POETRY_VERSION=${POETRY_VERSION:-1.1.13}
+ARG POETRY_VERSION=${POETRY_VERSION:-1.2.2}
 
 ENV AIRFLOW_HOME=/usr/local/airflow/ \
     AIRFLOW_USER_UID=${AIRFLOW_USER_UID}
@@ -43,9 +43,11 @@ ENV POETRY_VERSION=${POETRY_VERSION} \
 
 WORKDIR ${AIRFLOW_HOME}
 COPY pyproject.toml poetry.lock ${AIRFLOW_HOME}/
+# poetry not work without virtualenv https://github.com/python-poetry/poetry/issues/1214
 RUN pip install --no-cache-dir "poetry==${POETRY_VERSION}" \
     && poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi
+    && poetry export -f requirements.txt --with dev --output requirements.txt \
+    && pip install -r requirements.txt
 
 
 FROM base as dev
@@ -60,7 +62,7 @@ WORKDIR ${AIRFLOW_HOME}
 USER root
 RUN echo "airflow ALL = NOPASSWD: /usr/sbin/sshd" >> /etc/sudoers.d/airflow \
  && apt-get update --allow-releaseinfo-change\
- && apt-get install -y openssh-server netcat make\
+ && apt-get install -y openssh-server netcat make libpq5\
  && apt-get clean \
  && mkdir /var/run/sshd \
  && sed -i 's/\#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \

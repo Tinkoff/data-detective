@@ -3,15 +3,11 @@ import allure
 import pytest
 from petl import Table
 
-from airflow.models.taskinstance import TaskInstance
-from airflow.utils.timezone import utcnow
-
 from data_detective_airflow.dag_generator import ResultType, WorkType
 from data_detective_airflow.operators.transformers import PyTransform
-from data_detective_airflow.test_utilities import get_template_context, run_task
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context, run_task
 
 # petl tests
-
 table1 = petl.wrap([
     ['account_rk', 'name', 'age'],
     [123, 'Sergey', 25],
@@ -50,6 +46,8 @@ def test_pytransform_petl(test_dag):
     task = PyTransform(task_id='test_pytransform_petl', source=[source_task.task_id],
                        transformer_callable=transform, dag=test_dag)
 
+    create_or_get_dagrun(test_dag, source_task)
+
     run_task(task=source_task, context=get_template_context(source_task))
     context = get_template_context(task)
     run_task(task=task, context=context)
@@ -73,6 +71,8 @@ def test_petl_op_kwargs(test_dag):
     task = PyTransform(task_id='test_petl', source=['source_task'],
                        op_kwargs={'p1': 'test1', 'p2': 'test2'},
                        transformer_callable=transform_with_result_kwargs, dag=test_dag)
+
+    create_or_get_dagrun(test_dag, source_task)
 
     run_task(task=source_task, context=get_template_context(source_task))
     context = get_template_context(task)
@@ -110,6 +110,8 @@ def test_multiple_sources(test_dag):
         dag=test_dag
     )
 
+    create_or_get_dagrun(test_dag, source_task)
+
     run_task(task=source_task, context=get_template_context(source_task))
     context = get_template_context(task)
     run_task(task=task, context=context)
@@ -140,6 +142,8 @@ def test_petl_empty_source(test_dag):
             transformer_callable=transform,
             dag=test_dag
         )
+
+        create_or_get_dagrun(test_dag, source_task)
 
         context = get_template_context(task)
 
@@ -174,6 +178,8 @@ def test_petl_empty_target(test_dag):
             dag=test_dag
         )
 
+        create_or_get_dagrun(test_dag, source_task)
+
         context = get_template_context(task)
 
     with allure.step('Run tasks'):
@@ -206,6 +212,8 @@ def test_petl_not_exist_source(test_dag):
             transformer_callable=transform,
             dag=test_dag
         )
+
+        create_or_get_dagrun(test_dag, source_task)
 
         context = get_template_context(task)
 

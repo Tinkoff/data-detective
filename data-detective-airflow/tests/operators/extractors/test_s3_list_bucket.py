@@ -4,7 +4,7 @@ import allure
 from data_detective_airflow.constants import S3_CONN_ID
 from data_detective_airflow.operators import S3ListBucket
 from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
-from data_detective_airflow.test_utilities import run_task, assert_frame_equal
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context, run_task, assert_frame_equal
 from tests_data.operators.extractors.s3_dataset import dataset, setup_storage, DD_AIRFLOW_BUCKET
 
 
@@ -15,13 +15,16 @@ from tests_data.operators.extractors.s3_dataset import dataset, setup_storage, D
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_s3_list_bucket(test_dag: TDag, context, setup_storage):
+def test_s3_list_bucket(test_dag: TDag, setup_storage):
     task = S3ListBucket(
         conn_id=S3_CONN_ID,
         bucket=DD_AIRFLOW_BUCKET,
         task_id="test_s3_list_bucket",
         prefix=dataset['source']['path'].values[0],
         dag=test_dag)
+
+    create_or_get_dagrun(test_dag, task)
+    context = get_template_context(task)
 
     test_dag.get_work(test_dag.conn_id).create(context)
     run_task(task=task, context=context)
@@ -37,13 +40,16 @@ def test_s3_list_bucket(test_dag: TDag, context, setup_storage):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_s3_empty_list(test_dag: TDag, context, setup_storage):
+def test_s3_empty_list(test_dag: TDag, setup_storage):
     task = S3ListBucket(
         conn_id=S3_CONN_ID,
         bucket=DD_AIRFLOW_BUCKET,
         task_id="test_s3_empty_list",
         prefix='empty',
         dag=test_dag)
+
+    create_or_get_dagrun(test_dag, task)
+    context = get_template_context(task)
 
     test_dag.get_work(test_dag.conn_id).create(context)
     run_task(task=task, context=context)

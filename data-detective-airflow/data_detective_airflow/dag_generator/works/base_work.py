@@ -10,12 +10,12 @@ from abc import ABC, abstractmethod
 from collections.abc import Callable
 from enum import Enum
 from functools import wraps
-from typing import Any, Dict, Optional, Text, Union
+from typing import Any, Optional, Union
 
 from airflow.models.xcom import XCom
 from airflow.utils.log.logging_mixin import LoggingMixin
 
-from data_detective_airflow.constants import CLEAR_WORK_KEY, DAG_ID_KEY, TASK_ID_KEY
+from data_detective_airflow.constants import CLEAR_WORK_KEY, DAG_ID_KEY, TASK_ID_KEY, XCOM_WORK_KEY_PREFIX
 
 
 class WorkType(Enum):
@@ -57,8 +57,6 @@ class BaseWork(ABC, LoggingMixin):
     Note: each worker will have its own instance of this class created, so one worker will not know that a work has already been created in another worker
     """
 
-    XCOM_TASK_KEY = 'work'
-
     def __init__(self, dag, work_type: str, conn_id: str = None, **kwargs):  # pylint: disable=super-init-not-called
         del kwargs
 
@@ -78,7 +76,7 @@ class BaseWork(ABC, LoggingMixin):
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def get_path(self, context: Dict, prefix: str = 'work_airflow'):
+    def get_path(self, context: dict, prefix: str = 'work_airflow'):
         """Return a unique work name for this context
         (for dag_run)
         Important note! The name of the work is uniquely determined by dag_run
@@ -119,13 +117,13 @@ class BaseWork(ABC, LoggingMixin):
             self._clear_logic(context)
             self._exists = False
 
-    def get_xcom_key(self, context: Dict):
+    def get_xcom_key(self, context: dict):
         """Return the key for XCom for the current work and task"""
         task = context.get('task')
-        base_xcom_key = f'{self.work_type}-{self.conn_id}'
+        base_xcom_key = f'{XCOM_WORK_KEY_PREFIX}{self.work_type}-{self.conn_id}'
         return f'{base_xcom_key}-{task.task_id}' if task else base_xcom_key
 
-    def get_xcom_params(self, context: Dict) -> Dict:
+    def get_xcom_params(self, context: dict) -> dict:
         """Serialize work to a dictionary for writing to XCom"""
         return {
             'key': self.get_xcom_key(context),
@@ -134,12 +132,12 @@ class BaseWork(ABC, LoggingMixin):
             'value': {
                 '_exists': self._exists,
             },
-            'execution_date': context['execution_date'],
-            TASK_ID_KEY: BaseWork.XCOM_TASK_KEY,
+            'run_id': context['run_id'],
+            TASK_ID_KEY: context.get('task').task_id,
             DAG_ID_KEY: self.dag.dag_id,
         }
 
-    def _get_attrs_from_xcom(self, context: Dict) -> Dict:
+    def _get_attrs_from_xcom(self, context: dict) -> dict:
         """Вернуть из XCom атрибуты для текущего таска"""
         to_get = self.get_xcom_params(context)
         to_get.pop('value')
@@ -153,7 +151,7 @@ class BaseWork(ABC, LoggingMixin):
             setattr(self, key, value)
 
     @abstractmethod
-    def _create_logic(self, context: Dict):
+    def _create_logic(self, context: dict):
         """Create a work unique for the context.
         Important note! The inheritors need to make this method idempotent, i.e. the method can be called
         as many times as needed.
@@ -163,7 +161,7 @@ class BaseWork(ABC, LoggingMixin):
         """
 
     @abstractmethod
-    def _clear_logic(self, context: Dict):
+    def _clear_logic(self, context: dict):
         """Deinitialization"""
 
     @abstractmethod

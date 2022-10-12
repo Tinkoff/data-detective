@@ -7,7 +7,7 @@ from airflow.utils.log.logging_mixin import LoggingMixin
 
 class LoggingThread(LoggingMixin):
     def __init__(self, context, interval=300):
-        super().__init__(context=context)
+        super().__init__(context=context['ti'])
         self.interval = interval
         self.dag_id = context['dag'].dag_id
         self.task_id = context['task'].task_id

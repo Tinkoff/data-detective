@@ -1,5 +1,3 @@
-import uuid
-
 import allure
 
 from airflow import settings

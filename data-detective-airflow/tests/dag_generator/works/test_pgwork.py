@@ -7,6 +7,7 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 from data_detective_airflow.constants import PG_CONN_ID
 from data_detective_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context
 
 
 def is_work_schema_exists(work):
@@ -38,7 +39,9 @@ def get_work_schema(work, context):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True)
-def test_no_error_on_double_clean(test_dag, context):
+def test_no_error_on_double_clean(test_dag, dummy_task):
+    create_or_get_dagrun(test_dag, dummy_task)
+    context = get_template_context(dummy_task)
     test_dag.get_work(work_type=test_dag.work_type,
                       work_conn_id=test_dag.conn_id).create(context)
     test_dag.clear_all_works(context)
@@ -52,7 +55,9 @@ def test_no_error_on_double_clean(test_dag, context):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True)
-def test_create(test_dag, context):
+def test_create(test_dag, dummy_task):
+    create_or_get_dagrun(test_dag, dummy_task)
+    context = get_template_context(dummy_task)
     work = test_dag.get_work(work_type=test_dag.work_type,
                              work_conn_id=test_dag.conn_id)
     work.create(context)
@@ -67,7 +72,9 @@ def test_create(test_dag, context):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True)
-def test_clean(test_dag, context):
+def test_clean(test_dag, dummy_task):
+    create_or_get_dagrun(test_dag, dummy_task)
+    context = get_template_context(dummy_task)
     work = test_dag.get_work(work_type=test_dag.work_type,
                              work_conn_id=test_dag.conn_id)
     work.create(context)

@@ -5,6 +5,7 @@ from pandas import DataFrame
 from data_detective_airflow.constants import PG_CONN_ID
 from data_detective_airflow.operators.extractors import DBDump
 from data_detective_airflow.dag_generator import ResultType, WorkType
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context
 
 
 @allure.feature('Results')
@@ -14,10 +15,11 @@ from data_detective_airflow.dag_generator import ResultType, WorkType
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True, ids=['pickle-result-write'])
-def test_write(test_dag, context):
+def test_write(test_dag):
     task = DBDump(sql=f"select 1 as id",
                   task_id="test_pg_query", conn_id=PG_CONN_ID, dag=test_dag)
-
+    create_or_get_dagrun(test_dag, task)
+    context = get_template_context(task)
     work = test_dag.get_work(work_type=test_dag.work_type)
     work.create(context)
     res = test_dag.get_result(operator=task,
@@ -38,7 +40,9 @@ def test_write(test_dag, context):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True, ids=['pickle-result-read'])
-def test_read(test_dag, dummy_task, context):
+def test_read(test_dag, dummy_task):
+    create_or_get_dagrun(test_dag, dummy_task)
+    context = get_template_context(dummy_task)
     work = test_dag.get_work(work_type=test_dag.work_type)
     work.create(context)
     res = test_dag.get_result(operator=dummy_task,

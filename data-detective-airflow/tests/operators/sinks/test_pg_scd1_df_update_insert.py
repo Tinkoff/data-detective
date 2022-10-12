@@ -6,7 +6,7 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 from data_detective_airflow.constants import PG_CONN_ID
 from data_detective_airflow.operators import PythonDump, PgSCD1DFUpdateInsert
-from data_detective_airflow.test_utilities import run_task, assert_frame_equal, get_template_context
+from data_detective_airflow.test_utilities import create_or_get_dagrun, run_task, assert_frame_equal, get_template_context
 
 from tests_data.operators.sinks.pg_scd1_df_update_insert_dataset import dataset
 
@@ -47,6 +47,8 @@ def test_scd1_df(test_dag, case, chunk_row_number):
         'dag': test_dag}
 
     task = PgSCD1DFUpdateInsert(**task_params)
+
+    create_or_get_dagrun(test_dag, source_task)
 
     source_context = get_template_context(source_task)
     run_task(task=source_task, context=source_context)

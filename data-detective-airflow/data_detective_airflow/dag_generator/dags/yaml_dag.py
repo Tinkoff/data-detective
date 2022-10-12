@@ -27,7 +27,7 @@ class YamlDag(TDag):
             dag_id=Path(dag_dir).name,
             factory=self.config['factory'],
             start_date=constants.DEFAULT_START_DATE,
-            schedule_interval=self.config.get('schedule_interval'),
+            schedule=self.config.get('schedule_interval'),
             description=self.config.get('description', ''),
             default_args=self.config['default_args'],
             template_searchpath=dag_dir,

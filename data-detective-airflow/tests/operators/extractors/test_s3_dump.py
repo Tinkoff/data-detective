@@ -5,7 +5,7 @@ from pandas import DataFrame
 from data_detective_airflow.constants import S3_CONN_ID
 from data_detective_airflow.operators.extractors import PythonDump, S3Dump
 from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
-from data_detective_airflow.test_utilities import run_task
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context, run_task
 from data_detective_airflow.test_utilities.assertions import assert_frame_equal
 from tests_data.operators.extractors.s3_dataset import dataset, setup_storage, DD_AIRFLOW_BUCKET
 
@@ -17,7 +17,7 @@ from tests_data.operators.extractors.s3_dataset import dataset, setup_storage, D
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_s3_dump_single(test_dag: TDag, context, setup_storage):
+def test_s3_dump_single(test_dag: TDag, setup_storage):
     test_dag.clear()
 
     task = S3Dump(
@@ -26,6 +26,9 @@ def test_s3_dump_single(test_dag: TDag, context, setup_storage):
         task_id="test_s3_dump_single",
         object_path=dataset['source']['path'].values[0],
         dag=test_dag)
+
+    create_or_get_dagrun(test_dag, task)
+    context = get_template_context(task)
 
     test_dag.get_work(test_dag.conn_id).create(context)
     run_task(task=task, context=context)
@@ -41,7 +44,7 @@ def test_s3_dump_single(test_dag: TDag, context, setup_storage):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_s3_dump_source(test_dag: TDag, mocker, context, setup_storage):
+def test_s3_dump_source(test_dag: TDag, mocker, setup_storage):
     test_dag.clear()
 
     upstream_task = PythonDump(
@@ -49,8 +52,6 @@ def test_s3_dump_source(test_dag: TDag, mocker, context, setup_storage):
         dag=test_dag,
         python_callable=lambda x: DataFrame()
     )
-    run_task(upstream_task, context)
-    upstream_task.result.read = mocker.MagicMock(return_value=dataset['source'][['path']])
 
     task = S3Dump(
         conn_id=S3_CONN_ID,
@@ -59,6 +60,12 @@ def test_s3_dump_source(test_dag: TDag, mocker, context, setup_storage):
         source=['upstream_task'],
         object_column='path',
         dag=test_dag)
+
+    create_or_get_dagrun(test_dag, upstream_task)
+    context = get_template_context(task)
+
+    run_task(upstream_task, context)
+    upstream_task.result.read = mocker.MagicMock(return_value=dataset['source'][['path']])
 
     test_dag.get_work(test_dag.conn_id).create(context)
 
