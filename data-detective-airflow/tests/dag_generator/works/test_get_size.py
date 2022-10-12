@@ -15,9 +15,9 @@ from data_detective_airflow.test_utilities import create_or_get_dagrun, get_temp
 @pytest.mark.parametrize(
     'test_dag, expected',
     [
-        ((ResultType.RESULT_PICKLE.value, WorkType.WORK_FILE.value, None), '740.00 B'),
-        ((ResultType.RESULT_PICKLE.value, WorkType.WORK_S3.value, None), '740.00 B'),
-        ((ResultType.RESULT_PICKLE.value, WorkType.WORK_SFTP.value, None), '740.00 B'),
+        ((ResultType.RESULT_PICKLE.value, WorkType.WORK_FILE.value, None), '694.00 B'),
+        ((ResultType.RESULT_PICKLE.value, WorkType.WORK_S3.value, None), '694.00 B'),
+        ((ResultType.RESULT_PICKLE.value, WorkType.WORK_SFTP.value, None), '694.00 B'),
         ((ResultType.RESULT_PG.value, WorkType.WORK_PG.value, None), '8.00 KB')
     ],
     indirect=['test_dag'],
