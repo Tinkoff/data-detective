@@ -43,6 +43,7 @@ ENV POETRY_VERSION=${POETRY_VERSION} \
 
 WORKDIR ${AIRFLOW_HOME}
 COPY pyproject.toml poetry.lock ${AIRFLOW_HOME}/
+# poetry not work without virtualenv https://github.com/python-poetry/poetry/issues/1214
 RUN pip install --no-cache-dir "poetry==${POETRY_VERSION}" \
     && poetry config virtualenvs.create false \
     && poetry export -f requirements.txt --with dev --output requirements.txt \
