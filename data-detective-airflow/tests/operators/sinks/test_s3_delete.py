@@ -9,7 +9,7 @@ from data_detective_airflow.constants import S3_CONN_ID, WORK_S3_BUCKET
 from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
 from data_detective_airflow.operators.extractors import PythonDump
 from data_detective_airflow.operators.sinks import S3Delete
-from data_detective_airflow.test_utilities import get_template_context, run_task
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context, run_task
 from tests_data.operators.sinks.s3_delete_dataset import dataset
 
 
@@ -20,7 +20,7 @@ from tests_data.operators.sinks.s3_delete_dataset import dataset
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_s3_delete(test_dag: TDag, mocker, context):
+def test_s3_delete(test_dag: TDag, mocker):
     test_dag.clear()
 
     # s3_dump.py:67
@@ -37,9 +37,6 @@ def test_s3_delete(test_dag: TDag, mocker, context):
         task_id='upstream_task',
         dag=test_dag)
 
-    run_task(upstream_task, get_template_context(upstream_task))
-    upstream_task.result.read = mocker.MagicMock(return_value=dataset)
-
     task = S3Delete(
         conn_id=S3_CONN_ID,
         bucket=WORK_S3_BUCKET,
@@ -48,8 +45,13 @@ def test_s3_delete(test_dag: TDag, mocker, context):
         filename_column='path',
         dag=test_dag)
 
-    test_dag.get_work(test_dag.conn_id).create(context)
-    run_task(task=task, context=context)
+    create_or_get_dagrun(test_dag, upstream_task)
+
+    run_task(upstream_task, get_template_context(upstream_task))
+    upstream_task.result.read = mocker.MagicMock(return_value=dataset)
+
+    test_dag.get_work(test_dag.conn_id).create(get_template_context(task))
+    run_task(task=task, context=get_template_context(task))
 
     existed_objects = client.list_objects(
         Bucket=WORK_S3_BUCKET,
