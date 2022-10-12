@@ -72,7 +72,7 @@ def fill_table_from_dataframe(conn: psycopg2.extensions.connection, dframe: Data
         logging.info(f'Run sql: {trunc_cmd}')
         cur.execute(trunc_cmd)
         logging.info('Fill data')
-        cur.copy_from(file=buffer, table=full_table_name, sep=sep)
+        cur.copy_expert(f"COPY {full_table_name} FROM STDIN DELIMITER '{sep}';", file=buffer)
         conn.commit()
         return True
     except psycopg2.DatabaseError as err:
