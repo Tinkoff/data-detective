@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 from typing import Callable
 
 from airflow import DAG
@@ -6,7 +7,7 @@ from airflow.models.xcom import XCom
 from airflow.utils.context import Context
 from airflow.utils.module_loading import import_string
 
-from data_detective_airflow.constants import PG_CONN_ID, S3_CONN_ID, SFTP_CONN_ID
+from data_detective_airflow.constants import PG_CONN_ID, S3_CONN_ID, SFTP_CONN_ID, XCOM_WORK_KEY_PREFIX
 from data_detective_airflow.dag_generator.results import PgResult, PickleResult
 from data_detective_airflow.dag_generator.results.base_result import BaseResult, ResultType
 from data_detective_airflow.dag_generator.works import FileWork, PgWork, S3Work, SFTPWork
@@ -93,11 +94,14 @@ class TDag(DAG):
     def get_all_works(self, context: Context):
         """Clearing all work on completion of execution"""
         dag_id = self.dag_id
-        execution_date = context['logical_date']
-        xcoms = XCom.get_many(task_ids='work', dag_ids=dag_id, execution_date=execution_date)
+        run_id = context['run_id']
+        xcoms = [xcom for xcom in XCom.get_many(dag_ids=dag_id, run_id=run_id)
+                 if xcom.key.startswith(XCOM_WORK_KEY_PREFIX)]
         works = set()
         for xcom in xcoms:
-            work = self.get_work(work_type=xcom.key.split('-')[0], work_conn_id=xcom.key.split('-')[1])
+            work_key = re.sub(XCOM_WORK_KEY_PREFIX, '', xcom.key).split('-', 2)
+            work_type, work_conn_id = work_key[0], work_key[1]
+            work = self.get_work(work_type=work_type, work_conn_id=work_conn_id)
             work.set_params(params=dict(xcom.value))
             works.add(work)
 
