@@ -22,7 +22,7 @@ ENV PYTHONPATH=$PATH:${AIRFLOW_HOME} \
 
 
 # Устанавливаем pip из более полного образа python-image (в основном - slim не достаточно утилит для pip install)
-FROM python:${PYTHON_VERSION}-buster as builder
+FROM python:${PYTHON_VERSION}-bullseye as builder
 
 ARG AIRFLOW_USER_UID=50000
 ARG POETRY_VERSION=${POETRY_VERSION:-1.2.1}
@@ -45,7 +45,8 @@ WORKDIR ${AIRFLOW_HOME}
 COPY pyproject.toml poetry.lock ${AIRFLOW_HOME}/
 RUN pip install --no-cache-dir "poetry==${POETRY_VERSION}" \
     && poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi
+    && poetry export -f requirements.txt --with dev --output requirements.txt \
+    && pip install -r requirements.txt
 
 
 FROM base as dev
@@ -60,7 +61,7 @@ WORKDIR ${AIRFLOW_HOME}
 USER root
 RUN echo "airflow ALL = NOPASSWD: /usr/sbin/sshd" >> /etc/sudoers.d/airflow \
  && apt-get update --allow-releaseinfo-change\
- && apt-get install -y openssh-server netcat make\
+ && apt-get install -y openssh-server netcat make libpq5\
  && apt-get clean \
  && mkdir /var/run/sshd \
  && sed -i 's/\#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
