@@ -1,6 +1,6 @@
 FROM python:3.9-buster as prod
 
-ARG POETRY_VERSION=1.1.13
+ARG POETRY_VERSION=1.2.2
 ARG AIRFLOW_USER_UID=50000
 ENV POETRY_VERSION=${POETRY_VERSION} \
     POETRY_CORE_VERSION=${POETRY_CORE_VERSION} \
@@ -20,10 +20,11 @@ ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
 
 WORKDIR $AIRFLOW_HOME
 COPY pyproject.toml poetry.lock $AIRFLOW_HOME/
+# poetry not work without virtualenv https://github.com/python-poetry/poetry/issues/1214
 RUN pip install --no-cache-dir "poetry==${POETRY_VERSION}" \
     && poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi \
-    && rm -rf .cache/pypoetry
+    && poetry export -f requirements.txt --with dev --output requirements.txt \
+    && pip install -r requirements.txt
 
 # Custom connections
 COPY /docker/init-connections.sh /docker/entrypoint.sh $AIRFLOW_HOME/
