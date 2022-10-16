@@ -9,5 +9,5 @@
 #  More info: https://help.github.com/articles/about-codeowners/
 #
 
-* @mebelousov @clumsy-fish @ikanashov
+* @mebelousov @clumsy-fish @ikanashov @SergeyBychkov
 # will be requested for review when someone opens a pull request
