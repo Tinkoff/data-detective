@@ -22,8 +22,6 @@ Quickstart instructions for each component of the project are available in the o
 
 - [data-detective-airflow](https://github.com/tinkoff/data-detective/tree/master/data-detective-airflow): This repository contains the source code of data-detective-airflow project. Also available in the [PyPi](https://pypi.org/project/data-detective-airflow/) repository. 
 - [data-detective-etl](https://github.com/tinkoff/data-detective/tree/master/data-detective-etl): This repository contains the source code of data-detective-etl project.
-- [data-detective-api](): Coming soon.
-- [data-detective-web](): Coming soon.
 
 ## Contributing
 Our team always welcomes contributions to the project. Please see the [contributing](https://github.com/tinkoff/data-detective/blob/master/CONTRIBUTING.md) instruction for more information.
