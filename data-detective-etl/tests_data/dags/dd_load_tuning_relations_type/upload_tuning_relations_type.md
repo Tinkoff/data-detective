@@ -1,7 +1,5 @@
-| source_type    | target_type   | attribute_type   | relation_type   | source_group_name   | target_group_name   | attribute_group_name   | loaded_by                     |
-|:---------------|:--------------|:-----------------|:----------------|:--------------------|:--------------------|:-----------------------|:------------------------------|
-| COLUMN         | COLUMN        | JOB              | Loads           | SOURCE COLUMNS      | TARGET COLUMNS      | JOBS                   | dd_load_tuning_relations_type |
-| LOGICAL_COLUMN | COLUMN        |                  | Describes       | IS DESCRIBED        | DESCRIBES           |                        | dd_load_tuning_relations_type |
-| LOGICAL_SCHEMA | SCHEMA        |                  | Describes       | IS DESCRIBED        | DESCRIBES           |                        | dd_load_tuning_relations_type |
-| LOGICAL_TABLE  | TABLE         |                  | Describes       | IS DESCRIBED        | DESCRIBES           |                        | dd_load_tuning_relations_type |
-| TABLE          | TABLE         | JOB              | Loads           | SOURCE TABLES       | TARGET TABLES       | JOBS                   | dd_load_tuning_relations_type |
+| source_type    | target_type   | attribute_type   | relation_type   | source_group_code                        | target_group_code                        | attribute_group_code           | loaded_by                     |
+|:---------------|:--------------|:-----------------|:----------------|:-----------------------------------------|:-----------------------------------------|:-------------------------------|:------------------------------|
+| COLUMN         | COLUMN        | JOB              | Loads           | data.relations-type.group.source-columns | data.relations-type.group.target-columns | data.relations-type.group.jobs | dd_load_tuning_relations_type |
+| LOGICAL_COLUMN | COLUMN        |                  | Describes       | data.relations-type.group.is-described   | data.relations-type.group.describes      |                                | dd_load_tuning_relations_type |
+| TABLE          | TABLE         | JOB              | Loads           | data.relations-type.group.source-tabless | data.relations-type.group.target-tables  | data.relations-type.group.jobs | dd_load_tuning_relations_type |
