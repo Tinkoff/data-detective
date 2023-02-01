@@ -14,16 +14,21 @@
 | tuning        | relations_type | target_type          | text                        |                  2 |
 | tuning        | relations_type | attribute_type       | text                        |                  3 |
 | tuning        | relations_type | relation_type        | text                        |                  4 |
-| tuning        | relations_type | source_group_name    | text                        |                  5 |
-| tuning        | relations_type | target_group_name    | text                        |                  6 |
-| tuning        | relations_type | attribute_group_name | text                        |                  7 |
+| tuning        | relations_type | source_group_code    | text                        |                  5 |
+| tuning        | relations_type | target_group_code    | text                        |                  6 |
+| tuning        | relations_type | attribute_group_code | text                        |                  7 |
 | tuning        | relations_type | loaded_by            | text                        |                  8 |
 | tuning        | relations_type | processed_dttm       | timestamp without time zone |                  9 |
-| tuning        | search_help    | type                 | text                        |                  1 |
-| tuning        | search_help    | name                 | text                        |                  2 |
-| tuning        | search_help    | description          | text                        |                  3 |
-| tuning        | search_help    | loaded_by            | text                        |                  4 |
-| tuning        | search_help    | processed_dttm       | timestamp without time zone |                  5 |
+| tuning        | messages       | code                 | text                        |                  1 |
+| tuning        | messages       | lang                 | text                        |                  2 |
+| tuning        | messages       | text                 | text                        |                  3 |
+| tuning        | messages       | loaded_by            | text                        |                  4 |
+| tuning        | messages       | processed_dttm       | timestamp without time zone |                  5 |
+| tuning        | dictionary     | type                 | text                        |                  1 |
+| tuning        | dictionary     | code                 | text                        |                  2 |
+| tuning        | dictionary     | message_code         | text                        |                  3 |
+| tuning        | dictionary     | loaded_by            | text                        |                  4 |
+| tuning        | dictionary     | processed_dttm       | timestamp without time zone |                  5 |
 | mart          | entity         | load_dt              | date                        |                  1 |
 | mart          | entity         | urn                  | text                        |                  2 |
 | mart          | entity         | loaded_by            | text                        |                  3 |
@@ -60,10 +65,17 @@
 | dds           | entity         | notifications        | jsonb                       |                 15 |
 | dds           | entity         | tables               | jsonb                       |                 16 |
 | dds           | entity         | tags                 | jsonb                       |                 17 |
-| dds           | entity         | processed_dttm       | timestamp without time zone |                 18 |
+| dds           | entity         | filters              | jsonb                       |                 18 |
+| dds           | entity         | processed_dttm       | timestamp without time zone |                 19 |
 | dds           | relation       | source               | text                        |                  1 |
 | dds           | relation       | destination          | text                        |                  2 |
 | dds           | relation       | type                 | text                        |                  3 |
 | dds           | relation       | loaded_by            | text                        |                  4 |
 | dds           | relation       | attribute            | text                        |                  5 |
 | dds           | relation       | processed_dttm       | timestamp without time zone |                  6 |
+| tuning        | search_help    | type                 | text                        |                  1 |
+| tuning        | search_help    | name                 | text                        |                  2 |
+| tuning        | search_help    | title_code           | text                        |                  3 |
+| tuning        | search_help    | info_code            | text                        |                  4 |
+| tuning        | search_help    | loaded_by            | text                        |                  5 |
+| tuning        | search_help    | processed_dttm       | timestamp without time zone |                  6 |

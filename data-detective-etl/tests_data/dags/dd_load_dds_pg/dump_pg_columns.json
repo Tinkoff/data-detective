@@ -22,7 +22,7 @@
                 "type":"string"
             }
         ],
-        "pandas_version":"0.20.0"
+        "pandas_version":"1.4.0"
     },
     "data":[
         {
@@ -124,21 +124,21 @@
             "table_name":"relations_type"
         },
         {
-            "column_name":"source_group_name",
+            "column_name":"source_group_code",
             "column_type":"text",
             "ordinal_position":5,
             "schema_name":"tuning",
             "table_name":"relations_type"
         },
         {
-            "column_name":"target_group_name",
+            "column_name":"target_group_code",
             "column_type":"text",
             "ordinal_position":6,
             "schema_name":"tuning",
             "table_name":"relations_type"
         },
         {
-            "column_name":"attribute_group_name",
+            "column_name":"attribute_group_code",
             "column_type":"text",
             "ordinal_position":7,
             "schema_name":"tuning",
@@ -159,39 +159,74 @@
             "table_name":"relations_type"
         },
         {
-            "column_name":"type",
+            "column_name":"code",
             "column_type":"text",
             "ordinal_position":1,
             "schema_name":"tuning",
-            "table_name":"search_help"
+            "table_name":"messages"
         },
         {
-            "column_name":"name",
+            "column_name":"lang",
             "column_type":"text",
             "ordinal_position":2,
             "schema_name":"tuning",
-            "table_name":"search_help"
+            "table_name":"messages"
         },
         {
-            "column_name":"description",
+            "column_name":"text",
             "column_type":"text",
             "ordinal_position":3,
             "schema_name":"tuning",
-            "table_name":"search_help"
+            "table_name":"messages"
         },
         {
             "column_name":"loaded_by",
             "column_type":"text",
             "ordinal_position":4,
             "schema_name":"tuning",
-            "table_name":"search_help"
+            "table_name":"messages"
         },
         {
             "column_name":"processed_dttm",
             "column_type":"timestamp without time zone",
             "ordinal_position":5,
             "schema_name":"tuning",
-            "table_name":"search_help"
+            "table_name":"messages"
+        },
+        {
+            "column_name":"type",
+            "column_type":"text",
+            "ordinal_position":1,
+            "schema_name":"tuning",
+            "table_name":"dictionary"
+        },
+        {
+            "column_name":"code",
+            "column_type":"text",
+            "ordinal_position":2,
+            "schema_name":"tuning",
+            "table_name":"dictionary"
+        },
+        {
+            "column_name":"message_code",
+            "column_type":"text",
+            "ordinal_position":3,
+            "schema_name":"tuning",
+            "table_name":"dictionary"
+        },
+        {
+            "column_name":"loaded_by",
+            "column_type":"text",
+            "ordinal_position":4,
+            "schema_name":"tuning",
+            "table_name":"dictionary"
+        },
+        {
+            "column_name":"processed_dttm",
+            "column_type":"timestamp without time zone",
+            "ordinal_position":5,
+            "schema_name":"tuning",
+            "table_name":"dictionary"
         },
         {
             "column_name":"load_dt",
@@ -446,9 +481,16 @@
             "table_name":"entity"
         },
         {
+            "column_name":"filters",
+            "column_type":"jsonb",
+            "ordinal_position":18,
+            "schema_name":"dds",
+            "table_name":"entity"
+        },
+        {
             "column_name":"processed_dttm",
             "column_type":"timestamp without time zone",
-            "ordinal_position":18,
+            "ordinal_position":19,
             "schema_name":"dds",
             "table_name":"entity"
         },
@@ -493,6 +535,48 @@
             "ordinal_position":6,
             "schema_name":"dds",
             "table_name":"relation"
+        },
+        {
+            "column_name":"type",
+            "column_type":"text",
+            "ordinal_position":1,
+            "schema_name":"tuning",
+            "table_name":"search_help"
+        },
+        {
+            "column_name":"name",
+            "column_type":"text",
+            "ordinal_position":2,
+            "schema_name":"tuning",
+            "table_name":"search_help"
+        },
+        {
+            "column_name":"title_code",
+            "column_type":"text",
+            "ordinal_position":3,
+            "schema_name":"tuning",
+            "table_name":"search_help"
+        },
+        {
+            "column_name":"info_code",
+            "column_type":"text",
+            "ordinal_position":4,
+            "schema_name":"tuning",
+            "table_name":"search_help"
+        },
+        {
+            "column_name":"loaded_by",
+            "column_type":"text",
+            "ordinal_position":5,
+            "schema_name":"tuning",
+            "table_name":"search_help"
+        },
+        {
+            "column_name":"processed_dttm",
+            "column_type":"timestamp without time zone",
+            "ordinal_position":6,
+            "schema_name":"tuning",
+            "table_name":"search_help"
         }
     ]
 }

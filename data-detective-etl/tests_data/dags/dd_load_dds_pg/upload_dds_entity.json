@@ -18,6 +18,10 @@
                 "type":"string"
             },
             {
+                "name":"filters",
+                "type":"string"
+            },
+            {
                 "name":"grid",
                 "type":"string"
             },
@@ -70,7 +74,7 @@
                 "type":"string"
             }
         ],
-        "pandas_version":"0.20.0"
+        "pandas_version":"1.4.0"
     },
     "data":[
         {
@@ -78,6 +82,7 @@
             "entity_name":"dds",
             "entity_name_short":null,
             "entity_type":"SCHEMA",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -119,6 +124,7 @@
             "entity_name":"mart",
             "entity_name_short":null,
             "entity_type":"SCHEMA",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -160,6 +166,7 @@
             "entity_name":"public",
             "entity_name_short":null,
             "entity_type":"SCHEMA",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":"standard public schema",
@@ -208,6 +215,7 @@
             "entity_name":"tuning",
             "entity_name_short":null,
             "entity_type":"SCHEMA",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -249,6 +257,7 @@
             "entity_name":"dds.entity",
             "entity_name_short":"entity",
             "entity_type":"TABLE",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -283,13 +292,13 @@
                 "table_rights":[
                     {
                         "rights":[
-                            "INSERT",
                             "TRIGGER",
-                            "REFERENCES",
-                            "TRUNCATE",
-                            "DELETE",
+                            "INSERT",
+                            "SELECT",
                             "UPDATE",
-                            "SELECT"
+                            "DELETE",
+                            "TRUNCATE",
+                            "REFERENCES"
                         ],
                         "grantee":"airflow"
                     }
@@ -372,7 +381,7 @@
                     "data":[
                         {
                             "Account name":"airflow",
-                            "Enable privilege":"['INSERT', 'TRIGGER', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT']"
+                            "Enable privilege":"['TRIGGER', 'INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES']"
                         }
                     ],
                     "header":"Table rights",
@@ -391,6 +400,7 @@
             "entity_name":"dds.relation",
             "entity_name_short":"relation",
             "entity_type":"TABLE",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -421,13 +431,13 @@
                 "table_rights":[
                     {
                         "rights":[
-                            "TRIGGER",
                             "INSERT",
                             "SELECT",
                             "UPDATE",
                             "DELETE",
                             "TRUNCATE",
-                            "REFERENCES"
+                            "REFERENCES",
+                            "TRIGGER"
                         ],
                         "grantee":"airflow"
                     }
@@ -506,7 +516,7 @@
                     "data":[
                         {
                             "Account name":"airflow",
-                            "Enable privilege":"['TRIGGER', 'INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES']"
+                            "Enable privilege":"['INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES', 'TRIGGER']"
                         }
                     ],
                     "header":"Table rights",
@@ -525,6 +535,7 @@
             "entity_name":"dds.sample",
             "entity_name_short":"sample",
             "entity_type":"TABLE",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -540,12 +551,12 @@
                     {
                         "rights":[
                             "INSERT",
-                            "TRIGGER",
-                            "REFERENCES",
-                            "TRUNCATE",
-                            "DELETE",
+                            "SELECT",
                             "UPDATE",
-                            "SELECT"
+                            "DELETE",
+                            "TRUNCATE",
+                            "REFERENCES",
+                            "TRIGGER"
                         ],
                         "grantee":"airflow"
                     }
@@ -608,7 +619,7 @@
                     "data":[
                         {
                             "Account name":"airflow",
-                            "Enable privilege":"['INSERT', 'TRIGGER', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT']"
+                            "Enable privilege":"['INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES', 'TRIGGER']"
                         }
                     ],
                     "header":"Table rights",
@@ -627,6 +638,7 @@
             "entity_name":"mart.entity",
             "entity_name_short":"entity",
             "entity_type":"TABLE",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -636,13 +648,13 @@
                 "table_rights":[
                     {
                         "rights":[
-                            "TRIGGER",
                             "INSERT",
-                            "SELECT",
-                            "UPDATE",
-                            "DELETE",
+                            "TRIGGER",
+                            "REFERENCES",
                             "TRUNCATE",
-                            "REFERENCES"
+                            "DELETE",
+                            "UPDATE",
+                            "SELECT"
                         ],
                         "grantee":"airflow"
                     }
@@ -703,7 +715,7 @@
                     "data":[
                         {
                             "Account name":"airflow",
-                            "Enable privilege":"['TRIGGER', 'INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES']"
+                            "Enable privilege":"['INSERT', 'TRIGGER', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT']"
                         }
                     ],
                     "header":"Table rights",
@@ -722,6 +734,7 @@
             "entity_name":"tuning.breadcrumb",
             "entity_name_short":"breadcrumb",
             "entity_type":"TABLE",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -736,13 +749,13 @@
                 "table_rights":[
                     {
                         "rights":[
-                            "TRIGGER",
-                            "REFERENCES",
-                            "TRUNCATE",
-                            "DELETE",
-                            "UPDATE",
+                            "INSERT",
                             "SELECT",
-                            "INSERT"
+                            "UPDATE",
+                            "DELETE",
+                            "TRUNCATE",
+                            "REFERENCES",
+                            "TRIGGER"
                         ],
                         "grantee":"airflow"
                     }
@@ -805,7 +818,7 @@
                     "data":[
                         {
                             "Account name":"airflow",
-                            "Enable privilege":"['TRIGGER', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT', 'INSERT']"
+                            "Enable privilege":"['INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES', 'TRIGGER']"
                         }
                     ],
                     "header":"Table rights",
@@ -821,9 +834,10 @@
         },
         {
             "codes":null,
-            "entity_name":"tuning.relations_type",
-            "entity_name_short":"relations_type",
+            "entity_name":"tuning.dictionary",
+            "entity_name_short":"dictionary",
             "entity_type":"TABLE",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -833,12 +847,204 @@
                 "table_rights":[
                     {
                         "rights":[
+                            "TRIGGER",
                             "INSERT",
                             "SELECT",
                             "UPDATE",
                             "DELETE",
                             "TRUNCATE",
+                            "REFERENCES"
+                        ],
+                        "grantee":"airflow"
+                    }
+                ],
+                "estimated_rows":0,
+                "full_table_size":8192
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "card_type":"Table",
+                "type_for_search":"Table",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:table:postgres:pg:airflow:tuning:dictionary tuning.dictionary",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Owner",
+                            "Value":"airflow"
+                        },
+                        {
+                            "Key":"Rows",
+                            "Value":"0"
+                        },
+                        {
+                            "Key":"Data size",
+                            "Value":"8.00 KB"
+                        },
+                        {
+                            "Key":"Total relation size",
+                            "Value":"8.00 KB"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                },
+                {
+                    "data":[
+                        {
+
+                        }
+                    ],
+                    "header":"Table indexes",
+                    "columns":[
+
+                    ],
+                    "display_headers":"1"
+                },
+                {
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['TRIGGER', 'INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES']"
+                        }
+                    ],
+                    "header":"Table rights",
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "display_headers":"1"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:table:postgres:pg:airflow:tuning:dictionary"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.messages",
+            "entity_name_short":"messages",
+            "entity_type":"TABLE",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "index_json":null,
+                "table_size":8192,
+                "table_rights":[
+                    {
+                        "rights":[
+                            "TRIGGER",
                             "REFERENCES",
+                            "TRUNCATE",
+                            "DELETE",
+                            "UPDATE",
+                            "SELECT",
+                            "INSERT"
+                        ],
+                        "grantee":"airflow"
+                    }
+                ],
+                "estimated_rows":0,
+                "full_table_size":8192
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "card_type":"Table",
+                "type_for_search":"Table",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:table:postgres:pg:airflow:tuning:messages tuning.messages",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Owner",
+                            "Value":"airflow"
+                        },
+                        {
+                            "Key":"Rows",
+                            "Value":"0"
+                        },
+                        {
+                            "Key":"Data size",
+                            "Value":"8.00 KB"
+                        },
+                        {
+                            "Key":"Total relation size",
+                            "Value":"8.00 KB"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                },
+                {
+                    "data":[
+                        {
+
+                        }
+                    ],
+                    "header":"Table indexes",
+                    "columns":[
+
+                    ],
+                    "display_headers":"1"
+                },
+                {
+                    "data":[
+                        {
+                            "Account name":"airflow",
+                            "Enable privilege":"['TRIGGER', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT', 'INSERT']"
+                        }
+                    ],
+                    "header":"Table rights",
+                    "columns":[
+                        "Account name",
+                        "Enable privilege"
+                    ],
+                    "display_headers":"1"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:table:postgres:pg:airflow:tuning:messages"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.relations_type",
+            "entity_name_short":"relations_type",
+            "entity_type":"TABLE",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "index_json":null,
+                "table_size":8192,
+                "table_rights":[
+                    {
+                        "rights":[
+                            "REFERENCES",
+                            "TRUNCATE",
+                            "DELETE",
+                            "UPDATE",
+                            "SELECT",
+                            "INSERT",
                             "TRIGGER"
                         ],
                         "grantee":"airflow"
@@ -900,7 +1106,7 @@
                     "data":[
                         {
                             "Account name":"airflow",
-                            "Enable privilege":"['INSERT', 'SELECT', 'UPDATE', 'DELETE', 'TRUNCATE', 'REFERENCES', 'TRIGGER']"
+                            "Enable privilege":"['REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT', 'INSERT', 'TRIGGER']"
                         }
                     ],
                     "header":"Table rights",
@@ -919,6 +1125,7 @@
             "entity_name":"tuning.search_help",
             "entity_name_short":"search_help",
             "entity_type":"TABLE",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -928,13 +1135,13 @@
                 "table_rights":[
                     {
                         "rights":[
-                            "TRIGGER",
+                            "INSERT",
                             "REFERENCES",
                             "TRUNCATE",
                             "DELETE",
                             "UPDATE",
                             "SELECT",
-                            "INSERT"
+                            "TRIGGER"
                         ],
                         "grantee":"airflow"
                     }
@@ -995,7 +1202,7 @@
                     "data":[
                         {
                             "Account name":"airflow",
-                            "Enable privilege":"['TRIGGER', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT', 'INSERT']"
+                            "Enable privilege":"['INSERT', 'REFERENCES', 'TRUNCATE', 'DELETE', 'UPDATE', 'SELECT', 'TRIGGER']"
                         }
                     ],
                     "header":"Table rights",
@@ -1014,6 +1221,7 @@
             "entity_name":"dds.entity.codes",
             "entity_name_short":"codes",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1058,6 +1266,7 @@
             "entity_name":"dds.entity.entity_name",
             "entity_name_short":"entity_name",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1102,6 +1311,7 @@
             "entity_name":"dds.entity.entity_name_short",
             "entity_name_short":"entity_name_short",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1146,6 +1356,7 @@
             "entity_name":"dds.entity.entity_type",
             "entity_name_short":"entity_type",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1187,9 +1398,55 @@
         },
         {
             "codes":null,
+            "entity_name":"dds.entity.filters",
+            "entity_name_short":"filters",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"jsonb",
+                "ordinal_position":18
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:filters dds.entity.filters",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"jsonb"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"18"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:filters"
+        },
+        {
+            "codes":null,
             "entity_name":"dds.entity.grid",
             "entity_name_short":"grid",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1234,6 +1491,7 @@
             "entity_name":"dds.entity.htmls",
             "entity_name_short":"htmls",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1278,6 +1536,7 @@
             "entity_name":"dds.entity.info",
             "entity_name_short":"info",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1322,6 +1581,7 @@
             "entity_name":"dds.entity.json_data",
             "entity_name_short":"json_data",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1366,6 +1626,7 @@
             "entity_name":"dds.entity.json_data_ui",
             "entity_name_short":"json_data_ui",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1410,6 +1671,7 @@
             "entity_name":"dds.entity.json_system",
             "entity_name_short":"json_system",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1454,6 +1716,7 @@
             "entity_name":"dds.entity.links",
             "entity_name_short":"links",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1498,6 +1761,7 @@
             "entity_name":"dds.entity.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1542,6 +1806,7 @@
             "entity_name":"dds.entity.notifications",
             "entity_name_short":"notifications",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1586,12 +1851,13 @@
             "entity_name":"dds.entity.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
             "json_data":{
                 "column_type":"timestamp without time zone",
-                "ordinal_position":18
+                "ordinal_position":19
             },
             "json_data_ui":null,
             "json_system":{
@@ -1611,7 +1877,7 @@
                         },
                         {
                             "Key":"Position",
-                            "Value":"18"
+                            "Value":"19"
                         }
                     ],
                     "header":"General",
@@ -1630,6 +1896,7 @@
             "entity_name":"dds.entity.search_data",
             "entity_name_short":"search_data",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1674,6 +1941,7 @@
             "entity_name":"dds.entity.tables",
             "entity_name_short":"tables",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1718,6 +1986,7 @@
             "entity_name":"dds.entity.tags",
             "entity_name_short":"tags",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1762,6 +2031,7 @@
             "entity_name":"dds.entity.urn",
             "entity_name_short":"urn",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1806,6 +2076,7 @@
             "entity_name":"dds.relation.attribute",
             "entity_name_short":"attribute",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1850,6 +2121,7 @@
             "entity_name":"dds.relation.destination",
             "entity_name_short":"destination",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1894,6 +2166,7 @@
             "entity_name":"dds.relation.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1938,6 +2211,7 @@
             "entity_name":"dds.relation.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -1982,6 +2256,7 @@
             "entity_name":"dds.relation.source",
             "entity_name_short":"source",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2026,6 +2301,7 @@
             "entity_name":"dds.relation.type",
             "entity_name_short":"type",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2070,6 +2346,7 @@
             "entity_name":"dds.sample.cnt_rows",
             "entity_name_short":"cnt_rows",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2114,6 +2391,7 @@
             "entity_name":"dds.sample.column_def",
             "entity_name_short":"column_def",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2158,6 +2436,7 @@
             "entity_name":"dds.sample.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2202,6 +2481,7 @@
             "entity_name":"dds.sample.sample_data",
             "entity_name_short":"sample_data",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2246,6 +2526,7 @@
             "entity_name":"dds.sample.urn",
             "entity_name_short":"urn",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2290,6 +2571,7 @@
             "entity_name":"mart.entity.codes",
             "entity_name_short":"codes",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2334,6 +2616,7 @@
             "entity_name":"mart.entity.entity_name",
             "entity_name_short":"entity_name",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2378,6 +2661,7 @@
             "entity_name":"mart.entity.entity_name_short",
             "entity_name_short":"entity_name_short",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2422,6 +2706,7 @@
             "entity_name":"mart.entity.entity_type",
             "entity_name_short":"entity_type",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2466,6 +2751,7 @@
             "entity_name":"mart.entity.grid",
             "entity_name_short":"grid",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2510,6 +2796,7 @@
             "entity_name":"mart.entity.htmls",
             "entity_name_short":"htmls",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2554,6 +2841,7 @@
             "entity_name":"mart.entity.info",
             "entity_name_short":"info",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2598,6 +2886,7 @@
             "entity_name":"mart.entity.json_data",
             "entity_name_short":"json_data",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2642,6 +2931,7 @@
             "entity_name":"mart.entity.json_data_ui",
             "entity_name_short":"json_data_ui",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2686,6 +2976,7 @@
             "entity_name":"mart.entity.json_system",
             "entity_name_short":"json_system",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2730,6 +3021,7 @@
             "entity_name":"mart.entity.links",
             "entity_name_short":"links",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2774,6 +3066,7 @@
             "entity_name":"mart.entity.load_dt",
             "entity_name_short":"load_dt",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2818,6 +3111,7 @@
             "entity_name":"mart.entity.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2862,6 +3156,7 @@
             "entity_name":"mart.entity.notifications",
             "entity_name_short":"notifications",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2906,6 +3201,7 @@
             "entity_name":"mart.entity.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2950,6 +3246,7 @@
             "entity_name":"mart.entity.search_data",
             "entity_name_short":"search_data",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -2994,6 +3291,7 @@
             "entity_name":"mart.entity.tables",
             "entity_name_short":"tables",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3038,6 +3336,7 @@
             "entity_name":"mart.entity.tags",
             "entity_name_short":"tags",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3082,6 +3381,7 @@
             "entity_name":"mart.entity.urn",
             "entity_name_short":"urn",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3126,6 +3426,7 @@
             "entity_name":"tuning.breadcrumb.breadcrumb_entity",
             "entity_name_short":"breadcrumb_entity",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3170,6 +3471,7 @@
             "entity_name":"tuning.breadcrumb.breadcrumb_urn",
             "entity_name_short":"breadcrumb_urn",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3214,6 +3516,7 @@
             "entity_name":"tuning.breadcrumb.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3258,6 +3561,7 @@
             "entity_name":"tuning.breadcrumb.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3302,6 +3606,7 @@
             "entity_name":"tuning.breadcrumb.urn",
             "entity_name_short":"urn",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3343,9 +3648,505 @@
         },
         {
             "codes":null,
-            "entity_name":"tuning.relations_type.attribute_group_name",
-            "entity_name_short":"attribute_group_name",
+            "entity_name":"tuning.dictionary.code",
+            "entity_name_short":"code",
             "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":2
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:dictionary:code tuning.dictionary.code",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"2"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:dictionary:code"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.dictionary.loaded_by",
+            "entity_name_short":"loaded_by",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":4
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:dictionary:loaded_by tuning.dictionary.loaded_by",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"4"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:dictionary:loaded_by"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.dictionary.message_code",
+            "entity_name_short":"message_code",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":3
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:dictionary:message_code tuning.dictionary.message_code",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"3"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:dictionary:message_code"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.relations_type.source_type",
+            "entity_name_short":"source_type",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":1
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:source_type tuning.relations_type.source_type",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"1"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:source_type"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.dictionary.processed_dttm",
+            "entity_name_short":"processed_dttm",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"timestamp without time zone",
+                "ordinal_position":5
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:dictionary:processed_dttm tuning.dictionary.processed_dttm",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"timestamp without time zone"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"5"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:dictionary:processed_dttm"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.dictionary.type",
+            "entity_name_short":"type",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":1
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:dictionary:type tuning.dictionary.type",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"1"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:dictionary:type"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.messages.code",
+            "entity_name_short":"code",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":1
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:messages:code tuning.messages.code",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"1"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:messages:code"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.messages.lang",
+            "entity_name_short":"lang",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":2
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:messages:lang tuning.messages.lang",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"2"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:messages:lang"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.messages.loaded_by",
+            "entity_name_short":"loaded_by",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":4
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:messages:loaded_by tuning.messages.loaded_by",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"4"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:messages:loaded_by"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.messages.processed_dttm",
+            "entity_name_short":"processed_dttm",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"timestamp without time zone",
+                "ordinal_position":5
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:messages:processed_dttm tuning.messages.processed_dttm",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"timestamp without time zone"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"5"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:messages:processed_dttm"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.messages.text",
+            "entity_name_short":"text",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":3
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:messages:text tuning.messages.text",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"3"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:messages:text"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.relations_type.attribute_group_code",
+            "entity_name_short":"attribute_group_code",
+            "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3361,7 +4162,7 @@
             "links":null,
             "loaded_by":"dd_load_dds_pg",
             "notifications":null,
-            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_name tuning.relations_type.attribute_group_name",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_code tuning.relations_type.attribute_group_code",
             "tables":[
                 {
                     "data":[
@@ -3383,13 +4184,14 @@
                 }
             ],
             "tags":null,
-            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_name"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_code"
         },
         {
             "codes":null,
             "entity_name":"tuning.relations_type.attribute_type",
             "entity_name_short":"attribute_type",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3434,6 +4236,7 @@
             "entity_name":"tuning.relations_type.loaded_by",
             "entity_name_short":"loaded_by",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3478,6 +4281,7 @@
             "entity_name":"tuning.relations_type.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3522,6 +4326,7 @@
             "entity_name":"tuning.relations_type.relation_type",
             "entity_name_short":"relation_type",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3563,9 +4368,10 @@
         },
         {
             "codes":null,
-            "entity_name":"tuning.relations_type.source_group_name",
-            "entity_name_short":"source_group_name",
+            "entity_name":"tuning.relations_type.source_group_code",
+            "entity_name_short":"source_group_code",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3581,7 +4387,7 @@
             "links":null,
             "loaded_by":"dd_load_dds_pg",
             "notifications":null,
-            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_name tuning.relations_type.source_group_name",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_code tuning.relations_type.source_group_code",
             "tables":[
                 {
                     "data":[
@@ -3603,57 +4409,14 @@
                 }
             ],
             "tags":null,
-            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_name"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_code"
         },
         {
             "codes":null,
-            "entity_name":"tuning.relations_type.source_type",
-            "entity_name_short":"source_type",
+            "entity_name":"tuning.relations_type.target_group_code",
+            "entity_name_short":"target_group_code",
             "entity_type":"COLUMN",
-            "grid":null,
-            "htmls":null,
-            "info":null,
-            "json_data":{
-                "column_type":"text",
-                "ordinal_position":1
-            },
-            "json_data_ui":null,
-            "json_system":{
-                "type_for_search":"Column",
-                "system_for_search":"Postgres"
-            },
-            "links":null,
-            "loaded_by":"dd_load_dds_pg",
-            "notifications":null,
-            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:source_type tuning.relations_type.source_type",
-            "tables":[
-                {
-                    "data":[
-                        {
-                            "Key":"Type",
-                            "Value":"text"
-                        },
-                        {
-                            "Key":"Position",
-                            "Value":"1"
-                        }
-                    ],
-                    "header":"General",
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "display_headers":"0"
-                }
-            ],
-            "tags":null,
-            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:source_type"
-        },
-        {
-            "codes":null,
-            "entity_name":"tuning.relations_type.target_group_name",
-            "entity_name_short":"target_group_name",
-            "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3669,7 +4432,7 @@
             "links":null,
             "loaded_by":"dd_load_dds_pg",
             "notifications":null,
-            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_name tuning.relations_type.target_group_name",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_code tuning.relations_type.target_group_code",
             "tables":[
                 {
                     "data":[
@@ -3691,13 +4454,14 @@
                 }
             ],
             "tags":null,
-            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_name"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_code"
         },
         {
             "codes":null,
             "entity_name":"tuning.relations_type.target_type",
             "entity_name_short":"target_type",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3739,53 +4503,10 @@
         },
         {
             "codes":null,
-            "entity_name":"tuning.search_help.description",
-            "entity_name_short":"description",
+            "entity_name":"tuning.search_help.info_code",
+            "entity_name_short":"info_code",
             "entity_type":"COLUMN",
-            "grid":null,
-            "htmls":null,
-            "info":null,
-            "json_data":{
-                "column_type":"text",
-                "ordinal_position":3
-            },
-            "json_data_ui":null,
-            "json_system":{
-                "type_for_search":"Column",
-                "system_for_search":"Postgres"
-            },
-            "links":null,
-            "loaded_by":"dd_load_dds_pg",
-            "notifications":null,
-            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:description tuning.search_help.description",
-            "tables":[
-                {
-                    "data":[
-                        {
-                            "Key":"Type",
-                            "Value":"text"
-                        },
-                        {
-                            "Key":"Position",
-                            "Value":"3"
-                        }
-                    ],
-                    "header":"General",
-                    "columns":[
-                        "Key",
-                        "Value"
-                    ],
-                    "display_headers":"0"
-                }
-            ],
-            "tags":null,
-            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:description"
-        },
-        {
-            "codes":null,
-            "entity_name":"tuning.search_help.loaded_by",
-            "entity_name_short":"loaded_by",
-            "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3801,7 +4522,7 @@
             "links":null,
             "loaded_by":"dd_load_dds_pg",
             "notifications":null,
-            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:loaded_by tuning.search_help.loaded_by",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:info_code tuning.search_help.info_code",
             "tables":[
                 {
                     "data":[
@@ -3823,6 +4544,51 @@
                 }
             ],
             "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:info_code"
+        },
+        {
+            "codes":null,
+            "entity_name":"tuning.search_help.loaded_by",
+            "entity_name_short":"loaded_by",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":5
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:loaded_by tuning.search_help.loaded_by",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"5"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
             "urn":"urn:column:postgres:pg:airflow:tuning:search_help:loaded_by"
         },
         {
@@ -3830,6 +4596,7 @@
             "entity_name":"tuning.search_help.name",
             "entity_name_short":"name",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
@@ -3874,12 +4641,13 @@
             "entity_name":"tuning.search_help.processed_dttm",
             "entity_name_short":"processed_dttm",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,
             "json_data":{
                 "column_type":"timestamp without time zone",
-                "ordinal_position":5
+                "ordinal_position":6
             },
             "json_data_ui":null,
             "json_system":{
@@ -3899,7 +4667,7 @@
                         },
                         {
                             "Key":"Position",
-                            "Value":"5"
+                            "Value":"6"
                         }
                     ],
                     "header":"General",
@@ -3915,9 +4683,55 @@
         },
         {
             "codes":null,
+            "entity_name":"tuning.search_help.title_code",
+            "entity_name_short":"title_code",
+            "entity_type":"COLUMN",
+            "filters":null,
+            "grid":null,
+            "htmls":null,
+            "info":null,
+            "json_data":{
+                "column_type":"text",
+                "ordinal_position":3
+            },
+            "json_data_ui":null,
+            "json_system":{
+                "type_for_search":"Column",
+                "system_for_search":"Postgres"
+            },
+            "links":null,
+            "loaded_by":"dd_load_dds_pg",
+            "notifications":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:title_code tuning.search_help.title_code",
+            "tables":[
+                {
+                    "data":[
+                        {
+                            "Key":"Type",
+                            "Value":"text"
+                        },
+                        {
+                            "Key":"Position",
+                            "Value":"3"
+                        }
+                    ],
+                    "header":"General",
+                    "columns":[
+                        "Key",
+                        "Value"
+                    ],
+                    "display_headers":"0"
+                }
+            ],
+            "tags":null,
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:title_code"
+        },
+        {
+            "codes":null,
             "entity_name":"tuning.search_help.type",
             "entity_name_short":"type",
             "entity_type":"COLUMN",
+            "filters":null,
             "grid":null,
             "htmls":null,
             "info":null,

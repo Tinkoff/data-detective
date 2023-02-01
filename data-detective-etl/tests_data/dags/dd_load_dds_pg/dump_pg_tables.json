@@ -34,7 +34,7 @@
                 "type":"integer"
             }
         ],
-        "pandas_version":"0.20.0"
+        "pandas_version":"1.4.0"
     },
     "data":[
         {
@@ -53,12 +53,12 @@
                 {
                     "rights":[
                         "INSERT",
-                        "TRIGGER",
-                        "REFERENCES",
-                        "TRUNCATE",
-                        "DELETE",
+                        "SELECT",
                         "UPDATE",
-                        "SELECT"
+                        "DELETE",
+                        "TRUNCATE",
+                        "REFERENCES",
+                        "TRIGGER"
                     ],
                     "grantee":"airflow"
                 }
@@ -76,29 +76,6 @@
             ],
             "schema_name":"tuning",
             "table_name":"breadcrumb",
-            "table_owner":"airflow",
-            "table_rights":[
-                {
-                    "rights":[
-                        "TRIGGER",
-                        "REFERENCES",
-                        "TRUNCATE",
-                        "DELETE",
-                        "UPDATE",
-                        "SELECT",
-                        "INSERT"
-                    ],
-                    "grantee":"airflow"
-                }
-            ],
-            "table_size":8192
-        },
-        {
-            "estimated_rows":0,
-            "full_table_size":8192,
-            "index_json":null,
-            "schema_name":"tuning",
-            "table_name":"relations_type",
             "table_owner":"airflow",
             "table_rights":[
                 {
@@ -121,7 +98,30 @@
             "full_table_size":8192,
             "index_json":null,
             "schema_name":"tuning",
-            "table_name":"search_help",
+            "table_name":"relations_type",
+            "table_owner":"airflow",
+            "table_rights":[
+                {
+                    "rights":[
+                        "REFERENCES",
+                        "TRUNCATE",
+                        "DELETE",
+                        "UPDATE",
+                        "SELECT",
+                        "INSERT",
+                        "TRIGGER"
+                    ],
+                    "grantee":"airflow"
+                }
+            ],
+            "table_size":8192
+        },
+        {
+            "estimated_rows":0,
+            "full_table_size":8192,
+            "index_json":null,
+            "schema_name":"tuning",
+            "table_name":"messages",
             "table_owner":"airflow",
             "table_rights":[
                 {
@@ -143,8 +143,8 @@
             "estimated_rows":0,
             "full_table_size":8192,
             "index_json":null,
-            "schema_name":"mart",
-            "table_name":"entity",
+            "schema_name":"tuning",
+            "table_name":"dictionary",
             "table_owner":"airflow",
             "table_rights":[
                 {
@@ -156,6 +156,29 @@
                         "DELETE",
                         "TRUNCATE",
                         "REFERENCES"
+                    ],
+                    "grantee":"airflow"
+                }
+            ],
+            "table_size":8192
+        },
+        {
+            "estimated_rows":0,
+            "full_table_size":8192,
+            "index_json":null,
+            "schema_name":"mart",
+            "table_name":"entity",
+            "table_owner":"airflow",
+            "table_rights":[
+                {
+                    "rights":[
+                        "INSERT",
+                        "TRIGGER",
+                        "REFERENCES",
+                        "TRUNCATE",
+                        "DELETE",
+                        "UPDATE",
+                        "SELECT"
                     ],
                     "grantee":"airflow"
                 }
@@ -197,13 +220,13 @@
             "table_rights":[
                 {
                     "rights":[
-                        "INSERT",
                         "TRIGGER",
-                        "REFERENCES",
-                        "TRUNCATE",
-                        "DELETE",
+                        "INSERT",
+                        "SELECT",
                         "UPDATE",
-                        "SELECT"
+                        "DELETE",
+                        "TRUNCATE",
+                        "REFERENCES"
                     ],
                     "grantee":"airflow"
                 }
@@ -241,13 +264,36 @@
             "table_rights":[
                 {
                     "rights":[
-                        "TRIGGER",
                         "INSERT",
                         "SELECT",
                         "UPDATE",
                         "DELETE",
                         "TRUNCATE",
-                        "REFERENCES"
+                        "REFERENCES",
+                        "TRIGGER"
+                    ],
+                    "grantee":"airflow"
+                }
+            ],
+            "table_size":8192
+        },
+        {
+            "estimated_rows":0,
+            "full_table_size":8192,
+            "index_json":null,
+            "schema_name":"tuning",
+            "table_name":"search_help",
+            "table_owner":"airflow",
+            "table_rights":[
+                {
+                    "rights":[
+                        "INSERT",
+                        "REFERENCES",
+                        "TRUNCATE",
+                        "DELETE",
+                        "UPDATE",
+                        "SELECT",
+                        "TRIGGER"
                     ],
                     "grantee":"airflow"
                 }

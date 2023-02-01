@@ -18,7 +18,7 @@
                 "type":"string"
             }
         ],
-        "pandas_version":"0.20.0"
+        "pandas_version":"1.4.0"
     },
     "data":[
         {
@@ -48,6 +48,18 @@
         {
             "attribute":null,
             "destination":"urn:table:postgres:pg:airflow:tuning:breadcrumb",
+            "source":"urn:schema:postgres:pg:airflow:tuning",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:table:postgres:pg:airflow:tuning:dictionary",
+            "source":"urn:schema:postgres:pg:airflow:tuning",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:table:postgres:pg:airflow:tuning:messages",
             "source":"urn:schema:postgres:pg:airflow:tuning",
             "type":"Contains"
         },
