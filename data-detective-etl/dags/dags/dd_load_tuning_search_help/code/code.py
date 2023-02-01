@@ -10,17 +10,19 @@ from common.utilities.search_enums import SystemForSearch, TypeForSearch
 def get_data_from_search_enums(context: dict) -> DataFrame:
     """Get data from SystemForSearch and TypeForSearch
     :param context: Execution context
-    :returns: Dataframe ['type', 'key', 'name', 'description']
+    :returns: Dataframe ['type', 'name', 'title_code', 'info_code']
     """
-    search_help_fields = ['type', 'name', 'description', 'loaded_by']
+    search_help_fields = ['type', 'name', 'title_code', 'info_code', 'loaded_by']
     systems = [['SYSTEM',
                 search_system.name,
-                search_system.description,
+                search_system.title_code,
+                search_system.info_code,
                 context['dag'].dag_id]
                for _, search_system in SystemForSearch.__members__.items()]
     types = [['TYPE',
               search_type.name,
-              search_type.description,
+              search_type.title_code,
+              search_type.title_code,
               context['dag'].dag_id]
              for _, search_type in TypeForSearch.__members__.items()]
 
