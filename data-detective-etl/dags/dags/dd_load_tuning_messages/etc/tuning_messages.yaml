@@ -1,0 +1,93 @@
+data.entity.entity-type.tree-node:
+  en: Tree Node
+data.entity.entity-type.schema:
+  ru: Физическая схема
+  en: Physical schema
+data.entity.entity-type.table:
+  ru: Физическая таблица
+  en: Physical table
+data.entity.entity-type.column:
+  ru: Физическая колонка
+  en: Physical column
+data.entity.entity-type.job:
+  ru: Джоб
+  en: Job
+data.entity.entity-type.logical-schema:
+  ru: Логическая схема
+  en: Logical Schema
+data.entity.entity-type.logical-table:
+  ru: Логическая таблица
+  en: Logical Table
+data.entity.entity-type.logical-column:
+  ru: Логическая колонка
+  en: Logical Column
+data.entity.entity-type.logical-report:
+  ru: Логический отчет
+  en: Logical Report
+data.search.filters.system.oracle.info:
+  en: Oracle databases
+  ru: Базы Oracle
+data.search.filters.system.oracle.title:
+  en: Oracle
+data.search.filters.system.postgres.info:
+  en: Postgres databases
+  ru: Базы Postgres
+data.search.filters.system.postgres.title:
+  en: Postgres
+data.search.filters.system.logical-model.info:
+  en: Logical Model
+  ru: Логическая модель
+data.search.filters.system.logical-model.title:
+  en: Logical Model
+data.search.filters.system.data-detective.title:
+  en: Data Detective
+data.search.filters.system.data-detective.info:
+  en: Data Detective DAGs
+data.search.filters.type.column.title:
+  ru: Физическая колонка
+  en: Physical column
+data.search.filters.type.column.info:
+  en: Physical column of physical table
+  ru: Колонка физической таблицы
+data.search.filters.type.table.title:
+  ru: Физическая таблица
+  en: Physical table
+data.search.filters.type.table.info:
+  en: Physical table or view in database
+  ru: Физическая таблица или view
+data.search.filters.type.schema.title:
+  en: Physical schema
+  ru: Физическая схема
+data.search.filters.type.schema.info:
+  en: Physical schema in database
+  ru: Физическая схема в БД
+data.search.filters.type.database.info:
+  en: Database from DBMS
+  ru: База данных
+data.search.filters.type.database.title:
+  en: Database
+  ru: База данных
+data.search.filters.type.job.info:
+  en: ETL job, pipeline, DAG or workflow
+  ru: ETL джоб, pipeline, DAG или workflow
+data.search.filters.type.job.title:
+  en: Job
+  ru: Джоб
+data.search.filters.type.logical-column.info:
+  en: Column in logical table
+  ru: Колонка в логической таблице
+data.search.filters.type.logical-column.title:
+  en: Logical Column
+  ru: Логическая колонка
+data.search.filters.type.logical-schema.info:
+  en: Logical schema in model
+  ru: Логическая схема в модели
+data.search.filters.type.logical-schema.title:
+  en: Logical Schema
+  ru: Логическая схема
+data.search.filters.type.logical-table.info:
+  ru: Логическая таблица в модели
+  en: Logical table in model
+data.search.filters.type.logical-table.title:
+  en: Logical Table
+  ru: Логическая таблица

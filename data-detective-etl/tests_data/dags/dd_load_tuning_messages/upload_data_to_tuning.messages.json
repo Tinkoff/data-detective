@@ -1,0 +1,385 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"code",
+                "type":"string"
+            },
+            {
+                "name":"lang",
+                "type":"string"
+            },
+            {
+                "name":"loaded_by",
+                "type":"string"
+            },
+            {
+                "name":"text",
+                "type":"string"
+            }
+        ],
+        "pandas_version":"1.4.0"
+    },
+    "data":[
+        {
+            "code":"data.entity.entity-type.column",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Physical column"
+        },
+        {
+            "code":"data.entity.entity-type.column",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Физическая колонка"
+        },
+        {
+            "code":"data.entity.entity-type.job",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Job"
+        },
+        {
+            "code":"data.entity.entity-type.job",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Джоб"
+        },
+        {
+            "code":"data.entity.entity-type.logical-column",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical Column"
+        },
+        {
+            "code":"data.entity.entity-type.logical-column",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Логическая колонка"
+        },
+        {
+            "code":"data.entity.entity-type.logical-report",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical Report"
+        },
+        {
+            "code":"data.entity.entity-type.logical-report",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Логический отчет"
+        },
+        {
+            "code":"data.entity.entity-type.logical-schema",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical Schema"
+        },
+        {
+            "code":"data.entity.entity-type.logical-schema",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Логическая схема"
+        },
+        {
+            "code":"data.entity.entity-type.logical-table",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical Table"
+        },
+        {
+            "code":"data.entity.entity-type.logical-table",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Логическая таблица"
+        },
+        {
+            "code":"data.entity.entity-type.schema",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Physical schema"
+        },
+        {
+            "code":"data.entity.entity-type.schema",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Физическая схема"
+        },
+        {
+            "code":"data.entity.entity-type.table",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Physical table"
+        },
+        {
+            "code":"data.entity.entity-type.table",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Физическая таблица"
+        },
+        {
+            "code":"data.entity.entity-type.tree-node",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Tree Node"
+        },
+        {
+            "code":"data.search.filters.system.data-detective.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Data Detective DAGs"
+        },
+        {
+            "code":"data.search.filters.system.data-detective.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Data Detective"
+        },
+        {
+            "code":"data.search.filters.system.logical-model.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical Model"
+        },
+        {
+            "code":"data.search.filters.system.logical-model.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Логическая модель"
+        },
+        {
+            "code":"data.search.filters.system.logical-model.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical Model"
+        },
+        {
+            "code":"data.search.filters.system.oracle.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Oracle databases"
+        },
+        {
+            "code":"data.search.filters.system.oracle.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Базы Oracle"
+        },
+        {
+            "code":"data.search.filters.system.oracle.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Oracle"
+        },
+        {
+            "code":"data.search.filters.system.postgres.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Postgres databases"
+        },
+        {
+            "code":"data.search.filters.system.postgres.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Базы Postgres"
+        },
+        {
+            "code":"data.search.filters.system.postgres.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Postgres"
+        },
+        {
+            "code":"data.search.filters.type.column.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Physical column of physical table"
+        },
+        {
+            "code":"data.search.filters.type.column.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Колонка физической таблицы"
+        },
+        {
+            "code":"data.search.filters.type.column.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Physical column"
+        },
+        {
+            "code":"data.search.filters.type.column.title",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Физическая колонка"
+        },
+        {
+            "code":"data.search.filters.type.database.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Database from DBMS"
+        },
+        {
+            "code":"data.search.filters.type.database.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"База данных"
+        },
+        {
+            "code":"data.search.filters.type.database.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Database"
+        },
+        {
+            "code":"data.search.filters.type.database.title",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"База данных"
+        },
+        {
+            "code":"data.search.filters.type.job.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"ETL job, pipeline, DAG or workflow"
+        },
+        {
+            "code":"data.search.filters.type.job.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"ETL джоб, pipeline, DAG или workflow"
+        },
+        {
+            "code":"data.search.filters.type.job.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Job"
+        },
+        {
+            "code":"data.search.filters.type.job.title",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Джоб"
+        },
+        {
+            "code":"data.search.filters.type.logical-column.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Column in logical table"
+        },
+        {
+            "code":"data.search.filters.type.logical-column.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Колонка в логической таблице"
+        },
+        {
+            "code":"data.search.filters.type.logical-column.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical Column"
+        },
+        {
+            "code":"data.search.filters.type.logical-column.title",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Логическая колонка"
+        },
+        {
+            "code":"data.search.filters.type.logical-schema.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical schema in model"
+        },
+        {
+            "code":"data.search.filters.type.logical-schema.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Логическая схема в модели"
+        },
+        {
+            "code":"data.search.filters.type.logical-schema.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical Schema"
+        },
+        {
+            "code":"data.search.filters.type.logical-schema.title",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Логическая схема"
+        },
+        {
+            "code":"data.search.filters.type.logical-table.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical table in model"
+        },
+        {
+            "code":"data.search.filters.type.logical-table.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Логическая таблица в модели"
+        },
+        {
+            "code":"data.search.filters.type.logical-table.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Logical Table"
+        },
+        {
+            "code":"data.search.filters.type.logical-table.title",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Логическая таблица"
+        },
+        {
+            "code":"data.search.filters.type.schema.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Physical schema in database"
+        },
+        {
+            "code":"data.search.filters.type.schema.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Физическая схема в БД"
+        },
+        {
+            "code":"data.search.filters.type.schema.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Physical schema"
+        },
+        {
+            "code":"data.search.filters.type.schema.title",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Физическая схема"
+        },
+        {
+            "code":"data.search.filters.type.table.info",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Physical table or view in database"
+        },
+        {
+            "code":"data.search.filters.type.table.info",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Физическая таблица или view"
+        },
+        {
+            "code":"data.search.filters.type.table.title",
+            "lang":"en",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Physical table"
+        },
+        {
+            "code":"data.search.filters.type.table.title",
+            "lang":"ru",
+            "loaded_by":"dd_load_tuning_messages",
+            "text":"Физическая таблица"
+        }
+    ]
+}

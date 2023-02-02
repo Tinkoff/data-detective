@@ -225,7 +225,7 @@ def link_root_node_to_schema(_context: dict, schemas: DataFrame) -> tuple[tuple]
     :return: RELATION_CORE_FIELDS
     """
     result = (petl.fromdataframe(schemas)
-              .addfield(RelationFields.SOURCE, lambda row: get_tree_node(['Database']))
+              .addfield(RelationFields.SOURCE, lambda row: get_tree_node(['root', 'Database']))
               .addfield(RelationFields.DESTINATION,
                         lambda row: get_schema('postgres', 'pg', 'airflow', row['schema_name']))
               .addfield(RelationFields.TYPE, RelationTypes.Contains)
