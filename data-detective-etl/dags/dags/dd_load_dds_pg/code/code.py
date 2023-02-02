@@ -41,7 +41,7 @@ def transform_schema_to_entity(_context: dict, schemas: DataFrame) -> tuple[tupl
     schema_table_info_builder = TableInfoBuilder(schema_table_info_description)
 
     result = (petl.fromdataframe(schemas)
-              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.SCHEMA)
+              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.SCHEMA.key)
               .addfield(EntityFields.ENTITY_NAME, lambda row: row['schema_name'])
               .addfield(EntityFields.ENTITY_NAME_SHORT, None)
               .addfield(EntityFields.URN,
@@ -117,7 +117,7 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
                         lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']))
               .addfield(EntityFields.ENTITY_NAME, lambda row: f"{row['schema_name']}.{row['table_name']}")
               .rename('table_name', EntityFields.ENTITY_NAME_SHORT)
-              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.TABLE)
+              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.TABLE.key)
               .addfield(EntityFields.SEARCH_DATA,
                         lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
               .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
@@ -165,7 +165,7 @@ def transform_column_to_entity(_context: dict, columns: DataFrame) -> tuple[tupl
               .addfield(EntityFields.ENTITY_NAME,
                         lambda row: f"{row['schema_name']}.{row['table_name']}.{row['column_name']}")
               .addfield(EntityFields.ENTITY_NAME_SHORT, lambda row: row['column_name'])
-              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.COLUMN)
+              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.COLUMN.key)
               .addfield(EntityFields.SEARCH_DATA,
                         lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
               .addfield(EntityFields.JSON_DATA,

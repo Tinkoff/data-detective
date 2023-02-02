@@ -95,7 +95,7 @@ def transform_dag_to_entity(_context: dict, dags: tuple[tuple]) -> DataFrame:
               .addfield(EntityFields.URN, lambda row: get_etl_job('dd', 'airflow', row['dag_id']))
               .addfield(EntityFields.ENTITY_NAME, lambda row: row['dag_id'])
               .addfield(EntityFields.ENTITY_NAME_SHORT, None)
-              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.JOB)
+              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.JOB.key)
               .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
               .addfield(EntityFields.SEARCH_DATA,
                         lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")

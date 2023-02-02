@@ -51,7 +51,7 @@ def dump_root_nodes_entities(context: dict, file_name: str) -> DataFrame:
     )
     root_nodes['entity_name'] = root_nodes['path'].apply(lambda path: path[-1])
     root_nodes['loaded_by'] = context['dag'].dag_id
-    root_nodes['entity_type'] = EntityTypes.TREE_NODE
+    root_nodes['entity_type'] = EntityTypes.TREE_NODE.key
     root_nodes['entity_name_short'] = None
     root_nodes['search_data'] = root_nodes['urn'] + ' ' + root_nodes['entity_name'].str.lower()
     root_nodes['info'] = root_nodes['json_data'].apply(lambda row: row.pop('info', ''))
