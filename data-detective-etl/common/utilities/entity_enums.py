@@ -1,16 +1,18 @@
+from collections import namedtuple
+from enum import Enum
 from typing import FrozenSet
 
 
-class EntityTypes:
-    TREE_NODE = 'TREE_NODE'
-    SCHEMA = 'SCHEMA'
-    TABLE = 'TABLE'
-    COLUMN = 'COLUMN'
-    JOB = 'JOB'
-    LOGICAL_SCHEMA = 'LOGICAL_SCHEMA'
-    LOGICAL_TABLE = 'LOGICAL_TABLE'
-    LOGICAL_COLUMN = 'LOGICAL_COLUMN'
-    LOGICAL_REPORT = 'LOGICAL_REPORT'
+class EntityTypes(namedtuple('EntityType', 'key message_code'), Enum):
+    TREE_NODE = 'TREE_NODE', 'data.entity.entity-type.tree-node'
+    SCHEMA = 'SCHEMA', 'data.entity.entity-type.schema'
+    TABLE = 'TABLE', 'data.entity.entity-type.table'
+    COLUMN = 'COLUMN', 'data.entity.entity-type.column'
+    JOB = 'JOB', 'data.entity.entity-type.job'
+    LOGICAL_SCHEMA = 'LOGICAL_SCHEMA', 'data.entity.entity-type.logical-schema'
+    LOGICAL_TABLE = 'LOGICAL_TABLE', 'data.entity.entity-type.logical-table'
+    LOGICAL_COLUMN = 'LOGICAL_COLUMN', 'data.entity.entity-type.logical-column'
+    LOGICAL_REPORT = 'LOGICAL_REPORT', 'data.entity.entity-type.logical-report'
 
 
 class EntityFields:
