@@ -108,6 +108,13 @@ create table tuning.dictionary
  processed_dttm timestamp default now()
 );
 
+create table tuning.search_system_x_type
+(
+	system_name text not null,
+	type_name text not null,
+    loaded_by text not null,
+    processed_dttm timestamp default now()
+);
 
 create schema mart;
 create table mart.entity

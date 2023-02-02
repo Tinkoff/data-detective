@@ -1,5 +1,6 @@
 from collections import namedtuple
 from enum import Enum
+from typing import Union
 
 SYSTEM_FOR_SEARCH = 'system_for_search'
 TYPE_FOR_SEARCH = 'type_for_search'
@@ -38,3 +39,39 @@ class CardType(namedtuple('CardType', 'name description'), Enum):
 
     def __str__(self) -> str:
         return self.name
+
+
+system_for_search_x_type_for_search: list[dict[str, Union[str, list[str]]]] = [
+    {
+        "system_name": SystemForSearch.ORACLE.name,
+        "type_name": [
+            TypeForSearch.COLUMN.name,
+            TypeForSearch.TABLE.name,
+            TypeForSearch.SCHEMA.name,
+            TypeForSearch.DATABASE.name,
+        ],
+    },
+    {
+        "system_name": SystemForSearch.POSTGRES.name,
+        "type_name": [
+            TypeForSearch.COLUMN.name,
+            TypeForSearch.TABLE.name,
+            TypeForSearch.SCHEMA.name,
+            TypeForSearch.DATABASE.name,
+        ],
+    },
+    {
+        "system_name": SystemForSearch.LOGICAL_MODEL.name,
+        "type_name": [
+            TypeForSearch.LOGICAL_COLUMN.name,
+            TypeForSearch.LOGICAL_TABLE.name,
+            TypeForSearch.LOGICAL_SCHEMA.name,
+        ],
+    },
+    {
+        "system_name": SystemForSearch.DATA_DETECTIVE.name,
+        "type_name": [
+            TypeForSearch.JOB.name,
+        ],
+    },
+]
