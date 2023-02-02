@@ -1,0 +1,36 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"attribute",
+                "type":"string"
+            },
+            {
+                "name":"destination",
+                "type":"string"
+            },
+            {
+                "name":"loaded_by",
+                "type":"string"
+            },
+            {
+                "name":"source",
+                "type":"string"
+            },
+            {
+                "name":"type",
+                "type":"string"
+            }
+        ],
+        "pandas_version":"1.4.0"
+    },
+    "data":[
+        {
+            "attribute":"non",
+            "destination":"urn:tree_node:basic_card",
+            "loaded_by":"dd_load_basic_card",
+            "source":"urn:tree_node:root:documentation",
+            "type":"Contains"
+        }
+    ]
+}
