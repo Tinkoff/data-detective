@@ -134,7 +134,7 @@ def link_root_node_to_dag(_context: dict, dags: DataFrame) -> DataFrame:
     """
     result = (petl.fromdataframe(dags)
               .cut([EntityFields.URN])
-              .addfield(RelationFields.SOURCE, lambda row: get_tree_node(['ETL DAGS']))
+              .addfield(RelationFields.SOURCE, lambda row: get_tree_node(['root', 'ETL DAGS']))
               .rename(EntityFields.URN, RelationFields.DESTINATION)
               .addfield(RelationFields.TYPE, RelationTypes.Contains)
               .addfield(RelationFields.ATTRIBUTE, None)
