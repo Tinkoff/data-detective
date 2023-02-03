@@ -29,28 +29,28 @@
             "attribute":"non",
             "destination":"urn:schema:postgres:pg:airflow:dds",
             "loaded_by":"dd_load_dds_pg",
-            "source":"urn:tree_node:database",
+            "source":"urn:tree_node:root:database",
             "type":"Contains"
         },
         {
             "attribute":"non",
             "destination":"urn:schema:postgres:pg:airflow:mart",
             "loaded_by":"dd_load_dds_pg",
-            "source":"urn:tree_node:database",
+            "source":"urn:tree_node:root:database",
             "type":"Contains"
         },
         {
             "attribute":"non",
             "destination":"urn:schema:postgres:pg:airflow:public",
             "loaded_by":"dd_load_dds_pg",
-            "source":"urn:tree_node:database",
+            "source":"urn:tree_node:root:database",
             "type":"Contains"
         },
         {
             "attribute":"non",
             "destination":"urn:schema:postgres:pg:airflow:tuning",
             "loaded_by":"dd_load_dds_pg",
-            "source":"urn:tree_node:database",
+            "source":"urn:tree_node:root:database",
             "type":"Contains"
         },
         {
@@ -112,6 +112,13 @@
         {
             "attribute":"non",
             "destination":"urn:table:postgres:pg:airflow:tuning:search_help",
+            "loaded_by":"dd_load_dds_pg",
+            "source":"urn:schema:postgres:pg:airflow:tuning",
+            "type":"Contains"
+        },
+        {
+            "attribute":"non",
+            "destination":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
             "loaded_by":"dd_load_dds_pg",
             "source":"urn:schema:postgres:pg:airflow:tuning",
             "type":"Contains"
@@ -667,6 +674,34 @@
             "destination":"urn:column:postgres:pg:airflow:tuning:search_help:type",
             "loaded_by":"dd_load_dds_pg",
             "source":"urn:table:postgres:pg:airflow:tuning:search_help",
+            "type":"Contains"
+        },
+        {
+            "attribute":"non",
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:loaded_by",
+            "loaded_by":"dd_load_dds_pg",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "type":"Contains"
+        },
+        {
+            "attribute":"non",
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:processed_dttm",
+            "loaded_by":"dd_load_dds_pg",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "type":"Contains"
+        },
+        {
+            "attribute":"non",
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:system_name",
+            "loaded_by":"dd_load_dds_pg",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "type":"Contains"
+        },
+        {
+            "attribute":"non",
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:type_name",
+            "loaded_by":"dd_load_dds_pg",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
             "type":"Contains"
         }
     ]

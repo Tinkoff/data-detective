@@ -494,6 +494,30 @@
             "destination":"urn:column:postgres:pg:airflow:tuning:search_help:type",
             "source":"urn:table:postgres:pg:airflow:tuning:search_help",
             "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:loaded_by",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:processed_dttm",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:system_name",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:type_name",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "type":"Contains"
         }
     ]
 }

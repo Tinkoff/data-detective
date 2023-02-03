@@ -24,25 +24,25 @@
         {
             "attribute":null,
             "destination":"urn:schema:postgres:pg:airflow:dds",
-            "source":"urn:tree_node:database",
+            "source":"urn:tree_node:root:database",
             "type":"Contains"
         },
         {
             "attribute":null,
             "destination":"urn:schema:postgres:pg:airflow:mart",
-            "source":"urn:tree_node:database",
+            "source":"urn:tree_node:root:database",
             "type":"Contains"
         },
         {
             "attribute":null,
             "destination":"urn:schema:postgres:pg:airflow:public",
-            "source":"urn:tree_node:database",
+            "source":"urn:tree_node:root:database",
             "type":"Contains"
         },
         {
             "attribute":null,
             "destination":"urn:schema:postgres:pg:airflow:tuning",
-            "source":"urn:tree_node:database",
+            "source":"urn:tree_node:root:database",
             "type":"Contains"
         },
         {
@@ -96,6 +96,12 @@
         {
             "attribute":null,
             "destination":"urn:table:postgres:pg:airflow:tuning:search_help",
+            "source":"urn:schema:postgres:pg:airflow:tuning",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
             "source":"urn:schema:postgres:pg:airflow:tuning",
             "type":"Contains"
         },
@@ -571,6 +577,30 @@
             "attribute":null,
             "destination":"urn:column:postgres:pg:airflow:tuning:search_help:type",
             "source":"urn:table:postgres:pg:airflow:tuning:search_help",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:loaded_by",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:processed_dttm",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:system_name",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "type":"Contains"
+        },
+        {
+            "attribute":null,
+            "destination":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:type_name",
+            "source":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
             "type":"Contains"
         }
     ]
