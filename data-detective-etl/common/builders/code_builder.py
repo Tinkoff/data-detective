@@ -5,15 +5,21 @@ _CodeInfoResultType = Dict[str, Union[List[str], str]]
 
 class CodeBuilder:
 
-    __slots__ = ('_header', '_language', '_key', '_data', '_opened',)
+    __slots__ = (
+        '_header',
+        '_language',
+        '_key',
+        '_data',
+        '_opened',
+    )
 
     def __init__(
-            self,
-            header: str = None,
-            language: str = None,
-            key: List[str] = None,
-            data: str = None,
-            opened: bool = True,
+        self,
+        header: str = None,
+        language: str = None,
+        key: List[str] = None,
+        data: str = None,
+        opened: bool = True,
     ):
         self._header = header
         self._language = language
@@ -22,13 +28,13 @@ class CodeBuilder:
         self._opened = opened
 
     def __call__(
-            self,
-            header: str = None,
-            language: str = None,
-            key: List[str] = None,
-            data: str = None,
-            opened: bool = None,
-            **kwargs
+        self,
+        header: str = None,
+        language: str = None,
+        key: List[str] = None,
+        data: str = None,
+        opened: bool = None,
+        **kwargs,
     ) -> _CodeInfoResultType:
         if opened is None:
             opened = self._opened
