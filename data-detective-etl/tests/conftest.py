@@ -25,11 +25,11 @@ def test_dag(request) -> TDag:
             'owner': 'airflow',
             'result_type': result_type,
             'work_conn_id': work_conn_id,
-            'work_type': work_type
+            'work_type': work_type,
         },
         schedule_interval=datetime.timedelta(days=1),
         start_date=datetime.datetime(2020, 2, 2),
-        template_searchpath='/'
+        template_searchpath='/',
     )
 
     yield tdag
@@ -63,7 +63,9 @@ def ensure_unique():
     sql_create_dds_entity_unique_index = "CREATE UNIQUE INDEX entity_urn_index ON dds.entity (urn);"
     sql_drop_dds_entity_unique_index = "DROP INDEX IF EXISTS dds.entity_urn_index;"
     sql_create_dds_entity_index = "CREATE INDEX entity_urn_index ON dds.entity (urn);"
-    sql_add_dds_relation_unique = "ALTER TABLE dds.relation ADD CONSTRAINT rel_unique UNIQUE (source, destination, type);"
+    sql_add_dds_relation_unique = (
+        "ALTER TABLE dds.relation ADD CONSTRAINT rel_unique UNIQUE (source, destination, type);"
+    )
     sql_drop_dds_relation_unique = "ALTER TABLE dds.relation DROP CONSTRAINT IF EXISTS rel_unique;"
 
     pg_hook = PostgresHook(postgres_conn_id='pg')
