@@ -141,6 +141,28 @@
             "urn":"urn:table:postgres:pg:airflow:tuning:breadcrumb"
         },
         {
+            "entity_name":"tuning.dictionary",
+            "entity_type":"TABLE",
+            "id":"urn:table:postgres:pg:airflow:tuning:dictionary",
+            "info":null,
+            "search_data":"urn:table:postgres:pg:airflow:tuning:dictionary tuning.dictionary",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Table",
+            "urn":"urn:table:postgres:pg:airflow:tuning:dictionary"
+        },
+        {
+            "entity_name":"tuning.messages",
+            "entity_type":"TABLE",
+            "id":"urn:table:postgres:pg:airflow:tuning:messages",
+            "info":null,
+            "search_data":"urn:table:postgres:pg:airflow:tuning:messages tuning.messages",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Table",
+            "urn":"urn:table:postgres:pg:airflow:tuning:messages"
+        },
+        {
             "entity_name":"tuning.relations_type",
             "entity_type":"TABLE",
             "id":"urn:table:postgres:pg:airflow:tuning:relations_type",
@@ -161,6 +183,17 @@
             "tags":null,
             "type_for_search":"Table",
             "urn":"urn:table:postgres:pg:airflow:tuning:search_help"
+        },
+        {
+            "entity_name":"tuning.search_system_x_type",
+            "entity_type":"TABLE",
+            "id":"urn:table:postgres:pg:airflow:tuning:search_system_x_type",
+            "info":null,
+            "search_data":"urn:table:postgres:pg:airflow:tuning:search_system_x_type tuning.search_system_x_type",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Table",
+            "urn":"urn:table:postgres:pg:airflow:tuning:search_system_x_type"
         },
         {
             "entity_name":"dds.entity.codes",
@@ -205,6 +238,17 @@
             "tags":null,
             "type_for_search":"Column",
             "urn":"urn:column:postgres:pg:airflow:dds:entity:entity_type"
+        },
+        {
+            "entity_name":"dds.entity.filters",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:dds:entity:filters",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:dds:entity:filters dds.entity.filters",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:dds:entity:filters"
         },
         {
             "entity_name":"dds.entity.grid",
@@ -438,17 +482,6 @@
             "urn":"urn:column:postgres:pg:airflow:dds:sample:cnt_rows"
         },
         {
-            "entity_name":"mart.entity.urn",
-            "entity_type":"COLUMN",
-            "id":"urn:column:postgres:pg:airflow:mart:entity:urn",
-            "info":null,
-            "search_data":"urn:column:postgres:pg:airflow:mart:entity:urn mart.entity.urn",
-            "system_for_search":"Postgres",
-            "tags":null,
-            "type_for_search":"Column",
-            "urn":"urn:column:postgres:pg:airflow:mart:entity:urn"
-        },
-        {
             "entity_name":"dds.sample.column_def",
             "entity_type":"COLUMN",
             "id":"urn:column:postgres:pg:airflow:dds:sample:column_def",
@@ -636,6 +669,17 @@
             "urn":"urn:column:postgres:pg:airflow:mart:entity:loaded_by"
         },
         {
+            "entity_name":"database",
+            "entity_type":"TREE_NODE",
+            "id":"urn:tree_node:root:database",
+            "info":"Metadata of schemas, tables and columns in Data Detective postgres database\n",
+            "search_data":"urn:tree_node:root:database database",
+            "system_for_search":null,
+            "tags":null,
+            "type_for_search":null,
+            "urn":"urn:tree_node:root:database"
+        },
+        {
             "entity_name":"mart.entity.notifications",
             "entity_type":"COLUMN",
             "id":"urn:column:postgres:pg:airflow:mart:entity:notifications",
@@ -691,15 +735,15 @@
             "urn":"urn:column:postgres:pg:airflow:mart:entity:tags"
         },
         {
-            "entity_name":"etl dags",
-            "entity_type":"TREE_NODE",
-            "id":"urn:tree_node:root:etl_dags",
-            "info":"Metadata of Directed Acyclic Graph loaded metadata to Data Detective database\n",
-            "search_data":"urn:tree_node:root:etl_dags etl dags",
-            "system_for_search":null,
+            "entity_name":"mart.entity.urn",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:mart:entity:urn",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:mart:entity:urn mart.entity.urn",
+            "system_for_search":"Postgres",
             "tags":null,
-            "type_for_search":null,
-            "urn":"urn:tree_node:root:etl_dags"
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:mart:entity:urn"
         },
         {
             "entity_name":"tuning.breadcrumb.breadcrumb_entity",
@@ -757,15 +801,136 @@
             "urn":"urn:column:postgres:pg:airflow:tuning:breadcrumb:urn"
         },
         {
-            "entity_name":"tuning.relations_type.attribute_group_name",
+            "entity_name":"tuning.dictionary.code",
             "entity_type":"COLUMN",
-            "id":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_name",
+            "id":"urn:column:postgres:pg:airflow:tuning:dictionary:code",
             "info":null,
-            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_name tuning.relations_type.attribute_group_name",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:dictionary:code tuning.dictionary.code",
             "system_for_search":"Postgres",
             "tags":null,
             "type_for_search":"Column",
-            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_name"
+            "urn":"urn:column:postgres:pg:airflow:tuning:dictionary:code"
+        },
+        {
+            "entity_name":"tuning.dictionary.loaded_by",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:dictionary:loaded_by",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:dictionary:loaded_by tuning.dictionary.loaded_by",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:dictionary:loaded_by"
+        },
+        {
+            "entity_name":"tuning.dictionary.message_code",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:dictionary:message_code",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:dictionary:message_code tuning.dictionary.message_code",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:dictionary:message_code"
+        },
+        {
+            "entity_name":"tuning.dictionary.processed_dttm",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:dictionary:processed_dttm",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:dictionary:processed_dttm tuning.dictionary.processed_dttm",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:dictionary:processed_dttm"
+        },
+        {
+            "entity_name":"tuning.dictionary.type",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:dictionary:type",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:dictionary:type tuning.dictionary.type",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:dictionary:type"
+        },
+        {
+            "entity_name":"tuning.messages.code",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:messages:code",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:messages:code tuning.messages.code",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:messages:code"
+        },
+        {
+            "entity_name":"tuning.messages.lang",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:messages:lang",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:messages:lang tuning.messages.lang",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:messages:lang"
+        },
+        {
+            "entity_name":"tuning.messages.loaded_by",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:messages:loaded_by",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:messages:loaded_by tuning.messages.loaded_by",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:messages:loaded_by"
+        },
+        {
+            "entity_name":"tuning.messages.processed_dttm",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:messages:processed_dttm",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:messages:processed_dttm tuning.messages.processed_dttm",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:messages:processed_dttm"
+        },
+        {
+            "entity_name":"tuning.messages.text",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:messages:text",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:messages:text tuning.messages.text",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:messages:text"
+        },
+        {
+            "entity_name":"etl dags",
+            "entity_type":"TREE_NODE",
+            "id":"urn:tree_node:root:etl_dags",
+            "info":"Metadata of Directed Acyclic Graph loaded metadata to Data Detective database\n",
+            "search_data":"urn:tree_node:root:etl_dags etl dags",
+            "system_for_search":null,
+            "tags":null,
+            "type_for_search":null,
+            "urn":"urn:tree_node:root:etl_dags"
+        },
+        {
+            "entity_name":"tuning.relations_type.attribute_group_code",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_code",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_code tuning.relations_type.attribute_group_code",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:attribute_group_code"
         },
         {
             "entity_name":"tuning.relations_type.attribute_type",
@@ -812,15 +977,15 @@
             "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:relation_type"
         },
         {
-            "entity_name":"tuning.relations_type.source_group_name",
+            "entity_name":"tuning.relations_type.source_group_code",
             "entity_type":"COLUMN",
-            "id":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_name",
+            "id":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_code",
             "info":null,
-            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_name tuning.relations_type.source_group_name",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_code tuning.relations_type.source_group_code",
             "system_for_search":"Postgres",
             "tags":null,
             "type_for_search":"Column",
-            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_name"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:source_group_code"
         },
         {
             "entity_name":"tuning.relations_type.source_type",
@@ -834,15 +999,15 @@
             "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:source_type"
         },
         {
-            "entity_name":"tuning.relations_type.target_group_name",
+            "entity_name":"tuning.relations_type.target_group_code",
             "entity_type":"COLUMN",
-            "id":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_name",
+            "id":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_code",
             "info":null,
-            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_name tuning.relations_type.target_group_name",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_code tuning.relations_type.target_group_code",
             "system_for_search":"Postgres",
             "tags":null,
             "type_for_search":"Column",
-            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_name"
+            "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:target_group_code"
         },
         {
             "entity_name":"tuning.relations_type.target_type",
@@ -856,15 +1021,15 @@
             "urn":"urn:column:postgres:pg:airflow:tuning:relations_type:target_type"
         },
         {
-            "entity_name":"tuning.search_help.description",
+            "entity_name":"tuning.search_help.info_code",
             "entity_type":"COLUMN",
-            "id":"urn:column:postgres:pg:airflow:tuning:search_help:description",
+            "id":"urn:column:postgres:pg:airflow:tuning:search_help:info_code",
             "info":null,
-            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:description tuning.search_help.description",
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:info_code tuning.search_help.info_code",
             "system_for_search":"Postgres",
             "tags":null,
             "type_for_search":"Column",
-            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:description"
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:info_code"
         },
         {
             "entity_name":"tuning.search_help.loaded_by",
@@ -900,6 +1065,17 @@
             "urn":"urn:column:postgres:pg:airflow:tuning:search_help:processed_dttm"
         },
         {
+            "entity_name":"tuning.search_help.title_code",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:search_help:title_code",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_help:title_code tuning.search_help.title_code",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_help:title_code"
+        },
+        {
             "entity_name":"tuning.search_help.type",
             "entity_type":"COLUMN",
             "id":"urn:column:postgres:pg:airflow:tuning:search_help:type",
@@ -911,6 +1087,50 @@
             "urn":"urn:column:postgres:pg:airflow:tuning:search_help:type"
         },
         {
+            "entity_name":"tuning.search_system_x_type.loaded_by",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:loaded_by",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:loaded_by tuning.search_system_x_type.loaded_by",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:loaded_by"
+        },
+        {
+            "entity_name":"tuning.search_system_x_type.processed_dttm",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:processed_dttm",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:processed_dttm tuning.search_system_x_type.processed_dttm",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:processed_dttm"
+        },
+        {
+            "entity_name":"tuning.search_system_x_type.system_name",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:system_name",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:system_name tuning.search_system_x_type.system_name",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:system_name"
+        },
+        {
+            "entity_name":"tuning.search_system_x_type.type_name",
+            "entity_type":"COLUMN",
+            "id":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:type_name",
+            "info":null,
+            "search_data":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:type_name tuning.search_system_x_type.type_name",
+            "system_for_search":"Postgres",
+            "tags":null,
+            "type_for_search":"Column",
+            "urn":"urn:column:postgres:pg:airflow:tuning:search_system_x_type:type_name"
+        },
+        {
             "entity_name":"documentation",
             "entity_type":"TREE_NODE",
             "id":"urn:tree_node:root:documentation",
@@ -920,17 +1140,6 @@
             "tags":null,
             "type_for_search":null,
             "urn":"urn:tree_node:root:documentation"
-        },
-        {
-            "entity_name":"database",
-            "entity_type":"TREE_NODE",
-            "id":"urn:tree_node:root:database",
-            "info":"Metadata of schemas, tables and columns in Data Detective postgres database\n",
-            "search_data":"urn:tree_node:root:database database",
-            "system_for_search":null,
-            "tags":null,
-            "type_for_search":null,
-            "urn":"urn:tree_node:root:database"
         },
         {
             "entity_name":"logical model",
