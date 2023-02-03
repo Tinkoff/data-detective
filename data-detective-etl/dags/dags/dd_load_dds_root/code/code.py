@@ -8,6 +8,7 @@ from common.urn import get_tree_node
 from common.utilities.entity_enums import EntityTypes, RelationTypes
 from common.builders import LinkBuilder
 
+
 def walk_relations(nodes: dict, source: tuple[str] = None) -> dict:
     """Observe root_nodes with outputting relationships
     :param nodes: Nested hierarchical dictionary of tree_node

@@ -20,6 +20,7 @@ def dump_json(_context: Context, json_file: str) -> DataFrame:
     data[EntityFields.ENTITY_TYPE] = EntityTypes.TREE_NODE.key
     return data
 
+
 def link_root_node_to_basic_card(_context: dict) -> DataFrame:
     """Link dags to root tree node urn:tree_node:root:etl_dags
 
@@ -33,6 +34,7 @@ def link_root_node_to_basic_card(_context: dict) -> DataFrame:
              RelationTypes.Contains,
              None]
         ], columns=[RelationFields.SOURCE, RelationFields.DESTINATION, RelationFields.TYPE, RelationFields.ATTRIBUTE])
+
 
 def fill_dag(t_dag: TDag) -> None:
     PyTransform(
