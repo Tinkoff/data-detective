@@ -28,12 +28,9 @@ def link_root_node_to_basic_card(_context: dict) -> DataFrame:
     :returns: DataFrame ['source', 'destination', 'type', 'attribute']
     """
     return DataFrame(
-        [
-            [get_tree_node(['root', 'Documentation']),
-             get_tree_node(['Basic Card']),
-             RelationTypes.Contains,
-             None]
-        ], columns=[RelationFields.SOURCE, RelationFields.DESTINATION, RelationFields.TYPE, RelationFields.ATTRIBUTE])
+        [[get_tree_node(['root', 'Documentation']), get_tree_node(['Basic Card']), RelationTypes.Contains, None]],
+        columns=[RelationFields.SOURCE, RelationFields.DESTINATION, RelationFields.TYPE, RelationFields.ATTRIBUTE],
+    )
 
 
 def fill_dag(t_dag: TDag) -> None:
@@ -49,7 +46,7 @@ def fill_dag(t_dag: TDag) -> None:
         task_id='link_root_node_to_basic_card',
         description='Link basic card to root tree node',
         transformer_callable=link_root_node_to_basic_card,
-        dag=t_dag
+        dag=t_dag,
     )
     PgSingleTargetLoader.upload_dds_relation(dag=t_dag, sources=['link_root_node_to_basic_card'])
     PgSingleTargetLoader.upload_dds_entity(dag=t_dag, sources=['dump_basic_card'])

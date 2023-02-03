@@ -16,7 +16,7 @@ def walk_relations(nodes: dict, source: tuple[str] = None) -> dict:
     :return: Dict
     """
     for key, value in nodes.items():
-        path = source + (key, ) if source and key != 'root' else (key, )
+        path = source + (key,) if source and key != 'root' else (key,)
         if 'contains' in value:
             yield from walk_relations(value['contains'], path)
         yield {'source': source, 'destination': path}
@@ -29,7 +29,7 @@ def walk_entities(nodes: dict, source: tuple[str] = None) -> dict:
     :return: Dict
     """
     for key, value in nodes.items():
-        path = source + (key, ) if source and key != 'root' else (key, )
+        path = source + (key,) if source and key != 'root' else (key,)
         if 'contains' in value:
             yield from walk_entities(value['contains'], path)
         res = {'path': path}
@@ -46,10 +46,7 @@ def dump_root_nodes_entities(context: dict, file_name: str) -> DataFrame:
     """
     raw = yaml.safe_load(StringIO(Path(f'{context["dag"].etc_dir}/{file_name}').read_text()))
     root_nodes = DataFrame.from_dict(walk_entities(raw))
-    root_nodes['urn'] = root_nodes.apply(
-        lambda row: get_tree_node(row['path']),
-        axis=1
-    )
+    root_nodes['urn'] = root_nodes.apply(lambda row: get_tree_node(row['path']), axis=1)
     root_nodes['entity_name'] = root_nodes['path'].apply(lambda path: path[-1])
     root_nodes['loaded_by'] = context['dag'].dag_id
     root_nodes['entity_type'] = EntityTypes.TREE_NODE.key
@@ -58,8 +55,9 @@ def dump_root_nodes_entities(context: dict, file_name: str) -> DataFrame:
     root_nodes['info'] = root_nodes['json_data'].apply(lambda row: row.pop('info', ''))
     links_builder = LinkBuilder()
     root_nodes['links'] = root_nodes['json_data'].apply(links_builder)
-    return root_nodes[['urn', 'entity_name', 'loaded_by', 'entity_type', 'entity_name_short', 'search_data',
-                       'links', 'info']]
+    return root_nodes[
+        ['urn', 'entity_name', 'loaded_by', 'entity_type', 'entity_name_short', 'search_data', 'links', 'info']
+    ]
 
 
 def dump_root_nodes_relations(context: dict, file_name: str) -> DataFrame:
@@ -73,14 +71,8 @@ def dump_root_nodes_relations(context: dict, file_name: str) -> DataFrame:
 
     root_nodes = root_nodes[~root_nodes['source'].isnull()]
 
-    root_nodes['source'] = root_nodes.apply(
-        lambda row: get_tree_node(row['source']),
-        axis=1
-    )
-    root_nodes['destination'] = root_nodes.apply(
-        lambda row: get_tree_node(row['destination']),
-        axis=1
-    )
+    root_nodes['source'] = root_nodes.apply(lambda row: get_tree_node(row['source']), axis=1)
+    root_nodes['destination'] = root_nodes.apply(lambda row: get_tree_node(row['destination']), axis=1)
     root_nodes['type'] = RelationTypes.Contains
     root_nodes['loaded_by'] = context['dag'].dag_id
     root_nodes['attribute'] = None

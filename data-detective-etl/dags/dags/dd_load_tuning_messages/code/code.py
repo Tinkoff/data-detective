@@ -20,9 +20,7 @@ def get_data_from_tuning_messages_yaml(context: dict) -> DataFrame:
     loaded_by = context['dag'].dag_id
 
     messages = [
-        [code, lang, text, loaded_by]
-        for code, message_text in messages.items()
-        for lang, text in message_text.items()
+        [code, lang, text, loaded_by] for code, message_text in messages.items() for lang, text in message_text.items()
     ]
 
     return DataFrame(messages, columns=['code', 'lang', 'text', 'loaded_by'])
