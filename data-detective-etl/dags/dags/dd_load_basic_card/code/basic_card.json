@@ -2,22 +2,22 @@
    "info":"Это базовая карточка - пример. Чтобы заполнить этот блок используется поле info. Используется разметка markdown\nСправа вверху располагаются ссылки на вики (в данном случае на описание MG) и на произвольный ресурс (мы указали MG). Для заполнения этих ссылок использовались поля links. Пример заполнения представлен ниже в блоке Other Attribute.\nБлок Other Attribute заполняется с помощью поля json_data_ui. В поле keys перечислены ключи полей json_data которые нужно отобразить в этом блоке. Приме заполнения представлен в самом блоке с примерами форматов других полей.\nВсе остальные блоки кода расскажут о себе сами.",
    "links": [
       {
-         "link": "https://dd.tcsbank.ru/home",
+         "link": "https://dd.your-host.ru/home",
          "type": "external"
       },
       {
-         "link": "https://wiki.tcsbank.ru/display/DW/MG",
+         "link": "https://wiki.your-host.ru/display/DW/DD",
          "type": "wiki"
       }
    ],
    "json_data":{
       "links": [
          {
-            "link": "https://dd.tcsbank.ru/home",
+            "link": "https://dd.your-host.ru/home",
             "type": "external"
          },
          {
-            "link": "https://wiki.tcsbank.ru/display/DW/MG",
+            "link": "https://wiki.your-host.ru/display/DW/MG",
             "type": "wiki"
          }
       ],

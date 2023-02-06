@@ -77,11 +77,11 @@
             "json_data":{
                 "links":[
                     {
-                        "link":"https:\/\/dd.tcsbank.ru\/home",
+                        "link":"https:\/\/dd.your-host.ru\/home",
                         "type":"external"
                     },
                     {
-                        "link":"https:\/\/wiki.tcsbank.ru\/display\/DW\/MG",
+                        "link":"https:\/\/wiki.your-host.ru\/display\/DW\/MG",
                         "type":"wiki"
                     }
                 ],
@@ -198,11 +198,11 @@
             },
             "links":[
                 {
-                    "link":"https:\/\/dd.tcsbank.ru\/home",
+                    "link":"https:\/\/dd.your-host.ru\/home",
                     "type":"external"
                 },
                 {
-                    "link":"https:\/\/wiki.tcsbank.ru\/display\/DW\/MG",
+                    "link":"https:\/\/wiki.your-host.ru\/display\/DW\/DD",
                     "type":"wiki"
                 }
             ],
