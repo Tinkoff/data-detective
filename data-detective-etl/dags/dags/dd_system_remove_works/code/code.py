@@ -7,7 +7,13 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.models.dagrun import DagRun
 from airflow.operators.python import PythonOperator
 
-from data_detective_airflow.constants import WORK_S3_PREFIX, WORK_PG_SCHEMA_PREFIX, WORK_FILE_PREFIX, WORK_S3_BUCKET, PG_CONN_ID
+from data_detective_airflow.constants import (
+    WORK_S3_PREFIX,
+    WORK_PG_SCHEMA_PREFIX,
+    WORK_FILE_PREFIX,
+    WORK_S3_BUCKET,
+    PG_CONN_ID,
+)
 from data_detective_airflow.dag_generator import TDag
 
 from common.constants import S3_WORK_ID
@@ -48,20 +54,15 @@ def clean_pg_works(conn_id):
 
     active_run_ids = get_active_run_ids()
 
-    sql_schemas = "select nspname "\
-                  "from pg_catalog.pg_namespace "\
-                  f"where nspname like '{WORK_PG_SCHEMA_PREFIX}_%';"
+    sql_schemas = "select nspname " "from pg_catalog.pg_namespace " f"where nspname like '{WORK_PG_SCHEMA_PREFIX}_%';"
 
     schemas = hook.get_pandas_df(sql_schemas)
 
-    schemas['active'] = schemas['nspname'].apply(
-        lambda nspname: nspname.split('_')[-1] in active_run_ids
-    )
+    schemas['active'] = schemas['nspname'].apply(lambda nspname: nspname.split('_')[-1] in active_run_ids)
     schemas = schemas[~schemas['active']]
 
     if not schemas.empty:
-        schemas['drop_sql'] = schemas['nspname'].apply(
-            lambda nspname: f'DROP SCHEMA IF EXISTS {nspname} CASCADE;')
+        schemas['drop_sql'] = schemas['nspname'].apply(lambda nspname: f'DROP SCHEMA IF EXISTS {nspname} CASCADE;')
         hook.run(sql=schemas['drop_sql'].to_list(), autocommit=True)
 
 
@@ -79,19 +80,8 @@ def clean_local_works():
 
 def fill_dag(tdag: TDag):
 
-    PythonOperator(
-        task_id='clean_s3_works',
-        python_callable=clean_s3_works,
-        op_args=[S3_WORK_ID],
-        dag=tdag)
+    PythonOperator(task_id='clean_s3_works', python_callable=clean_s3_works, op_args=[S3_WORK_ID], dag=tdag)
 
-    PythonOperator(
-        task_id='clean_pg_works',
-        python_callable=clean_pg_works,
-        op_args=[PG_CONN_ID],
-        dag=tdag)
+    PythonOperator(task_id='clean_pg_works', python_callable=clean_pg_works, op_args=[PG_CONN_ID], dag=tdag)
 
-    PythonOperator(
-        task_id='clean_local_works',
-        python_callable=clean_local_works,
-        dag=tdag)
+    PythonOperator(task_id='clean_local_works', python_callable=clean_local_works, dag=tdag)

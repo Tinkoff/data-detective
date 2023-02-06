@@ -2,7 +2,7 @@
     "schema":{
         "fields":[
             {
-                "name":"description",
+                "name":"info_code",
                 "type":"string"
             },
             {
@@ -14,83 +14,99 @@
                 "type":"string"
             },
             {
+                "name":"title_code",
+                "type":"string"
+            },
+            {
                 "name":"type",
                 "type":"string"
             }
         ],
-        "pandas_version":"0.20.0"
+        "pandas_version":"1.4.0"
     },
     "data":[
         {
-            "description":"Data Catalog for entities of any type",
+            "info_code":"data.search.filters.system.data-detective.info",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Data Detective",
+            "title_code":"data.search.filters.system.data-detective.title",
             "type":"SYSTEM"
         },
         {
-            "description":"Logical Model DWH",
+            "info_code":"data.search.filters.system.logical-model.info",
             "loaded_by":"dd_load_tuning_search_help",
-            "name":"Logical Model",
+            "name":"Logical_Model",
+            "title_code":"data.search.filters.system.logical-model.title",
             "type":"SYSTEM"
         },
         {
-            "description":"Oracle databases from replication",
+            "info_code":"data.search.filters.system.oracle.info",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Oracle",
+            "title_code":"data.search.filters.system.oracle.title",
             "type":"SYSTEM"
         },
         {
-            "description":"Postgres databases from replication",
+            "info_code":"data.search.filters.system.postgres.info",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Postgres",
+            "title_code":"data.search.filters.system.postgres.title",
             "type":"SYSTEM"
         },
         {
-            "description":"Physical column of physical table",
+            "info_code":"data.search.filters.type.column.title",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Column",
+            "title_code":"data.search.filters.type.column.title",
             "type":"TYPE"
         },
         {
-            "description":"Database from DBMS",
+            "info_code":"data.search.filters.type.database.title",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Database",
+            "title_code":"data.search.filters.type.database.title",
             "type":"TYPE"
         },
         {
-            "description":"ETL job, pipeline, DAG or workflow",
+            "info_code":"data.search.filters.type.job.title",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Job",
+            "title_code":"data.search.filters.type.job.title",
             "type":"TYPE"
         },
         {
-            "description":"Column in logical table",
+            "info_code":"data.search.filters.type.logical-column.title",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Logical Column",
+            "title_code":"data.search.filters.type.logical-column.title",
             "type":"TYPE"
         },
         {
-            "description":"Logical schema in model",
+            "info_code":"data.search.filters.type.logical-schema.title",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Logical Schema",
+            "title_code":"data.search.filters.type.logical-schema.title",
             "type":"TYPE"
         },
         {
-            "description":"Logical table in model",
+            "info_code":"data.search.filters.type.logical-table.title",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Logical Table",
+            "title_code":"data.search.filters.type.logical-table.title",
             "type":"TYPE"
         },
         {
-            "description":"Physical schema in database",
+            "info_code":"data.search.filters.type.schema.title",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Schema",
+            "title_code":"data.search.filters.type.schema.title",
             "type":"TYPE"
         },
         {
-            "description":"Physical table or view in database",
+            "info_code":"data.search.filters.type.table.title",
             "loaded_by":"dd_load_tuning_search_help",
             "name":"Table",
+            "title_code":"data.search.filters.type.table.title",
             "type":"TYPE"
         }
     ]

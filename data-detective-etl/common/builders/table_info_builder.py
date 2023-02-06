@@ -5,13 +5,9 @@ from petl import Record as EtlRecord
 from common.utils import isnotempty
 
 
-_TableInfoResultType = Dict[str, Union[
-    Optional[str],
-    List[str],
-    List[Optional[str]],
-    List[Dict[str, str]],
-    List[Dict[str, Optional[str]]]
-]]
+_TableInfoResultType = Dict[
+    str, Union[Optional[str], List[str], List[Optional[str]], List[Dict[str, str]], List[Dict[str, Optional[str]]]]
+]
 
 
 class TableInfoDescriptionType(BaseModel):
@@ -31,22 +27,27 @@ class TableInfoBuilder:
 
     def _apply_serializers(self, row_data: Dict) -> Dict:
         serializers = self._table.serializers or dict()
-        return {value: serializers.get(key, str)(row_data[key])
-                for key, value in self._table.keys.items() if isnotempty(row_data.get(key))}
+        return {
+            value: serializers.get(key, str)(row_data[key])
+            for key, value in self._table.keys.items()
+            if isnotempty(row_data.get(key))
+        }
 
     @staticmethod
     def _get_all_keys(row_data):
-        return {k for row in row_data for k in row.keys()} \
-            if isinstance(row_data, (list, tuple)) else row_data.keys()
+        return {k for row in row_data for k in row.keys()} if isinstance(row_data, (list, tuple)) else row_data.keys()
 
     def _get_kv_table(self, row_data) -> _TableInfoResultType:
         serializers: Dict[Text, Callable[..., Text]] = self._table.serializers or dict()
         return dict(
             columns=['Key', 'Value'],
-            data=[{'Key': value, 'Value': serializers.get(key, str)(row_data[key])}
-                  for key, value in self._table.keys.items() if isnotempty(row_data.get(key))],
+            data=[
+                {'Key': value, 'Value': serializers.get(key, str)(row_data[key])}
+                for key, value in self._table.keys.items()
+                if isnotempty(row_data.get(key))
+            ],
             header=self._table.header,
-            display_headers=self._table.display_headers
+            display_headers=self._table.display_headers,
         )
 
     def _get_table(self, row_data) -> _TableInfoResultType:
@@ -55,10 +56,11 @@ class TableInfoBuilder:
         columns.sort()
         return dict(
             columns=columns,
-            data=[self._apply_serializers(row) for row in row_data] if isinstance(row_data, list)
+            data=[self._apply_serializers(row) for row in row_data]
+            if isinstance(row_data, list)
             else [self._apply_serializers(row_data)],
             header=self._table.header,
-            display_headers=self._table.display_headers
+            display_headers=self._table.display_headers,
         )
 
     def get_table(self, row_data) -> _TableInfoResultType:

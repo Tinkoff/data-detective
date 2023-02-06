@@ -36,9 +36,11 @@ if __name__ == '__main__':
         print('```')
         bfs(graph_yaml, 'root', root_table=root)
         print('```')
-        print('''
+        print(
+            '''
 Description of hierarchy of root entities:
 
 | Name | Path to entity | Entity type | Info |
-| --- | --- | --- | --- |''')
+| --- | --- | --- | --- |'''
+        )
         print_table(root)

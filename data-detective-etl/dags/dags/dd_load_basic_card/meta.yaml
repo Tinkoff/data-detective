@@ -1,0 +1,11 @@
+description: Load DD basic card template
+schedule_interval: '@once'
+tags:
+  - excluded
+default_args:
+  owner: airflow
+  result_type: pickle
+  retries: 1
+  work_conn_id: s3work
+  work_type: s3
+factory: Python
