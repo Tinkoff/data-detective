@@ -4,14 +4,16 @@ x-airflow: &airflow
   build:
     context: .
     target: dev
-  environment:
-    - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${META_USER}:${META_PASS}@metadb:5432/${META_USER}
-    - AIRFLOW__CORE__EXECUTOR=LocalExecutor
-    - AIRFLOW__WEBSERVER__SECRET_KEY=${SECRET_KEY}
-    - AIRFLOW__DATABASE__LOAD_DEFAULT_CONNECTIONS=False
-    - AIRFLOW__CORE__LOAD_EXAMPLES=False
-    - PYTHON_VERSION=${PYTHON_VERSION}
-    - POETRY_VERSION=${POETRY_VERSION}
+    args:
+          AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${META_USER}:${META_PASS}@metadb:5432/${META_USER}
+          AIRFLOW__CORE__EXECUTOR: LocalExecutor
+          AIRFLOW__WEBSERVER__SECRET_KEY: ${SECRET_KEY}
+          AIRFLOW__DATABASE__LOAD_DEFAULT_CONNECTIONS: 'false'
+          AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+          PYTHON_VERSION: ${PYTHON_VERSION}
+          POETRY_VERSION: ${POETRY_VERSION}
+  env_file:
+    - .env
 
 services:
   ssh_service:
