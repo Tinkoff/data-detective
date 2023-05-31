@@ -9,7 +9,7 @@ from data_detective_airflow.constants import WORK_PG_SCHEMA_PREFIX, PG_CONN_ID
 from data_detective_airflow.dag_generator import ResultType, WorkType
 from data_detective_airflow.operators.transformers.pg_sql import PgSQL
 from data_detective_airflow.test_utilities.generate_df import generate_single_dataframe, fill_table_from_dataframe
-from data_detective_airflow.test_utilities import get_template_context, run_task
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context, run_task
 from tests_data.operators.transformers import pg_sql_queries as pg_test_data
 
 TEST_SCHEMA = f'{WORK_PG_SCHEMA_PREFIX}_test'
@@ -35,7 +35,7 @@ def setup_sources(test_dag):
     yield
     sql = f"DROP SCHEMA IF EXISTS {TEST_SCHEMA} CASCADE;"
     logging.info(sql)
-    hook.run([sql])
+    # hook.run([sql])
 
 
 @allure.feature('Transformers')
@@ -45,7 +45,7 @@ def setup_sources(test_dag):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True, ids=['pg-result-write'])
-def test_pg_sql_work(test_dag, setup_sources):
+def test_pg_sql_work(test_dag, dummy_task, setup_sources):
     with allure.step('Init'):
         hook = PostgresHook(test_dag.conn_id)
 
@@ -60,6 +60,7 @@ def test_pg_sql_work(test_dag, setup_sources):
                           source=None, target='test_view_pg', obj_type='view',
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_view',
                           dag=test_dag)
+            create_or_get_dagrun(test_dag, dummy_task)
 
         with allure.step('Run tasks'):
             logging.info('TEST: Task1 execute:')
@@ -94,7 +95,7 @@ def test_pg_sql_work(test_dag, setup_sources):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True, ids=['pg-result-write'])
-def test_pg_sql_with_view_src(test_dag, setup_sources):
+def test_pg_sql_with_view_src(test_dag, dummy_task, setup_sources):
     with allure.step('Init'):
         view_even = "test_view_even"
         view_odd = "test_view_odd"
@@ -128,6 +129,7 @@ def test_pg_sql_with_view_src(test_dag, setup_sources):
                           source=None, target='test_table_res', obj_type='table',
                           conn_id=test_dag.conn_id, task_id='test_pg_res',
                           dag=test_dag)
+            create_or_get_dagrun(test_dag, dummy_task)
 
         with allure.step('Run tasks'):
             logging.info('TEST: Task1 execute:')
@@ -162,7 +164,7 @@ def test_pg_sql_with_view_src(test_dag, setup_sources):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True, ids=['pg-result-write'])
-def test_pg_sql_with_duplicates_data(test_dag, setup_sources):
+def test_pg_sql_with_duplicates_data(test_dag, dummy_task, setup_sources):
     with allure.step('Init'):
         hook = PostgresHook(test_dag.conn_id)
 
@@ -178,6 +180,7 @@ def test_pg_sql_with_duplicates_data(test_dag, setup_sources):
                           source=None, target='test_table_pg', obj_type='table',
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_table',
                           dag=test_dag)
+            create_or_get_dagrun(test_dag, dummy_task)
 
         with allure.step('Run tasks'):
             logging.info('TEST: Task1 execute:')
@@ -204,7 +207,6 @@ def test_pg_sql_with_duplicates_data(test_dag, setup_sources):
                        query_result1[0] == 4
 
 
-@pytest.mark.skip('FIXME')
 @allure.feature('Transformers')
 @allure.story('PG with a heavy query')
 @pytest.mark.parametrize('test_dag',
@@ -212,7 +214,7 @@ def test_pg_sql_with_duplicates_data(test_dag, setup_sources):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True, ids=['pg-result-write'])
-def test_pg_sql_with_heavy_query(test_dag):
+def test_pg_sql_with_heavy_query(test_dag, dummy_task):
     with allure.step('Init'):
         hook = PostgresHook(test_dag.conn_id)
         tab1 = "first_test_tab"
@@ -242,22 +244,23 @@ def test_pg_sql_with_heavy_query(test_dag):
                 logging.info(sql)
                 cur.execute(sql)
 
-            with allure.step('Generate data and insert into tables'):
-                rec_count = 100
+        with allure.step('Generate data and insert into tables'):
+            rec_count = 100
 
-                columns1 = {'id': 'int', 'data': 'str'}
-                df1 = generate_single_dataframe(columns=columns1,
-                                                records_count=rec_count)
-                columns2 = {'id': 'int', 'value': 'str'}
-                df2 = generate_single_dataframe(columns=columns2,
-                                                records_count=rec_count)
+            columns1 = {'id': 'int', 'data': 'str'}
+            df1 = generate_single_dataframe(columns=columns1,
+                                            records_count=rec_count)
+            columns2 = {'id': 'int', 'value': 'str'}
+            df2 = generate_single_dataframe(columns=columns2,
+                                            records_count=rec_count)
 
-                logging.info("Fill in the tables")
-                status1 = fill_table_from_dataframe(conn=conn, dframe=df1, schema=TEST_SCHEMA,
-                                                    table=tab1)
-                status2 = fill_table_from_dataframe(conn=conn, dframe=df2, schema=TEST_SCHEMA,
-                                                    table=tab2)
-                assert status1 and status2
+            logging.info(f"Fill in the tables {conn}")
+            status1 = fill_table_from_dataframe(conn=conn, dframe=df1, schema=TEST_SCHEMA,
+                                                table=tab1)
+            status2 = fill_table_from_dataframe(conn=conn, dframe=df2, schema=TEST_SCHEMA,
+                                                table=tab2)
+            logging.info(f'status1 = {status1} status2={status2}')
+            assert status1 and status2
 
         with allure.step('Create tasks and context'):
             task1 = PgSQL(sql=f'SELECT t1.id, t1.data, t2.id as id2, t2.value '
@@ -266,6 +269,7 @@ def test_pg_sql_with_heavy_query(test_dag):
                           source=None, target='test_table_pg', obj_type='table',
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_table',
                           analyze='id', dag=test_dag)
+            create_or_get_dagrun(test_dag, dummy_task)
 
         with allure.step('Run tasks'):
             logging.info('TEST: Task1 execute:')
@@ -294,7 +298,7 @@ def test_pg_sql_with_heavy_query(test_dag):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True, ids=['pg-result-write'])
-def test_pg_sql_with_an_empty_result(test_dag, setup_sources):
+def test_pg_sql_with_an_empty_result(test_dag, dummy_task, setup_sources):
     with allure.step('Init'):
         hook = PostgresHook(test_dag.conn_id)
 
@@ -304,6 +308,7 @@ def test_pg_sql_with_an_empty_result(test_dag, setup_sources):
                           source=None, target='test_table_pg', obj_type='table',
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_table',
                           dag=test_dag)
+            create_or_get_dagrun(test_dag, dummy_task)
 
         with allure.step('Run tasks'):
             logging.info('TEST: Task1 execute:')
@@ -328,7 +333,7 @@ def test_pg_sql_with_an_empty_result(test_dag, setup_sources):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True, ids=['pg-result-write'])
-def test_pg_sql_with_non_existent_field(test_dag, setup_sources):
+def test_pg_sql_with_non_existent_field(test_dag, dummy_task, setup_sources):
     with allure.step('Init'):
         hook = PostgresHook(test_dag.conn_id)
 
@@ -339,6 +344,7 @@ def test_pg_sql_with_non_existent_field(test_dag, setup_sources):
                           source=None, target='test_table_pg', obj_type='table',
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_table',
                           dag=test_dag)
+            create_or_get_dagrun(test_dag, dummy_task)
 
         with allure.step('Run tasks with exception'):
             try:
@@ -363,7 +369,7 @@ def test_pg_sql_with_non_existent_field(test_dag, setup_sources):
                            WorkType.WORK_PG.value,
                            PG_CONN_ID)],
                          indirect=True, ids=['pg-result-write'])
-def test_pg_sql_with_non_existent_source(test_dag, setup_sources):
+def test_pg_sql_with_non_existent_source(test_dag, dummy_task, setup_sources):
     with allure.step('Init'):
         hook = PostgresHook(test_dag.conn_id)
 
@@ -373,6 +379,7 @@ def test_pg_sql_with_non_existent_source(test_dag, setup_sources):
                           source=None, target='test_table_pg', obj_type='table',
                           conn_id=test_dag.conn_id, task_id='test_pg_sql_table',
                           dag=test_dag)
+            create_or_get_dagrun(test_dag, dummy_task)
 
         with allure.step('Run tasks with exception'):
             try:

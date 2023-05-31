@@ -1,9 +1,12 @@
-| source                                | type     | attribute   | destination                                         |
-|:--------------------------------------|:---------|:------------|:----------------------------------------------------|
-| urn:schema:postgres:pg:airflow:dds    | Contains |             | urn:table:postgres:pg:airflow:dds:entity            |
-| urn:schema:postgres:pg:airflow:dds    | Contains |             | urn:table:postgres:pg:airflow:dds:relation          |
-| urn:schema:postgres:pg:airflow:dds    | Contains |             | urn:table:postgres:pg:airflow:dds:sample            |
-| urn:schema:postgres:pg:airflow:mart   | Contains |             | urn:table:postgres:pg:airflow:mart:entity           |
-| urn:schema:postgres:pg:airflow:tuning | Contains |             | urn:table:postgres:pg:airflow:tuning:breadcrumb     |
-| urn:schema:postgres:pg:airflow:tuning | Contains |             | urn:table:postgres:pg:airflow:tuning:relations_type |
-| urn:schema:postgres:pg:airflow:tuning | Contains |             | urn:table:postgres:pg:airflow:tuning:search_help    |
+| type     | attribute   | source                                | destination                                               |
+|:---------|:------------|:--------------------------------------|:----------------------------------------------------------|
+| Contains |             | urn:schema:postgres:pg:airflow:dds    | urn:table:postgres:pg:airflow:dds:entity                  |
+| Contains |             | urn:schema:postgres:pg:airflow:dds    | urn:table:postgres:pg:airflow:dds:relation                |
+| Contains |             | urn:schema:postgres:pg:airflow:dds    | urn:table:postgres:pg:airflow:dds:sample                  |
+| Contains |             | urn:schema:postgres:pg:airflow:mart   | urn:table:postgres:pg:airflow:mart:entity                 |
+| Contains |             | urn:schema:postgres:pg:airflow:tuning | urn:table:postgres:pg:airflow:tuning:breadcrumb           |
+| Contains |             | urn:schema:postgres:pg:airflow:tuning | urn:table:postgres:pg:airflow:tuning:dictionary           |
+| Contains |             | urn:schema:postgres:pg:airflow:tuning | urn:table:postgres:pg:airflow:tuning:messages             |
+| Contains |             | urn:schema:postgres:pg:airflow:tuning | urn:table:postgres:pg:airflow:tuning:relations_type       |
+| Contains |             | urn:schema:postgres:pg:airflow:tuning | urn:table:postgres:pg:airflow:tuning:search_help          |
+| Contains |             | urn:schema:postgres:pg:airflow:tuning | urn:table:postgres:pg:airflow:tuning:search_system_x_type |

@@ -22,6 +22,7 @@ create table dds.entity
     notifications jsonb,
     tables jsonb,
 	tags jsonb,
+	filters jsonb,
 	processed_dttm timestamp default now()
 );
 create index entity_urn_index on dds.entity (urn);
@@ -72,9 +73,9 @@ create table tuning.relations_type
   target_type text,
   attribute_type text,
   relation_type text,
-  source_group_name text,
-  target_group_name text,
-  attribute_group_name text,
+  source_group_code text,
+  target_group_code text,
+  attribute_group_code text,
   loaded_by text,
   processed_dttm timestamp default now()
 );
@@ -83,12 +84,37 @@ create table tuning.search_help
 (
  type text not null,
  name text not null,
- description text not null,
+ title_code text not null,
+ info_code text not null,
  loaded_by text,
  processed_dttm timestamp default now()
 );
 
+create table tuning.messages
+(
+ code text not null,
+ lang text not null,
+ text text not null,
+ loaded_by text,
+ processed_dttm timestamp default now()
+);
 
+create table tuning.dictionary
+(
+ type text not null,
+ code text not null,
+ message_code text not null,
+ loaded_by text,
+ processed_dttm timestamp default now()
+);
+
+create table tuning.search_system_x_type
+(
+	system_name text not null,
+	type_name text not null,
+    loaded_by text not null,
+    processed_dttm timestamp default now()
+);
 
 create schema mart;
 create table mart.entity

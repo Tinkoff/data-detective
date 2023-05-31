@@ -14,7 +14,7 @@ from data_detective_airflow.operators import DBDump, PyTransform
 
 def _apply_rank(entity: pd.Series, rank_groups: list[dict[str, str]]) -> Union[str, list[str], float, int]:
     """Apply search rank for every entity
-    If more then one rank for entity choose max rank
+    If more than one rank for entity choose max rank
     If rank not found set rank 1
     :param entity: dds.entity
     :param rank_groups: search rank group for entity
@@ -22,7 +22,7 @@ def _apply_rank(entity: pd.Series, rank_groups: list[dict[str, str]]) -> Union[s
     """
     ranks = []
 
-    entity_name = entity['id']
+    entity_name = entity['entity_name']
     entity_type = entity['entity_type']
 
     for rank_group in rank_groups:

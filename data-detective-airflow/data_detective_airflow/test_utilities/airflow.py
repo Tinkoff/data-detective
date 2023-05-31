@@ -3,6 +3,7 @@ from functools import lru_cache
 
 from airflow.models import DagRun, TaskInstance
 from airflow.utils.context import Context
+from airflow.utils.state import DagRunState
 from airflow.utils.types import DagRunType
 
 
@@ -18,7 +19,7 @@ def create_or_get_dagrun(dag, task) -> DagRun:
         return dag.create_dagrun(
             execution_date=datetime.now(timezone(offset=timedelta(hours=0))),
             run_type=DagRunType.MANUAL,
-            state='queued',
+            state=DagRunState.QUEUED,
             data_interval=(
                 datetime.now(timezone(offset=timedelta(hours=0))),
                 datetime.now(timezone(offset=timedelta(hours=0))) + timedelta(hours=1)

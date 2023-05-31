@@ -10,9 +10,12 @@ from common.builders import JsonSystemBuilder, TableInfoBuilder, TableInfoDescri
 from common.urn import get_tree_node, get_schema, get_table, get_column
 from common.utils import get_readable_size_bytes
 from common.utilities.entity_enums import (
-    ENTITY_CORE_FIELDS, RELATION_CORE_FIELDS,
-    EntityTypes, EntityFields,
-    RelationTypes, RelationFields
+    ENTITY_CORE_FIELDS,
+    RELATION_CORE_FIELDS,
+    EntityTypes,
+    EntityFields,
+    RelationTypes,
+    RelationFields,
 )
 from common.utilities.search_enums import CardType, SystemForSearch, TypeForSearch
 
@@ -36,27 +39,26 @@ def transform_schema_to_entity(_context: dict, schemas: DataFrame) -> tuple[tupl
         },
         header='General',
         display_headers='0',
-        orientation='vertical'
+        orientation='vertical',
     )
     schema_table_info_builder = TableInfoBuilder(schema_table_info_description)
 
-    result = (petl.fromdataframe(schemas)
-              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.SCHEMA)
-              .addfield(EntityFields.ENTITY_NAME, lambda row: row['schema_name'])
-              .addfield(EntityFields.ENTITY_NAME_SHORT, None)
-              .addfield(EntityFields.URN,
-                        lambda row: get_schema('postgres', 'pg', 'airflow', row[EntityFields.ENTITY_NAME]))
-              .rename('schema_description', EntityFields.INFO)
-              .addfield(EntityFields.JSON_DATA,
-                        lambda row: dict(schema_owner=row['schema_owner'], schema_acl=row['schema_acl']))
-              .addfield(EntityFields.TABLES, lambda row: [schema_table_info_builder(row)])
-              .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
-              .addfield(EntityFields.SEARCH_DATA,
-                        lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
-              .cut(list(ENTITY_CORE_FIELDS)
-                   + [EntityFields.TABLES, EntityFields.JSON_SYSTEM, EntityFields.INFO])
-              .distinct(key=EntityFields.URN)
-              )
+    result = (
+        petl.fromdataframe(schemas)
+        .addfield(EntityFields.ENTITY_TYPE, EntityTypes.SCHEMA.key)
+        .addfield(EntityFields.ENTITY_NAME, lambda row: row['schema_name'])
+        .addfield(EntityFields.ENTITY_NAME_SHORT, None)
+        .addfield(EntityFields.URN, lambda row: get_schema('postgres', 'pg', 'airflow', row[EntityFields.ENTITY_NAME]))
+        .rename('schema_description', EntityFields.INFO)
+        .addfield(
+            EntityFields.JSON_DATA, lambda row: dict(schema_owner=row['schema_owner'], schema_acl=row['schema_acl'])
+        )
+        .addfield(EntityFields.TABLES, lambda row: [schema_table_info_builder(row)])
+        .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
+        .addfield(EntityFields.SEARCH_DATA, lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
+        .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.TABLES, EntityFields.JSON_SYSTEM, EntityFields.INFO])
+        .distinct(key=EntityFields.URN)
+    )
     return result.tupleoftuples()
 
 
@@ -97,7 +99,7 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
         },
         header='Table indexes',
         display_headers='1',
-        orientation='horizontal'
+        orientation='horizontal',
     )
     table_index_builder = TableInfoBuilder(table_index_description)
 
@@ -108,31 +110,41 @@ def transform_table_to_entity(_context: dict, tables: DataFrame) -> tuple[tuple]
         },
         header='Table rights',
         display_headers='1',
-        orientation='horizontal'
+        orientation='horizontal',
     )
     table_rights_builder = TableInfoBuilder(table_rights_description)
 
-    result = (petl.fromdataframe(tables)
-              .addfield(EntityFields.URN,
-                        lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']))
-              .addfield(EntityFields.ENTITY_NAME, lambda row: f"{row['schema_name']}.{row['table_name']}")
-              .rename('table_name', EntityFields.ENTITY_NAME_SHORT)
-              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.TABLE)
-              .addfield(EntityFields.SEARCH_DATA,
-                        lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
-              .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
-              .addfield(EntityFields.JSON_DATA,
-                        lambda row: dict(estimated_rows=row['estimated_rows'],
-                                         table_size=row['table_size'],
-                                         full_table_size=row['full_table_size'],
-                                         index_json=row['index_json'],
-                                         table_rights=row['table_rights']))
-              .addfield(EntityFields.TABLES, lambda row: [table_size_builder(row),
-                                                          table_index_builder(row['index_json'] or {}),
-                                                          table_rights_builder(row['table_rights'] or {})])
-              .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.TABLES, EntityFields.JSON_SYSTEM])
-              .distinct(key=EntityFields.URN)
-              )
+    result = (
+        petl.fromdataframe(tables)
+        .addfield(
+            EntityFields.URN, lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name'])
+        )
+        .addfield(EntityFields.ENTITY_NAME, lambda row: f"{row['schema_name']}.{row['table_name']}")
+        .rename('table_name', EntityFields.ENTITY_NAME_SHORT)
+        .addfield(EntityFields.ENTITY_TYPE, EntityTypes.TABLE.key)
+        .addfield(EntityFields.SEARCH_DATA, lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
+        .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
+        .addfield(
+            EntityFields.JSON_DATA,
+            lambda row: dict(
+                estimated_rows=row['estimated_rows'],
+                table_size=row['table_size'],
+                full_table_size=row['full_table_size'],
+                index_json=row['index_json'],
+                table_rights=row['table_rights'],
+            ),
+        )
+        .addfield(
+            EntityFields.TABLES,
+            lambda row: [
+                table_size_builder(row),
+                table_index_builder(row['index_json'] or {}),
+                table_rights_builder(row['table_rights'] or {}),
+            ],
+        )
+        .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.TABLES, EntityFields.JSON_SYSTEM])
+        .distinct(key=EntityFields.URN)
+    )
     return result.tupleoftuples()
 
 
@@ -154,27 +166,33 @@ def transform_column_to_entity(_context: dict, columns: DataFrame) -> tuple[tupl
         },
         header='General',
         display_headers='0',
-        orientation='vertical'
+        orientation='vertical',
     )
     column_table_info_builder = TableInfoBuilder(column_table_info_description)
 
-    result = (petl.fromdataframe(columns)
-              .addfield(EntityFields.URN,
-                        lambda row: get_column('postgres', 'pg', 'airflow',
-                                               row['schema_name'], row['table_name'], row['column_name']))
-              .addfield(EntityFields.ENTITY_NAME,
-                        lambda row: f"{row['schema_name']}.{row['table_name']}.{row['column_name']}")
-              .addfield(EntityFields.ENTITY_NAME_SHORT, lambda row: row['column_name'])
-              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.COLUMN)
-              .addfield(EntityFields.SEARCH_DATA,
-                        lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
-              .addfield(EntityFields.JSON_DATA,
-                        lambda row: dict(ordinal_position=row['ordinal_position'], column_type=row['column_type']))
-              .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
-              .addfield(EntityFields.TABLES, lambda row: [column_table_info_builder(row)])
-              .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.TABLES, EntityFields.JSON_SYSTEM])
-              .distinct(key=EntityFields.URN)
-              )
+    result = (
+        petl.fromdataframe(columns)
+        .addfield(
+            EntityFields.URN,
+            lambda row: get_column(
+                'postgres', 'pg', 'airflow', row['schema_name'], row['table_name'], row['column_name']
+            ),
+        )
+        .addfield(
+            EntityFields.ENTITY_NAME, lambda row: f"{row['schema_name']}.{row['table_name']}.{row['column_name']}"
+        )
+        .addfield(EntityFields.ENTITY_NAME_SHORT, lambda row: row['column_name'])
+        .addfield(EntityFields.ENTITY_TYPE, EntityTypes.COLUMN.key)
+        .addfield(EntityFields.SEARCH_DATA, lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
+        .addfield(
+            EntityFields.JSON_DATA,
+            lambda row: dict(ordinal_position=row['ordinal_position'], column_type=row['column_type']),
+        )
+        .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
+        .addfield(EntityFields.TABLES, lambda row: [column_table_info_builder(row)])
+        .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.TABLES, EntityFields.JSON_SYSTEM])
+        .distinct(key=EntityFields.URN)
+    )
     return result.tupleoftuples()
 
 
@@ -185,16 +203,18 @@ def link_schema_to_table(_context: dict, tables: DataFrame) -> tuple[tuple]:
                              'table_size', 'full_table_size', 'index_json']
     :return: RELATION_CORE_FIELDS
     """
-    result = (petl.fromdataframe(tables)
-              .addfield(RelationFields.SOURCE,
-                        lambda row: get_schema('postgres', 'pg', 'airflow', row['schema_name']))
-              .addfield(RelationFields.DESTINATION,
-                        lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']))
-              .addfield(RelationFields.TYPE, RelationTypes.Contains)
-              .addfield(RelationFields.ATTRIBUTE, None)
-              .cut(list(RELATION_CORE_FIELDS))
-              .distinct()
-              )
+    result = (
+        petl.fromdataframe(tables)
+        .addfield(RelationFields.SOURCE, lambda row: get_schema('postgres', 'pg', 'airflow', row['schema_name']))
+        .addfield(
+            RelationFields.DESTINATION,
+            lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']),
+        )
+        .addfield(RelationFields.TYPE, RelationTypes.Contains)
+        .addfield(RelationFields.ATTRIBUTE, None)
+        .cut(list(RELATION_CORE_FIELDS))
+        .distinct()
+    )
     return result.tupleoftuples()
 
 
@@ -204,17 +224,23 @@ def link_table_to_column(_context: dict, columns: DataFrame) -> tuple[tuple]:
     :param columns: Dataframe['schema_name', 'table_name', 'column_name', 'column_type', 'ordinal_position']
     :return: RELATION_CORE_FIELDS
     """
-    result = (petl.fromdataframe(columns)
-              .addfield(RelationFields.SOURCE,
-                        lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']))
-              .addfield(RelationFields.DESTINATION,
-                        lambda row: get_column('postgres', 'pg', 'airflow',
-                                               row['schema_name'], row['table_name'], row['column_name']))
-              .addfield(RelationFields.TYPE, RelationTypes.Contains)
-              .addfield(RelationFields.ATTRIBUTE, None)
-              .cut(list(RELATION_CORE_FIELDS))
-              .distinct()
-              )
+    result = (
+        petl.fromdataframe(columns)
+        .addfield(
+            RelationFields.SOURCE,
+            lambda row: get_table('postgres', 'pg', 'airflow', row['schema_name'], row['table_name']),
+        )
+        .addfield(
+            RelationFields.DESTINATION,
+            lambda row: get_column(
+                'postgres', 'pg', 'airflow', row['schema_name'], row['table_name'], row['column_name']
+            ),
+        )
+        .addfield(RelationFields.TYPE, RelationTypes.Contains)
+        .addfield(RelationFields.ATTRIBUTE, None)
+        .cut(list(RELATION_CORE_FIELDS))
+        .distinct()
+    )
     return result.tupleoftuples()
 
 
@@ -224,15 +250,15 @@ def link_root_node_to_schema(_context: dict, schemas: DataFrame) -> tuple[tuple]
     :param schemas: Dataframe['schema_name', 'schema_owner', 'schema_acl', 'schema_description']
     :return: RELATION_CORE_FIELDS
     """
-    result = (petl.fromdataframe(schemas)
-              .addfield(RelationFields.SOURCE, lambda row: get_tree_node(['Database']))
-              .addfield(RelationFields.DESTINATION,
-                        lambda row: get_schema('postgres', 'pg', 'airflow', row['schema_name']))
-              .addfield(RelationFields.TYPE, RelationTypes.Contains)
-              .addfield(RelationFields.ATTRIBUTE, None)
-              .cut(list(RELATION_CORE_FIELDS))
-              .distinct()
-              )
+    result = (
+        petl.fromdataframe(schemas)
+        .addfield(RelationFields.SOURCE, lambda row: get_tree_node(['root', 'Database']))
+        .addfield(RelationFields.DESTINATION, lambda row: get_schema('postgres', 'pg', 'airflow', row['schema_name']))
+        .addfield(RelationFields.TYPE, RelationTypes.Contains)
+        .addfield(RelationFields.ATTRIBUTE, None)
+        .cut(list(RELATION_CORE_FIELDS))
+        .distinct()
+    )
     return result.tupleoftuples()
 
 
@@ -307,15 +333,13 @@ def fill_dag(t_dag: TDag):
         description='Link schemas to root tree node',
         transformer_callable=link_root_node_to_schema,
         source=['dump_pg_schemas'],
-        dag=t_dag
+        dag=t_dag,
     )
 
     PyTransform(
         task_id='append_entities',
         description='Append entities to load in entity table',
-        source=['transform_schema_to_entity',
-                'transform_table_to_entity',
-                'transform_column_to_entity'],
+        source=['transform_schema_to_entity', 'transform_table_to_entity', 'transform_column_to_entity'],
         transformer_callable=appender_petl2pandas,
         dag=t_dag,
     )
@@ -323,9 +347,7 @@ def fill_dag(t_dag: TDag):
     PyTransform(
         task_id='append_relations',
         description='Append relations to load in relation table',
-        source=['link_root_node_to_schema',
-                'link_schema_to_table',
-                'link_table_to_column'],
+        source=['link_root_node_to_schema', 'link_schema_to_table', 'link_table_to_column'],
         transformer_callable=appender_petl2pandas,
         dag=t_dag,
     )

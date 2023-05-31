@@ -9,9 +9,12 @@ from data_detective_airflow.operators import PgSingleTargetLoader, PyTransform
 
 from common.builders import JsonSystemBuilder, CodeBuilder
 from common.utilities.entity_enums import (
-    ENTITY_CORE_FIELDS, RELATION_CORE_FIELDS,
-    EntityTypes, EntityFields,
-    RelationTypes, RelationFields,
+    ENTITY_CORE_FIELDS,
+    RELATION_CORE_FIELDS,
+    EntityTypes,
+    EntityFields,
+    RelationTypes,
+    RelationFields,
 )
 from common.urn import get_etl_job, get_tree_node
 from common.utilities.search_enums import SystemForSearch, TypeForSearch
@@ -31,11 +34,11 @@ def _get_code_files(path: str, code_type: str, exclude_files: list = None) -> li
     if not exclude_files:
         exclude_files = []
 
-    result = [{'name': str(code_file.relative_to(pathname)),
-               'type': code_type,
-               'data': code_file.read_text(encoding='utf-8')}
-              for code_file in pathname.glob(f'**/*.{code_type}')
-              if code_file not in [pathname / ex_file for ex_file in exclude_files]]
+    result = [
+        {'name': str(code_file.relative_to(pathname)), 'type': code_type, 'data': code_file.read_text(encoding='utf-8')}
+        for code_file in pathname.glob(f'**/*.{code_type}')
+        if code_file not in [pathname / ex_file for ex_file in exclude_files]
+    ]
 
     return result
 
@@ -65,12 +68,13 @@ def add_code_files_to_dags(_context: dict, dags: tuple[tuple]) -> tuple[tuple]:
                                                 'default_args', 'tags', 'tasks')
     :return: dags + ('meta_yaml', 'yaml_files', 'py_files', 'sql_files')
     """
-    result = (petl.wrap(dags)
-              .addfield('meta_yaml', lambda row: (Path(row['dag_dir']) / 'meta.yaml').read_text(encoding='utf-8'))
-              .addfield('yaml_files', lambda row: _get_code_files(row['dag_dir'], 'yaml', exclude_files=['meta.yaml']))
-              .addfield('py_files', lambda row: _get_code_files(row['dag_dir'], 'py'))
-              .addfield('sql_files', lambda row: _get_code_files(row['dag_dir'], 'sql'))
-              )
+    result = (
+        petl.wrap(dags)
+        .addfield('meta_yaml', lambda row: (Path(row['dag_dir']) / 'meta.yaml').read_text(encoding='utf-8'))
+        .addfield('yaml_files', lambda row: _get_code_files(row['dag_dir'], 'yaml', exclude_files=['meta.yaml']))
+        .addfield('py_files', lambda row: _get_code_files(row['dag_dir'], 'py'))
+        .addfield('sql_files', lambda row: _get_code_files(row['dag_dir'], 'sql'))
+    )
 
     return result.tupleoftuples()
 
@@ -91,36 +95,50 @@ def transform_dag_to_entity(_context: dict, dags: tuple[tuple]) -> DataFrame:
     meta_yaml_code_builder = CodeBuilder(header='DAG main meta.yaml', opened=True, language='yaml')
     dag_code_builder = CodeBuilder(opened=False)
 
-    result = (petl.wrap(dags)
-              .addfield(EntityFields.URN, lambda row: get_etl_job('dd', 'airflow', row['dag_id']))
-              .addfield(EntityFields.ENTITY_NAME, lambda row: row['dag_id'])
-              .addfield(EntityFields.ENTITY_NAME_SHORT, None)
-              .addfield(EntityFields.ENTITY_TYPE, EntityTypes.JOB)
-              .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
-              .addfield(EntityFields.SEARCH_DATA,
-                        lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
-              .addfield(EntityFields.JSON_DATA, lambda row: dict(factory=row['factory'],
-                                                                 default_args=row['default_args'],
-                                                                 schedule_interval=row['schedule_interval'],
-                                                                 tasks=row['tasks'],
-                                                                 meta_yaml=row['meta_yaml']))
-              .addfield(EntityFields.CODES,
-                        lambda row: (
-                            [meta_yaml_code_builder(data=row['meta_yaml'])] +
-                            [dag_code_builder(header=code['name'], language=code['type'], data=code['data'])
-                             for code in row['yaml_files']] +
-                            [dag_code_builder(header=code['name'], language=code['type'], data=code['data'])
-                             for code in row['py_files']] +
-                            [dag_code_builder(header=code['name'], language=code['type'], data=code['data'])
-                             for code in row['sql_files']]
-                        )
-                        )
-              .rename('description', EntityFields.INFO)
-              .rename('tags', EntityFields.TAGS)
-              .cut(list(ENTITY_CORE_FIELDS) + [EntityFields.JSON_SYSTEM, EntityFields.INFO,
-                                               EntityFields.CODES, EntityFields.TAGS])
-              .distinct(key=EntityFields.URN)
-              )
+    result = (
+        petl.wrap(dags)
+        .addfield(EntityFields.URN, lambda row: get_etl_job('dd', 'airflow', row['dag_id']))
+        .addfield(EntityFields.ENTITY_NAME, lambda row: row['dag_id'])
+        .addfield(EntityFields.ENTITY_NAME_SHORT, None)
+        .addfield(EntityFields.ENTITY_TYPE, EntityTypes.JOB.key)
+        .addfield(EntityFields.JSON_SYSTEM, json_system_builder())
+        .addfield(EntityFields.SEARCH_DATA, lambda row: f"{row[EntityFields.URN]} {row[EntityFields.ENTITY_NAME]}")
+        .addfield(
+            EntityFields.JSON_DATA,
+            lambda row: dict(
+                factory=row['factory'],
+                default_args=row['default_args'],
+                schedule_interval=row['schedule_interval'],
+                tasks=row['tasks'],
+                meta_yaml=row['meta_yaml'],
+            ),
+        )
+        .addfield(
+            EntityFields.CODES,
+            lambda row: (
+                [meta_yaml_code_builder(data=row['meta_yaml'])]
+                + [
+                    dag_code_builder(header=code['name'], language=code['type'], data=code['data'])
+                    for code in row['yaml_files']
+                ]
+                + [
+                    dag_code_builder(header=code['name'], language=code['type'], data=code['data'])
+                    for code in row['py_files']
+                ]
+                + [
+                    dag_code_builder(header=code['name'], language=code['type'], data=code['data'])
+                    for code in row['sql_files']
+                ]
+            ),
+        )
+        .rename('description', EntityFields.INFO)
+        .rename('tags', EntityFields.TAGS)
+        .cut(
+            list(ENTITY_CORE_FIELDS)
+            + [EntityFields.JSON_SYSTEM, EntityFields.INFO, EntityFields.CODES, EntityFields.TAGS]
+        )
+        .distinct(key=EntityFields.URN)
+    )
 
     return result.todataframe()
 
@@ -132,15 +150,16 @@ def link_root_node_to_dag(_context: dict, dags: DataFrame) -> DataFrame:
     :param dags: [ENTITY_CORE_FIELDS] + [EntityFields.JSON_SYSTEM, EntityFields.INFO, EntityFields.CODES]]
     :return: DataFrame RELATION_CORE_FIELDS
     """
-    result = (petl.fromdataframe(dags)
-              .cut([EntityFields.URN])
-              .addfield(RelationFields.SOURCE, lambda row: get_tree_node(['ETL DAGS']))
-              .rename(EntityFields.URN, RelationFields.DESTINATION)
-              .addfield(RelationFields.TYPE, RelationTypes.Contains)
-              .addfield(RelationFields.ATTRIBUTE, None)
-              .cut(list(RELATION_CORE_FIELDS))
-              .distinct()
-              )
+    result = (
+        petl.fromdataframe(dags)
+        .cut([EntityFields.URN])
+        .addfield(RelationFields.SOURCE, lambda row: get_tree_node(['root', 'ETL DAGS']))
+        .rename(EntityFields.URN, RelationFields.DESTINATION)
+        .addfield(RelationFields.TYPE, RelationTypes.Contains)
+        .addfield(RelationFields.ATTRIBUTE, None)
+        .cut(list(RELATION_CORE_FIELDS))
+        .distinct()
+    )
     return result.todataframe()
 
 
@@ -174,7 +193,7 @@ def fill_dag(t_dag: TDag):
         description='Link dags to root tree node',
         transformer_callable=link_root_node_to_dag,
         source=['transform_dag_to_entity'],
-        dag=t_dag
+        dag=t_dag,
     )
 
     PgSingleTargetLoader.upload_dds_entity(dag=t_dag, sources=['transform_dag_to_entity'])

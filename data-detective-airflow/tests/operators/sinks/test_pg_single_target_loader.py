@@ -4,9 +4,19 @@ import allure
 import pytest
 from pandas import DataFrame
 
-from data_detective_airflow.operators import PythonDump, PgSingleTargetLoader,\
-    filter_for_entity, filter_for_relation, filter_for_breadcrumb
-from data_detective_airflow.test_utilities import run_task, assert_frame_equal, get_template_context
+from data_detective_airflow.operators import (
+    PythonDump,
+    PgSingleTargetLoader,
+    filter_for_entity,
+    filter_for_relation,
+    filter_for_breadcrumb,
+)
+from data_detective_airflow.test_utilities import (
+    create_or_get_dagrun,
+    run_task,
+    assert_frame_equal,
+    get_template_context,
+)
 from data_detective_airflow.constants import PG_CONN_ID
 from tests_data.operators.sinks.pg_single_table_loader_dataset import dataset, setup_tables, setup_tables_empty
 
@@ -48,6 +58,8 @@ def test_pg_single_table_loader_main(test_dag, target, deleted_flg, setup, reque
 
     task = PgSingleTargetLoader(**task_params)
 
+    create_or_get_dagrun(test_dag, source_task)
+
     source_context = get_template_context(source_task)
     run_task(task=source_task, context=source_context)
     context = get_template_context(task)
@@ -85,6 +97,8 @@ def test_pg_single_table_loader_empty_source(test_dag, target, deleted_flg, setu
     }
 
     task = PgSingleTargetLoader(**task_params)
+
+    create_or_get_dagrun(test_dag, source_task)
 
     source_context = get_template_context(source_task)
     run_task(task=source_task, context=source_context)

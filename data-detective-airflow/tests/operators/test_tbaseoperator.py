@@ -6,6 +6,7 @@ from airflow.exceptions import AirflowTaskTimeout
 
 from data_detective_airflow.dag_generator import ResultType, WorkType
 from data_detective_airflow.constants import PG_CONN_ID
+from data_detective_airflow.test_utilities import create_or_get_dagrun
 
 
 @allure.feature('Execution_timeout execution')
@@ -32,6 +33,7 @@ from data_detective_airflow.constants import PG_CONN_ID
                          indirect=True, ids=['base_operator'])
 def test_timeout_exc_pass_through(test_dag, clname, kwargs):
     test_task = import_string(clname)(task_id='test', dag=test_dag, **kwargs)
+    create_or_get_dagrun(test_dag, test_task)
     with pytest.raises(AirflowTaskTimeout):
         test_task.run()
 
@@ -56,6 +58,7 @@ def test_timeout_exc_pass_through(test_dag, clname, kwargs):
                          indirect=True, ids=['base_operator'])
 def test_timeout_exc_dataframe(test_dag, clname, kwargs):
     test_task = import_string(clname)(task_id='test', dag=test_dag, **kwargs)
+    create_or_get_dagrun(test_dag, test_task)
     with pytest.raises(AirflowTaskTimeout):
         test_task.run()
 
@@ -84,6 +87,7 @@ def test_timeout_exc_dataframe(test_dag, clname, kwargs):
                          indirect=True, ids=['base_operator'])
 def test_terminate_failed_query_pg(test_dag, clname, kwargs):
     test_task = import_string(clname)(task_id='test', dag=test_dag, **kwargs)
+    create_or_get_dagrun(test_dag, test_task)
     work = test_task.dag.get_work(test_task.work_type, test_task.work_conn_id)
     try:
         test_task.run()

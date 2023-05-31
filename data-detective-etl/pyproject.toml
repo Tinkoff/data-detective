@@ -1,31 +1,24 @@
 [tool.poetry]
 name = "date-detective-etl"
 license = "Apache-2.0"
-version = "2.0.0"
+version = "2.1.0"
 description = "ETL with data-detective-airflow"
 authors = ["Tinkoff Data Detective Team"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-apache-airflow = "~2.2"
+apache-airflow = "~2.4"
 apache-airflow-providers-amazon = "*"
 apache-airflow-providers-celery = "*"
 apache-airflow-providers-postgres = "*"
 apache-airflow-providers-redis = "*"
 apache-airflow-providers-ssh = "*"
 apache-airflow-providers-elasticsearch = "*"
-data-detective-airflow = "2.0.0"
+data-detective-airflow = "2.1.0"
 petl = "^1.7"
-# Not all airflow providers support pandas > 1.4.0
-pandas = "^1.1, <1.4"
-psycopg2-binary = "^2.9"
-beautifulsoup4 = "^4.10"
-html5lib = "*"
-xmljson = "0.2.1"
-pydantic = "^1.9"
-lxml = "^4.7"
-# conflict with flask_appbuilder, need < 3.x
-wtforms = "^2.3.0"
+pandas = "^1.1, <1.6"
+pydantic = "^1.10"
+beautifulsoup4 = "^4.11"
 
 [tool.poetry.dev-dependencies]
 factory-boy = "*"

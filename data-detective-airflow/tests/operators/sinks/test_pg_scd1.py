@@ -6,7 +6,7 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 from data_detective_airflow.constants import PG_CONN_ID, TASK_ID_KEY
 from data_detective_airflow.operators import DBDump, PythonDump, PgSCD1, LoadingMethod
-from data_detective_airflow.test_utilities import run_task, assert_frame_equal, get_template_context
+from data_detective_airflow.test_utilities import create_or_get_dagrun, run_task, assert_frame_equal, get_template_context
 from tests_data.operators.sinks.pg_scd1_dataset import dataset
 
 cases = [
@@ -57,6 +57,8 @@ def test_scd1_1key(test_dag, case, loading_method, chunk_row_number):
         task_params.update({'process_existing_records': True})
 
     task = PgSCD1(**task_params)
+
+    create_or_get_dagrun(test_dag, source_task)
 
     run_task(task=source_task, context=get_template_context(source_task))
 
@@ -111,6 +113,8 @@ def test_scd1_2keys(test_dag, case, loading_method):
         task_params.update({'process_existing_records': True})
 
     task = PgSCD1(**task_params)
+
+    create_or_get_dagrun(test_dag, source_task)
 
     run_task(task=source_task, context=get_template_context(source_task))
     context = get_template_context(task)

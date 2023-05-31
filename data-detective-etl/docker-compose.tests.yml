@@ -8,7 +8,7 @@ x-airflow: &airflow
     - AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False
     - AIRFLOW__CORE__LOAD_EXAMPLES=False
     - AIRFLOW__CORE__EXECUTOR=LocalExecutor
-    - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${META_USER}:${META_PASS}@metadb:5432/airflow
+    - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${META_USER}:${META_PASS}@metadb:5432/airflow
     - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW__WEBSERVER__SECRET_KEY}
 
 services:

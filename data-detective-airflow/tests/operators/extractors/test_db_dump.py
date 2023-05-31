@@ -6,7 +6,7 @@ from airflow import settings
 from data_detective_airflow.constants import PG_CONN_ID
 from data_detective_airflow.operators import DBDump
 from data_detective_airflow.dag_generator import ResultType, WorkType
-from data_detective_airflow.test_utilities import run_task, get_template_context
+from data_detective_airflow.test_utilities import run_task, get_template_context, create_or_get_dagrun
 from tests_data.fixtures.PG.pg_fixtures import setup_sources, invalid_pg_data
 
 
@@ -20,6 +20,7 @@ from tests_data.fixtures.PG.pg_fixtures import setup_sources, invalid_pg_data
 def test_pg_query(test_dag):
     task = DBDump(sql="select * from dummy_test_pg_dump",
                   conn_id=PG_CONN_ID, task_id="test_pg_query", dag=test_dag)
+    create_or_get_dagrun(test_dag, task)
     context = get_template_context(task)
     run_task(task=task, context=context)
 
@@ -42,6 +43,7 @@ def test_pg_file(test_dag):
                   work_conn_id=test_dag.work_conn_id, result_type=test_dag.result_type,
                   task_id="test_pg_file", dag=test_dag)
 
+    create_or_get_dagrun(test_dag, task)
     context = get_template_context(task)
     test_dag.get_work(test_dag.work_type, test_dag.conn_id).create(context)
     run_task(task=task, context=context)
@@ -65,6 +67,7 @@ def test_gp_sql_with_invalid_query(test_dag, setup_sources, invalid_pg_data):
                       work_conn_id=test_dag.work_conn_id,
                       result_type=test_dag.result_type,
                       task_id="test_pg_query", dag=test_dag)
+        create_or_get_dagrun(test_dag, task)
         context = get_template_context(task)
         test_dag.get_work(test_dag.work_type, test_dag.conn_id).create(context)
 
@@ -98,6 +101,8 @@ def test_pg_with_non_existent_query_file(test_dag):
         task = DBDump(conn_id=PG_CONN_ID, sql=query_path,
                       work_conn_id=test_dag.work_conn_id, result_type=test_dag.result_type,
                       task_id="pg_with_non_existent_query_file", dag=test_dag)
+
+        create_or_get_dagrun(test_dag, task)
 
     with allure.step('Run tasks with exception'):
         try:

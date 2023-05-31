@@ -1,0 +1,11 @@
+description: Loading message code for EntityTypes into tuning.dictionary table
+schedule_interval: 11 05 * * *
+tags:
+  - tuning
+default_args:
+  owner: airflow
+  result_type: pickle
+  retries: 1
+  work_conn_id: s3work
+  work_type: s3
+factory: Python

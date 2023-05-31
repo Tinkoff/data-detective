@@ -25,7 +25,7 @@ class PythonDag(TDag):
             dag_id=Path(dag_dir).name,
             factory=self.config['factory'],
             start_date=DEFAULT_START_DATE,
-            schedule_interval=self.config['schedule_interval'],
+            schedule=self.config['schedule_interval'],
             description=self.config.get('description', ''),
             default_args=self.config['default_args'],
             template_searchpath=dag_dir,

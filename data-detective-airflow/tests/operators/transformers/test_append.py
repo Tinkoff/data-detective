@@ -4,7 +4,7 @@ import pytest
 
 from data_detective_airflow.operators import PythonDump, Append
 from data_detective_airflow.dag_generator import ResultType, WorkType
-from data_detective_airflow.test_utilities import get_template_context, run_task
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context, run_task
 from data_detective_airflow.test_utilities.generate_df import generate_dfs_with_random_data
 
 df1 = pandas.DataFrame(
@@ -44,7 +44,7 @@ df_empty2 = df_empty.copy(deep=True)
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_append(test_dag):
+def test_append(test_dag, dummy_task):
     task_d1 = PythonDump(python_callable=lambda context: df1, task_id="test_df1_dump",
                          dag=test_dag)
     task_d2 = PythonDump(python_callable=lambda context: df2, task_id="test_df2_dump",
@@ -53,6 +53,7 @@ def test_append(test_dag):
                          dag=test_dag)
     task = Append(task_id="test_df_append",
                   source=['test_df1_dump', 'test_df2_dump', 'test_df3_dump'], dag=test_dag)
+    create_or_get_dagrun(test_dag, dummy_task)
 
     run_task(task=task_d1, context=get_template_context(task_d1))
     run_task(task=task_d2, context=get_template_context(task_d2))
@@ -70,7 +71,7 @@ def test_append(test_dag):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_append_duplicate_sources(test_dag):
+def test_append_duplicate_sources(test_dag, dummy_task):
     with allure.step('Create tasks and context'):
         task_d2 = PythonDump(python_callable=lambda context: df2, task_id="test_df2_dump",
                              dag=test_dag)
@@ -79,6 +80,7 @@ def test_append_duplicate_sources(test_dag):
                                     dag=test_dag)
         task = Append(task_id="test_df_append",
                       source=['test_df2_dump', 'test_double_df2_dump'], dag=test_dag)
+        create_or_get_dagrun(test_dag, dummy_task)
 
     with allure.step('Run tasks'):
         run_task(task=task_d2, context=get_template_context(task_d2))
@@ -97,7 +99,8 @@ def test_append_duplicate_sources(test_dag):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_append_one_empty_source(test_dag):
+def test_append_one_empty_source(test_dag, dummy_task):
+
     with allure.step('Create tasks and context'):
         task_d2 = PythonDump(python_callable=lambda context: df2, task_id="test_df2_dump",
                              dag=test_dag)
@@ -108,6 +111,7 @@ def test_append_one_empty_source(test_dag):
                                   dag=test_dag)
         task = Append(task_id="test_df_append",
                       source=['test_df2_dump', 'test_df3_dump', 'test_df_empty_dump'], dag=test_dag)
+        create_or_get_dagrun(test_dag, dummy_task)
 
     with allure.step('Run tasks'):
         run_task(task=task_d2, context=get_template_context(task_d2))
@@ -127,7 +131,8 @@ def test_append_one_empty_source(test_dag):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_append_empty_sources(test_dag):
+def test_append_empty_sources(test_dag, dummy_task):
+
     with allure.step('Create tasks and context'):
         task_d_empty = PythonDump(python_callable=lambda context: df_empty,
                                   task_id="test_df_empty_dump",
@@ -137,6 +142,7 @@ def test_append_empty_sources(test_dag):
                                    dag=test_dag)
         task = Append(task_id="test_df_append",
                       source=['test_df_empty_dump', 'test_df2_empty_dump'], dag=test_dag)
+        create_or_get_dagrun(test_dag, dummy_task)
 
     with allure.step('Run tasks'):
         run_task(task=task_d_empty, context=get_template_context(task_d_empty))
@@ -155,7 +161,8 @@ def test_append_empty_sources(test_dag):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_append_many_sources(test_dag):
+def test_append_many_sources(test_dag, dummy_task):
+
     with allure.step('Generate data and tasks'):
         tasks = []
         sources = []
@@ -175,6 +182,8 @@ def test_append_many_sources(test_dag):
                 PythonDump(python_callable=lambda context: df, task_id=task_id, dag=test_dag))
 
         task = Append(task_id="test_df_append", source=sources, dag=test_dag)
+        create_or_get_dagrun(test_dag, dummy_task)
+
         context = get_template_context(task)
     with allure.step('Run tasks'):
         for tsk in tasks:
@@ -192,7 +201,9 @@ def test_append_many_sources(test_dag):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_append_not_exist_source(test_dag):
+def test_append_not_exist_source(test_dag, dummy_task):
+
+
     with allure.step('Create tasks and context'):
         task_d1 = PythonDump(python_callable=lambda context: df1, task_id="test_df1_dump",
                              dag=test_dag)
@@ -202,6 +213,7 @@ def test_append_not_exist_source(test_dag):
                              dag=test_dag)
         task = Append(task_id="test_df_append",
                       source=[task_d1.task_id, task_d2.task_id, task_d3.task_id], dag=test_dag)
+        create_or_get_dagrun(test_dag, dummy_task)
 
     with allure.step('Run tasks with exception'):
         run_task(task=task_d1, context=get_template_context(task_d1))

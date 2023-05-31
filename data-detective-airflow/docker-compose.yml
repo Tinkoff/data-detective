@@ -5,10 +5,10 @@ x-airflow: &airflow
     context: .
     target: dev
   environment:
-    - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${META_USER}:${META_PASS}@metadb:5432/${META_USER}
+    - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${META_USER}:${META_PASS}@metadb:5432/${META_USER}
     - AIRFLOW__CORE__EXECUTOR=LocalExecutor
     - AIRFLOW__WEBSERVER__SECRET_KEY=${SECRET_KEY}
-    - AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False
+    - AIRFLOW__DATABASE__LOAD_DEFAULT_CONNECTIONS=False
     - AIRFLOW__CORE__LOAD_EXAMPLES=False
 
 services:
@@ -17,7 +17,7 @@ services:
       context: docker/ssh_service
 
   metadb:
-    image: postgres:13.4-alpine
+    image: postgres:13.8-bullseye
     environment:
       - POSTGRES_USER=${META_USER}
       - POSTGRES_PASSWORD=${META_PASS}
@@ -30,24 +30,26 @@ services:
       retries: 10
 
   pg:
-    image: postgres:13.4-alpine
+    image: postgres:13.8-bullseye
     environment:
       - POSTGRES_USER=${META_USER}
       - POSTGRES_PASSWORD=${META_PASS}
     ports:
       - "5005:5432"
     volumes:
-      - ./docker/init-pgwork.sql:/docker-entrypoint-initdb.d/init-pgwork.sql
+      - ./docker/init-pg.sql:/docker-entrypoint-initdb.d/init-pg.sql
 
   s3:
-    image: localstack/localstack:0.11.5
+    image: localstack/localstack:1.0.4
     ports:
       - "4566:4566"
       - "8055:8080"
     environment:
+      - EAGER_SERVICE_LOADING=1
       - SERVICES=s3
       - DEBUG=0
-      - DATA_DIR=/tmp/localstack/data
+      # Disable LocalStack Event Analytics
+      - DISABLE_EVENTS=1
     volumes:
       - ./docker/init-s3.sh:/docker-entrypoint-initaws.d/init-s3.sh
 

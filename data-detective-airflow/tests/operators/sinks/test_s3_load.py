@@ -7,7 +7,7 @@ from data_detective_airflow.constants import S3_CONN_ID, WORK_S3_BUCKET
 from data_detective_airflow.dag_generator import TDag, ResultType, WorkType
 from data_detective_airflow.operators.extractors import PythonDump
 from data_detective_airflow.operators.sinks import S3Load
-from data_detective_airflow.test_utilities import get_template_context, run_task
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context, run_task
 from tests_data.operators.sinks.s3_load_dataset import dataset
 
 
@@ -18,16 +18,13 @@ from tests_data.operators.sinks.s3_load_dataset import dataset
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_s3_load_single(test_dag: TDag, mocker, context):
+def test_s3_load_single(test_dag: TDag, mocker):
     test_dag.clear()
 
     upstream_task = PythonDump(
         python_callable=lambda x: DataFrame(),
         task_id='upstream_task',
         dag=test_dag)
-
-    run_task(upstream_task, get_template_context(upstream_task))
-    upstream_task.result.read = mocker.MagicMock(return_value=dataset)
 
     task = S3Load(
         conn_id=S3_CONN_ID,
@@ -38,8 +35,13 @@ def test_s3_load_single(test_dag: TDag, mocker, context):
         bytes_column='data',
         dag=test_dag)
 
-    test_dag.get_work(test_dag.conn_id).create(context)
-    run_task(task=task, context=context)
+    create_or_get_dagrun(test_dag, upstream_task)
+
+    run_task(upstream_task, get_template_context(upstream_task))
+    upstream_task.result.read = mocker.MagicMock(return_value=dataset)
+
+    test_dag.get_work(test_dag.conn_id).create(get_template_context(task))
+    run_task(task=task, context=get_template_context(task))
 
     # s3_dump.py:67
     hook = S3Hook(S3_CONN_ID)
@@ -63,16 +65,13 @@ def test_s3_load_single(test_dag: TDag, mocker, context):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_s3_load_with_metadata(test_dag: TDag, mocker, context):
+def test_s3_load_with_metadata(test_dag: TDag, mocker):
     test_dag.clear()
 
     upstream_task = PythonDump(
         python_callable=lambda x: DataFrame(),
         task_id='upstream_task',
         dag=test_dag)
-
-    run_task(upstream_task, get_template_context(upstream_task))
-    upstream_task.result.read = mocker.MagicMock(return_value=dataset)
 
     task = S3Load(
         conn_id=S3_CONN_ID,
@@ -84,8 +83,14 @@ def test_s3_load_with_metadata(test_dag: TDag, mocker, context):
         metadata_column='metadata',
         dag=test_dag)
 
-    test_dag.get_work(test_dag.conn_id).create(context)
-    run_task(task=task, context=context)
+
+    create_or_get_dagrun(test_dag, upstream_task)
+
+    run_task(upstream_task, get_template_context(upstream_task))
+    upstream_task.result.read = mocker.MagicMock(return_value=dataset)
+
+    test_dag.get_work(test_dag.conn_id).create(get_template_context(task))
+    run_task(task=task, context=get_template_context(task))
 
     hook = S3Hook(S3_CONN_ID)
     client = hook.get_conn()
@@ -107,7 +112,7 @@ def test_s3_load_with_metadata(test_dag: TDag, mocker, context):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_s3_load_update_metadata(test_dag: TDag, mocker, context):
+def test_s3_load_update_metadata(test_dag: TDag, mocker):
     test_dag.clear()
 
     upstream_task = PythonDump(
@@ -115,7 +120,10 @@ def test_s3_load_update_metadata(test_dag: TDag, mocker, context):
         task_id='upstream_task',
         dag=test_dag)
 
-    run_task(upstream_task, get_template_context(upstream_task))
+    create_or_get_dagrun(test_dag, upstream_task)
+    context = get_template_context(upstream_task)
+
+    run_task(upstream_task, context)
     upstream_task.result.read = mocker.MagicMock(return_value=dataset)
 
     task = S3Load(

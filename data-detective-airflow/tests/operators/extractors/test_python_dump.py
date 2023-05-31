@@ -1,15 +1,13 @@
-from datetime import datetime
 from pathlib import Path
 import logging
 
 import allure
 import pytest
-from airflow.models.taskinstance import TaskInstance
 from pandas import DataFrame
 
 from data_detective_airflow.dag_generator import ResultType, WorkType
 from data_detective_airflow.operators import PythonDump
-from data_detective_airflow.test_utilities import run_task
+from data_detective_airflow.test_utilities import create_or_get_dagrun, get_template_context, run_task
 from tests_data.operators.extractors.python_dump_data import data_dict, only_columns_dict
 from tests_data.fixtures.PY.python_fixtures import invalid_python_dump_data as _data
 
@@ -21,7 +19,7 @@ from tests_data.fixtures.PY.python_fixtures import invalid_python_dump_data as _
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_python_dump_without_args(test_dag, context):
+def test_python_dump_without_args(test_dag):
     def python2df_callable_without_args(_context):
         return DataFrame.from_dict(data_dict)
 
@@ -33,6 +31,8 @@ def test_python_dump_without_args(test_dag, context):
             dag=test_dag,
             python_callable=python2df_callable_without_args
         )
+        create_or_get_dagrun(test_dag, task)
+        context = get_template_context(task)
 
         test_dag.get_work(test_dag.conn_id).create(context)
         run_task(task=task, context=context)
@@ -54,7 +54,7 @@ def test_python_dump_without_args(test_dag, context):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_python_dump_with_args(test_dag, context):
+def test_python_dump_with_args(test_dag):
     test_dag.clear()
 
     def python2df_callable_with_args(_context, d):
@@ -67,6 +67,9 @@ def test_python_dump_with_args(test_dag, context):
             python_callable=python2df_callable_with_args,
             op_kwargs={'d': data_dict}
         )
+
+        create_or_get_dagrun(test_dag, task)
+        context = get_template_context(task)
 
         test_dag.get_work(test_dag.conn_id).create(context)
         run_task(task=task, context=context)
@@ -88,7 +91,7 @@ def test_python_dump_with_args(test_dag, context):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_python_dump_lambda_with_args(test_dag, context):
+def test_python_dump_lambda_with_args(test_dag):
     with allure.step('Create and run a task'):
         test_dag.clear()
 
@@ -98,6 +101,9 @@ def test_python_dump_lambda_with_args(test_dag, context):
             python_callable=lambda _context, d: DataFrame.from_dict(d),
             op_kwargs={'d': data_dict}
         )
+
+        create_or_get_dagrun(test_dag, task)
+        context = get_template_context(task)
 
         test_dag.get_work(test_dag.conn_id).create(context)
         run_task(task=task, context=context)
@@ -120,7 +126,7 @@ def test_python_dump_lambda_with_args(test_dag, context):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_python_dump_empty_target(test_dag, context):
+def test_python_dump_empty_target(test_dag):
     def python2df_callable_without_args(_context):
         return DataFrame.from_dict(only_columns_dict)
 
@@ -132,6 +138,9 @@ def test_python_dump_empty_target(test_dag, context):
             dag=test_dag,
             python_callable=python2df_callable_without_args
         )
+
+        create_or_get_dagrun(test_dag, task)
+        context = get_template_context(task)
 
         test_dag.get_work(test_dag.conn_id).create(context)
         run_task(task=task, context=context)
@@ -153,7 +162,7 @@ def test_python_dump_empty_target(test_dag, context):
                            WorkType.WORK_FILE.value,
                            None)],
                          indirect=True)
-def test_python_dump_invalid_code(test_dag, context, _data):
+def test_python_dump_invalid_code(test_dag, _data):
     with allure.step('Create task'):
         test_dag.clear()
 
@@ -162,6 +171,9 @@ def test_python_dump_invalid_code(test_dag, context, _data):
             dag=test_dag,
             python_callable=_data.extract_func
         )
+
+        create_or_get_dagrun(test_dag, task)
+        context = get_template_context(task)
 
         test_dag.get_work(test_dag.conn_id).create(context)
 

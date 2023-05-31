@@ -13,6 +13,7 @@ class LinkBuilder:
         self._link_types = link_types or self._map
 
     def __call__(self, row_data) -> _LinkResultType:
-        result = [{'link': row_data.pop(k), 'type': v}
-                  for k, v in self._link_types.items() if isnotempty(row_data.get(k))]
+        result = [
+            {'link': row_data.pop(k), 'type': v} for k, v in self._link_types.items() if isnotempty(row_data.get(k))
+        ]
         return result or None
