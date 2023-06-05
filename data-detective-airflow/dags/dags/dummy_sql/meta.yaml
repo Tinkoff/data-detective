@@ -31,8 +31,7 @@ tasks:
   source:
   - test1
   - transform
-  transformer_callable: >
-    lambda _context, df_now1, transform: df_now1.append(transform, sort=False)
+  transformer_callable: append_dfs
 - task_id: sink
   description: Write the result
   type: data_detective_airflow.operators.sinks.PgSCD1
