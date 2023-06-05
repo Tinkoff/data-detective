@@ -1,22 +1,23 @@
 [tool.poetry]
 name = "date-detective-etl"
 license = "Apache-2.0"
-version = "2.1.0"
+version = "2.2.0"
 description = "ETL with data-detective-airflow"
 authors = ["Tinkoff Data Detective Team"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-apache-airflow = "~2.4"
+apache-airflow = "~2.6"
 apache-airflow-providers-amazon = "*"
+botocore = "^1.29.144"
 apache-airflow-providers-celery = "*"
 apache-airflow-providers-postgres = "*"
 apache-airflow-providers-redis = "*"
 apache-airflow-providers-ssh = "*"
 apache-airflow-providers-elasticsearch = "*"
-data-detective-airflow = "2.1.0"
+data-detective-airflow = "2.2.0"
 petl = "^1.7"
-pandas = "^1.1, <1.6"
+pandas = "~2.0"
 pydantic = "^1.10"
 beautifulsoup4 = "^4.11"
 
